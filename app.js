@@ -1,14 +1,48 @@
-const url = 'https://script.google.com/macros/s/AKfycbwZ68iftymLugDqCGkyiszvPHWrDoW0iHYtw0brI9Er-zMtuwE8bKZ_PhetVe8FqKba/exec';
+// after loading 
 window.addEventListener('DOMContentLoaded', getData);
+
+// call API COURSES
+const url = 'https://script.google.com/macros/s/AKfycbwZ68iftymLugDqCGkyiszvPHWrDoW0iHYtw0brI9Er-zMtuwE8bKZ_PhetVe8FqKba/exec';
+const urluser =  'https://script.google.com/macros/s/AKfycbyk8zKKdNiSt8XhrFT7ONQGjGUcjT69yoHUMhS3no0HWNKgDr-Hror_6PR_W3YJY3xU/exec';
+
+//get buttons 
 const output = document.querySelector('.output');
-const btnSave = document.querySelector('.saver');
+//const btnSave = document.querySelector('.saver');
+const btnEmail = document.querySelector('.emailer');
 const btnReload = document.querySelector('.ref');
-const iName = document.querySelector('input[name=name]');
-const iMes = document.querySelector('input[name=message]');
+
+//get fields
+//const iName = document.querySelector('input[name=name]');
+//const iMes = document.querySelector('input[name=message]');
 const repMessage = document.querySelector('.rep');
-btnSave.addEventListener('click', sData);
+
+//event listener buttons 
+//btnSave.addEventListener('click', sData);
 btnReload.addEventListener('click', getData);
+btnEmail.addEventListener('click', getUser);
  
+
+
+function getUser() {
+  urlapi = urluser+"/exec?mail="+document.querySelector('input[name=email]').value
+  console.log(urlapi);
+  output.innerHTML = "loading...";
+  console.log("fetching user data");
+  fetch(urlapi).then(function (rep) {
+    return rep.json()
+  }).then(function (data) {
+    console.log(data);
+    output.innerHTML = "";
+    data.user.forEach(function (val) {
+      console.log(val);
+      document.getElementById("name").innerHTML = val[3];
+      document.getElementById("email").innerHTML = document.querySelector('input[name=email]').value;
+    })
+  })
+}
+
+
+
 function sData(e) {
   e.preventDefault();
   repMessage.textContent = "Sending";
@@ -34,6 +68,8 @@ function sData(e) {
     getData();
   })
 }
+
+// gets classes data
  
 function getData() {
     	  var today = new Date();
@@ -44,11 +80,10 @@ function getData() {
         displayTable += '<table class=\"table table-striped\" id=\"mainTable\" >';
         displayTable += '<thead  class=\"thead-dark\" >';
         displayTable += "<tr>";
-        displayTable += "<th>Kurs/Course</th>";
-        displayTable += "<th>Day/Tag</th>";
-        displayTable += "<th>Time/Uhrzeit</th>";
-        displayTable += "<th>Date/Datum</th>";
         displayTable += "<th></th>";
+        displayTable += "<th>Kurs/Course</th>";
+        displayTable += "<th>Day/Time</th>";
+        displayTable += "<th>Date/Datum</th>";
         displayTable += "</tr>";
         displayTable += '</thead>';
         var coma = ",";
@@ -63,27 +98,26 @@ function getData() {
     data.posts.forEach(function (val) {
 
         displayTable += "<tr>";
-        displayTable += "<td>"+val[1]+"</td>";
-        displayTable += "<td>"+val[5]+"</td>";
-        displayTable += "<td>"+val[7]+"</td>";
-        displayTable += "<td>"+val[8]+"</td>";
         displayTable += "<td><input type=\"button\" value=\"Anmelden\" class=\"btn btn-colour-1\" ";
         displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[9]+"')\" /></td>";
+        displayTable += "<td>"+val[1]+"</td>";
+        displayTable += "<td>"+val[5]+" "+val[7]+"</td>";
+        displayTable += "<td>"+val[8]+"</td>";
         displayTable += "</tr>";
 
       console.log(val);
-      let html = document.createElement('div');
-      html.innerHTML = val[0] + ' ' + val[1] + ' ' + val[2] + '<br>';
-      output.appendChild(html);
+      //let html = document.createElement('div');
+      //html.innerHTML = val[0] + ' ' + val[1] + ' ' + val[2] + '<br>';
+      //output.appendChild(html);
     } 
     )
         displayTable += '</table>';
         displayTable += '</div>';     
         document.getElementById("rowdata").innerHTML = displayTable;
   })
-}
+};
 
-///
+
 
 
 
@@ -151,6 +185,13 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
+    displayTable += '<label for="email" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
+    displayTable += '<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">';
+    displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
+    displayTable += '<div id="display_error" style="color: red" ></div>';
+    displayTable += '<div id="display_success" style="color: black" ></div>';
+    displayTable += '</div>';
+    displayTable += '<div class="form-row">';
     displayTable += '<div id="display_error" style="color: red" ></div>';
     displayTable += '<div id="display_success" style="color: black" ></div>';
     displayTable += '</div>';
@@ -167,8 +208,5 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
 
     $("#statesModal").html(displayTable);
     $("#myModal").modal();
-}
-
-    
-
+};
 
