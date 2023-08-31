@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS a-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
     <!-- Style -->
@@ -28,6 +28,12 @@
   letter-spacing: 0.05em;
   border-radius: 25% 10%;;
 }
+
+.btn:hover {
+   background-color: #ff5e0e;
+}
+
+
   </style>
 
 
@@ -131,8 +137,24 @@
     Email: <input type="email" name="email">
     <button class="emailer">Email eingeben</button>
     <div class="output"></div>
-    <p id="name"></p>
-    <p id="email"></p>
+    <p id="name_display"></p>
+    <p id="email_display"></p>
+    
+      <div class="container-fluid" id="tableContainer">
+      <input type="hidden" id="User_email" value="">
+      <input type="hidden" id="User_name" value="Guest User">
+      <input type="hidden" id="User_courses" value="Not Registered yet">
+      <input type="hidden" id="User_id" value="Not Registered yet">
+      <input type="hidden" id="User_active" value="Not Registered yet">
+      <input type="hidden" id="User_lastpayment" value="Not Registered yet">
+      <input type="hidden" id="User_saldo" value="Not Registered yet">
+      <input type="hidden" id="User_anmerkungen" value="Not Registered yet">
+      <input type="hidden" id="User_nextpayment" value="Not Registered yet">
+      </div>
+
+    <button class="payment" style="display: none;">Show Active Payment</button>
+    <button class="allpayments" style="display: none;">Show all Payments</button>    
+
     <button class="ref">Reload</button>
     </br>
 
