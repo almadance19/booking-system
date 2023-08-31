@@ -1,3 +1,8 @@
+//GIT GUIDE
+//git add --all
+//git commit -m "commit message"
+
+
 // after loading 
 window.addEventListener('DOMContentLoaded', getData);
 
