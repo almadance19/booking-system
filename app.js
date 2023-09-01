@@ -33,7 +33,7 @@ const repMessage = document.querySelector('.rep');
 //event listener buttons 
 btnPayment.addEventListener('click', showPaymentModal);
 btnPayments.addEventListener('click', showPaymentsModal);
-btnPaypal.addEventListener('click', paymentForm,initPayPalButton);
+btnPaypal.addEventListener('click', paymentForm);
 btnEmail.addEventListener('click', getUser);
  
 //get user fields
@@ -459,16 +459,13 @@ function paymentForm()
     var last_due_payment = document.getElementById("User_nextpayment").value;
     var active = document.getElementById("User_active").value;
     var user_email = document.getElementById("User_email").value;
+    document.querySelector(".section-2").style.display = 'none';
 
 
 
     var displayTable = ""
-    displayTable += "<div class=\"modal-body\">";
     displayTable += "<div class=\"container-fluid\">";
-    displayTable += "<div class=\"row\">";
-    displayTable += "<div class=\"col\" style=\"font-weight: bold\" ></div>";
-
-    displayTable += "</div>";
+    displayTable += "<div class=\"col\" style=\"font-weight: bold\" >";
 
     var espace = ": ";
     displayTable += "<div class=\"row\">"+"<strong>Adresse/Address</strong> "+"adress"+"</div>";
@@ -549,6 +546,7 @@ function paypalProcess() {
   //get prices from db and select from dictionary
   //get payment data
   console.log("Paypal Process starting");
+  document.getElementById("addRegis").disabled = true;
   document.getElementById('ItemOrdered').value = 'NUEVO PRECIO';
   document.getElementById('ItemOrdered').setAttribute( "price", "15" );
   document.getElementById('ItemOrdered').innerHTML = 'NUEVO PRECIO - 25';
@@ -598,7 +596,8 @@ var dict_preise = {
 
 
 function initPayPalButton() {
-  document.querySelector(".section-2").style.display = 'none'; 
+  document.getElementById("price_shield").style.display = "block";
+
 
   var shipping = 0;
   var itemOptions = document.querySelector("#smart-button-container #item-options");
@@ -607,7 +606,7 @@ var quantitySelect = document.querySelector("#smart-button-container #quantitySe
 if (!isNaN(quantity)) {
 quantitySelect.style.visibility = "visible";
 }
-var orderDescription = 'FRANKFURT SPRING BACHATHON 2023';
+var orderDescription = 'ALMA DANCE COURSES';
 if(orderDescription === '') {
 orderDescription = 'Item';
 }
@@ -677,9 +676,12 @@ onApprove: function(data, actions) {
     const element = document.getElementById('paypal-button-container');
     element.innerHTML = '';
     element.innerHTML = '<h3>Thank you for your payment!</h3>';
+    output.innerHTML = '<h3>Thank you for your payment!</h3>';
     document.getElementById('smart-button-container').style.display = 'none';
     console.log('This person paid',emailinput.value, ", ",nameinput.value, ", ",idinput.value );
     document.querySelector(".section-2").style.display = 'block'; 
+    document.getElementById('pay-form-container').style.display = 'none';
+    document.querySelector(".paypal").style.display = 'none';
     let arr_pay = [emailinput.value,nameinput.value,idinput.value];
     console.log(arr_pay);
     sDataPay(arr_pay);
