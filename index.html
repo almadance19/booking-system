@@ -129,51 +129,77 @@
       </header>
 
     <!-- Nav bar ended - App starts  -->
-    <div class="hero" style="background-image: url('images/hero_1.jpg');"></div>
+    <!-- <div class="hero" style="background-image: url('images/hero_1.jpg');"></div> -->
 
+    <section class="section-1">
+      </br>
+      <span class="rep"></span>
+      Email: <input type="email" name="email">
+      <button class="emailer">Email eingeben</button>
+      <div class="output"></div>
+      <p id="name_display"></p>
+      <p id="email_display"></p>
+      
+        <div class="container-fluid" id="tableContainer">
+        <input type="hidden" id="User_email" value="">
+        <input type="hidden" id="User_name" value="Guest User">
+        <input type="hidden" id="User_courses" value="Not Registered yet">
+        <input type="hidden" id="User_id" value="Not Registered yet">
+        <input type="hidden" id="User_active" value="Not Registered yet">
+        <input type="hidden" id="User_lastpayment" value="Not Registered yet">
+        <input type="hidden" id="User_saldo" value="Not Registered yet">
+        <input type="hidden" id="User_anmerkungen" value="Not Registered yet">
+        <input type="hidden" id="User_nextpayment" value="Not Registered yet">
+        </div>
 
-    </br>
-    <span class="rep"></span>
-    Email: <input type="email" name="email">
-    <button class="emailer">Email eingeben</button>
-    <div class="output"></div>
-    <p id="name_display"></p>
-    <p id="email_display"></p>
+      <button class="payment" style="display: none;">Show Active Payment</button>
+      <button class="allpayments" style="display: none;">Show all Payments</button>    
+
+      <button class="paypal" style="display: none;">Make a payment</button>
+      </br>
+
+      <!--PAYMENT FORM  -->
+
+        <div id="pay-form-container">
+ 
+        </div>
+       
+      <!--PAYPAL ZONE  -->
+        <div id="smart-button-container" class="container-fluid">
+          <div style="text-align: center;">
+            <div style="margin-bottom: 1.25rem;">
+              <p>FRANKFURT SPRING BACHATHON 2023</p>
+              <select id="item-options">
+                <option value="Item" id="ItemOrdered">Select an Item - 0 EUR</option>
+                <!-- <option value="Marathon pass" price="72">Marathon pass - 72 EUR</option> -->
+              </select>
+              <select style="visibility: hidden" id="quantitySelect"></select>
+            </div>
+          <div id="paypal-button-container"></div>
+          </div>
+        </div>
     
-      <div class="container-fluid" id="tableContainer">
-      <input type="hidden" id="User_email" value="">
-      <input type="hidden" id="User_name" value="Guest User">
-      <input type="hidden" id="User_courses" value="Not Registered yet">
-      <input type="hidden" id="User_id" value="Not Registered yet">
-      <input type="hidden" id="User_active" value="Not Registered yet">
-      <input type="hidden" id="User_lastpayment" value="Not Registered yet">
-      <input type="hidden" id="User_saldo" value="Not Registered yet">
-      <input type="hidden" id="User_anmerkungen" value="Not Registered yet">
-      <input type="hidden" id="User_nextpayment" value="Not Registered yet">
-      </div>
+    </section>
 
-    <button class="payment" style="display: none;">Show Active Payment</button>
-    <button class="allpayments" style="display: none;">Show all Payments</button>    
-
-    <button class="ref">Reload</button>
-    </br>
-
+    <section class="section-2">
     <!-- Buttons  -->
-    <div id="slideshow">
-      <span style="font-weight: bold; color:#48005f"> Filters </span>
-      <button class="left btn btn-colour-1" value="Salsa">Salsa</button>
-      <button class="center btn btn-colour-1" value="Bachata">Bachata</button>
-      <button class="right btn btn-colour-1" value="Zouk">Zouk</button>
-      <button class="right btn btn-colour-1" value="Workshop">Workshops</button>
-    </div>
-    </br>
+      <div id="slideshow">
+        <span style="font-weight: bold; color:#48005f"> Filters </span>
+        <button class="left btn btn-colour-1" value="Salsa">Salsa</button>
+        <button class="center btn btn-colour-1" value="Bachata">Bachata</button>
+        <button class="right btn btn-colour-1" value="Zouk">Zouk</button>
+        <button class="right btn btn-colour-1" value="Workshop">Workshops</button>
+      </div>
+      </br>
 
+      <!-- User Data -->
+      <div id="userdata"></div>
+      <!-- Courses Data -->
+      <div id="rowdata"></div>
 
-<!-- User Data -->
-<div id="userdata"></div>
-<!-- Courses Data -->
-<div id="rowdata"></div>
-<!-- Modal-->
+  </section>
+
+<!-- Modal Section-->
   <div id="statesModal"></div>
   <div id="payModal"></div>
   <div id="paymentsModal"></div>
@@ -188,5 +214,9 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.sticky.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- PROD PAYPAL <script src="https://www.paypal.com/sdk/js?client-id=Ad_vdC1plSPko5d9oY4CJeobC3WYQqtoyOthXJ0IcKfo38y-Ya9wcgRTglhuWrNSRyub31mxXLhUuAFM&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script> -->
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AclB-BsMF4ANpqyctt2euY8KJeBkjLLKZblEKOinRpLMY4ku2ecNq45KvJ7CdMKMg-z3BJQKndjc0553&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script>
   </body>
 </html>
