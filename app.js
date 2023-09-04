@@ -3,6 +3,7 @@
 //git commit -m "commit message"
 //git commit -m "commit message"git push --force origin
 //git push --force origin master
+//
 
 
 // after loading 
@@ -24,6 +25,7 @@ const btnPayment = document.querySelector('.payment');
 const btnPayments = document.querySelector('.allpayments');
 const btnEmail = document.querySelector('.emailer');
 const btnPaypal = document.querySelector('.paypal');
+const btnBookaclass = document.querySelector('.bookaclass');
 
 //get fields
 //const iName = document.querySelector('input[name=name]');
@@ -35,6 +37,9 @@ btnPayment.addEventListener('click', showPaymentModal);
 btnPayments.addEventListener('click', showPaymentsModal);
 btnPaypal.addEventListener('click', paymentForm);
 btnEmail.addEventListener('click', getUser);
+btnBookaclass.addEventListener('click', bookClasses);
+
+
  
 //get user fields
 
@@ -208,6 +213,8 @@ function getUser() {
           console.log(val);
           document.getElementById("name_display").innerHTML = val[3];
           document.getElementById("email_display").innerHTML = email_value;
+          document.getElementById("user_message").innerHTML = "Make a Payment, check your Payment History or check your Membership Status";
+
           emailinput.value = email_value;
           nameinput.value = val[3];
           coursesinput.value = val[1];
@@ -452,14 +459,21 @@ function sData(arr) {
 /// CREATE PAYMENT FORM 
 
 
+function bookClasses() {
+  document.querySelector(".section-2").style.display = 'block';
+  document.querySelector(".section-1").style.display = 'none';
+}
+
 function paymentForm()
 {
+    document.querySelector(".section-1").style.display = 'block';
     var name_user = document.getElementById("User_name").value;
     var last_payment = document.getElementById("User_lastpayment").value;
     var last_due_payment = document.getElementById("User_nextpayment").value;
     var active = document.getElementById("User_active").value;
     var user_email = document.getElementById("User_email").value;
     document.querySelector(".section-2").style.display = 'none';
+    btnBookaclass.style.display = 'block';
 
 
 
@@ -545,6 +559,7 @@ function paymentForm()
 function paypalProcess() {
   //get prices from db and select from dictionary
   //get payment data
+  //get payment datum als due datum für bestehende kunde für neue kunde ist zahlungsdatum
   console.log("Paypal Process starting");
   document.getElementById("addRegis").disabled = true;
   document.getElementById('ItemOrdered').value = 'NUEVO PRECIO';
