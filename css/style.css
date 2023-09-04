@@ -370,7 +370,6 @@ a {
 
   .dark {
     background: #110f16;
-      font-family: 'Baloo 2', cursive;
   }
   
   .container {
@@ -381,7 +380,6 @@ a {
   
   .light {
     background: #48005f;
-      font-family: 'Baloo 2', cursive;
   }
   
   a, a:hover {
@@ -443,7 +441,7 @@ a {
     }
   
     .postcard__img {
-      max-height: 180px;
+      max-height: 130px;
       width: 100%;
       object-fit: cover;
       position: relative;
