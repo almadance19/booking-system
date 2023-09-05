@@ -12,12 +12,15 @@ window.addEventListener('DOMContentLoaded', getInit);
 function getInit() {
   //initPayPalButton();
   getData();
+  getPrices();
 };
 
 // call API COURSES
 const url = 'https://script.google.com/macros/s/AKfycbxzYlcbdFzS463CkGaXu-1vSiWfx0hHGO1zJD4P4sgrUnAOhGWWO_k9Lu4rMj3Q2btV/exec';
 
 const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
+
+const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -101,6 +104,30 @@ function getData() {
         displayTable += '</div>';     
         document.getElementById("rowdata").innerHTML = displayTable;
   })
+};
+
+// Directory to save prices from the Prices API
+var dict_prices = {}
+
+function getPrices() { 
+
+  fetch(url_prices).then(function (rep) {
+    return rep.json()
+  }).then(function (data) {
+    console.log(data);
+    
+    data.posts.forEach(function (val) {
+
+      const promocode = val[0];
+      const promocode_value = val[1];
+      dict_prices[promocode] = promocode_value;
+    } 
+    )
+        console.log("current prices");    
+        console.log(dict_prices);
+        return dict_prices     
+  })
+
 };
 
 
@@ -211,10 +238,30 @@ function getUser() {
         output.innerHTML = "";
         data.user.forEach(function (val) {
           console.log(val);
+
+          var name_user = val[3] 
+
+          if (name_user == 'No Active User') {
+          document.getElementById("name_display").innerHTML = val[3];
+          document.getElementById("email_display").innerHTML = email_value;
+          document.getElementById("user_message").innerHTML = "You can make a Registration or Book a Trial Class as a guest User";
+          emailinput.value = email_value;
+          nameinput.value = val[3];
+          coursesinput.value = val[1];
+          idinput.value = val[0];
+          activeinput.value = val[2];
+          lastpaymentinput.value = val[7];
+          saldoinput.value = val[5];
+          anmerkungeninput.value = val[6];
+          nextpaymentinput.value = val[4];
+          btnPaypal.innerHTML = "Register";
+          btnPaypal.style.display = "block";
+
+          } 
+          else {
           document.getElementById("name_display").innerHTML = val[3];
           document.getElementById("email_display").innerHTML = email_value;
           document.getElementById("user_message").innerHTML = "Make a Payment, check your Payment History or check your Membership Status";
-
           emailinput.value = email_value;
           nameinput.value = val[3];
           coursesinput.value = val[1];
@@ -227,13 +274,13 @@ function getUser() {
           btnPayment.style.display = "block";
           btnPayments.style.display = "block";
           btnPaypal.style.display = "block";
-
+        }
         });
         showPayment(data.activepayment);
         showAllePayments(data.historypayments);
       });
       } else {
-        output.innerHTML = "If you are user, enter a valid email";
+        output.innerHTML = "Enter a valid email";
       }
 }
 
@@ -462,6 +509,11 @@ function sData(arr) {
 function bookClasses() {
   document.querySelector(".section-2").style.display = 'block';
   document.querySelector(".section-1").style.display = 'none';
+  const element = document.getElementById('paypal-button-container');
+  element.innerHTML = '';
+  const bank = document.getElementById('bank-button-container');
+  bank.innerHTML = '';
+  document.getElementById("price_shield").style.display = "none";
 }
 
 function paymentForm()
@@ -526,28 +578,35 @@ function paymentForm()
     displayTable += '<div class="form-row">';
     displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">New Member? / Neue Mitgliedschaft</label>';
     displayTable += '<select class="custom-select" id="newmember">';
-    displayTable += '<option value="1" selected="selected" >Yes / Ja</option>';
-    displayTable += '<option value="0" >No / Nein</option>';
+    displayTable += '<option value="0" selected="selected" >No / Nein</option>';
+    displayTable += '<option value="1" >Yes / Ja</option>';
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="emaiemail_paymentl" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
     displayTable += "<input type=\"email\" id=\"email_payment\" class=\"form-control\" aria-describedby=\"emailHelp\" Value=\""+user_email+"\" >";
     displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
-    displayTable += '<div id="display_error" style="color: red" ></div>';
-    displayTable += '<div id="display_success" style="color: black" ></div>';
+    displayTable += '</div>';
+    displayTable += '<div class="form-row">';
+    displayTable += '<label for="price" style="font-weight: bold" >Price / Preis EUR (Monthly)</label>';
+    displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+"Calculate with Button below"+"\" disabled>";
+    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly or all at once (3/6/12 months) </small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<div id="display_error" style="color: red" ></div>';
     displayTable += '<div id="display_success" style="color: black" ></div>';
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Pay with Paypal\" id=\"addRegis\" class=\"btn btn-colour-1\" ";
-    displayTable += " onclick=\"paypalProcess('"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"')\" />";
+    displayTable += "<input type=\"button\" value=\"Get Price\" id=\"getPrice\" class=\"btn btn-colour-1\" ";
+    displayTable += " onclick=\"priceCalculation('"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"')\" />";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Bank Transfer payment\" id=\"addRegis\" class=\"btn btn-colour-1\" ";
-    displayTable += " onclick=\"bankProcess('"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"')\" />";
+    displayTable += "<input type=\"button\" value=\"Pay with Paypal\" id=\"addPaypal\" class=\"btn btn-colour-1\" ";
+    displayTable += " onclick=\"paypalProcess('"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"')\" / disabled>";
+    displayTable += '</div>';
+    displayTable += '<div class="form-group col-md-3">';
+    displayTable += "<input type=\"button\" value=\"Bank Transfer payment\" id=\"addBank\" class=\"btn btn-colour-1\" ";
+    displayTable += " onclick=\"bankProcess('"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"',"+"'"+name_user+"')\" / disabled>";
     displayTable += '</div>';
     displayTable += "</div>";
     displayTable += "</div>";
@@ -555,16 +614,39 @@ function paymentForm()
     $("#pay-form-container").html(displayTable);
 };
 
+function priceCalculation() {
+  var membershiptype =  document.getElementById('membershiptype').value ;
+  var coursesnumber =  document.getElementById('coursesnumber').value ;
+  var selected_membership = coursesnumber+"-"+membershiptype;
+  var price_membership = dict_prices[selected_membership];
+
+  document.getElementById('price_course').value = price_membership;
+  document.getElementById("addPaypal").disabled = false;
+  document.getElementById("addBank").disabled = false;
+
+  const element = document.getElementById('paypal-button-container');
+  element.innerHTML = '';
+  document.getElementById("price_shield").style.display = "none";
+
+  const bank = document.getElementById('bank-button-container');
+  bank.innerHTML = ''
+
+ }
+;
 
 function paypalProcess() {
   //get prices from db and select from dictionary
   //get payment data
   //get payment datum als due datum für bestehende kunde für neue kunde ist zahlungsdatum
   console.log("Paypal Process starting");
-  document.getElementById("addRegis").disabled = true;
-  document.getElementById('ItemOrdered').value = 'NUEVO PRECIO';
-  document.getElementById('ItemOrdered').setAttribute( "price", "15" );
-  document.getElementById('ItemOrdered').innerHTML = 'NUEVO PRECIO - 25';
+  var membershiptype =  document.getElementById('membershiptype').value ;
+  var coursesnumber =  document.getElementById('coursesnumber').value ;
+  var price_class = document.getElementById("price_course").value
+  document.getElementById("addBank").disabled = true;
+  document.getElementById("addPaypal").disabled = true;
+  document.getElementById('ItemOrdered').value = coursesnumber+"-"+membershiptype;
+  document.getElementById('ItemOrdered').setAttribute( "price", price_class );
+  document.getElementById('ItemOrdered').innerHTML = coursesnumber+"-"+membershiptype+" "+price_class+" EUR";
 
   initPayPalButton();
   //create a new user if new
@@ -573,37 +655,6 @@ function paypalProcess() {
   //show a receipt 
 };
 
-function bankProcess() {
-  console.log("Bank Process starting");
-}
-
-
-var dict_preise = {
-  "1 Course/Kurs-1 Month Subscription" : 60 ,
-  "1 Course/Kurs-3 Months Subscription" : 50 ,
-  "1 Course/Kurs-6 Months Subscription" : 45 ,
-  "1 Course/Kurs-12 Months Subscription" : 40 ,
-  "2 Courses/Kurse-1 Month Subscription" : 90 ,
-  "2 Courses/Kurse-3 Months Subscription" : 75 ,
-  "2 Courses/Kurse-6 Months Subscription" : 70 ,
-  "2 Courses/Kurse-12 Months Subscription" : 60 ,
-  "3 Courses/Kurse-1 Month Subscription" : 100 ,
-  "3 Courses/Kurse-3 Months Subscription" : 90 ,
-  "3 Courses/Kurse-6 Months Subscription" : 80 ,
-  "3 Courses/Kurse-12 Months Subscription" : 70 ,
-  "Flatrate-1 Month Subscription" : 110 ,
-  "Flatrate-3 Months Subscription" : 100 ,
-  "Flatrate-6 Months Subscription" : 90 ,
-  "Flatrate-12 Months Subscription" : 80 ,
-  "1 Course/Kurs-4er Karte" : 65 ,
-  "2 Courses/Kurse-4er Karte" : 65 ,
-  "3 Courses/Kurse-4er Karte" : 65 ,
-  "Flatrate-4er Karte" : 65 ,
-  "1 Course/Kurs-10er Karte" : 120 ,
-  "2 Courses/Kurse-10er Karte" : 120 ,
-  "3 Courses/Kurse-10er Karte" : 120 ,
-  "Flatrate-10er Karte" : 120 
-};
 
 
 
@@ -732,3 +783,77 @@ onError: function(err) {
          //repMessage.textContent = "Subscribed" ;
        })
      };
+
+
+//// BANK PAYMENT
+
+function bankProcess() {
+  //create a new user if new
+  //create a new payment not paid
+  //send a email with payment details 
+
+  document.getElementById("addBank").disabled = true;
+  document.getElementById("addPaypal").disabled = true;
+
+  console.log("Bank process")
+  document.querySelector(".section-1").style.display = 'block';
+  var name_user = document.getElementById("User_name").value;
+  var last_payment = document.getElementById("User_lastpayment").value;
+  var last_due_payment = document.getElementById("User_nextpayment").value;
+  var active = document.getElementById("User_active").value;
+  var user_email = document.getElementById("User_email").value;
+  document.querySelector(".section-2").style.display = 'none';
+  btnBookaclass.style.display = 'block';
+
+  var displayTable = ""
+  var espace = ": ";
+  var displayTable = ""
+    displayTable += "<div class=\"container-fluid\">";
+    displayTable += "<div class=\"col\" style=\"font-weight: bold\" >";
+    displayTable += "<h3>Payment Details</h3>";
+    displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Many thanks for registering to our course(s). </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Course(s): <strong>NACHNAME </strong>.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Membership Type: <strong>PASSTYP</strong>.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">Please complete the order by transfering the payment to our bank account or just bring the money on cash before your next class:</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">Monthly Fee/Amount: <strong>PRICE EUR</strong><br />Kontoinhaber: Ivan Eduardo Millan Jorge<br />IBAN: DE47 1001 1001 2620 4751 14<br />BIC: NTSBDEB1XXX<br />Verwendungszweck: Tanzkurs-DATUM-NACHNAME</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />Or pay via Paypal<br />Monthly Fee/Amount: <strong>PAYPAL EUR</strong> (due to 3 Percent Paypal Fee)<br />Account: millan.jorge.ie@gmail.com<br />Message: Tanzkurs-DATUM-NACHNAME</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">Paypal Payment Link: Paypal.com/EduardoBachata</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />Alternatively pay via Paypal as a Friend without the extra paypal fee; same amount as bank payment <strong>PRICE EUR</strong></p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">After payment you will get your digital confirmation within the next 24 hrs.</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />3/6/12 Months Subscription:<br />Please mind to create a regular transfer order with your bank or paypal.Alternatively pay all months at once.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Feel free to write back if you have any questions regarding your subscription / payment or any other matter that we can help you with.<br />We are looking forward to dancing with you!</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Best,</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Eduardo &amp; Natalia</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Alma Dance Team</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">DEUTSCH</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Vielen Dank für Deine Anmeldung zu unserem Kurs(en). </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Kurs: <strong>NACHNAME </strong>.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Mitgliedschaftstyp: <strong>PASSTYP</strong>.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">Um Deine Bestellung abzuschließen, kannst Du nun zur Zahlung übergehen. Bitte überweise den entsprechenden Betrag auf unser Bankkonto oder bring das Geld vor deiner nächsten Kurstunde:</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />Monatsbeitrag: <strong>PRICE EUR</strong><br />Kontoinhaber: Ivan Eduardo Millan Jorge<br />IBAN: DE47 1001 1001 2620 4751 14<br />BIC: NTSBDEB1XXX<br />Verwendungszweck: Tanzkurs DATUM-NACHNAME</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />Alternativ Paypal-Zahlung:<br />Monatsbeitrag: <strong>PAYPAL EUR</strong> (3 Prozent Paypal-Gebühren inklusiv)<br />Konto: millan.jorge.ie@gmail.com<br />Verwendungszweck: Tanzkurs-DATUM-NACHNAME</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">Paypal Payment Link: Paypal.com/EduardoBachata</p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />Man kann Paypal-Zahlung als Freunde ohne die extra Paypal-Gebühren tätigen. Also gleiche Summe als bei der Banküberweisung <strong>PRICE EUR.</strong><br /> </p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\">Du bekommst eine Zahlungsbestätigung per Email spätestens 24 hr nach Zahlungseingang.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\"> </p>";
+displayTable +="<p style=\"line-height: 160%; text-align: left;\"><br />3/6/12 Monate-Mitgliedschaft:<br />Bitte beachten - Überweisungsauftrag bei Ihrer Bank oder Paypal einrichten. Alternativ alle Monate auf einmal bezahlen";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Schreib uns gerne wenn Du Fragen zu unseren Kursen / Anmeldungen hast oder wenn wir Dir sonst weiterhelfen können.</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Wir freuen uns darauf, mit Dir zu tanzen!<br /> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Liebe Grüße</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%;\">Eduardo &amp; Natalia<br />Alma Dance Team</p>";
+displayTable += "</div>";
+displayTable += "</div>";
+  const element = document.getElementById('bank-button-container');
+    element.innerHTML = displayTable;
+
+
+};
