@@ -698,6 +698,8 @@ function priceCalculation() {
   document.getElementById("email_payment").disabled = true;
   document.getElementById("newmember").disabled = true;
   document.getElementById("getPrice").value = "Select Option again";
+  document.getElementById("blockPrice").style.display = "none";
+
  };
 
 
