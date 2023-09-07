@@ -626,10 +626,6 @@ function paymentForm()
     displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+"Calculate with Button below"+"\" disabled>";
     displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly or all at once (3/6/12 months) with a Bank Regular Order </small>';
     displayTable += '</div>';
-    displayTable += '<div class="form-row">';
-    displayTable += '<div id="display_error" style="color: red" ></div>';
-    displayTable += '<div id="display_success" style="color: black" ></div>';
-    displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
     displayTable += "<input type=\"button\" value=\"Get Price\" id=\"getPrice\" class=\"btn btn-colour-1\" ";
     displayTable += " onclick=\"priceCalculation()\" />";
