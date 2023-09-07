@@ -100,8 +100,8 @@ function getData() {
     console.log(data);
     output.innerHTML = "";
     data.posts.forEach(function (val) {
-
-        displayTable += "<tr>";
+      if (val[10]==true && val[12]=="NEIN" ) {
+        displayTable += "<tr class=\""+val[2]+"\" >";
         displayTable += "<td><input type=\"button\" value=\"Anmelden\" class=\"btn btn-colour-1\" ";
         displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"')\" /></td>";
         displayTable += "<td>"+val[1]+"</td>";
@@ -110,6 +110,8 @@ function getData() {
         displayTable += "</tr>";
 
       console.log(val);
+      }
+       
       //let html = document.createElement('div');
       //html.innerHTML = val[0] + ' ' + val[1] + ' ' + val[2] + '<br>';
       //output.appendChild(html);
@@ -1037,4 +1039,42 @@ function addMonths(date, months) {
   date.setMonth(date.getMonth() + months);
 
   return date;
+}
+
+
+
+function filterBachata() {
+  document.querySelector(".Bachata").style.display = 'none';
+  document.querySelector(".Salsa").style.display = 'block';
+  //document.querySelector(".Zouk").style.display = 'none';
+  document.querySelector(".Workshop").style.display = 'none';
+};
+
+
+function filterSalsa()  {
+  document.querySelector(".Bachata").style.display = 'none';
+  document.querySelector(".Salsa").style.display = 'block';
+  //document.querySelector(".Zouk").style.display = 'none';
+  document.querySelector(".Workshop").style.display = 'none';
+};
+
+function filterZouk()  {
+  document.querySelector(".Bachata").style.display = 'none';
+  document.querySelector(".Salsa").style.display = 'none';
+  //document.querySelector(".Zouk").style.display = 'block';
+  document.querySelector(".Workshop").style.display = 'none';
+};
+
+function filterWorkshops()  {
+  document.querySelector(".Bachata").style.display = 'none';
+  document.querySelector(".Salsa").style.display = 'none';
+  //document.querySelector(".Zouk").style.display = 'none';
+  document.querySelector(".Workshop").style.display = 'block';
+};
+
+function filterAll() {
+  document.querySelector(".Bachata").style.display = 'block';
+  document.querySelector(".Salsa").style.display = 'block';
+  //document.querySelector(".Zouk").style.display = 'block';
+  document.querySelector(".Workshop").style.display = 'block';
 }
