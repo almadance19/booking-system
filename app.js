@@ -5,19 +5,13 @@
 //git push --force origin master
 //
 
-//BAR ZAHLUNG ALS OPTION ANGEBEN FOR FIRST REGISTRATIONS
-
-//create a user registration mask --for new members without online processing
+//create a user registration mask 
 //they will get a QR Code at the school and register themselves, then pay online or bar
-
-//create a register payment mask for admin
 //add option to pay monthly or all at once
-//create to get only 10er karte as Membershiptyp
-
+//send a contract for monthly subscription longer than 1 month
 //send people a reminder to paid
 //send a weekly list to us of deadlines or unactive users to pay
 
-/// if new member register first, and register payment after with USER ID
 
 
 // after loading 
@@ -581,11 +575,22 @@ function paymentForm()
     displayTable += "<input type=\"text\" id=\"firstname_pay\" class=\"form-control\" Value=\""+name_user+"\" >";
     displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
     displayTable += '</div>';
+
     displayTable += '<div class="form-row">';
-    displayTable += '<label for="course" style="font-weight: bold">Course(s) / Kurs(e)</label>';
-    displayTable += "<input type=\"text\" id=\"course_pay\" class=\"form-control\" Value=\""+""+"\" >";
-    displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >**Flatrate/4er-10er Karte --> empty</small>';
+    displayTable += '<label for="course_pay" style="font-weight: bold">Course(s) / Kurs(e)</label>';
+    displayTable += '<select class="custom-select" multiple data-live-search="true" id="course_pay"  >';
+    displayTable += '<option >Bachata Fundamentals</option>';
+    displayTable += '<option >Bachata Improvers</option>';
+    displayTable += '<option >Bachata Intermediate</option>';
+    displayTable += '<option >Bachata Advanced</option>';
+    displayTable += '<option >Salsa Fundamentals</option>';
+    displayTable += '<option >Salsa Improvers</option>';
+    displayTable += '<option >Salsa Intermediate</option>';
+    displayTable += '<option >Zouk Open Level</option>';
+    displayTable += '<option >Flatrate</option>';
+    displayTable += '</select>';
     displayTable += '</div>';
+
     displayTable += '<div class="form-row">';
     displayTable += '<label for="membershiptype" style="font-weight: bold">Membership Type / Mitgliedschaftstyp</label>';
     displayTable += '<select class="custom-select" id="membershiptype">';
@@ -608,7 +613,7 @@ function paymentForm()
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="newmember" style="font-weight: bold" >Phone/Telefonnummer (optional) </label>';
-    displayTable += "<input type=\"phone\" id=\"newmember\" class=\"form-control\" aria-describedby=\"newmemberHelp\" Value=\""+""+"\" >";
+    displayTable += "<input type=\"phone\" id=\"newmember\" class=\"form-control\"   placeholder=\"Example +49 123 04235673\" Value=\""+""+"\" >";
     displayTable += '<small id="newmemberlHelp" class="form-text text-muted" style="color:yellow" >** Optional value.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
@@ -891,7 +896,7 @@ onApprove: function(data, actions) {
     var coursesnumber =  $("#coursesnumber option:selected").text();
     var firstname_pay = document.getElementById("firstname_pay").value;
     var email_payment = document.getElementById("email_payment").value;
-    var course_pay = document.getElementById("course_pay").value;
+    var course_pay = $('#course_pay').val(); // document.getElementById("course_pay").value;
     var membershiptype_nr = document.getElementById("membershiptype").value;
     var coursesnumber_nr = document.getElementById("coursesnumber").value;
     var course_price = document.getElementById("price_course").value;
@@ -917,7 +922,7 @@ onApprove: function(data, actions) {
     //document.querySelector(".paypal").style.display = 'none';
 
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,coursesnumber+" "+membershiptype,currentDate,course_price,"Paypal",false,"",String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay,coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"active","nein","FFM"];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,coursesnumber+" "+membershiptype,currentDate,course_price,"Paypal",false,"",String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"active","nein","FFM"];
     console.log(arr_pay);
 
     sDataPay(arr_pay);
@@ -981,7 +986,6 @@ function bankProcess() {
   console.log("Bank process")
   document.querySelector(".section-1").style.display = 'block';
   var firstname_pay = document.getElementById("firstname_pay").value;
-  var course_pay = document.getElementById("course_pay").value;
   var membershiptype =  $("#membershiptype option:selected").text();
   var coursesnumber =  $("#coursesnumber option:selected").text();
   var course_price = document.getElementById("price_course").value;
@@ -990,8 +994,9 @@ function bankProcess() {
 
   /// BEZAHLUNG newmember
   var newmember = document.getElementById("newmember").value;
+  
   var email_payment = document.getElementById("email_payment").value;
-  var course_pay = document.getElementById("course_pay").value;
+  var course_pay = $('#course_pay').val(); // document.getElementById("course_pay").value;
   var membershiptype_nr = document.getElementById("membershiptype").value;
   var coursesnumber_nr = document.getElementById("coursesnumber").value;
   var course_price = document.getElementById("price_course").value;
@@ -1069,8 +1074,9 @@ displayTable += "</div>";
   element.innerHTML = displayTable;
 
 /// SEND EMAIL FOR PAYMENT
+console.log(course_pay);
 
-payment_array.push(String(newmember),idinput.value,firstname_pay,coursesnumber+" "+membershiptype,currentDate,course_price,"Online NotPaidYet","","",String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay,coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet","nein","FFM");
+payment_array.push(String(newmember),idinput.value,firstname_pay,coursesnumber+" "+membershiptype,currentDate,course_price,"Online NotPaidYet","","",String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet","nein","FFM");
 
 console.log(payment_array);
 
