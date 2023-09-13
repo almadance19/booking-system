@@ -5,14 +5,14 @@
 //git push --force origin master
 //
 
-//create a user registration mask 
-//they will get a QR Code at the school and register themselves, then pay online or bar
+//ADD LOGIC TO CONTROL and MARK AKTIV PAYMENTS
 //add option to pay monthly or all at once
 //send a contract for monthly subscription longer than 1 month
 //send people a reminder to paid
 //send a weekly list to us of deadlines or unactive users to pay
 
-
+//create a user registration mask 
+//they will get a QR Code at the school and register themselves, then pay online or bar
 
 // after loading 
 window.addEventListener('DOMContentLoaded', getInit);
@@ -266,7 +266,7 @@ function getUser() {
           if (name_user == 'No Active User') {
           document.getElementById("name_display").innerHTML = val[3];
           document.getElementById("email_display").innerHTML = email_value;
-          document.getElementById("user_message").innerHTML = "Not Registered Yet! You can make a Registration or Book a Trial Class as a guest User";
+          document.getElementById("user_message").innerHTML = "Not Registered Yet! You can Book a Trial Class in the Schedule below or Register a Membership";
           emailinput.value = email_value;
           nameinput.value = val[3];
           coursesinput.value = val[1];
