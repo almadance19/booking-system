@@ -1076,6 +1076,8 @@ displayTable += "</div>";
 /// SEND EMAIL FOR PAYMENT
 console.log(course_pay);
 
+payment_array.length = 0;
+
 payment_array.push(String(newmember),idinput.value,firstname_pay,coursesnumber+" "+membershiptype,currentDate,course_price,"Online NotPaidYet","","",String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet","nein","FFM");
 
 console.log(payment_array);
