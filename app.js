@@ -119,7 +119,9 @@ function getData() {
         displayTable += '</table>';
         displayTable += '</div>';     
         document.getElementById("rowdata").innerHTML = displayTable;
+
   })
+
 };
 
 
@@ -299,10 +301,13 @@ function getUser() {
           btnPayment.style.display = "block";
           btnPayments.style.display = "block";
           btnPaypal.style.display = "block";
+          btnPaypal.innerHTML = "Register a Payment";
         }
         });
         showPayment(data.activepayment);
         showAllePayments(data.historypayments);
+        document.querySelector(".section-1").style.display = 'none';
+        document.querySelector(".section-2").style.display = 'block';
       });
       } else {
         output.innerHTML = "Enter a valid email";
@@ -559,11 +564,7 @@ function paymentForm()
     displayTable += "<div class=\"col\" style=\"font-weight: bold\" >";
 
     var espace = ": ";
-    displayTable += "<div class=\"row\">"+"<strong>Adresse/Address</strong> "+"adress"+"</div>";
-    displayTable += "<div class=\"row\">"+"<strong>Day/Tag </strong> "+espace+"dia"+"</div>";
-    displayTable += "<div class=\"row\">"+"<strong>Time/Uhrzeit </strong> "+espace+"hora"+"</div>";
-    displayTable += "<div class=\"row\">"+"<strong>Date/Datum </strong> "+espace+"fecha"+"</div>";
-
+    
     displayTable += "<div class=\"row\"> </div>";
     displayTable += "<div class=\"row\"> </div>";
     displayTable += '<form style="background-color:white;color:black">';
