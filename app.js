@@ -6,7 +6,7 @@
 //
 
 //ADD LOGIC TO CONTROL and MARK AKTIV PAYMENTS
-//add option to pay monthly or all at once
+// DONE add option to pay monthly or all at once
 //send a contract for monthly subscription longer than 1 month
 //send people a reminder to paid
 //send a weekly list to us of deadlines or unactive users to pay
