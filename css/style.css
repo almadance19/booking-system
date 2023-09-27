@@ -363,7 +363,9 @@ a {
         padding-bottom: 30px !important; } }
 
 
-
+  img {
+      max-width: 10%;
+        }
 
   /* asdsadsadasdaaaaaaaaaaa */
 

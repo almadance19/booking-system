@@ -649,7 +649,7 @@ function paymentForm()
     displayTable += " onclick=\"paypalProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Bank or Cash payment (No Fee)\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Bank payment (No Fee)\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"bankProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
@@ -1027,6 +1027,11 @@ function bankProcess() {
     button_message =  "Send me Payment Details Email";
   }
 
+
+  var beginner_3_months = dict_prices["Beginners 1 Course - 3 Months"];
+  var beginner_6_months = dict_prices["Beginners 1 Course - 6 Months"];
+  var beginner_12_months = dict_prices["Beginners 1 Course - 12 Months"] ;
+
   
 
   btnBookaclass.style.display = 'block';
@@ -1049,6 +1054,7 @@ displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">After payment you will get your digital confirmation within the next 24 hrs.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />3/6/12 Months Subscription:<br />You can create a regular transfer order with your bank or paypal paying monthly: <strong>"+course_price_monthly+" EUR</strong>.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Check if we have current discounts for Beginners.<br />1 Beginners Course - 3 Months (Total Amount): "+beginner_3_months+" EUR .<br /> 1 Beginners Course - 6 Months (Total Amount): "+beginner_6_months+" EUR .<br /> 1 Beginners Course - 12 Months (Total Amount): "+beginner_12_months+" EUR. </p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Your Subscription will be active after payment. Feel free to write back if you have any questions.<br />We are looking forward to dancing with you!</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\"> </p>";
@@ -1066,6 +1072,8 @@ displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Du bekommst eine Zahlungsbestätigung per Email spätestens 24 hr nach Zahlungseingang.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />3/6/12 Monate-Mitgliedschaft:<br />Es ist möglich, eine Überweisungsauftrag bei der Bank oder Paypal einrichten und monatlich <strong>"+course_price_monthly+" EUR</strong> bezahlen.";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Gerne nach Rabattierte Preise für Anfängerkurse hier unten prüfen.<br /> 1 Anfängerkurs - 3 Monate (Gesamtbeitrag): "+beginner_3_months+" EUR .<br /> 1 Anfängerkurs - 6 Monate (Gesamtbeitrag):: "+beginner_6_months+" EUR .<br /> 1 Anfängerkurs - 12 Monate (Gesamtbeitrag): "+beginner_12_months+" EUR. </p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Deine Mitgliedschaft wird aktiv nach Zahlungseingang. Schreib uns gerne wenn Du Fragen zu unseren Kursen / Anmeldungen hast.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Liebe Grüße / Best</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Eduardo &amp; Natalia<br />Alma Dance Team</p>";
