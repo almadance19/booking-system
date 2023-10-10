@@ -24,7 +24,8 @@ function getInit() {
 };
 
 // call API COURSES
-const url = 'https://script.google.com/macros/s/AKfycbxzYlcbdFzS463CkGaXu-1vSiWfx0hHGO1zJD4P4sgrUnAOhGWWO_k9Lu4rMj3Q2btV/exec';
+const url = 'https://script.google.com/macros/s/AKfycbwFcDRbzmC0LsFZBn2Z5EL5Vn5DdwcT7Llh94W2xIaFy8h-iaGaYa-Wot7PlC4hU8Mt/exec';
+
 
 const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
 
@@ -512,7 +513,7 @@ function showPayment(payment)
     // Save Booking hl
 function sData(arr) {
  //e.preventDefault();
-  repMessage.textContent = "Sending";
+  //repMessage.textContent = "Sending";
   //let val1 = iName.value || 'unknown';
   //let val2 = iMes.value || 'Message';
   //btnSave.style.display = 'none';
@@ -942,7 +943,7 @@ onError: function(err) {
     function sDataPay(arr) {
       console.log(arr);
       //e.preventDefault();
-       repMessage.textContent = "Sending";
+       //repMessage.textContent = "Sending";
        //let val1 = iName.value || 'unknown';
        //let val2 = iMes.value || 'Message';
        //btnSave.style.display = 'none';
