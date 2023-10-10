@@ -266,7 +266,7 @@ function getUser() {
           var name_user = val[3] 
 
           if (name_user == 'No Active User') {
-          document.getElementById("name_display").innerHTML = val[3];
+          document.getElementById("name_display").innerHTML = "Noch nicht angemeldet";
           document.getElementById("email_display").innerHTML = email_value;
           document.getElementById("user_message").innerHTML = "Noch nicht angemeldet! Sie können einen Schnupperkurs im untenstehenden Kursplan buchen oder eine Mitgliedschaft abschließen";
           emailinput.value = email_value;

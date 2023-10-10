@@ -267,7 +267,7 @@ function getUser() {
           var name_user = val[3] 
 
           if (name_user == 'No Active User') {
-          document.getElementById("name_display").innerHTML = val[3];
+          document.getElementById("name_display").innerHTML = "Not registered yet";
           document.getElementById("email_display").innerHTML = email_value;
           document.getElementById("user_message").innerHTML = "Not Registered Yet! You can Book a Trial Class in the Schedule below or Register a Membership";
           emailinput.value = email_value;
