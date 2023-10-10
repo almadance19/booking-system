@@ -634,15 +634,15 @@ function paymentForm()
     displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly or all at once (3/6/12 months) with a Bank Regular Order </small>';
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Get Price\" id=\"getPrice\" class=\"btn btn-colour-1\" ";
+    displayTable += "<input type=\"button\" value=\"Get Price\" id=\"getPrice\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"priceCalculation()\" />";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Select Courses Again\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-colour-1\" ";
+    displayTable += "<input type=\"button\" value=\"Select Courses Again\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"enablePriceCalculation()\"/disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Pay\"  style=\"display:none\"  id=\"blockPrice\" class=\"btn btn-colour-1\" ";
+    displayTable += "<input type=\"button\" value=\"Pay\"  style=\"display:none\"  id=\"blockPrice\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"blockPriceF()\" / disabled >";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';

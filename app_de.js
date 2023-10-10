@@ -633,15 +633,15 @@ function paymentForm()
     displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**Man kann 3/6/12 Anmeldungen auch per Dauerauftrag monatlich bezahlen</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Preis berechnen\" id=\"getPrice\" class=\"btn btn-colour-1\" ";
+    displayTable += "<input type=\"button\" value=\"Preis berechnen\" id=\"getPrice\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"priceCalculation()\" />";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Mitgliedschaft erneut auswählen\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-colour-1\" ";
+    displayTable += "<input type=\"button\" value=\"Mitgliedschaft erneut auswählen\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"enablePriceCalculation()\"/disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Bezahlen\"  style=\"display:none\"  id=\"blockPrice\" class=\"btn btn-colour-1\" ";
+    displayTable += "<input type=\"button\" value=\"Bezahlen\"  style=\"display:none\"  id=\"blockPrice\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"blockPriceF()\" / disabled >";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
