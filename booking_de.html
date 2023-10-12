@@ -168,21 +168,25 @@ border-radius: 25% 10%;;
     <section class="light">
         <div class="container py-2">
             <div class="col" style="font-weight: bold">
-              <br>
-              <span class="rep" style="color: white">Ihre E-Mail:</span>
+            </br>
+            <h5 style="color: white">1. Bitte Ihre E-Mail-Adresse eingeben, um einen Schnupperkurs zu buchen, sich zum ersten Mal anzumelden oder Ihre Mitgliedschaftsdaten einzusehen.</h5>
+            </br>
+            <span class="rep" style="color: white">Ihre E-Mail:</span>
               <input type="email" name="email">
               <button type="button" class="btn btn-light emailer" style="margin: 5px 5px 5px 5px;">Email eingeben</button>
               <div class="output" style="color: white"></div>
+              </br>
+              <h5 style="color: white">2. Anmeldung für einen Kurs oder Registrierung/Überprüfung Ihrer Mitgliedschaft</h5>
             </div>
             <article class="postcard light ">
                 <div class="postcard__text t-dark">
-                    <h1 class="postcard__title "><strong>Erste Anmeldung / Zahlungen </strong></h1>
+                    <h1 class="postcard__title "><strong>Kursanmeldung / Zahlungen </strong></h1>
                     <div class="postcard__subtitle small">
                       <h5 id="name_display"></h5>
                       <h5 id="email_display"></h5>
                     </div>
                     <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt" id="user_message">Geben Sie eine E-Mail ein, um Ihre Informationen zu sehen, sich zum ersten Mal anzumelden oder eine Probestunde als Gastbenutzer zu buchen</div>
+                    <div class="postcard__preview-txt" id="user_message"></div>
                     <ul class="postcard__tagbox">
                       <button class="btn btn-dark bookaclass" style="display: none; margin: 5px 5px 5px 5px;">Kursanmeldung</button>
                       <button class="btn btn-dark payment" style="display: none; margin: 5px 5px 5px 5px;">Siehe aktive Mitgliedschaft</button>
@@ -192,7 +196,11 @@ border-radius: 25% 10%;;
                 </div>
             </article>
             <a href="index.html" class="btn btn-info" style="text-align: center;" role="button">English Version</a>
-        </div>
+            <div class="col" style="font-weight: bold" >
+              <br>
+              <h5 style="color: white">3. Aktiv werden!</h5>
+            </div>
+          </div>
     </section>
 
 
@@ -214,10 +222,8 @@ border-radius: 25% 10%;;
       <br>
 
       <!--PAYMENT FORM  -->
-
-        <div id="pay-form-container">
- 
-        </div>
+      <div id="payment-block">
+        <div id="pay-form-container"></div>
 
       <!--PAYMENT MESSAGE  -->
       <div id="messsage-container" class="container-fluid">
@@ -226,7 +232,7 @@ border-radius: 25% 10%;;
       </div>
     </div>
        
-      <!--PAYPAL ZONE  -->
+      <!--PAYPAL BANK ZONE  -->
         <div id="smart-button-container" class="container-fluid">
           <div style="text-align: center;">
             <div style="margin-bottom: 1.25rem;display: none" id="price_shield">
@@ -238,25 +244,127 @@ border-radius: 25% 10%;;
               <select style="visibility: hidden" id="quantitySelect"></select>
             </div>
           <div id="paypal-button-container"></div>
-          <div id="bank-button-container"></div>
           </div>
         </div>
+        <div id="bank-button-container"></div>
       </div>
+    </div>
+
+    <div id="stripe-container" style="display: none" >
+      <h1 style="text-align: center"><strong> Starten/Aktualisieren Ihrer Mitgliedschaft</strong></h1>
+       <div  class="row">
+        <div class="col-sm">
+           <div class="card">
+              <div class="card-body">
+                 <h5 class="card-title">3-monatiges Abonnement</h5>
+                 <div class="price-container" id="1 Course/Kurs-3 Months Subscription">
+                    <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="2 Courses/Kurse-3 Months Subscription">
+                    <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="3 Courses/Kurse-3 Months Subscription">
+                    <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="Flatrate-3 Months Subscription">
+                    <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-sm">
+           <div class="card">
+              <div class="card-body">
+                 <h5 class="card-title">6-monatiges Abonnement</h5>
+                 <div class="price-container" id="1 Course/Kurs-6 Months Subscription">
+                    <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="2 Courses/Kurse-6 Months Subscription">
+                    <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="3 Courses/Kurse-6 Months Subscription">
+                    <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="Flatrate-6 Months Subscription">
+                    <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-sm">
+          <div class="card">
+             <div class="card-body">
+                <h5 class="card-title">12-monatiges Abonnement</h5>
+                <div class="price-container" id="1 Course/Kurs-12 Months Subscription">
+                   <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
+                </div>
+                <div class="price-container" id="2 Courses/Kurse-12 Months Subscription">
+                   <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                </div>
+                <div class="price-container" id="3 Courses/Kurse-12 Months Subscription">
+                   <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                </div>
+                <div class="price-container" id="Flatrate-12 Months Subscription">
+                   <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
+                </div>
+             </div>
+          </div>
+       </div>
+        <div class="col-sm">
+           <div class="card">
+              <div class="card-body">
+                 <h5 class="card-title">Angebote & Einzelne Kurstunden</h5>
+                 <div class="price-container" id="4er Karte">
+                    <p class="card-text p-card">4 Classes Membership Card<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="10er Karte">
+                    <p class="card-text p-card">10 Classes Membership Card<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="Beginners 1 Course - 3 Months">
+                    <p class="card-text p-card">1 Beginner Kurs 3 Monate<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="Beginners 1 Course - 6 Months">
+                    <p class="card-text p-card">1 Beginner Kurs 6 Monate<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="Beginners 1 Course - 3 Months Couple">
+                    <p class="card-text p-card">1 Paar Beginner Kurs 3 Monate<span style="font-weight:bold"></span></p>
+                 </div>
+                 <div class="price-container" id="Beginners 1 Course - 6 Months Couple">
+                    <p class="card-text p-card">1 Paar Beginner Kurs 6 Monate<span style="font-weight:bold"></span></p>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-sm">
+          <div class="card">
+             <div class="card-body">
+                <h5 class="card-title">1 Monatabonnement </h5>
+                <div class="price-container" id="1 Course/Kurs-1 Month Subscription">
+                   <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
+                </div>
+                <div class="price-container" id="2 Courses/Kurse-1 Month Subscription">
+                   <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                </div>
+                <div class="price-container" id="3 Courses/Kurse-1 Month Subscription">
+                   <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
+                </div>
+                <div class="price-container" id="Flatrate-1 Month Subscription">
+                   <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
+                </div>
+             </div>
+          </div>
+       </div>
+      </div>
+    </div>
+      
     
     </section>
 
-    <section class="section-2">
+    <section class="section-2" style="display: none" >
       <div class="col" style="font-weight: bold">
+        <br/>
     <!-- Buttons  -->
-      <h1><strong>Buchungskalender / Probestunde buchen</strong></h1>
-      <!-- <div id="slideshow">
-        <span style="font-weight: bold; color:#48005f"> Filters </span>
-        <button class="left btn btn-colour-1" value="Salsa" onclick="filterSalsa()">Salsa</button>
-        <button class="center btn btn-colour-1" value="Bachata" onclick="filterBachata()">Bachata</button>
-        <button class="right btn btn-colour-1" value="Zouk" onclick="filterZouk()">Zouk</button>
-        <button class="right btn btn-colour-1" value="Workshop" onclick="filterWorkshops()">Workshops</button>
-        <button class="right btn btn-colour-1" value="All Classes" onclick="filterAll()">All Classes</button>
-      </div> -->
+      <h1 style="text-align: center"><strong>Buchungskalender / Probestunde buchen</strong></h1>
 
       <!-- User Data -->
       <div id="userdata"></div>
@@ -272,10 +380,6 @@ border-radius: 25% 10%;;
   <div id="BankModal">
     
   </div>
-
-
-  <a text-align="center" id="reference" type="hidden" href="https://www.w3schools.com"></a>
-  <!--?var url = getUrl();?--><input type="hidden" value="<?= url ?>" id="url">
 
 
 <!--SKRIPT ZONE  -->
