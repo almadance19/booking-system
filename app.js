@@ -86,7 +86,7 @@ function getData() {
         displayTable += "<th></th>";
         displayTable += "<th>Course</th>";
         displayTable += "<th>Day/Time</th>";
-        displayTable += "<th>Date</th>";
+        displayTable += "<th>Day/Date</th>";
         displayTable += "</tr>";
         displayTable += '</thead>';
         var coma = ",";

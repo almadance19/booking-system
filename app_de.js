@@ -85,8 +85,8 @@ function getData() {
         displayTable += "<tr>";
         displayTable += "<th></th>";
         displayTable += "<th>Kurs</th>";
-        displayTable += "<th>Tag/Zeit</th>";
-        displayTable += "<th>Datum</th>";
+        displayTable += "<th>Tag/Uhrzeit</th>";
+        displayTable += "<th>Tag/Datum</th>";
         displayTable += "</tr>";
         displayTable += '</thead>';
         var coma = ",";
