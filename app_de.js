@@ -34,7 +34,9 @@ const url_payment = 'https://script.google.com/macros/s/AKfycbwDNQg1LmMXmX9hCQfN
 
 //get buttons 
 const output = document.querySelector('.output');
-const btnPayment = document.querySelector('.payment');
+const outputMembership = document.querySelector('.output-membership');
+const outputMember = document.querySelector('.output-member');
+//const btnPayment = document.querySelector('.payment');
 const btnPayments = document.querySelector('.allpayments');
 const btnEmail = document.querySelector('.emailer');
 const btnPaypal = document.querySelector('.paypal');
@@ -46,10 +48,10 @@ const btnBookaclass = document.querySelector('.bookaclass');
 const repMessage = document.querySelector('.rep');
 
 //event listener buttons 
-btnPayment.addEventListener('click', showPaymentModal);
+//btnPayment.addEventListener('click', showPaymentModal);
 btnPayments.addEventListener('click', showPaymentsModal);
 btnPaypal.addEventListener('click', showMemberships);
-btnEmail.addEventListener('click', getUser);
+btnEmail.addEventListener('click', getPayments);
 btnBookaclass.addEventListener('click', bookClasses);
 
 
@@ -146,7 +148,7 @@ function getPrices() {
 
         var inputEl = document.createElement('input'); 
         inputEl.type = 'button';
-        inputEl.className = "btn btn-primary"; 
+        inputEl.className = "btn btn-colour-1"; 
         inputEl.value = "Einmalige Zahlung";
         inputEl.style = "margin: 0px 4px 8px 3px;";
 
@@ -161,7 +163,7 @@ function getPrices() {
         document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR EUR (Monthly)";
         var inputEl = document.createElement('input'); 
         inputEl.type = 'button';
-        inputEl.className = "btn btn-primary"; 
+        inputEl.className = "btn btn-colour-1"; 
         inputEl.value = "Monatsabonnement";
         inputEl.style = "margin: 0px 4px 8px 3px;";
 
@@ -182,21 +184,14 @@ function getPrices() {
   })
 };
 
-function showMemberships(){
-  document.querySelector(".section-1").style.display = 'block';
-  document.querySelector(".section-2").style.display = 'none';
-  document.getElementById("stripe-container").style.display = 'block';
-  document.getElementById("stripe-container").className = "row";
-  document.getElementById("payment-block").style.display = 'none';
-  btnBookaclass.style.display = "block";
-};
+
 
 function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses) { 
   //output.innerHTML = "membership " + membership + "price_month " + price_total+"price_total " + price_total+"nr_months " + nr_months;
   paymentForm(membership, price_total,nr_months,stripe_link,"Einmalige Zahlung",nr_courses); 
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
-
+  document.getElementById('sect1').scrollIntoView();
 } 
 
 function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses) { 
@@ -204,7 +199,58 @@ function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,n
   paymentForm(membership, price_total,nr_months,stripe_link,"Monatsabonnement",nr_courses);
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
+
+  document.getElementById('sect1').scrollIntoView();
 } 
+
+/// CREATE THE SCHEDULER SECTION
+function bookClasses() {
+  var email_value = document.querySelector('input[name=email-class]').value;
+  if (email_value != '') { 
+    document.querySelector(".section-2").style.display = 'block';
+    document.querySelector(".section-1").style.display = 'none';
+    const element = document.getElementById('paypal-button-container');
+    element.innerHTML = '';
+    const bank = document.getElementById('bank-button-container');
+    bank.innerHTML = '';
+    document.getElementById("price_shield").style.display = "none";
+    document.querySelector(".section-2").scrollIntoView();
+    getUser(email_value);
+    } else {
+      output.innerHTML = "Enter a valid email";
+    }
+}
+
+/// CREATE THE NEW MEMBERSHIP SECTION
+
+function showMemberships() {
+  var email_value = document.querySelector('input[name=email-membership]').value;
+  if (email_value != '') { 
+    document.querySelector(".section-1").style.display = 'block';
+    document.querySelector(".section-2").style.display = 'none';
+    document.getElementById("stripe-container").style.display = 'block';
+    document.getElementById("stripe-container").className = "row";
+    document.getElementById("payment-block").style.display = 'none';
+    btnBookaclass.style.display = "block";
+    document.querySelector(".section-1").scrollIntoView();
+    getUser(email_value);
+    } else {
+      outputMembership.innerHTML = "Enter a valid email";
+    }
+}
+
+//
+function getPayments() { 
+  var email_value = document.querySelector('input[name=email-member]').value;
+  if (email_value != '') { 
+      //outputMember.innerHTML = "..loading";
+      getUser(email_value);
+      
+    } else {
+      outputMember.innerHTML = "Enter a valid email";
+    }
+
+}
 
 
 // create book class modal
@@ -298,12 +344,11 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
 
 
 // get users data 
-function getUser() {
-  var email_value = document.querySelector('input[name=email]').value;
+function getUser(email_value) {
     if (email_value != '') {
       urlapi = urluser+"/exec?mail="+email_value
       console.log(urlapi);
-      output.innerHTML = "laden...";
+      // output.innerHTML = "laden...";
       console.log("fetching user data");
       fetch(urlapi).then(function (rep) {
         return rep.json()
@@ -329,12 +374,7 @@ function getUser() {
           saldoinput.value = val[5];
           anmerkungeninput.value = val[6];
           nextpaymentinput.value = val[4];
-          btnPaypal.innerHTML = "Mitgliedschaft starten";
-          btnBookaclass.innerHTML = "Kostenlose Probestunde buchen";
-          btnBookaclass.style.display = "block";
-          btnPaypal.style.display = "block";
-          btnPayment.style.display = "none";
-          btnPayments.style.display = "none";
+
 
           } 
           else {
@@ -351,20 +391,13 @@ function getUser() {
           saldoinput.value = val[5];
           anmerkungeninput.value = val[6];
           nextpaymentinput.value = val[4];
-          btnPayment.style.display = "block";
-          btnPayments.style.display = "block";
-          btnPaypal.style.display = "block";
-          btnPaypal.innerHTML = "Mitgliedschaft aktualisieren";
-          btnBookaclass.innerHTML = "einzelne Kursstunde Buchen";
-          btnBookaclass.style.display = "block";
+          btnPayments.style.display="block";
           
         }
         });
         showPayment(data.activepayment);
         showAllePayments(data.historypayments);
-        //document.querySelector(".section-1").style.display = 'none';
-        //document.querySelector(".section-2").style.display = 'block';
-        //document.getElementById("stripe-container").style.display = 'none';
+
       });
       } else {
         output.innerHTML = "Enter a valid email";
@@ -568,11 +601,7 @@ function showPayment(payment)
 
     // Save Booking hl
 function sData(arr) {
- //e.preventDefault();
-  //repMessage.textContent = "Sending";
-  //let val1 = iName.value || 'unknown';
-  //let val2 = iMes.value || 'Message';
-  //btnSave.style.display = 'none';
+
   let formData = new FormData();
   formData.append('data', JSON.stringify(arr));
   console.log("posting registration in API")
@@ -583,25 +612,11 @@ function sData(arr) {
     return rep.json()
   }).then(function (data) {
      console.log("Subscribed");
-    //repMessage.textContent = "Subscribed" ;
+
   })
 };
 
 
-
-
-/// CREATE PAYMENT FORM 
-
-
-function bookClasses() {
-  document.querySelector(".section-2").style.display = 'block';
-  document.querySelector(".section-1").style.display = 'none';
-  const element = document.getElementById('paypal-button-container');
-  element.innerHTML = '';
-  const bank = document.getElementById('bank-button-container');
-  bank.innerHTML = '';
-  document.getElementById("price_shield").style.display = "none";
-}
 
 
 
