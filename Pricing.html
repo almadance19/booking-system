@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
 
@@ -9,7 +9,7 @@
   <meta property="og:title" content="Alma Dance" />
   <meta property="og:url" content="https://alma-dance-frankfurt.de/" />
   <meta property="og:image" content="images/logo.png" />
-  <title>Alma Dance Buchungen</title>
+  <title>Alma Dance Scheduler</title>
 
   <!-- icofont-css-link -->
   <link rel="stylesheet" href="css/icofont.min.css">
@@ -22,32 +22,34 @@
   <!-- Coustome-Style-link -->
   <link rel="stylesheet" href="css/style.css">
     <!-- Coustome-Style-link 2 -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/custom-media.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    
 
   <!-- Responsive-Style-link -->
   <link rel="stylesheet" href="css/responsive.css">
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '329457332873799');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=329457332873799&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-    
+<!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '329457332873799');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=329457332873799&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
   
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -82,7 +84,7 @@
     <div class="container">
       <!-- navigation bar -->
       <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="booking_de.html">
+        <a class="navbar-brand" href="index.html">
           <img src="images/logo.png" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -115,26 +117,26 @@
             </li> -->
             <!-- secondery menu end -->
             <li class="nav-item">
-              <a class="nav-link" href="https://alma-dance.de/preise-tanzkurse-frankfurt">Preise</a>
+              <a class="nav-link" href="https://alma-dance.de/pricing">Pricing</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://alma-dance.de/kursplan">Kursplan</a>
+              <a class="nav-link" href="https://alma-dance.de/schedule">Schedule</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://alma-dance.de/contact">Standort</a>
+              <a class="nav-link" href="https://alma-dance.de/contact">Location</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#review_section">Reviews</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://alma-dance.de/tanzpartner-suche">Tanzpartnersuche</a>
+              <a class="nav-link" href="https://alma-dance.de/dance-partner">Dance Partner</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://alma-dance.de/contact-us">Kontakt</a>
+              <a class="nav-link" href="https://alma-dance.de/contact-us">Contact</a>
             </li>
             <li class="nav-item">
               <div class="btn_block">
-                <a class="nav-link dark_btn" href="index.html">English</a>
+                <a class="nav-link dark_btn" href="booking_de.html">Deutsch</a>
                 <div class="btn_bottom"></div>
               </div>
             </li>
@@ -170,332 +172,172 @@
       <div class="hero-info">
           <div class="hero-list">
               <ul>
-                  <li><strong>Tanzen in der Frankfurter Innenstadt</strong></li>
-                  <li><strong>Ausdruck und Verbindung mit anderen Tänzern</strong></li>
+                  <li><strong>Classes in Frankfurt City</strong></li>
+                  <li><strong>Express & connect with other dancers</strong></li>
               </ul>
           </div>
           <div class="hero-button">
-              <a href="#agenda-container" class="button button-radius button-border button-gradient-bg">KOSTENLOSE PROBESTUNDE BUCHEN</a>
+              <a href="#agenda-container" class="button button-radius button-border button-gradient-bg">BOOK FREE TRIAL CLASS</a>
           </div>
       </div>
   </div>
 </section>
 <!-- End Of Hero Section -->
-  <!-- Banner-Section-Start -->
-  <section class="banner_section">
-    <!-- container start -->
-    <div class="container">
-      <!-- row start -->
-      <div class="row">
 
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="1500">
-          <!-- banner image left -->
-          <!-- <div class="hero_imgleft">
-            <img src="images/hero_img1.png" alt="image">
-          </div> -->
-        </div>
-
-        <div class="col-lg-6 col-12 banner_content_colom" data-aos="fade-up" data-aos-duration="1500">
-          <!-- banner text -->
-          <div class="banner_text">
-            <h2> Alma Dance Frankfurt</h2>
-            <!-- h1 -->
-            <!-- <h2>19th - 22th April 2024<br><span>YOU CANNOT MISS THIS EXPERIENCE</span></h2> -->
-            <!-- p -->
-            <p>
-              Wir sind mehr als eine Tanzschule!
-            </p>
-            <br>
-            <a href="index.html" class="btn btn-info" style="text-align: center;" role="button">English Version</a>
+      <!-- Section 3 -->
+      <section class="section-3" id="pricing">
+        <!-- <h1 class="section-heading"></h1>
+        <div class="section-heading-line"></div> -->
+        <div class="swiper-container" style="text-align: center;">
+        <div class="pricing-cards-wrapper swiper-wrapper">
+          <div class="pricing-card swiper-slide">
+            <div class="pricing-card-front">
+              <h1 class="pricing-card-heading heading-free">3 Months Subscription</h1>
+              <h3 class="pricing-card-price">from</h3>
+              <h3 class="pricing-card-price">50€/monthly</h3>
+              <ul class="pricing-card-list list-free">
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>1 Class per Week 50€ </span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>2 Classes per Week 75€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>3 Classes per Week 90€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>All Classes 100€</span>
+                </li>
+              </ul>
+              <button class="pricing-card-btn btn-free">Register</button>
+            </div>
+            <!-- <div class="pricing-card-back back-free">
+              <a href="#">Order Now</a>
+            </div> -->
+          </div>
+          <div class="pricing-card swiper-slide">
+            <div class="pricing-card-front">
+              <h1 class="pricing-card-heading heading-basic">6 Months Subscription</h1>
+              <h5 class="pricing-card-price">from</h5>
+              <h3 class="pricing-card-price">45€/monthly</h3>
+              <ul class="pricing-card-list list-basic">
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>1 Class per Week 45€ </span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>2 Classes per Week 70€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>3 Classes per Week 80€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>All Classes 90€</span>
+                </li>
+              </ul>
+              <button class="pricing-card-btn btn-basic">Register</button>
+            </div>
+            <!-- <div class="pricing-card-back back-basic">
+              <a href="#">Order Now</a>
+            </div> -->
+          </div>
+          <div class="pricing-card swiper-slide">
+            <div class="pricing-card-front">
+              <h1 class="pricing-card-heading heading-standard">12 Months Subscription</h1>
+              <h5 class="pricing-card-price">from</h5>
+              <h3 class="pricing-card-price">45€/monthly</h3>
+              <ul class="pricing-card-list list-standard">
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>1 Class per Week 45€ </span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>2 Classes per Week 70€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>3 Classes per Week 80€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>All Classes 90€</span>
+                </li>
+              <button class="pricing-card-btn btn-standard">Register</button>
+            </div>
+            <!-- <div class="pricing-card-back back-basic">
+              <a href="#">Order Now</a>
+            </div> -->
+          </div>
+          <div class="pricing-card swiper-slide">
+            <div class="pricing-card-front">
+              <h1 class="pricing-card-heading heading-premium">1 Month Subscription</h1>
+              <h5 class="pricing-card-price">from</h5>
+              <h3 class="pricing-card-price">45€/monthly</h3>
+              <ul class="pricing-card-list list-premium">
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>1 Class per Week 60€ </span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>2 Classes per Week 90€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>3 Classes per Week 100€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>All Classes 110€</span>
+                </li>
+              </ul>
+              <button class="pricing-card-btn btn-premium">Register</button>
+            </div>
+            <!-- <div class="pricing-card-back back-basic">
+              <a href="#">Order Now</a>
+            </div> -->
+          </div>
+          <div class="pricing-card swiper-slide">
+            <div class="pricing-card-front">
+              <h1 class="pricing-card-heading heading-special">Individual Classes / Specials</h1>
+              <h5 class="pricing-card-price">from</h5>
+              <h3 class="pricing-card-price">65€</h3>
+              <ul class="pricing-card-list list-special">
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>4 Classes Card 65€ </span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>4 Classes Card 120€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>1 Beginner Course 6 Months 210€</span>
+                </li>
+                <li>
+                  <i class="fa fa-user-o"></i>
+                  <span>1 Couple Beginners 6 Months 400€</span>
+                </li>
+              </ul>
+              <button class="pricing-card-btn btn-special">Register</button>
+            </div>
+            <!-- <div class="pricing-card-back back-basic">
+              <a href="#">Order Now</a>
+            </div> -->
           </div>
         </div>
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="1500">
       </div>
-
-
-      </div>
-      <!-- row end -->
-    </div>
-    <!-- container end -->
-  </section>
-  <!-- Banner-Section-end -->
-
-
-
-
- <!-- AGENDA Section Start -->
- <section id="agenda-container" class="how_it_section">
-  <div class="how_it_inner" data-aos="fade-in" data-aos-duration="1500">
-    <div class="container">
-      <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
-        <!-- <span class="title_badge">Quick & easy</span> -->
-        <h2>Alma Dance Anmeldung</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
-            <div class="steps">
-              <div class="icon">
-                <img src="images/howstep1.png" alt="image">
-              </div>
-              <div class="text">
-                <h3>Einzelne Tanzstunden</h3>
-                <p>Anmelden für einen kostenlosen Probeunterricht</p>
-                <p>Email eingeben und für einen Tanzkurs anmelden. </p>
-                <p>Auch für Alma Dance-Mitglieder.</p>
-                <!-- <form > -->
-                  <div class="form-group">
-                    <input type="email" name="email-class" class="form-control" placeholder="Enter your email">
-                    <div class="output" ></div>
-                  </div>
-                <!-- </form> -->
-                <button class="btn puprple_btn ml-0 bookaclass">KURS BUCHEN</button>
-                <!-- <button class="btn btn-dark bookaclass" style="display: none; margin: 5px 5px 5px 5px;">Book a class</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
-            <div class="steps">
-              <div class="icon">
-                <img src="images/howstep2.png" alt="image">
-              </div>
-              <div class="text">
-                <h3>Mitgliedschaft</h3>
-                <p>Mitgliedschaft beginnen oder aktualisieren</p>
-                <p>Mitgliedschaft auswählen und mit dem Tanzen beginnen.</p> 
-                <p>Wir haben verschiedene Pläne für jeden.</p>
-                  <!-- <form > -->
-                    <div class="form-group">
-                      <input type="email" name="email-membership" class="form-control" placeholder="Enter your email">
-                      <div class="output-membership" ></div>
-                    </div>
-                  <!-- </form> -->
-                  <button class="btn puprple_btn ml-0  paypal">MITGLIEDSCHAFT STARTEN</button>
-                <!-- <button class="btn btn-dark paypal" style="display: none; margin: 5px 5px 5px 5px;">Make a payment</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="steps_block" data-aos="fade-up" data-aos-duration="1500">
-            <div class="steps">
-              <div class="icon">
-                <img src="images/howstep3.png" alt="image">
-              </div>
-              <div class="text">
-                <h3>Dance</h3>
-                <p>Du bist ein Mitglied!</p>
-                <p>Viel Spaß beim Tanzen.</p>
-                <p>Email eingeben und Zahlungen und Mitgliedschaft prüfen.</p>
-                <!-- <form > -->
-                  <div class="form-group">
-                    <input type="email" name="email-member" class="form-control" placeholder="Enter your email">
-                    <div class="output-member" ></div>
-                  </div>
-                <!-- </form> -->
-                <button class="btn puprple_btn ml-0  emailer">MITGLIEDSCHAFT PRÜFEN</button>
-                <button class="btn btn-dark allpayments" style="display: none; margin: 5px 5px 5px 5px;">Zeige meine Zahlungen</button>    
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <br>
-        <br>
-           <span style="color: #48005f" ><h5 id="name_display" ></h5></span>
-            <span style="color: #48005f" ><h5 id="email_display" ></h5></span>
-            <div class="postcard__preview-txt" id="user_message"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- AGENDA Section End -->  
-
-<section class="light">
-  <div id="form-tickets" class="container py-2">
-    <div class="col" style="font-weight: bold" >
-      <div class="col" style="font-weight: bold" >
-        <!-- <div class="output" ></div> -->
-      </div>
-      </div>
-    </div>
-</section>
-
-<section class="section-1" id="sect1">
-  <div class="col" style="font-weight: bold" >
-
-    <div class="container-fluid" id="tableContainer">
-      <input type="hidden" id="User_email" value="">
-      <input type="hidden" id="User_name" value="Guest User">
-      <input type="hidden" id="User_courses" value="Not Registered yet">
-      <input type="hidden" id="User_id" value="Not Registered yet">
-      <input type="hidden" id="User_active" value="Not Registered yet">
-      <input type="hidden" id="User_lastpayment" value="Not Registered yet">
-      <input type="hidden" id="User_saldo" value="Not Registered yet">
-      <input type="hidden" id="User_anmerkungen" value="Not Registered yet">
-      <input type="hidden" id="User_nextpayment" value="Not Registered yet">
-    </div>
-  </br>
-
-<!-- ----MEMBERSHIP BLOCK ---- -->
-<div id="stripe-container" style="display: none" >
-  <h1 style="text-align: center"><strong> Starten/Aktualisieren Ihrer Mitgliedschaft</strong></h1>
-   <div  class="row">
-    <div class="col-sm">
-       <div class="card">
-          <div class="card-body">
-             <h5 class="card-title">3-monatiges Abonnement</h5>
-             <div class="price-container" id="1 Course/Kurs-3 Months Subscription">
-                <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="2 Courses/Kurse-3 Months Subscription">
-                <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="3 Courses/Kurse-3 Months Subscription">
-                <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="Flatrate-3 Months Subscription">
-                <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="col-sm">
-       <div class="card">
-          <div class="card-body">
-             <h5 class="card-title">6-monatiges Abonnement</h5>
-             <div class="price-container" id="1 Course/Kurs-6 Months Subscription">
-                <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="2 Courses/Kurse-6 Months Subscription">
-                <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="3 Courses/Kurse-6 Months Subscription">
-                <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="Flatrate-6 Months Subscription">
-                <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
-         <div class="card-body">
-            <h5 class="card-title">12-monatiges Abonnement</h5>
-            <div class="price-container" id="1 Course/Kurs-12 Months Subscription">
-               <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
-            </div>
-            <div class="price-container" id="2 Courses/Kurse-12 Months Subscription">
-               <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
-            </div>
-            <div class="price-container" id="3 Courses/Kurse-12 Months Subscription">
-               <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
-            </div>
-            <div class="price-container" id="Flatrate-12 Months Subscription">
-               <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-            </div>
-         </div>
-      </div>
-   </div>
-    <div class="col-sm">
-       <div class="card">
-          <div class="card-body">
-             <h5 class="card-title">Angebote & Einzelne Kurstunden</h5>
-             <div class="price-container" id="4er Karte">
-                <p class="card-text p-card">4 Classes Membership Card<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="10er Karte">
-                <p class="card-text p-card">10 Classes Membership Card<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="Beginners 1 Course - 3 Months">
-                <p class="card-text p-card">1 Beginner Kurs 3 Monate<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="Beginners 1 Course - 6 Months">
-                <p class="card-text p-card">1 Beginner Kurs 6 Monate<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="Beginners 1 Course - 3 Months Couple">
-                <p class="card-text p-card">1 Paar Beginner Kurs 3 Monate<span style="font-weight:bold"></span></p>
-             </div>
-             <div class="price-container" id="Beginners 1 Course - 6 Months Couple">
-                <p class="card-text p-card">1 Paar Beginner Kurs 6 Monate<span style="font-weight:bold"></span></p>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
-         <div class="card-body">
-            <h5 class="card-title">1 Monatabonnement </h5>
-            <div class="price-container" id="1 Course/Kurs-1 Month Subscription">
-               <p class="card-text p-card">1 Kurs pro Woche<span style="font-weight:bold"></span></p>
-            </div>
-            <div class="price-container" id="2 Courses/Kurse-1 Month Subscription">
-               <p class="card-text p-card">2 Kurse pro Woche<span style="font-weight:bold"></span></p>
-            </div>
-            <div class="price-container" id="3 Courses/Kurse-1 Month Subscription">
-               <p class="card-text p-card">3 Kurse pro Woche<span style="font-weight:bold"></span></p>
-            </div>
-            <div class="price-container" id="Flatrate-1 Month Subscription">
-               <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-            </div>
-         </div>
-      </div>
-   </div>
-  </div>
-</div>
-
-  <!--PAYMENT FORM  -->
-  <div id="payment-block">
-    <div id="pay-form-container"></div>
-  <!--PAYMENT MESSAGE  -->
-  <div id="messsage-container" class="container-fluid">
-    <div style="text-align: center;">
-    <div id="message-button-small-container"></div>
-  </div>
-  </div>
-  <!--PAYPAL BANK ZONE  -->
-    <div id="smart-button-container" class="container-fluid">
-      <div style="text-align: center;">
-        <div style="margin-bottom: 1.25rem;display: none" id="price_shield" >
-          <p>ALMA DANCE KURSE</p>
-          <select id="item-options">
-            <option value="Item" id="ItemOrdered">Select an Item - 0 EUR</option>
-            <!-- <option value="Marathon pass" price="72">Marathon pass - 72 EUR</option> -->
-          </select>
-          <select style="visibility: hidden" id="quantitySelect"></select>
-        </div>
-      <div id="paypal-button-container"></div>
-      </div>
-    </div>
-    <div id="bank-button-container"></div>
-  </div>    
-</div>
-</section>
-
-<section class="section-2" style="display: none"  >
-  <div class="col" style="font-weight: bold" >
-  <br/>
-<!-- Buttons  -->
-  <h1 style="text-align: center"><strong>Buchungskalender / Probestunde buchen</strong></h1>
-  <!-- User Data -->
-  <div id="userdata" class="table data"></div>
-  <!-- Courses Data -->
-  <div id="rowdata"></div>
-</div>
-
-<!-- Modal Section-->
-<div id="statesModal"></div>
-<div id="payModal"></div>
-<div id="paymentsModal"></div>
-<div id="BankModal"></div>
-  <!-- Why We Uniqiue Section End -->
-</section>
+      </section>
+      <!-- End of Section 3 -->
 
   <!-- Page Wraper -->
   <div class="page_wrapper">
@@ -651,9 +493,9 @@
               <p>©Alma Dance Frankfurt by Eduardo Millan</p>
             </div>
             <ul class="links">
-              <li><a href="https://alma-dance.de/kursplan">Kursplan</a></li>
+              <li><a href="https://alma-dance.de/">Home</a></li>
               <li><a href="https://alma-dance.de/instructors">About us</a></li>
-              <li><a href="https://alma-dance.de/preise-tanzkurse-frankfurt">Prices</a></li>
+              <li><a href="https://alma-dance.de/pricing">Prices</a></li>
               <li><a href="https://alma-dance.de/contact-us">Contact us</a></li>
             </ul>
             <div class="design_by">
@@ -692,6 +534,8 @@
     <!-- Video Model End -->
   </div>
   <!-- Page-wrapper-End -->
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
 
   <!-- Jquery-js-Link -->
   <script src="js/jquery.js"></script>
@@ -707,7 +551,7 @@
   <script src="js/main.js"></script>
 
   <!--SKRIPT ZONE  -->
-  <script src="app_de.js"></script>
+  <script src="app.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
