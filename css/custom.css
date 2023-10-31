@@ -2,7 +2,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"); /* import font */
 
 
+#dance-partner-container {
+    padding: 20px;
 
+    max-width: 70%;
+    text-align: left;
+    align-items: baseline;
+}
 
 .hero-box {
     position: relative

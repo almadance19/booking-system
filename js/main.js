@@ -1,7 +1,7 @@
 // Open Sub Menu
-$('.drp_btn').click(function () {
-  $(this).siblings('.sub_menu').slideToggle(500);
-})
+// $('.drp_btn').click(function () {
+  // $(this).siblings('.sub_menu').slideToggle(500);
+// })
 
 // Preloader JS
 
