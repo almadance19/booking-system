@@ -90,16 +90,7 @@ urluser='https://script.google.com/macros/s/AKfycbwSTDQj8m9dHS0iTVyr3QDViZ8ItpT6
 const output = document.querySelector('.output');
 const btn_login = document.getElementById('loginbutton');
 btn_login.addEventListener('click',getLogin);
-//get user fields
-const emailinput = document.getElementById("User_email");
-const nameinput = document.getElementById("User_name");  
-const coursesinput = document.getElementById("User_courses");  
-const idinput = document.getElementById("User_id");  
-const activeinput = document.getElementById("User_active"); 
-const lastpaymentinput = document.getElementById("User_lastpayment");  
-const saldoinput = document.getElementById("User_saldo");  
-const anmerkungeninput = document.getElementById("User_anmerkungen");  
-const nextpaymentinput = document.getElementById("User_nextpayment");
+
 
 function getLogin() { 
     var email_value = document.querySelector('input[name=email-class]').value;
@@ -171,15 +162,25 @@ function getUser(email_value) {
       }
 }
 
+//get user fields
+const emailinput = document.getElementById("User_email");
+const nameinput = document.getElementById("User_name");  
+const coursesinput = document.getElementById("User_courses");  
+const idinput = document.getElementById("User_id");  
+const activeinput = document.getElementById("User_active"); 
+const lastpaymentinput = document.getElementById("User_lastpayment");  
+const saldoinput = document.getElementById("User_saldo");  
+const anmerkungeninput = document.getElementById("User_anmerkungen");  
+const nextpaymentinput = document.getElementById("User_nextpayment");
 
 ///CONTACT PARTNER FUNCTION 
-
 
 function contactPartner(Userid){
     console.log(Userid);
 
-       var name_user = nameinput.value;
+       var name_user = coursesinput.value;
        var email_pay = emailinput.value;
+
        console.log(name_user);
   
       if ( name_user !="No Active User") {
@@ -188,7 +189,7 @@ function contactPartner(Userid){
         displayTable += "<div class=\"modal-dialog\" role=\"document\">";
         displayTable += "<div class=\"modal-content\" >";
         displayTable += "<div class=\"modal-header\ style=\"background-color:#48005f;color:White\">";
-        displayTable += "<h5 class=\"modal-title\" id=\"exampleModalLongTitle\" > "+ Userid + "</h5>";
+        displayTable += "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\" > "+ "SEND A MESSAGE TO USER" + "</h3>";
         displayTable += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">";
         displayTable += "<span aria-hidden=\"true\">×</span>";
         displayTable += "</button>";
@@ -214,37 +215,32 @@ function contactPartner(Userid){
         displayTable += '<form id="myForm" onsubmit="handleFormSubmit(this)">';
         displayTable += '<div class="form-row">';
         displayTable += '<label for="firstname" style="font-weight: bold">Name</label>';
-        displayTable += "<input type=\"text\" id=\"firstname\" class=\"form-control\" Value=\""+Userid+"\" >";
+        displayTable += "<input type=\"text\" id=\"firstname\" class=\"form-control\" Value=\""+name_user+"\" >";
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
         displayTable += '<label for="lastname" style="font-weight: bold">Message / Nachricht</label>';
         displayTable += '<textarea rows="3" id="lastname" class="form-control" placeholder="Enter Message"></textarea>';
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
-        displayTable += '<label for="lastname" style="font-weight: bold">About me/ Über mich</label>';
-        displayTable += "<input type=\"text\" id=\"leader_jn\" class=\"form-control\" Value=\""+Userid+"\" >";
+        displayTable += '<label for="lastname" style="font-weight: bold">More about me</label>';
+        displayTable += '<textarea rows="3" id="leader_jn" class="form-control" placeholder="Enter Message"></textarea>';
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
-        displayTable += '<label for="phone" style="font-weight: bold">Phone /Telefonnummer</label>';
-        displayTable += '<input type="text" id="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Example +4915344446342" />';
-        displayTable += '<small id="phoneHelp" class="form-text text-muted" style="color:yellow" >** not mandatory / nicht erforderlich</small>';
-        displayTable += '</div>';
-        displayTable += '<div class="form-row">';
-        displayTable += '<label for="promocode" style="font-weight: bold">Social Media Profile</label>';
-        displayTable += '<textarea rows="1" id="promocode" class="form-control" placeholder="Enter Social Media Profile"></textarea>';
+        displayTable += '<label for="phone" style="font-weight: bold">More Contact Infos</label>';
+        displayTable += '<input type="text" id="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Example +4915344446342" @dancer_22 />';
         displayTable += '<small id="phoneHelp" class="form-text text-muted" style="color:yellow" >** not mandatory / nicht erforderlich</small>';
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
         displayTable += '<label for="email" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
-        displayTable += "<input type=\"email\" id=\"email\" class=\"form-control\" placeholder=\"Enter email\" aria-describedby=\"emailHelp\" Value=\""+Userid+"\" >";
+        displayTable += "<input type=\"email\" id=\"email\" class=\"form-control\" placeholder=\"Enter email\" aria-describedby=\"emailHelp\" Value=\""+email_pay+"\" >";
         displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
         displayTable += '<div id="display_error" style="color: red" ></div>';
         displayTable += '<div id="display_success" style="color: black" ></div>';
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
         displayTable += "<input type=\"button\" value=\"Send Email\" class=\"btn btn-colour-1\" ";
-        displayTable += " onclick=\"AddRow('"+Userid+"',"+"'"+Userid+"',"+"'"+Userid+"',"+"'"+Userid+"',"+"'"+Userid+"',"+"'"+Userid+"',"+"'"+Userid+"')\" />";
-       
+        displayTable += " onclick=\"AddRow('"+Userid+"',"+"'"+name_user+"',"+"'"+email_pay+"')\" />";
+
         displayTable += '</div>';       
         displayTable += '</form>';
         displayTable += '<br>';
@@ -259,7 +255,38 @@ function contactPartner(Userid){
         $("#myModal").modal();
    
       }
-      else { 
-        alert ("Please Login or Register first!");  
+      else {
+        if(window.confirm("Please Login or Register first -> Go to registration: OK? or Cancel to login")){
+          window.open("dance-partner-registration.html");
+       } 
+
       }
     } 
+
+
+    function AddRow(region,name,adress)
+    {
+      var firstname = document.getElementById("firstname").value;
+      var lastname = document.getElementById("lastname").value;
+      var phone = document.getElementById("phone").value;
+      var leader_jn = document.getElementById("leader_jn").value;
+      var email = document.getElementById("email").value;
+      var foto =  "Hello"; //document.getElementById("myFoto");
+      if(firstname != '' && lastname != ''   && leader_jn != ''  && email != '')
+      {
+      /// SEND CONTACT
+      var message=[firstname, lastname, phone, leader_jn,"dia", email,region,name,adress,"dia","dia","dia","dia","dia",];
+      console.log(message);
+      document.getElementById("firstname").value = '';
+      document.getElementById("lastname").value = '';
+      document.getElementById("phone").value = '';
+      document.getElementById("leader_jn").value = '';
+      document.getElementById("email").value = '';
+      document.getElementById("display_success").innerHTML = "Danke/Thank you "+firstname+" "+" (email: "+email+"). You both just received an Email from info@alma-dance.com  with your message, so that you can communicate. Be careful and have fun practicing. Please check also in your spam folder.";
+      }
+      else
+      {
+        /// ERRORS
+      document.getElementById("display_error").innerHTML = "Please Enter All Information!";
+      }
+    }
