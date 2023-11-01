@@ -1,7 +1,7 @@
 //GENERAL VARIABLES
 const listElement = document.querySelector('.review_side');
 const postTemplate = document.getElementById('single-post');
-const url = 'https://script.google.com/macros/s/AKfycbx_kmT8bjwRM-c7MtEcu86kutKCIm6xgUu8VrRJHa9i9Q3sSrNhMYkz93e-FSRLSys/exec';
+const url = 'https://script.google.com/macros/s/AKfycbxFy18JvPmQixnw7enJSFQYe4tVC9newrU9MngM0l9I2lEgiY1LLJOoLCptTQlWmsA/exec';
 const users= [];
 
 ///DEFINE BUTTON FILTERS AND EVENT LISTENERS
@@ -125,7 +125,6 @@ function getUser(email_value) {
           document.getElementById("email_display").innerHTML = email_value;
           document.getElementById("user_message").innerHTML = "Not Registered yet. You have to register to use our partner search services.";
           document.getElementById("user_message2").innerHTML = ""
-          document.getElementById("user_message2").setAttribute("href", "dance-partner-registration.html"); 
           emailinput.value = email_value;
           nameinput.value = val.posts[0][3];
           coursesinput.value = val.posts[0][1];
@@ -141,8 +140,8 @@ function getUser(email_value) {
           document.getElementById("name_display").style.display="block";
           document.getElementById("name_display").innerHTML = val.posts[0][1];
           document.getElementById("email_display").innerHTML = email_value;
-          document.getElementById("user_message").innerHTML = val.posts[0][7];
-          document.getElementById("user_message2").innerHTML = "You can contact a user now."
+          document.getElementById("user_message").innerHTML = "You can contact a user now."
+          document.getElementById("user_message2").innerHTML = ""
           //document.getElementById("user_message2").innerHTML = val.posts[0][3];
           emailinput.value = email_value;
           nameinput.value = val.posts[0][3];
@@ -227,7 +226,7 @@ function contactPartner(Userid){
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
         displayTable += '<label for="phone" style="font-weight: bold">More Contact Infos</label>';
-        displayTable += '<input type="text" id="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Example +4915344446342" @dancer_22 />';
+        displayTable += '<input type="text" id="phone" class="form-control" aria-describedby="phoneHelp" placeholder="Example +4915344446342 / @dancer_22" />';
         displayTable += '<small id="phoneHelp" class="form-text text-muted" style="color:yellow" >** not mandatory / nicht erforderlich</small>';
         displayTable += '</div>';
         displayTable += '<div class="form-row">';
@@ -264,7 +263,7 @@ function contactPartner(Userid){
     } 
 
 
-    function AddRow(region,name,adress)
+    function AddRow(userid,name,adress)
     {
       var firstname = document.getElementById("firstname").value;
       var lastname = document.getElementById("lastname").value;
@@ -275,14 +274,16 @@ function contactPartner(Userid){
       if(firstname != '' && lastname != ''   && leader_jn != ''  && email != '')
       {
       /// SEND CONTACT
-      var message=[firstname, lastname, phone, leader_jn,"dia", email,region,name,adress,"dia","dia","dia","dia","dia",];
+      var message=[email,firstname, lastname, phone, leader_jn,userid];
       console.log(message);
-      document.getElementById("firstname").value = '';
-      document.getElementById("lastname").value = '';
-      document.getElementById("phone").value = '';
-      document.getElementById("leader_jn").value = '';
-      document.getElementById("email").value = '';
-      document.getElementById("display_success").innerHTML = "Danke/Thank you "+firstname+" "+" (email: "+email+"). You both just received an Email from info@alma-dance.com  with your message, so that you can communicate. Be careful and have fun practicing. Please check also in your spam folder.";
+      sData(message);
+      $("#firstname").prop( "disabled", true ).val("");
+      $("#lastname").prop( "disabled", true ).val("");
+      $("#leader_jn").prop( "disabled", true ).val("");
+      $("#phone").prop( "disabled", true ).val("");
+      $("#email").prop( "disabled", true ).val("");
+
+      document.getElementById("display_success").innerHTML = "Thank you "+firstname+" "+" (email: "+email+"). You both just received an Email from info@alma-dance.com  with your message, so that you can communicate. Take care and have fun practicing. Please check also in your spam folder.";
       }
       else
       {
@@ -290,3 +291,19 @@ function contactPartner(Userid){
       document.getElementById("display_error").innerHTML = "Please Enter All Information!";
       }
     }
+
+
+        // Send & Save Message
+function sData(arr) {
+  let formData = new FormData();
+  formData.append('data', JSON.stringify(arr));
+  console.log("posting registration in API")
+  fetch(url, {
+    method: 'POST'
+    , body: formData
+  }).then(function (rep) {
+    return rep.json()
+  }).then(function (data) {
+     console.log("Subscribed");
+  })
+};
