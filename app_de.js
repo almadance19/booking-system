@@ -102,7 +102,7 @@ function getData() {
     data.posts.forEach(function (val) {
       if (val[10]==true && val[12]=="NEIN" ) {
         displayTable += "<tr class=\""+val[2]+"\" >";
-        displayTable += "<td><input type=\"button\" value=\"Register\" class=\"btn btn-colour-1\" ";
+        displayTable += "<td><input type=\"button\" value=\"Anmelden\" class=\"btn btn-colour-1\" ";
         displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"')\" /></td>";
         displayTable += "<td>"+val[1]+"</td>";
         displayTable += "<td>"+val[5]+" "+val[7]+"</td>";
@@ -297,7 +297,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="firstname" style="font-weight: bold">Name</label>';
-    displayTable += "<input type=\"text\" id=\"firstname\" class=\"form-control\" Value=\""+name_user+"\" >";
+    displayTable += "<input type=\"text\" id=\"firstname\" class=\"form-control\" Value=\""+"\" >";
     displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
@@ -581,7 +581,7 @@ function showPayment(payment)
       {
       console.log(arr);
       sData(arr);
-      document.getElementById("display_success").innerHTML = "Danke/Thank you "+firstname+" "+lastname+" (email: "+email+"). Eine Email von info@alma-dance.com mit der Kursinformationen wurde geschickt. Bitte prüft auch deinen Spamordner. You received just now an Email with the course details. Please check also in your spam folder";
+      document.getElementById("display_success").innerHTML = "Danke "+firstname+" "+lastname+" (email: "+email+"). Eine Email von info@alma-dance.com mit der Kursinformationen wurde geschickt. Bitte prüft auch deinen Spamordner.";
       document.getElementById("display_error").innerHTML = "";
       document.getElementById("addRegis").disabled = true; 
       }
@@ -589,12 +589,12 @@ function showPayment(payment)
       {
       console.log(arr);
       sData(arr);
-      document.getElementById("display_success").innerHTML = "Danke/Thank you "+firstname+" "+lastname+" (email: "+email+"). Eine Email von info@alma-dance.com mit der Kursinformationen wurde geschickt. Bitte prüft auch deinen Spamordner. You received just now an Email with the course details. Please check also in your spam folder";
+      document.getElementById("display_success").innerHTML = "Danke "+firstname+" "+lastname+" (email: "+email+"). Eine Email von info@alma-dance.com mit der Kursinformationen wurde geschickt. Bitte prüft auch deinen Spamordner.";
       document.getElementById("display_error").innerHTML = "";
       document.getElementById("addRegis").disabled = true; 
       }
       else {
-        document.getElementById("display_error").innerHTML = "Please enter name and valid email!";
+        document.getElementById("display_error").innerHTML = "Bitte Name und Email eingeben!";
         document.getElementById("display_success").innerHTML = "";
       }
     }

@@ -297,7 +297,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="firstname" style="font-weight: bold">Name</label>';
-    displayTable += "<input type=\"text\" id=\"firstname\" class=\"form-control\" Value=\""+name_user+"\" >";
+    displayTable += "<input type=\"text\" id=\"firstname\" class=\"form-control\" Value=\""+"\" >";
     displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
@@ -580,7 +580,7 @@ function showPayment(payment)
       {
       console.log(arr);
       sData(arr);
-      document.getElementById("display_success").innerHTML = "Danke/Thank you "+firstname+" "+lastname+" (email: "+email+"). Eine Email von info@alma-dance.com mit der Kursinformationen wurde geschickt. Bitte prüft auch deinen Spamordner. You received just now an Email with the course details. Please check also in your spam folder";
+      document.getElementById("display_success").innerHTML = "Thank you "+firstname+" "+lastname+" (email: "+email+").You just received just an Email from info@alma-dance.com with the course details. Please check also in your spam folder";
       document.getElementById("display_error").innerHTML = "";
       document.getElementById("addRegis").disabled = true; 
       }
@@ -588,7 +588,7 @@ function showPayment(payment)
       {
       console.log(arr);
       sData(arr);
-      document.getElementById("display_success").innerHTML = "Danke/Thank you "+firstname+" "+lastname+" (email: "+email+"). Eine Email von info@alma-dance.com mit der Kursinformationen wurde geschickt. Bitte prüft auch deinen Spamordner. You received just now an Email with the course details. Please check also in your spam folder";
+      document.getElementById("display_success").innerHTML = "Thank you "+firstname+" "+lastname+" (email: "+email+").You just received just an Email from info@alma-dance.com with the course details. Please check also in your spam folder";
       document.getElementById("display_error").innerHTML = "";
       document.getElementById("addRegis").disabled = true; 
       }
