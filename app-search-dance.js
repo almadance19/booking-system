@@ -24,9 +24,9 @@ function filterUsers(filter_value) {
         if (post[2]==filter_value){
             const postEl = document.importNode(postTemplate.content, true);
             postEl.querySelector(".city").textContent = post[8];
-            postEl.querySelector('h3').textContent = post[7];
+            postEl.querySelector('h3').textContent = post[1].toUpperCase();
             postEl.querySelector('span').textContent = post[2];
-            postEl.querySelector('h2').textContent = post[1].toUpperCase();
+            postEl.querySelector('h2').textContent = post[7];
             postEl.querySelector('p').textContent = post[3];
             postEl.querySelector(".aboutme").textContent = post[4];
             postEl.querySelector(".idealdancepartner").textContent = post[6];
@@ -59,9 +59,9 @@ xhr.onload = function() {
   for (const post of listOfPosts) {
     const postEl = document.importNode(postTemplate.content, true);
             postEl.querySelector(".city").textContent = post[8];
-            postEl.querySelector('h3').textContent = post[7];
+            postEl.querySelector('h3').textContent = post[1].toUpperCase();
             postEl.querySelector('span').textContent = post[2];
-            postEl.querySelector('h2').textContent = post[1].toUpperCase();
+            postEl.querySelector('h2').textContent = post[7];
             postEl.querySelector('p').textContent = post[3];
             postEl.querySelector(".aboutme").textContent = post[4];
             postEl.querySelector(".idealdancepartner").textContent = post[6];
