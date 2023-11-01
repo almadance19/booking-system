@@ -1,124 +1,76 @@
-let loginForm = document.getElementById("myForm");
-
-const url = 'https://script.google.com/macros/s/AKfycbw4q26iWt9naQeQC_c1P1yCuujXsG_i1Qm7hHcd9O3bN8QPPZFXa-covsE9A_xQjxE/exec';
-
-function preventFormSubmit() {
-    var forms = document.querySelectorAll('form');
-    for (var i = 0; i < forms.length; i++) {
-      forms[i].addEventListener('submit', function(event) {
-        event.preventDefault();
-      });
-    }
-  }
-window.addEventListener('load', preventFormSubmit);
+const users= [];
+const urluser='https://script.google.com/macros/s/AKfycbwSTDQj8m9dHS0iTVyr3QDViZ8ItpT6QEQXhgu9QqobhxwZmYIMpJuWoj-umCh7gcM/exec';
+const output = document.querySelector('.output');
+const btn_login = document.getElementById('loginbutton');
+btn_login.addEventListener('click',getLogin);
 
 
-
-// Make a POST request with form data.
-var resumeBlob = "cc.png";
-var formData = {
-  'name': 'Bob Smith',
-  'email': 'bob@example.com',
-  'resume': resumeBlob
-};
-// Because payload is a JavaScript object, it is interpreted as
-// as form data. (No need to specify contentType; it automatically
-// defaults to either 'application/x-www-form-urlencoded'
-// or 'multipart/form-data')
-var options = {
-  'method' : 'post',
-  'payload' : formData
-};
-
-// or 'multipart/form-data'
-var payment_array = [];
-
-
-function handleFormSubmit(formObject){
-    console.log("START UPLOADING");
-  var firstname = document.getElementById("first_name").value;
-  var lastname = document.getElementById("about").value;
-  var phone = document.getElementById("language").value;
-  var leader_jn = document.getElementById("levelDancing").value;
-  var email = document.getElementById("email").value;
-  var promocode = document.getElementById("city").value;
+function getLogin() { 
+    var email_value = document.querySelector('input[name=email-class]').value;
+    if (email_value != '') { 
+        output.innerHTML = "..loading";
+        getUser(email_value);
+        
+      } else {
+        output.innerHTML = "Enter a valid email";
+      }
   
-if(firstname != '' && lastname != ''   && leader_jn != ''  && email != '' && phone != '' && promocode != '') {
-  document.getElementById("summit").disabled = true;
-  //google.script.run.withSuccessHandler(updateUrl).withFailureHandler(onFailure).uploadFiles(formObject);
-  console.log(formObject);
-  document.getElementById("display_success").innerHTML = "Loading your Subscription/ Deine Anmeldung wird hochgeladen";
-  document.getElementById("output").innerHTML = "";
+  }
+  
 
-  payment_array.length = 0;
-  payment_array.push("TEST",email,firstname,lastname,phone,leader_jn,promocode);
+// get users data 
+function getUser(email_value) {
+    if (email_value != '') {
+      urlapi = urluser+"/exec?code="+email_value
+      console.log(urlapi);
+      //output.innerHTML = "loading...";
+      console.log("fetching user data");
+      fetch(urlapi).then(function (rep) {
+        return rep.json()
+      }).then(function (val) {
+        console.log(val);
+        output.innerHTML = "";
+          var name_user = val.posts[0][1] 
+          console.log(name_user);
+          if (val.posts[0][1]  == 'No Active User') {
+          output.innerHTML = "Email: "+email_value+" not registered yet. Register!";
+          } 
+          else {
+          activeinput.value = val.posts[0][2];
 
-  //formData.append('data', JSON.stringify(formObject)); 
-  var formData = $('form#myForm :input').serialize();
-        console.log(formData)
+          emailinput.disabled = false;
+          nameinput.disabled = false;
+          coursesinput.disabled = false;
+          idinput.disabled = false;
+          lastpaymentinput.disabled = false;
+          saldoinput.disabled = false;
+          anmerkungeninput.disabled = false;
+          nextpaymentinput.disabled = false;
 
+          emailinput.value = email_value;
+          nameinput.value = val.posts[0][3];
+          coursesinput.value = val.posts[0][1];
+          idinput.value = val.posts[0][0];
+          lastpaymentinput.value = val.posts[0][7];
+          saldoinput.value = val.posts[0][5];
+          anmerkungeninput.value = val.posts[0][6];
+          nextpaymentinput.value = val.posts[0][4];
 
-        $.ajax({
-          url: url
-          , method: 'POST'
-          , data: formData
-          , success: function (data) {
-              console.log(data);
-              document.getElementById("display_success").innerHTML = "Subscription completed!";
-              document.getElementById("output").innerHTML = "";
-              return rep.json()
-          }
-      })
+        }
+        });
 
-
-        fetch(url, {
-          method: 'POST'
-          , body: formData
-        }).then(function (rep) {
-          return rep.json()
-        }).then(function (data) {
-           console.log("Subscribed");
-           document.getElementById("display_success").innerHTML = "Subscription completed!";
-           document.getElementById("output").innerHTML = "";
-        })
-
-} else {
-  var alert = "There are misssing informations, please fill out the form/ Die Angaben sind unvollständig, bitte füllen Sie das Formular aus";
-  document.getElementById("output").innerHTML = '<div class="alert alert-danger" role="alert">'+ alert +'!</div>'; 
-}
-}
-
-
-    // Save Booking hl
-    function sData(arr) {
-        let formData = new FormData();
-        formData.append('data', JSON.stringify(arr));
-        console.log("posting registration in API")
-        fetch(url, {
-          method: 'POST'
-          , body: formData
-        }).then(function (rep) {
-          return rep.json()
-        }).then(function (data) {
-           console.log("Subscribed");
-        })
-      };
-
-
-function updateUrl(url) {
-var div = document.getElementById('output');
-if(isValidURL(url)){
-  div.innerHTML = '<div class="alert alert-success" role="alert"><a href="' + url + '">Registration with Foto uploaded was successfully!/Registrierung mit Foto war erfolgreich!</a></div>';
-  document.getElementById("myForm").reset();
-}else{
-  //Show warning message if file is not uploaded or provided
-  div.innerHTML = '<div class="alert alert-danger" role="alert">'+ url +'!</div>';
-}
+      } else {
+        output.innerHTML = "Enter a valid email";
+      }
 }
 
-function onFailure(error) {
-var div = document.getElementById('output');
-div.innerHTML = '<div class="alert alert-danger" role="alert">'+ error.message +'!</div>';
-}
-
-
+//get user fields
+const emailinput = document.getElementById("User_email");
+const nameinput = document.getElementById("User_name");  
+const coursesinput = document.getElementById("User_courses");  
+const idinput = document.getElementById("User_id");  
+const activeinput = document.getElementById("User_active"); 
+const lastpaymentinput = document.getElementById("User_lastpayment");  
+const saldoinput = document.getElementById("User_saldo");  
+const anmerkungeninput = document.getElementById("User_anmerkungen");  
+const nextpaymentinput = document.getElementById("User_nextpayment");
