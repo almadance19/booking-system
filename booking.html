@@ -13,7 +13,7 @@
   <meta property="og:description" content="Express & Connect. Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata  &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
   <meta name="description" content="Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
 
-  <title>Dance Courses Pricing</title>
+  <title>Alma Dance Scheduler</title>
 
   <!-- icofont-css-link -->
   <link rel="stylesheet" href="css/icofont.min.css">
@@ -184,7 +184,7 @@
             </li>
             <li class="nav-item">
               <div class="btn_block">
-                <a class="nav-link dark_btn" href="pricing_de.html">Deutsch</a>
+                <a class="nav-link dark_btn" href="booking_de.html">Deutsch</a>
                 <div class="btn_bottom"></div>
               </div>
             </li>
@@ -256,6 +256,7 @@
               We are more than just a dance school!
             </p>
             <br>
+            <a href="booking_de.html" class="btn btn-info" style="text-align: center;" role="button">Deutsche Version</a>
           </div>
         </div>
         <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="1500">
@@ -270,15 +271,136 @@
   <!-- Banner-Section-end -->
 
 
+
+
+ <!-- AGENDA Section Start -->
+ <section id="agenda-container" class="how_it_section">
+  <div class="how_it_inner" data-aos="fade-in" data-aos-duration="1500">
+    <div class="container">
+      <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
+        <!-- <span class="title_badge">Quick & easy</span> -->
+        <h2>Alma Dance Registration</h2>
+        <a id="promotion-button" href="#promotion-section" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 10px;background-color: rgb(238, 15, 52);" role="button"><strong>Promotions</strong></a>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
+            <div class="steps">
+              <div class="icon">
+                <img src="images/howstep1.png" alt="image">
+              </div>
+              <div class="text">
+                <h3>Single Class</h3>
+                <p>Register for a free trial class</p>
+                <p>Enter your Email and register for a dance class. </p>
+                <p>Also for Alma Dance members.</p>
+                <!-- <form > -->
+                  <div class="form-group">
+                    <input type="email" name="email-class" class="form-control" placeholder="Enter your email">
+                    <div class="output" ></div>
+                  </div>
+                <!-- </form> -->
+                <button class="btn puprple_btn ml-0 bookaclass">BOOK A CLASS</button>
+                <!-- <button class="btn btn-dark bookaclass" style="display: none; margin: 5px 5px 5px 5px;">Book a class</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
+            <div class="steps">
+              <div class="icon">
+                <img src="images/howstep2.png" alt="image">
+              </div>
+              <div class="text">
+                <h3>Membership</h3>
+                <p>Start or update your membership</p>
+                <p>Select a Membership and start dancing.</p> 
+                <p>We have different plans for everyone. </p>
+                  <!-- <form > -->
+                    <div class="form-group">
+                      <input type="email" name="email-membership" class="form-control" placeholder="Enter your email">
+                      <div class="output-membership" ></div>
+                    </div>
+                  <!-- </form> -->
+                  <button class="btn puprple_btn ml-0  paypal">START A MEMBERSHIP</button>
+                <!-- <button class="btn btn-dark paypal" style="display: none; margin: 5px 5px 5px 5px;">Make a payment</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="steps_block" data-aos="fade-up" data-aos-duration="1500">
+            <div class="steps">
+              <div class="icon">
+                <img src="images/howstep3.png" alt="image">
+              </div>
+              <div class="text">
+                <h3>Dance</h3>
+                <p>Start dancing with us!</p>
+                <p>Enjoy our classes as a member & bring friends.</p>
+                <p>We always have offers for they and for you!</p>
+                <!-- <form > -->
+                  <div class="form-group">
+                    <input type="email" name="email-member" class="form-control" placeholder="Enter your email">
+                    <div class="output-member" ></div>
+                  </div>
+                <!-- </form> -->
+                <button class="btn puprple_btn ml-0  emailer">CHECK YOUR MEMBERSHIP</button>
+                <button class="btn btn-dark allpayments" style="display: none; margin: 5px 5px 5px 5px;">Show my payment history</button>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <br>
+        <br>
+           <span style="color: #48005f" ><h5 id="name_display" ></h5></span>
+            <span style="color: #48005f" ><h5 id="email_display" ></h5></span>
+            <div class="postcard__preview-txt" id="user_message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- AGENDA Section End -->  
+
+<section class="light">
+  <div id="form-tickets" class="container py-2">
+    <div class="col" style="font-weight: bold" >
+      <div class="col" style="font-weight: bold" >
+        <!-- <div class="output" ></div> -->
+      </div>
+      </div>
+    </div>
+</section>
+
 <section class="section-1" id="sect1">
   <div class="col" style="font-weight: bold" >
-  <div id="stripe-container" style="display: block" >
-    <h2 style="text-align: center"><strong>Pricing</strong></h2>
+
+    <div class="container-fluid" id="tableContainer">
+      <input type="hidden" id="User_email" value="">
+      <input type="hidden" id="User_name" value="Guest User">
+      <input type="hidden" id="User_courses" value="Not Registered yet">
+      <input type="hidden" id="User_id" value="Not Registered yet">
+      <input type="hidden" id="User_active" value="Not Registered yet">
+      <input type="hidden" id="User_lastpayment" value="Not Registered yet">
+      <input type="hidden" id="User_saldo" value="Not Registered yet">
+      <input type="hidden" id="User_anmerkungen" value="Not Registered yet">
+      <input type="hidden" id="User_nextpayment" value="Not Registered yet">
+    </div>
+  </br>
+
+<!-- ----MEMBERSHIP BLOCK ---- -->
+  <div id="stripe-container" style="display: none" >
+    <h1 style="text-align: center"><strong> Start/Update your Membership</strong></h1>
      <div  class="row">
       <div class="col-sm">
          <div class="card">
             <div class="card-body">
-               <h5 class="card-title" style="color: #84309a;font-weight: 500;">3 Months Subscription</h5>
+               <h5 class="card-title">3 Months Subscription</h5>
                <div class="price-container" id="1 Course/Kurs-3 Months Subscription">
                   <p class="card-text p-card">1 Class per Week<span style="font-weight:bold"></span></p>
                </div>
@@ -297,7 +419,7 @@
       <div class="col-sm">
          <div class="card">
             <div class="card-body">
-               <h5 class="card-title" style="color: #84309a;font-weight: 500;">6 Months Subscription</h5>
+               <h5 class="card-title">6 Months Subscription</h5>
                <div class="price-container" id="1 Course/Kurs-6 Months Subscription">
                   <p class="card-text p-card">1 Class per Week<span style="font-weight:bold"></span></p>
                </div>
@@ -316,7 +438,7 @@
       <div class="col-sm">
         <div class="card">
            <div class="card-body">
-              <h5 class="card-title" style="color: #84309a;font-weight: 500;">12 Months Subscription</h5>
+              <h5 class="card-title">12 Months Subscription</h5>
               <div class="price-container" id="1 Course/Kurs-12 Months Subscription">
                  <p class="card-text p-card">1 Class per Week<span style="font-weight:bold"></span></p>
               </div>
@@ -335,7 +457,7 @@
       <div class="col-sm">
          <div class="card">
             <div class="card-body">
-               <h5 class="card-title" style="color: #84309a;font-weight: 500;">Promotions/Individual Classes</h5>
+               <h5 class="card-title">Promotions/Individual Classes</h5>
                <div class="price-container" id="4er Karte">
                   <p class="card-text p-card">4 Classes Membership Card<span style="font-weight:bold"></span></p>
                </div>
@@ -360,7 +482,7 @@
       <div class="col-sm">
         <div class="card">
            <div class="card-body">
-              <h5 class="card-title" style="color: #84309a;font-weight: 500;">1 Month Subscription</h5>
+              <h5 class="card-title">1 Month Subscription</h5>
               <div class="price-container" id="1 Course/Kurs-1 Month Subscription">
                  <p class="card-text">1 Class per Week<span style="font-weight:bold"></span></p>
               </div>
@@ -378,12 +500,135 @@
      </div>
     </div>
     </div>
+
+  <!--PAYMENT FORM  -->
+  <div id="payment-block">
+    <div id="pay-form-container"></div>
+  <!--PAYMENT MESSAGE  -->
+  <div id="messsage-container" class="container-fluid">
+    <div style="text-align: center;">
+    <div id="message-button-small-container"></div>
   </div>
-  <div class="" style="text-align: center;">
-    <a href="booking.html" class="button button-radius button-border button-gradient-bg">START A MEMBERSHIP</a>
   </div>
+  <!--PAYPAL BANK ZONE  -->
+    <div id="smart-button-container" class="container-fluid">
+      <div style="text-align: center;">
+        <div style="margin-bottom: 1.25rem;display: none" id="price_shield" >
+          <p>ALMA DANCE COURSES</p>
+          <select id="item-options">
+            <option value="Item" id="ItemOrdered">Select an Item - 0 EUR</option>
+            <!-- <option value="Marathon pass" price="72">Marathon pass - 72 EUR</option> -->
+          </select>
+          <select style="visibility: hidden" id="quantitySelect"></select>
+        </div>
+      <div id="paypal-button-container"></div>
+      </div>
+    </div>
+    <div id="bank-button-container"></div>
+  </div>    
+</div>
 </section>
-<hr> 
+
+<section class="section-2" style="display: none"  >
+  <div class="col" style="font-weight: bold" >
+  <br/>
+<!-- Buttons  -->
+  <h1 style="text-align: center"><strong>Dance Scheduler / Trial Class Booking</strong></h1>
+  <!-- User Data -->
+  <div id="userdata" class="table data"></div>
+  <!-- Courses Data -->
+  <div id="rowdata"></div>
+</div>
+
+<!-- Modal Section-->
+<div id="statesModal"></div>
+<div id="payModal"></div>
+<div id="paymentsModal"></div>
+<div id="BankModal"></div>
+  <!-- Why We Uniqiue Section End -->
+</section>
+<section>
+  <br>
+</section>
+<!-- PROGRAM FOTOS-Section start -->
+<section class="row_am interface_section">
+  <!-- container start -->
+  <div id="promotion-section" class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+    <span class="title_badge">Promotions</span>
+    <h2>Alma Dance<span> Highlights & Promotions</span> </h2>
+    <h4>We have flexible options for everyone, take a look at our promotions and get in contact for more.</h4>
+    <p>At Alma Dance, we dance to express and connect with ourselves and others. When we dance, we do it from our heart and soul, because only then it becomes more than just a movement.</p>
+    <p>For us, dance is art.</p>
+  </div>  
+    <!-- screen slider start -->
+    <div class="screen_slider" data-aos="fade-up" data-aos-duration="1500">
+      <div id="screen_slider" class="owl-carousel owl-theme">
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/prom1.webp" alt="bachata class promotion">
+            <p></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/promo3.webp" alt="salsakurs aktion">
+            <p></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/promo2.webp" alt="bachatakurs aktion">
+            <p></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/prom3.webp" alt="bachata class promotion">
+            <p></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/prom6.webp" alt="bachata class promotion">
+            <p></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/prom4.webp" alt="bachata class promotion">
+            <p></p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="screen_frame_img">
+            <img src="images/prom5.webp" alt="bachata class promotion">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- screen slider end -->
+  <!-- container end -->
+</section>
+<!-- PROGRAM FOTOS-Section end -->
+<section>
+  <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+
+    <p> <strong>Group classes</strong></p>
+    <p>Bachata</p>
+    <p>Salsa</p>
+    <p>Brazilian zouk</p>
+    <p>Dance performance</p>
+    <p>Solo dance technique &amp; dance fitness</p>
+    <p>Dance styling &amp; body movement</p>
+    <p> <strong>Private classes</strong></p>
+    <p>Customized class</p>
+    <p>Wedding dance</p>
+    <p> <strong>Dance events</strong></p>
+    <p>Intensive workshops</p>
+    <p>Festivals</p>
+    </div>
+</section>
 
   <!-- Page Wraper -->
   <div class="page_wrapper">
@@ -523,7 +768,7 @@
               <h3>The Dance Experience</h3>
               <ul class="app_btn">
                 <!-- <li>
-                  <a class="navbar-brand" href="booking.html">
+                  <a class="navbar-brand" href="index.html">
                     <img src="images/logo.png" alt="Logo">
                   </a>
                 </li> -->
@@ -595,7 +840,7 @@
   <script src="js/main.js"></script>
 
   <!--SKRIPT ZONE  -->
-  <script src="app_prices.js"></script>
+  <script src="app.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
