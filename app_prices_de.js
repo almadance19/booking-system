@@ -62,7 +62,7 @@ function getPrices() {
       }
 
       if (list[i].id==val[0] & val[7]!="NO" ) {
-        document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR (monthly)";
+        document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR (monatlich)";
     
       }
 }
