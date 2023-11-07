@@ -15,7 +15,8 @@
 
   <title>Alma Dance Tanzschule in Frankfurt: Bachata, Salsa, Zouk & More</title>
 
-
+  <!-- Bootstrap-Style-link -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- Owl-Carosal-Style-link -->
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <!-- Coustome-Style-link -->
@@ -36,15 +37,24 @@
           "@id": "SportsActivityLocation",
           "actionableFeedbackPolicy": "Alma Dance Frankfurt",
           "additionalType": "https://alma-dance-frankfurt.de/",
+        "url": "https://alma-dance-frankfurt.de/",
+        "telephone": "+49 1639641730",
+        "email": "info@alma-dance.de",
           "alternateName": "Tanzschule Alma Dance",
           "areaServed": "Frankfurt am Main",
-          "description": "Join our amazing community to learn latin dance in Frankfurt. Meet new people, express yourself and grow by learning Salsa, Bachata & More.",
+          "description": "Bachata, Salsa, Zouk,Hochzeitstanz,Latin Tanzschule in Frankfurt am Main. Tanzveranstaltungen und Afterworks",
         "image": [
           "https://alma-dance-frankfurt.de/images/logo.webp",
-          "https://example.com/photos/4x3/photo.jpg",
-          "https://example.com/photos/16x9/photo.jpg"
+          "https://alma-dance-frankfurt.de/images/AlmaDanceEduNat.webp",
+          "https://alma-dance-frankfurt.de/images/alma_dancers_frankfurt.webp"
          ],
         "name": "Alma Dance Frankfurt",
+        "logo" : "https://alma-dance-frankfurt.de/images/logo.webp",
+          "sameAs" : [ 
+            "https://www.youtube.com/@almadancebachatasalsa9317",
+            "https://www.facebook.com/AlmaDanceFrankfurt",
+            "https://www.instagram.com/eduardo_natalia_almadance/"]
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Dreieichstraße 35",
@@ -69,10 +79,8 @@
           "@type": "GeoCoordinates",
           "latitude": 50.10515822875264,
           "longitude": 8.692279249077423
-        },
-        "url": "https://alma-dance-frankfurt.de/",
-        "telephone": "+49 1639641730",
-        "email": "info@alma-dance.de"
+        }
+
       }
       </script>
 
@@ -141,14 +149,14 @@
           </span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+          <ul class="navbar-nav ml-auto" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" itemprop="url" href="index.html">Home</a>
             </li>
             <!-- secondery menu start -->
             <!-- <li class="nav-item has_dropdown">
-              <a class="nav-link" href="#">Pages</a>
+              <a class="nav-link" itemprop="url" href="#">Pages</a>
               <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
               <div class="sub_menu">
                 <ul>
@@ -160,25 +168,25 @@
               </div>
             </li> -->
             <!-- secondery menu end -->
-            <li class="nav-item">
-              <a class="nav-link" href="pricing_de.html">Preise</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="pricing_de.html">Preise</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kursplan.html">Kursplan</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="kursplan.html">Kursplan</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking_de.html">Buchen</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="booking_de.html">Buchen</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="standort.html">Standort</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="standort.html">Standort</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="dance-partner-search.html">Tanzpartnersuche</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="dance-partner-search.html">Tanzpartnersuche</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kontakt.html">Kontakt</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="kontakt.html">Kontakt</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" itemprop="name">
               <div class="btn_block">
                 <a class="nav-link dark_btn" href="home.html">English</a>
                 <div class="btn_bottom"></div>
@@ -605,8 +613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </script>
 <link rel="stylesheet" href="css/icofont.min.css">
-<!-- Bootstrap-Style-link -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+
 </body>
   <!-- icofont-css-link -->
   
