@@ -1,7 +1,7 @@
 //GIT GUIDE
 // git init
-//git add --all
 //git remote add origin "https://github.com/almadance19/tanzschule_frankfurt.git"
+//git add --all
 //git commit -m "commit message"
 //git commit -m "commit message"git push --force origin
 //git push --force origin master
