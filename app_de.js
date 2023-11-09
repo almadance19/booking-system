@@ -274,7 +274,7 @@ function showMemberships() {
 function getPayments() { 
   var email_value = document.querySelector('input[name=email-member]').value;
   if (email_value != '') { 
-      //outputMember.innerHTML = "..loading";
+      outputMember.innerHTML = "..loading";
       getUser(email_value);
       
     } else {
@@ -410,7 +410,7 @@ function getUser(email_value) {
           saldoinput.value = val[5];
           anmerkungeninput.value = val[6];
           nextpaymentinput.value = val[4];
-
+          outputMember.innerHTML = "";
 
           } 
           else {
@@ -428,6 +428,8 @@ function getUser(email_value) {
           anmerkungeninput.value = val[6];
           nextpaymentinput.value = val[4];
           btnPayments.style.display="block";
+
+          outputMember.innerHTML = "";
 
           const user_profile = {
             id: val[0],
