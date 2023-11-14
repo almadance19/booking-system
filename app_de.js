@@ -185,11 +185,11 @@ function getPrices() {
       }
 
       if (list[i].id==val[0] & val[7]!="NO" ) {
-        document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR EUR (Monthly)";
+        document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR EUR (monatlich)";
         var inputEl = document.createElement('input'); 
         inputEl.type = 'button';
         inputEl.className = "btn btn-colour-1"; 
-        inputEl.value = "Monatsabonnement";
+        inputEl.value = "Monatlich Zahlen";
         inputEl.style = "margin: 0px 4px 8px 3px;";
 
         inputEl.addEventListener('click', function() { 
