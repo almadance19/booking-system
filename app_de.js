@@ -189,7 +189,7 @@ function getPrices() {
         var inputEl = document.createElement('input'); 
         inputEl.type = 'button';
         inputEl.className = "btn btn-colour-1"; 
-        inputEl.value = "Monatlich Zahlen";
+        inputEl.value = "Monatliche Zahlung";
         inputEl.style = "margin: 0px 4px 8px 3px;";
 
         inputEl.addEventListener('click', function() { 
