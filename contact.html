@@ -14,7 +14,7 @@
   <meta name="description" content="Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
 
   <title>Alma Dance Scheduler</title>
-
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- icofont-css-link -->
   <!--  <link rel="stylesheet" href="css/icofont.min.css"> -->
   <!-- Owl-Carosal-Style-link -->
@@ -566,11 +566,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
     //// MESSAGES -----------------------------------------------
   
-  const url_message = 'https://script.google.com/macros/s/AKfycbz00_Ljo20Nq9eK_v_4dGDjcoYqvqXp-nRhuf0JmQP4gm6LnktG5C1OG33O0C5CKjM/exec';
+  const url_message = 'https://script.google.com/macros/s/AKfycby0bgJuGUwB4ltdEHfAyJed14jHiL4_o1mRU6lvl9UfY2iIKN-Q7az_avwKPFYkyTs/exec';
   
   const form_message = document.getElementById("summit");
   
   form_message.addEventListener('click', handleFormSubmit);
+
+  const url_parameter = 'alma_dance';
   
   
   
@@ -583,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById("summit").disabled = true;
   document.getElementById("display_success").innerHTML = "We received your message. We will get back to you";
   //send menssage 
-  let arr = [ firstname,message,email];
+  let arr = [ firstname,message,email,url_parameter];
   console.log(arr);
   sData(arr);
   
@@ -603,7 +605,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let formData = new FormData();
   console.log(arr);
   formData.append('data', JSON.stringify(arr));
+  const url_api = url_message;
   console.log("posting registration in API")
+  console.log(url_api)
   fetch(url_message, {
     method: 'POST'
     , body: formData
@@ -616,7 +620,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   </script>
     <link rel="stylesheet" href="css/icofont.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
 
 </body>
 

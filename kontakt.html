@@ -14,7 +14,8 @@
   <meta name="description" content="Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
 
   <title>Alma Dance Scheduler</title>
-
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- Owl-Carosal-Style-link -->
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   
@@ -602,13 +603,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   //// MESSAGES -----------------------------------------------
 
-const url_message = 'https://script.google.com/macros/s/AKfycbz00_Ljo20Nq9eK_v_4dGDjcoYqvqXp-nRhuf0JmQP4gm6LnktG5C1OG33O0C5CKjM/exec';
+const url_message = 'https://script.google.com/macros/s/AKfycby0bgJuGUwB4ltdEHfAyJed14jHiL4_o1mRU6lvl9UfY2iIKN-Q7az_avwKPFYkyTs/exec';
 
 const form_message = document.getElementById("summit");
 
 form_message.addEventListener('click', handleFormSubmit);
 
-
+const url_parameter = 'alma_dance';
+  
 
 function handleFormSubmit(formObject){
 var firstname = document.getElementById("first_name").value;
@@ -619,7 +621,7 @@ if(firstname != '' && message != ''   && email != '' ) {
 document.getElementById("summit").disabled = true;
 document.getElementById("display_success").innerHTML = "Wir haben Ihre Nachricht erhalten. Wir werden uns bei Ihnen melden.";
 //send menssage 
-let arr = [ firstname,message,email];
+let arr = [ firstname,message,email,url_parameter];
 console.log(arr);
 sData(arr);
 
@@ -653,7 +655,7 @@ fetch(url_message, {
 </script>
   <!-- icofont-css-link -->
   <link rel="stylesheet" href="css/icofont.min.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
 
 </body>
 
