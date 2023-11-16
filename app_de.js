@@ -327,7 +327,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
 
     displayTable += "<div class=\"row\"> </div>";
     displayTable += "<div class=\"row\"> </div>";
-    displayTable += '<form style="background-color:white;color:black">';
+    displayTable += '<form autocomplete="on" style="background-color:white;color:black">';
     displayTable += '<div class="form-row">';
     displayTable += "<label for=\"disabledTextInput\" style=\"font-weight: bold\" >"+" "+"</label>";
     displayTable += '</div>';
@@ -337,7 +337,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
-    displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">Registration Type</label>';
+    displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">Mitgliedschaft</label>';
     displayTable += '<select class="custom-select" id="leader_jn">';
     displayTable += '<option>Active Member /Mitglied </option>';
     displayTable += '<option>Trial Class / Probestunde</option>';
@@ -345,6 +345,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
+    displayTable += '<label for="exampleFormControlSelect3" style="font-weight: bold">Anmeldungstyp</label>';
     displayTable += '<select class="custom-select" id="promocode">';
     displayTable += '<option>Regular Course</option>';
     displayTable += '<option>4-10er Karte</option>';
@@ -706,7 +707,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     
     displayTable += "<div class=\"row\"> </div>";
     displayTable += "<div class=\"row\"> </div>";
-    displayTable += '<form style="background-color:white;color:black">';
+    displayTable += '<form autocomplete="on" style="background-color:white;color:black">';
     displayTable += '<div class="form-row">';
     displayTable += "<label for=\"disabledTextInput\" style=\"font-weight: bold\" >"+membership+" / "+payment_type+"</label>";
     displayTable += '</div>';
@@ -763,6 +764,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "<input type=\"button\" value=\"Bezahlen\"  style=\"display:block\"  id=\"blockPrice\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"blockPriceF()\" />";
     displayTable += '</div>';
+    displayTable += '<div id="display_error_pay" style="color: red" ></div>';
     displayTable += '<div class="form-group col-md-3">';
     displayTable += "<a class=\"btn btn-dark\" href=\""+stripe_link+"\" id=\"addStripe\" style=\"display:none;text-align:left\">Pay with Stripe</a>";
     displayTable += '</div>';
@@ -797,17 +799,24 @@ function selectMembership() {
 }
 
  function blockPriceF() {
-  document.getElementById("addPaypal").style.display = "block";
-  document.getElementById("addBank").style.display = "block";
-  //document.getElementById("addStripe").style.display = "block";
-  //document.getElementById("addStripe").disabled = false;
-  document.getElementById("addPaypal").disabled = false;
-  document.getElementById("addBank").disabled = false;
-  document.getElementById("course_pay").disabled = true;
-  document.getElementById("firstname_pay").disabled = true;
-  document.getElementById("email_payment").disabled = true;
-  document.getElementById("newmember").disabled = true;
-  document.getElementById("blockPrice").style.display = "none";
+  var name = document.getElementById("firstname_pay");
+  var email = document.getElementById("email_payment");
+  if (name.value!="" && email.value!="" ) {
+    document.getElementById("addPaypal").style.display = "block";
+    document.getElementById("addBank").style.display = "block";
+    //document.getElementById("addStripe").style.display = "block";
+    //document.getElementById("addStripe").disabled = false;
+    document.getElementById("addPaypal").disabled = false;
+    document.getElementById("addBank").disabled = false;
+    document.getElementById("course_pay").disabled = true;
+    name.disabled = true;
+    email.disabled = true;
+    document.getElementById("newmember").disabled = true;
+    document.getElementById("blockPrice").style.display = "none";
+    document.getElementById("display_error_pay").innerHTML= "";
+  } else {
+    document.getElementById("display_error_pay").innerHTML= "Bitte Name & Email eingeben"; 
+  }
 
  };
 
