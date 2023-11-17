@@ -1,8 +1,12 @@
 const storageItem = 'mapsConsent' 
-let consent = localStorage.getItem(storageItem)
+const cookieItem = 'CookiesPolicy' 
 
 //Different Policies
-let consent_type = localStorage.getItem("CookiesPolicy")
+//let consent = localStorage.getItem(storageItem)
+//let consent_type = localStorage.getItem("CookiesPolicy")
+
+let consent_type = getCookie(cookieItem);
+let consent = getCookie(storageItem);
 
 
 if (consent == 'true') { 
@@ -74,7 +78,14 @@ function acceptAllCookies(){
   localStorage.setItem(storageItem, true)
   localStorage.setItem("CookiesPolicy", "ALL");
   localStorage.setItem("FAGSkripted", true);
-  
+
+  // document.cookie = "mapsConsent=true";
+  // document.cookie = "CookiesPolicy=ALL";
+  // document.cookie ="FAGSkripted=true";
+
+  setCookie("mapsConsent", "true", 30);
+  setCookie("CookiesPolicy", "ALL", 30);
+  setCookie("FAGSkripted", "true", 30);
 
   var script_2 = document.createElement('script');
   script_2.type = 'text/javascript';
@@ -95,6 +106,12 @@ function acceptEsentialCookies(){
   localStorage.setItem(storageItem, true)
   localStorage.setItem("CookiesPolicy", "ONLY");
 
+  // document.cookie = "mapsConsent=true";
+  // document.cookie = "CookiesPolicy=ONLY";
+
+  setCookie("mapsConsent", "true", 30);
+  setCookie("CookiesPolicy", "ONLY", 30);
+
 
   document.getElementById("cookies").innerHTML = "";
 }
@@ -107,5 +124,35 @@ function denyAllCookies(){
   localStorage.setItem(storageItem, true)
   localStorage.setItem("CookiesPolicy", "NOT");
 
+  // document.cookie = "mapsConsent=true";
+  // document.cookie = "CookiesPolicy=NOT";
+
+  setCookie("mapsConsent", "true", 30);
+  setCookie("CookiesPolicy", "NOT", 30);
+
   document.getElementById("cookies").innerHTML = "";
+}
+
+
+// Set a Cookie
+function setCookie(cName, cValue, expDays) {
+  let date = new Date();
+  date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
