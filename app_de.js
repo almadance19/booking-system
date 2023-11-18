@@ -1142,7 +1142,8 @@ return payment_array
 function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder.';
+  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails versendet. Prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
+  document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
 }
