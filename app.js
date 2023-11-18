@@ -1142,7 +1142,7 @@ return payment_array
 function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email';
+  document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder. After Payment you are registered.';
 
   sDataPay(payment_array);
 }
