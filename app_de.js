@@ -33,7 +33,7 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycbwDNQg1LmMXmX9hCQfNr6BltWYJwNIO664U5YgqbTyB7ZyMWFkxkd_Ky96YCMpHsAI/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycbwPvsi4RLgqZLcl9ks1bF4CETzhzKJJPCz-PYvkBc2CKupK3zfqftWGSvMz_RwnMec/exec';
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -1004,10 +1004,15 @@ onApprove: function(data, actions) {
     let future_year = future_datum.getFullYear();
     let future_date = `${future_day}-${future_month}-${future_year}`; 
 
+    var contract_datum = addMonths(date, Number(membershiptype_nr));
+    let contract_day = contract_datum.getDate();
+    let contract_month = contract_datum.getMonth() + 1;
+    let contract_year = contract_datum.getFullYear();
+    let contract_date = `${contract_day}-${contract_month}-${contract_year}`; 
 
     console.log('This person paid',firstname_pay, ", ",email_payment, ", ",idinput.value );
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"active","nein","FFM"];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,"FFM"];
     console.log(arr_pay);
 
     sDataPay(arr_pay);
@@ -1093,7 +1098,14 @@ function bankProcess() {
   let future_day = future_datum.getDate();
   let future_month = future_datum.getMonth() + 1;
   let future_year = future_datum.getFullYear();
-  let future_date = `${future_day}-${future_month}-${future_year}`;  
+  let future_date = `${future_day}-${future_month}-${future_year}`;
+
+   //Contract
+  var contract_datum = addMonths(date, Number(membershiptype_nr));
+  let contract_day = contract_datum.getDate();
+  let contract_month = contract_datum.getMonth() + 1;
+  let contract_year = contract_datum.getFullYear();
+  let contract_date = `${contract_day}-${contract_month}-${contract_year}`;   
 
 
 
@@ -1135,7 +1147,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Online NotPaidYet","",type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet","nein","FFM");
+payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Online NotPaidYet",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,"FFM");
 
 console.log(payment_array);
 
