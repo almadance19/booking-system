@@ -992,7 +992,13 @@ onApprove: function(data, actions) {
     // This arrangement can be altered based on how we want the date's format to appear.
     let currentDate = `${day}-${month}-${year}`;  
   
-    const future_datum = addMonths(date, Number(membershiptype_nr));
+    let future_datum;
+    if(type_payment=="Monthly") {
+      future_datum = addMonths(date, Number(1));
+    } else {
+      future_datum = addMonths(date, Number(membershiptype_nr));
+    }
+
     let future_day = future_datum.getDate();
     let future_month = future_datum.getMonth() + 1;
     let future_year = future_datum.getFullYear();
@@ -1077,20 +1083,19 @@ function bankProcess() {
   // This arrangement can be altered based on how we want the date's format to appear.
   let currentDate = `${day}-${month}-${year}`;  
 
-  const future_datum = addMonths(date, Number(membershiptype_nr));
+  let future_datum;
+    
+    if(type_payment=="Monthly") {
+      future_datum = addMonths(date, Number(1));
+    } else {
+      future_datum = addMonths(date, Number(membershiptype_nr));
+    }
   let future_day = future_datum.getDate();
   let future_month = future_datum.getMonth() + 1;
   let future_year = future_datum.getFullYear();
   let future_date = `${future_day}-${future_month}-${future_year}`;  
 
-  /////////////
-  let button_message 
 
-  if (idinput.value == 'No Active User') {
-     button_message =  "Registrieren und Zahlungsdetails per E-Mail erhalten";
-  } else {
-    button_message =  "Zahlungsdetails per E-Mail erhalten";
-  }
 
   var beginner_3_months = dict_prices["Beginners 1 Course - 3 Months"];
   var beginner_6_months = dict_prices["Beginners 1 Course - 6 Months"];
