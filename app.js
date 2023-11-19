@@ -58,7 +58,6 @@ btnEmail.addEventListener('click', getPayments);
 btnBookaclass.addEventListener('click', bookClasses);
 
 
- 
 //get user fields
 
 const emailinput = document.getElementById("User_email");
@@ -214,7 +213,7 @@ function getPrices() {
 
 function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses) { 
   //output.innerHTML = "membership " + membership + "price_month " + price_total+"price_total " + price_total+"nr_months " + nr_months;
-  paymentForm(membership, price_total,nr_months,stripe_link,"One-time payment",nr_courses); 
+  paymentForm(membership, price_total,nr_months,stripe_link,"One-time payment",nr_courses,"Total"); 
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
 
@@ -223,7 +222,7 @@ function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_co
 
 function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses) { 
   //output.innerHTML = "membership " + membership + "price_month " + price_total+"price_total " + price_total+"nr_months " + nr_months;
-  paymentForm(membership, price_total,nr_months,stripe_link,"Monthly Subscription",nr_courses);
+  paymentForm(membership, price_total,nr_months,stripe_link,"Monthly Subscription",nr_courses,"Monthly");
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
 
@@ -673,7 +672,7 @@ function sData(arr) {
 };
 
 
-function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,nr_courses)
+function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,nr_courses,type_payment)
 {
     document.querySelector(".section-1").style.display = 'block';
     var name_user = document.getElementById("User_name").value;
@@ -741,7 +740,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
-    displayTable += "<input type=\"text\" id=\"pricemonthly\" class=\"form-control\" style=\"display:none\" aria-describedby=\"pricemonthlyHelp\" Value=\""+price_total+"\" disabled>";
+    displayTable += "<input type=\"text\" id=\"pricemonthly\" class=\"form-control\" style=\"display:none\" aria-describedby=\"pricemonthlyHelp\" Value=\""+type_payment+"\" disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="price" style="font-weight: bold" >Price / Preis EUR</label>';
@@ -977,6 +976,7 @@ onApprove: function(data, actions) {
     var membershiptype_nr = document.getElementById("nr_months").value;
     var coursesnumber_nr = document.getElementById("nr_courses").value;
     var course_price = document.getElementById("price_course").value;
+    var type_payment = document.getElementById("pricemonthly").value;
 
     //GET DATE
     const date = new Date();
@@ -995,7 +995,7 @@ onApprove: function(data, actions) {
 
     console.log('This person paid',firstname_pay, ", ",email_payment, ", ",idinput.value );
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,"",String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"active","nein","FFM"];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"active","nein","FFM"];
     console.log(arr_pay);
 
     sDataPay(arr_pay);
@@ -1061,6 +1061,7 @@ function bankProcess() {
   var membershiptype_nr = document.getElementById("nr_months").value;
   var coursesnumber_nr = document.getElementById("nr_courses").value;
   var course_price = document.getElementById("price_course").value;
+  var type_payment = document.getElementById("pricemonthly").value;
 
   //GET DATE
   const date = new Date();
@@ -1128,7 +1129,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Online NotPaidYet","","",String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet","nein","FFM");
+payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Online NotPaidYet","",type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet","nein","FFM");
 
 console.log(payment_array);
 
