@@ -54,11 +54,11 @@ if (consent == 'true') {
                     displayTable += "<p class=\"info\"> "+ "Alle wichtigen Funktionen sind enthalten." + "</p>";
                     displayTable += '</div>';
                     
-                    displayTable += '<div class="form-group col-md col-consent">';
-                    displayTable += "<input type=\"button\" value=\"Alle Cookies ablehnen\" id=\"denyCookies\" class=\"btn btn-dark\" style=\"background-color: rgb(0, 3, 192);\" ";
-                    displayTable += " onclick=\"denyAllCookies()\" />";
-                    displayTable += "<p class=\"info\" > "+ "**Keine Anzeige von Inhalten aus Youtube, Facebook, Instagram und Google möglich." + "</p>";
-                    displayTable += '</div>';
+                    // displayTable += '<div class="form-group col-md col-consent">';
+                    // displayTable += "<input type=\"button\" value=\"Alle Cookies ablehnen\" id=\"denyCookies\" class=\"btn btn-dark\" style=\"background-color: rgb(0, 3, 192);\" ";
+                    // displayTable += " onclick=\"denyAllCookies()\" />";
+                    // displayTable += "<p class=\"info\" > "+ "**Keine Anzeige von Inhalten aus Youtube, Facebook, Instagram und Google möglich." + "</p>";
+                    // displayTable += '</div>';
                   
                     displayTable += "</div>";
                     displayTable += "</form>";

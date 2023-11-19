@@ -242,7 +242,7 @@ function bookClasses() {
     bank.innerHTML = '';
     document.getElementById("price_shield").style.display = "none";
     document.querySelector(".section-2").scrollIntoView();
-      if (idinput.value=="Not Registered yet") {
+      if (idinput.value=="Not Registered yet" || idinput.value=="No Active User" ) {
         getUser(email_value);
     } 
     } else {
@@ -262,7 +262,7 @@ function showMemberships() {
     document.getElementById("payment-block").style.display = 'none';
     btnBookaclass.style.display = "block";
     document.querySelector(".section-1").scrollIntoView();
-      if (idinput.value=="Not Registered yet") {
+      if (idinput.value=="Not Registered yet" || idinput.value=="No Active User") {
         getUser(email_value);
     } 
     } else {

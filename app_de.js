@@ -241,7 +241,7 @@ function bookClasses() {
     document.getElementById("price_shield").style.display = "none";
     document.querySelector(".section-2").scrollIntoView();
 
-      if (idinput.value=="Not Registered yet") {
+      if (idinput.value=="Not Registered yet" || idinput.value=="No Active User" ) {
         getUser(email_value);
       } 
   
@@ -262,7 +262,7 @@ function showMemberships() {
     document.getElementById("payment-block").style.display = 'none';
     btnBookaclass.style.display = "block";
     document.querySelector(".section-1").scrollIntoView();
-      if (idinput.value=="Not Registered yet") {
+      if (idinput.value=="Not Registered yet" || idinput.value=="No Active User") {
         getUser(email_value);
       } 
     } else {
@@ -1142,7 +1142,7 @@ return payment_array
 function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails versendet. Prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
+  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails per Email versendet.Bitte prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
