@@ -1145,7 +1145,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Online NotPaidYet",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,"FFM");
+payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,"FFM");
 
 console.log(payment_array);
 
