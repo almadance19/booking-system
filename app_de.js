@@ -33,7 +33,7 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycbyzsnSxZGSzJTq-wpVngcKg0cBqK591Vy8iv0VqfUt5GD7d-XXa4qrPKseQa1eS9UM/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycbyE9fs-ERuuUtCULJZHGELbDwPRETU-Y-cC7eg6cyQcUusFwhisFb6kTxXaOiePCA/exec';
 
 //get buttons 
 const output = document.querySelector('.output');
