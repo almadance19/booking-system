@@ -980,6 +980,7 @@ onApprove: function(data, actions) {
 
     //GET DATE
     const date = new Date();
+    const date2 = date;
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -1000,7 +1001,7 @@ onApprove: function(data, actions) {
     let future_date = `${future_day}-${future_month}-${future_year}`; 
 
     //Contract
-    var contract_datum = addMonths(date, Number(membershiptype_nr));
+    var contract_datum = addMonths(date2, Number(membershiptype_nr));
     let contract_day = contract_datum.getDate();
     let contract_month = contract_datum.getMonth() + 1;
     let contract_year = contract_datum.getFullYear();
@@ -1078,6 +1079,7 @@ function bankProcess() {
 
   //GET DATE
   const date = new Date();
+  const date2 = date;
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
@@ -1099,7 +1101,7 @@ function bankProcess() {
 
 
   //Contract
-  var contract_datum = addMonths(date, Number(membershiptype_nr));
+  var contract_datum = addMonths(date2, Number(membershiptype_nr));
   let contract_day = contract_datum.getDate();
   let contract_month = contract_datum.getMonth() + 1;
   let contract_year = contract_datum.getFullYear();
