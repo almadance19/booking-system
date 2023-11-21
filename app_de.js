@@ -1128,7 +1128,7 @@ displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\
 displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\">Kurs: <strong>"+course_pay+" </strong>.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\">Mitgliedschaftstyp: <strong>"+membershiptype+"</strong>.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\"> </p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Um Deine Bestellung abzuschließen, kannst Du nun zur Zahlung übergehen. Bitte überweise den entsprechenden Betrag auf unser Bankkonto:</p>";
+displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Um Deine Bestellung abzuschließen, bitte überweise den entsprechenden Betrag auf unser Bankkonto:</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />Gesamtbeitrag: <strong>"+course_price+" EUR</strong><br />Kontoinhaber: Ivan Eduardo Millan Jorge<br />IBAN: DE47 1001 1001 2620 4751 14<br />BIC: NTSBDEB1XXX<br />Verwendungszweck: Tanzkurs-"+currentDate+"-"+firstname_pay+"</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />Paypal-Zahlung:<br />Konto: millan.jorge.ie@gmail.com<br />Verwendungszweck: Tanzkurs-"+currentDate+"-"+firstname_pay+"</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Man kann Paypal-Zahlung als Freunde ohne die extra Paypal-Gebühren tätigen. Also gleiche Summe als bei der Banküberweisung.Einfach hier bestätigen & per Email oder bei deinem ersten Kurs melden.</p>";
