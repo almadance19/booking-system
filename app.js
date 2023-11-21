@@ -980,7 +980,7 @@ onApprove: function(data, actions) {
 
     //GET DATE
     const date = new Date();
-    const date2 = date;
+    const date2 = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -1079,7 +1079,7 @@ function bankProcess() {
 
   //GET DATE
   const date = new Date();
-  const date2 = date;
+  const date2 = new Date();
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
