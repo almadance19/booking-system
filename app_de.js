@@ -35,6 +35,7 @@ const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed
 
 const url_payment = 'https://script.google.com/macros/s/AKfycby2MM4UGwy27vHN7mk2-RfI_uXoEB1XHXvdo0yLvqlXvSfuQzYjHc6cxyEnITDekpk/exec';
 
+const url_future_payments = 'https://script.google.com/macros/s/AKfycbyBZHe-y7BgpiMET6EG4YqcsnLP00DnL6vxu88ffm_8xL1R2GNaw9AlwWCCbhypRVrs/exec';
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -77,6 +78,7 @@ var dict_prices = {}
 var dict_prices_monthly = {}
 //Array For Payment
 var payment_array = [];
+var future_payments_array = [];
 
 // gets classes data
  
@@ -1047,6 +1049,25 @@ onError: function(err) {
      };
 
 
+    // Process Future Payments
+        function sDataPay_Future(arr) {
+          console.log(arr);
+    
+           let formData = new FormData();
+           formData.append('data', JSON.stringify(arr));
+           console.log("posting registration in API")
+           fetch(url_future_payments, {
+             method: 'POST'
+             , body: formData
+           }).then(function (rep) {
+             return rep.json()
+           }).then(function (data) {
+              console.log("Subscribed");
+             //repMessage.textContent = "Subscribed" ;
+           })
+         };
+
+
 
 
 function bankProcess() {
@@ -1157,7 +1178,32 @@ console.log(payment_array);
 document.getElementById("sendPaymentEmail").disabled = false;
 document.getElementById("sendPaymentEmail").style.display = 'block';
 
-return payment_array
+if(type_payment=="Monthly") {
+
+  future_payments_array.length = 0;
+
+  for (let i = 0; i < membershiptype_nr; i++) {
+    let future_datum2 = addMonths(date, Number(1));
+
+    let future_day2 = future_datum2.getDate();
+    let future_month2 = future_datum2.getMonth() + 1;
+    let future_year2 = future_datum2.getFullYear();
+    let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
+
+    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date2,"NotPaidYet",contract_date,"FFM"];
+
+    future_payments_array.push(array);
+  }
+  console.log("future_payments_array");
+  console.log(future_payments_array);
+
+
+} else {
+  future_payments_array.length = 0;
+}
+
+
+return payment_array, future_payments_array
 };
 
 //// BANK PAYMENT
@@ -1168,6 +1214,15 @@ function  bankProcess_sendEmail(arr) {
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
+
+  //Process future payments
+
+  for (let i = 0; i < future_payments_array.length; i++) {
+    sDataPay_Future(future_payments_array[i]);
+  }
+
+
+
 }
 
 
