@@ -35,7 +35,7 @@ const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed
 
 const url_payment = 'https://script.google.com/macros/s/AKfycby2MM4UGwy27vHN7mk2-RfI_uXoEB1XHXvdo0yLvqlXvSfuQzYjHc6cxyEnITDekpk/exec';
 
-const url_future_payments = 'https://script.google.com/macros/s/AKfycbyBZHe-y7BgpiMET6EG4YqcsnLP00DnL6vxu88ffm_8xL1R2GNaw9AlwWCCbhypRVrs/exec';
+const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hcen6sKh9UHKfTqjMPrnr1X-qTPOHx--HXTrIpobjv1p5TqSiQblGzlI4E/exec'
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -1016,11 +1016,37 @@ onApprove: function(data, actions) {
 
     console.log('This person paid',firstname_pay, ", ",email_payment, ", ",idinput.value );
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,"FFM"];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,month];
     console.log(arr_pay);
 
     sDataPay(arr_pay);
-    // Or go to another URL:  actions.redirect('thank_you.html');
+
+    //CREATE FUTURE OPEN PAYMENTS
+    if(type_payment=="Monthly") {
+
+      let future_payments_array2 = []; 
+    
+      for (let i = 0; i < (membershiptype_nr-1); i++) {
+        let future_datum2 = addMonths(date, Number(1));
+    
+        let future_day2 = future_datum2.getDate();
+        let future_month2 = future_datum2.getMonth();
+        let future_month3 = future_datum2.getMonth() + 1;
+        let future_year2 = future_datum2.getFullYear();
+        let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
+        let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
+    
+        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,future_month2];
+    
+        future_payments_array2.push(array);
+      }
+      console.log("future_payments_array");
+      console.log(future_payments_array2);
+
+      sDataPay_Future(future_payments_array2);
+    
+      } 
+
   });
 },
 onError: function(err) {
@@ -1055,14 +1081,14 @@ onError: function(err) {
     
            let formData = new FormData();
            formData.append('data', JSON.stringify(arr));
-           console.log("posting registration in API")
+           console.log("posting future PAYMENT in API")
            fetch(url_future_payments, {
              method: 'POST'
              , body: formData
            }).then(function (rep) {
              return rep.json()
            }).then(function (data) {
-              console.log("Subscribed");
+              console.log("FUTURE PAYMENT POSTED");
              //repMessage.textContent = "Subscribed" ;
            })
          };
@@ -1171,7 +1197,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,"FFM");
+payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,month);
 
 console.log(payment_array);
 
@@ -1182,15 +1208,17 @@ if(type_payment=="Monthly") {
 
   future_payments_array.length = 0;
 
-  for (let i = 0; i < membershiptype_nr; i++) {
+  for (let i = 0; i < (membershiptype_nr-1); i++) {
     let future_datum2 = addMonths(date, Number(1));
 
     let future_day2 = future_datum2.getDate();
-    let future_month2 = future_datum2.getMonth() + 1;
+    let future_month2 = future_datum2.getMonth() ;
+    let future_month3 = future_datum2.getMonth() + 1;
     let future_year2 = future_datum2.getFullYear();
     let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
+    let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
 
-    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date2,"NotPaidYet",contract_date,"FFM"];
+    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,future_month2];
 
     future_payments_array.push(array);
   }
@@ -1205,6 +1233,17 @@ if(type_payment=="Monthly") {
 
 return payment_array, future_payments_array
 };
+ 
+
+function getFuturePayments() {
+  console.log("getFuturePayments");
+  for (let i = 0; i < future_payments_array.length; i++) {
+    console.log(future_payments_array[i]);
+  }
+}
+
+
+
 
 //// BANK PAYMENT
 function  bankProcess_sendEmail(arr) {
@@ -1214,14 +1253,8 @@ function  bankProcess_sendEmail(arr) {
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
-
   //Process future payments
-
-  for (let i = 0; i < future_payments_array.length; i++) {
-    sDataPay_Future(future_payments_array[i]);
-  }
-
-
+  sDataPay_Future(future_payments_array)
 
 }
 
