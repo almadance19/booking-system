@@ -33,7 +33,7 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycby2MM4UGwy27vHN7mk2-RfI_uXoEB1XHXvdo0yLvqlXvSfuQzYjHc6cxyEnITDekpk/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoiEob22J9wd1_xOtZ8G7XRXx3r5bkLO0zAw3vAWMd6f3fKveg/exec';
 
 const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hcen6sKh9UHKfTqjMPrnr1X-qTPOHx--HXTrIpobjv1p5TqSiQblGzlI4E/exec'
 
@@ -1012,14 +1012,16 @@ onApprove: function(data, actions) {
 
     console.log('This person paid',firstname_pay, ", ",email_payment, ", ",idinput.value );
 
+    payment_array.length = 0;
+
     let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,month];
     console.log(arr_pay);
 
-    sDataPay(arr_pay);
+    payment_array.push(arr_pay);
+
+    
     //CREATE FUTURE OPEN PAYMENTS
     if(type_payment=="Monthly") {
-
-      let future_payments_array2 = []; 
     
       for (let i = 0; i < (membershiptype_nr-1); i++) {
         let future_datum2 = addMonths(date, Number(1));
@@ -1033,14 +1035,11 @@ onApprove: function(data, actions) {
     
         let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,future_month2];
     
-        future_payments_array2.push(array);
+        payment_array.push(array);
       }
       console.log("future_payments_array");
-      console.log(future_payments_array2);
-
-      sDataPay_Future(future_payments_array2);
-    
       } 
+      sDataPay(payment_array);
   });
 },
 onError: function(err) {
@@ -1191,7 +1190,9 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-payment_array.push(String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,month);
+let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,month];
+
+payment_array.push(array0);
 
 console.log(payment_array);
 
@@ -1200,7 +1201,6 @@ document.getElementById("sendPaymentEmail").style.display = 'block';
 
 if(type_payment=="Monthly") {
 
-  future_payments_array.length = 0;
 
   for (let i = 0; i < (membershiptype_nr-1); i++) {
     let future_datum2 = addMonths(date, Number(1));
@@ -1214,19 +1214,18 @@ if(type_payment=="Monthly") {
 
     let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,future_month2];
 
-    future_payments_array.push(array);
+    payment_array.push(array);
   }
   console.log("future_payments_array");
-  console.log(future_payments_array);
+  console.log(payment_array);
 
 
-} else {
-  future_payments_array.length = 0;
-}
+} 
 
 
-return payment_array, future_payments_array
+return payment_array
 };
+
 
 function getFuturePayments() {
   console.log("getFuturePayments");
@@ -1244,7 +1243,7 @@ function  bankProcess_sendEmail(arr) {
 
   sDataPay(payment_array);
   //Process future payments
-  sDataPay_Future(future_payments_array)
+  //sDataPay_Future(future_payments_array)
 }
 
 
