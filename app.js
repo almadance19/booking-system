@@ -42,7 +42,7 @@ const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hc
 const output = document.querySelector('.output');
 const outputMembership = document.querySelector('.output-membership');
 const outputMember = document.querySelector('.output-member');
-//const btnPayment = document.querySelector('.payment');
+const btnPayment = document.querySelector('.payment');
 const btnPayments = document.querySelector('.allpayments');
 const btnEmail = document.querySelector('.emailer');
 const btnPaypal = document.querySelector('.paypal');
@@ -54,7 +54,7 @@ const btnBookaclass = document.querySelector('.bookaclass');
 const repMessage = document.querySelector('.rep');
 
 //event listener buttons 
-//btnPayment.addEventListener('click', showPaymentModal);
+btnPayment.addEventListener('click', showPaymentModal);
 btnPayments.addEventListener('click', showPaymentsModal);
 btnPaypal.addEventListener('click', showMemberships);
 btnEmail.addEventListener('click', getPayments);
@@ -135,10 +135,6 @@ function getUserLocalData() {
 
   if (extractedUser) {
 
-    emailinput.value = extractedUser.email;
-    nameinput.value = extractedUser.name;
-    idinput.value = extractedUser.id;
-
     document.querySelector('input[name=email-class]').value = extractedUser.email;
     document.querySelector('input[name=email-membership]').value = extractedUser.email;
     document.querySelector('input[name=email-member]').value = extractedUser.email;
@@ -147,7 +143,6 @@ function getUserLocalData() {
   } else {
     console.log('Could not find id.');
   }
-
 
 }
 
@@ -213,9 +208,13 @@ function getPrices() {
 };
 
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses) { 
-  //output.innerHTML = "membership " + membership + "price_month " + price_total+"price_total " + price_total+"nr_months " + nr_months;
+async function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses) { 
+  await sleep(2500);
+  
   paymentForm(membership, price_total,nr_months,stripe_link,"One-time payment",nr_courses,"Total"); 
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
@@ -223,8 +222,9 @@ function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_co
   document.getElementById('sect1').scrollIntoView();
 } 
 
-function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses) { 
-  //output.innerHTML = "membership " + membership + "price_month " + price_total+"price_total " + price_total+"nr_months " + nr_months;
+async function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses) { 
+  await sleep(2500);
+
   paymentForm(membership, price_total,nr_months,stripe_link,"Monthly Subscription",nr_courses,"Monthly");
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
@@ -416,6 +416,11 @@ function getUser(email_value) {
 
           } 
           else {
+
+          document.querySelector('input[name=email-class]').value = email_value;
+          document.querySelector('input[name=email-membership]').value = email_value;
+          document.querySelector('input[name=email-member]').value = email_value;
+    
           document.getElementById("name_display").style.display="block";
           document.getElementById("name_display").innerHTML = val[3];
           document.getElementById("email_display").innerHTML = email_value;
@@ -430,6 +435,7 @@ function getUser(email_value) {
           anmerkungeninput.value = val[6];
           nextpaymentinput.value = val[4];
           btnPayments.style.display="block";
+          btnPayment.style.display="block";
           outputMember.innerHTML = "";
 
           const user_profile = {
@@ -471,6 +477,7 @@ function showPayment(payment)
 
         var espace = ": ";
         console.log(payment); 
+        console.log("payment"); 
         var displayTable = "<div class=\"modal\" data-bs-backdrop=\"static\" tabindex=\"-1\" role=\"dialog\" id=\"mypaymodal\">";
         displayTable += "<div class=\"modal-dialog\" role=\"document\">";
         displayTable += "<div class=\"modal-content\" >";
@@ -486,39 +493,28 @@ function showPayment(payment)
         displayTable += "<div class=\"col\" style=\"font-weight: bold\" ></div>";
         displayTable += "</div>";
         displayTable += "<div class=\"row\">"+"<strong>If there are active Payments for your Membership they will get show, if not please write us. </strong> "+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Wenn es aktive Zahlungen deiner Mitgliedschaft gibt, werden diese hier angezeigt, wenn nicht, schreib uns bitte. </strong> "+"</div>";
-        displayTable += "<br/>"
-        displayTable += "<div class=\"row\">"+"<strong>________Last Payment___________</strong> "+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>User ID </strong> "+espace+idinput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Name </strong> "+espace+nameinput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Email </strong> "+espace+emailinput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Last Payment </strong> "+espace+lastpaymentinput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Last Due Payment Date </strong> "+espace+nextpaymentinput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Saldo </strong> "+espace+saldoinput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>More Infos </strong> "+espace+anmerkungeninput.innerText+"</div>";
-        displayTable += "<div class=\"row\">"+"<strong>Active Membership (TRUE/FALSE) </strong> "+espace+activeinput.innerText+"</div>";
-        displayTable += "<br/>"
+        displayTable += "<div class=\"row\">"+"<strong>________Active Payments___________</strong> "+"</div>";
 
         // Gets data from array created in getStates() function
 
         payment.forEach(function(val,index) 
         {
-          var num = index +1;
-    
-          displayTable += "<div class=\"row\">"+"<strong>________Active Payments___________</strong> "+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>User ID </strong> "+espace+idinput.innerText+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Payment ID </strong> "+espace+val[6]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Name </strong> "+espace+val[0]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Membership </strong> "+espace+val[1]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Payment Date </strong> "+espace+val[2]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Payment Amount </strong> "+espace+val[3]+" EUR</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Payment Method </strong> "+espace+val[4]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Payment Courses </strong> "+espace+val[5]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Start Date </strong> "+espace+val[7]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>End Date </strong> "+espace+val[8]+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
+            var num = index +1;
+            displayTable += "<div class=\"row\">"+"<strong>User ID </strong> "+espace+idinput.innerText+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Payment ID </strong> "+espace+val[6]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Name </strong> "+espace+val[0]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Membership </strong> "+espace+val[1]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Payment Date </strong> "+espace+val[2]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Payment Amount </strong> "+espace+val[3]+" EUR</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Payment Method </strong> "+espace+val[4]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Payment Courses </strong> "+espace+val[5]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>Start Date </strong> "+espace+val[7]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>End Date </strong> "+espace+val[8]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
+            displayTable += "<div class=\"row\">"+" "+"</div>";
 
-          displayTable += "<div class=\"row\">"+" "+"</div>";
+          
+         
 
         });
 
@@ -877,7 +873,7 @@ function paypalProcess() {
 //// PAYPAL 
 
 
-function initPayPalButton() {
+async function initPayPalButton() {
   document.getElementById("price_shield").style.display = "block";
 
 
@@ -1046,6 +1042,10 @@ onError: function(err) {
   console.log(err);
 },
 }).render('#paypal-button-container');
+
+await sleep(5000);
+  
+location.reload();
 }
 
 
@@ -1235,15 +1235,16 @@ function getFuturePayments() {
 }
 
 //// BANK PAYMENT
-function  bankProcess_sendEmail(arr) {
+async function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
   document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder. After Payment you are registered.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
-  //Process future payments
-  //sDataPay_Future(future_payments_array)
+
+  await sleep(5000);
+  location.reload();
 }
 
 

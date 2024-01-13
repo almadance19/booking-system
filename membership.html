@@ -280,8 +280,8 @@
         <h2>Alma Dance Registration</h2>
         <a id="promotion-button" href="#promotion-section" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 10px;background-color: rgb(238, 15, 52);" role="button"><strong>Promotions</strong></a>
       </div>
-      <div class="row">
-        <div class="col-md-4">
+      <div class="row" style="text-align: center; align-items: center;">
+        <div class="col-md-4" style="display: none;" >
           <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
             <div class="steps">
               <div class="icon">
@@ -327,26 +327,25 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="display: none;" >
           <div class="steps_block" data-aos="fade-up" data-aos-duration="1500">
             <div class="steps">
               <div class="icon">
                 <img src="images/howstep3.png" alt="image">
               </div>
-              <div class="text">
+              <div class="text" style="display: none;" > 
                 <h3>Dance</h3>
                 <p>Start dancing with us!</p>
                 <p>Enjoy our classes as a member & bring friends.</p>
                 <p>We always have offers for they and for you!</p>
                 <!-- <form > -->
                   <div class="form-group">
-                    <input type="email" name="email-member" class="form-control" placeholder="Enter your email">
+                    <input type="hidden" name="email-member" class="form-control" placeholder="Enter your email">
                     <div class="output-member" ></div>
                   </div>
                 <!-- </form> -->
                 <button class="btn puprple_btn ml-0  emailer">CHECK YOUR MEMBERSHIP</button>
                 <button class="btn btn-dark allpayments" style="display: none; margin: 5px 5px 5px 5px;">Show my payment history</button>    
-                <button class="btn btn-dark payment" style="display: none; margin: 5px 5px 5px 5px;">Show My Membership Card</button>  
               </div>
             </div>
           </div>
@@ -762,7 +761,7 @@
   <script src="js/main.js"></script>
 
   <!--SKRIPT ZONE  -->
-  <script src="app.js"></script>
+  <script src="app_admin.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
