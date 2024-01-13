@@ -1014,7 +1014,7 @@ onApprove: function(data, actions) {
 
     payment_array.length = 0;
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,month];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
     console.log(arr_pay);
 
     payment_array.push(arr_pay);
@@ -1033,7 +1033,7 @@ onApprove: function(data, actions) {
         let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
         let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
     
-        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,future_month2];
+        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
     
         payment_array.push(array);
       }
@@ -1190,7 +1190,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,month];
+let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
 
 payment_array.push(array0);
 
@@ -1212,7 +1212,7 @@ if(type_payment=="Monthly") {
     let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
     let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
 
-    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,future_month2];
+    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
 
     payment_array.push(array);
   }
