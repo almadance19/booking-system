@@ -1260,7 +1260,23 @@ function addMonths(date, months) {
 }
 
 
+function downloadPdfFromHtml(htmlString, fileName) {
+  const pdfOptions = {
+    margin: 10,
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+  };
 
+  html2pdf().from(htmlString).set(pdfOptions).outputPdf((pdf) => {
+    const blob = new Blob([pdf], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+  });
+}
 
 // STRIPE PAYMENT HANDLER
 //ABONNEMENTS FOR 6 and 12 Months

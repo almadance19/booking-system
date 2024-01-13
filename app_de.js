@@ -684,11 +684,27 @@ function showPayment(payment)
         displayTable += "</div>";
         displayTable += "</div>";
 
+        const fileName = 'example.pdf';
+
+        downloadPdfFromHtml(displayTable, fileName);
+
         $("#paymentsModal").html(displayTable);
     };
 
     function showPaymentsModal() {
-      $("#mypaymentsModal").appendTo("body").modal('show');
+      //$("#mypaymentsModal").appendTo("body").modal('show');
+
+       const modalHtml = document.getElementById('mypaymentsModal');
+       const htmlString = '<html><body>'+mymodal+'</body></html>';
+       const fileName = 'example.pdf';
+
+       // Check if there's content in the modal
+       if (modalHtml.trim() !== '') {
+         downloadPdfFromHtml(modalHtml, fileName);
+       } else {
+         console.error('Modal content is empty.');
+       }
+
     };
     
 
@@ -1334,7 +1350,23 @@ function addMonths(date, months) {
   return date;
 }
 
+function downloadPdfFromHtml(htmlString, fileName) {
+  const pdfOptions = {
+    margin: 10,
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+  };
 
+  html2pdf().from(htmlString).set(pdfOptions).outputPdf((pdf) => {
+    const blob = new Blob([pdf], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+  });
+}
 
 
 // STRIPE PAYMENT HANDLER
