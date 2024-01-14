@@ -572,7 +572,7 @@ function showPayment(payment)
       
       var paymentsString= inv1+activePaymentString+inv2;
 
-      downloadPdfFromHtml(paymentsString, "all_payments.pdf");
+      downloadPdfFromHtml(paymentsString, "membership_card.pdf");
     };
 
 
