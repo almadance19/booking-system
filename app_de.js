@@ -41,6 +41,9 @@ const url_payment = 'https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoi
 
 const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hcen6sKh9UHKfTqjMPrnr1X-qTPOHx--HXTrIpobjv1p5TqSiQblGzlI4E/exec'
 
+var allPaymentsString =  "";
+var activePaymentString =  "";
+
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -566,12 +569,16 @@ function showPayment(payment)
         displayTable += "<div class=\"row\">"+"<strong>________Active Zahlungen___________</strong> "+"</div>";
 
         // Gets data from array created in getStates() function
+                //TO PRINT 
+        var displayTable2 =  "<div class=\"container\">";
+        displayTable2 += "<div class=\"row\">"+"<strong>Wenn es aktive Zahlungen deiner Mitgliedschaft gibt, werden diese hier angezeigt, wenn nicht, schreib uns bitte. </strong> "+"</div>";
+        displayTable2 += "<div class=\"row\">"+"<strong>________Active Zahlungen___________</strong> "+"</div>";
+       
 
         payment.forEach(function(val,index) 
         {
             var num = index +1;
-            displayTable += "<div class=\"row\">"+"<strong>User ID </strong> "+espace+idinput.innerText+"</div>";
-            displayTable += "<div class=\"row\">"+"<strong>Payment ID </strong> "+espace+val[6]+"</div>";
+            displayTable += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
             displayTable += "<div class=\"row\">"+"<strong>Name </strong> "+espace+val[0]+"</div>";
             displayTable += "<div class=\"row\">"+"<strong>Membership </strong> "+espace+val[1]+"</div>";
             displayTable += "<div class=\"row\">"+"<strong>Payment Date </strong> "+espace+val[2]+"</div>";
@@ -583,10 +590,21 @@ function showPayment(payment)
             displayTable += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
             displayTable += "<div class=\"row\">"+" "+"</div>";
 
-          
-         
-
-        });
+              // TO PRINT
+              displayTable2 += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Name </strong> "+espace+val[0]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Membership </strong> "+espace+val[1]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Payment Date </strong> "+espace+val[2]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Payment Amount </strong> "+espace+val[3]+" EUR</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Payment Method </strong> "+espace+val[4]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Payment Courses </strong> "+espace+val[5]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>Start Date </strong> "+espace+val[7]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>End Date </strong> "+espace+val[8]+"</div>";
+              displayTable2 += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
+              displayTable2 += "<div class=\"row\">"+" "+"</div>";
+    
+            });
+            displayTable2 += '</div>';
 
         displayTable += "<div class=\"row\"> </div>";
         displayTable += "<div class=\"row\"> </div>";
@@ -602,20 +620,27 @@ function showPayment(payment)
        
         displayTable += '</div>';
 
-        
+  
+        displayTable += "</div>";
+        displayTable += "</div>";
+        displayTable += "</div>";
+        displayTable += "</div>";
+        displayTable += "</div>";
 
-        displayTable += "</div>";
-        displayTable += "</div>";
-        displayTable += "</div>";
-        displayTable += "</div>";
-        displayTable += "</div>";
+        activePaymentString = displayTable2;
 
         $("#payModal").html(displayTable);
-        //$("#mypaymodal").appendTo("body").modal('show');
+        
+        return activePaymentString
     };   
 
     function showPaymentModal() {
       $("#mypaymodal").appendTo("body").modal('show');
+
+      var paymentsString= inv1+activePaymentString+inv2;
+
+      downloadPdfFromHtml(paymentsString, "all_payments.pdf");
+      
     };
 
 
@@ -638,6 +663,12 @@ function showPayment(payment)
         displayTable += "</div>";
         displayTable += "<div class=\"row\">"+"<strong>If there is a payments history it will get show, if not please write us. </strong> "+"</div>";
         displayTable += "<div class=\"row\">"+"<strong>Wenn es eine Zahlungshistorie gibt, wird diese hier angezeigt, wenn nicht, schreib uns bitte. </strong> "+"</div>";
+        
+        //TO PRINT 
+        var displayTable2 =  "<div class=\"container\" >";
+        displayTable2 += "<div class=\"row\">"+"<strong>If there is a payments history it will get show, if not please write us. </strong> "+"</div>";
+        displayTable2 += "<div class=\"row\">"+"<strong>Wenn es eine Zahlungshistorie gibt, wird diese hier angezeigt, wenn nicht, schreib uns bitte. </strong> "+"</div>";
+        
 
         // Gets data from array created in getStates() function
 
@@ -646,7 +677,6 @@ function showPayment(payment)
           var num = index +1;
           var espace = ": ";
           displayTable += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
-          displayTable += "<div class=\"row\">"+"<strong>Payment ID </strong> "+espace+item[0]+"</div>";
           displayTable += "<div class=\"row\">"+"<strong>Name </strong> "+espace+item[1]+"</div>";
           displayTable += "<div class=\"row\">"+"<strong>Membership </strong> "+espace+item[6]+"</div>";
           displayTable += "<div class=\"row\">"+"<strong>Payment Date </strong> "+espace+item[2]+"</div>";
@@ -657,10 +687,24 @@ function showPayment(payment)
           displayTable += "<div class=\"row\">"+"<strong>End Date </strong> "+espace+item[8]+"</div>";
           displayTable += "<div class=\"row\">"+"<strong>Payment Status </strong> "+espace+item[9]+"</div>";
           displayTable += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
-
           displayTable += "<div class=\"row\">"+" "+"</div>";
 
+          // TO PRINT
+          displayTable2 += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Name </strong> "+espace+item[1]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Membership </strong> "+espace+item[6]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Payment Date </strong> "+espace+item[2]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Payment Amount </strong> "+espace+item[3]+" EUR</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Payment Method </strong> "+espace+item[4]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Payment Courses </strong> "+espace+item[5]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Start Date </strong> "+espace+item[7]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>End Date </strong> "+espace+item[8]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>Payment Status </strong> "+espace+item[9]+"</div>";
+          displayTable2 += "<div class=\"row\">"+"<strong>___________________</strong> "+"</div>";
+          displayTable2 += "<div class=\"row\">"+" "+"</div>";
+
         });
+        displayTable2 += '</div>';
 
         displayTable += "<div class=\"row\"> </div>";
         displayTable += "<div class=\"row\"> </div>";
@@ -676,34 +720,25 @@ function showPayment(payment)
        
         displayTable += '</div>';
 
-        
-
         displayTable += "</div>";
         displayTable += "</div>";
         displayTable += "</div>";
         displayTable += "</div>";
         displayTable += "</div>";
 
-        const fileName = 'example.pdf';
-
-        downloadPdfFromHtml(displayTable, fileName);
+        allPaymentsString = displayTable2;
 
         $("#paymentsModal").html(displayTable);
+
+        return allPaymentsString;
     };
 
     function showPaymentsModal() {
-      //$("#mypaymentsModal").appendTo("body").modal('show');
+      $("#mypaymentsModal").appendTo("body").modal('show');
 
-       const modalHtml = document.getElementById('mypaymentsModal');
-       const htmlString = '<html><body>'+mymodal+'</body></html>';
-       const fileName = 'example.pdf';
+      var paymentsString= inv1+allPaymentsString+inv2;
 
-       // Check if there's content in the modal
-       if (modalHtml.trim() !== '') {
-         downloadPdfFromHtml(modalHtml, fileName);
-       } else {
-         console.error('Modal content is empty.');
-       }
+      downloadPdfFromHtml(paymentsString, "all_payments.pdf");
 
     };
     
@@ -1350,23 +1385,19 @@ function addMonths(date, months) {
   return date;
 }
 
-function downloadPdfFromHtml(htmlString, fileName) {
-  const pdfOptions = {
-    margin: 10,
-    filename: fileName,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+ function downloadPdfFromHtml(htmlString, fileName) {
+  var opt = {
+    margin:       1,
+    filename:     fileName,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
   };
+  
+  // New Promise-based usage:
+  html2pdf().set(opt).from(htmlString).save();
 
-  html2pdf().from(htmlString).set(pdfOptions).outputPdf((pdf) => {
-    const blob = new Blob([pdf], { type: 'application/pdf' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
-  });
-}
+ }
 
 
 // STRIPE PAYMENT HANDLER
@@ -1379,3 +1410,154 @@ function downloadPdfFromHtml(htmlString, fileName) {
 //NACH ZAHLUNG EMAIL ZAHLUNGSBESTÄTIGUNG PAYPAL/STRIPE --BANK ZAHLUNGSAUFFORDERUNG
 //LINK EXAMPLE WITH PREFILLED OBJECTS
 //https://buy.stripe.com/test_28o17G3CZ2IH0tWcMO?prefilled_email=jenny%40example.com&prefilled_promo_code=20off&locale=de
+
+
+
+const inv1 = `
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>A simple, clean, and responsive HTML invoice template</title>
+
+		<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<table cellpadding="0" cellspacing="0" style="background-color: #48005f; color: aliceblue; font-family: Arial, Helvetica, sans-serif;">
+				<tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<img align="center" border="0" src="https://lh5.googleusercontent.com/tGsnLIfvPBtebcXXik_OGsj1XatcpeFXE9ciM5-kmy6OpoJrXGtwBKUDZfl9SiUfGA0=w2400" alt="image" title="image" style="outline:none;text-decoration:none;clear:both;display:inline-block!important;border:none;height:auto;float:none;width:57%;max-width:334.02px" width="334.02" class="m_-5765270377848614674v-src-width m_-5765270377848614674v-src-max-width CToWUd" crossorigin="" data-bit="iit">
+								</td>
+
+								<td>
+									Payments History<br />
+                  https://alma-dance-frankfurt.de/<br />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Alma Dance Frankfurt<br />
+									Dreieichstraße 35 <br />
+									60594 Franfurt am Main
+								</td>
+
+								<td>
+									Eduardo Millan<br />
+									+49 163 9641730<br />
+									info@alma-dance.de
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+    `
+    const inv2 = `
+    </body>
+</html>
+`
