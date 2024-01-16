@@ -27,7 +27,13 @@ function getInit() {
 };
 
 // call API COURSES
-const url = 'https://script.google.com/macros/s/AKfycbwFcDRbzmC0LsFZBn2Z5EL5Vn5DdwcT7Llh94W2xIaFy8h-iaGaYa-Wot7PlC4hU8Mt/exec';
+const url = 'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
+
+
+//'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
+
+// ALTE 'https://script.google.com/macros/s/AKfycbwFcDRbzmC0LsFZBn2Z5EL5Vn5DdwcT7Llh94W2xIaFy8h-iaGaYa-Wot7PlC4hU8Mt/exec';
+
 
 const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
 
