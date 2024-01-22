@@ -347,6 +347,13 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
+    displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">Gender (Leader/Follower)</label>';
+    displayTable += '<select class="custom-select" id="gender">';
+    displayTable += '<option>Female /Follower </option>';
+    displayTable += '<option>Male / Leader</option>';
+    displayTable += '</select>';
+    displayTable += '</div>';
+    displayTable += '<div class="form-row">';
     displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">Registration Type</label>';
     displayTable += '<select class="custom-select" id="leader_jn">';
     displayTable += '<option>Active Member /Mitglied </option>';
@@ -685,7 +692,7 @@ function showPayment(payment)
     {
       var firstname = document.getElementById("firstname").value;
       var lastname = "";
-      var phone = "01-TEST"
+      var phone = document.getElementById("gender").value;
       var leader_jn = document.getElementById("leader_jn").value;
       var promocode = document.getElementById("promocode").value;
       var promocode = document.getElementById("promocode").value;
