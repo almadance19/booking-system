@@ -1173,8 +1173,7 @@ onError: function(err) {
 },
 }).render('#paypal-button-container');
 
-await sleep(5000);
-location.reload();
+
 
 
 }
