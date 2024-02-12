@@ -888,6 +888,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<select class="custom-select" multiple data-live-search="true" id="payment_method"  >';
     displayTable += '<option >Bank Überweisung</option>';
     displayTable += '<option >Bar</option>';
+    displayTable += '<option >Paypal</option>';
     displayTable += '</select>';
     displayTable += '</div>'; 
     displayTable += '<div class="form-row">';
@@ -912,11 +913,11 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += " onclick=\"paypalProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Bankzahlung (keine Gebühr)\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Zahlung eintragen\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"bankProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Bankzahlungsmethode bestätigen\" style=\"display:none;background-color: rgb(172, 22, 22);\" id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Bankzahlung bestätigen\" style=\"display:none;background-color: rgb(172, 22, 22);\" id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"bankProcess_sendEmail()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
@@ -941,11 +942,11 @@ function selectMembership() {
   var name = document.getElementById("firstname_pay");
   var email = document.getElementById("email_payment");
   if (name.value!="" && email.value!="" ) {
-    document.getElementById("addPaypal").style.display = "block";
+    //document.getElementById("addPaypal").style.display = "block";
     document.getElementById("addBank").style.display = "block";
     //document.getElementById("addStripe").style.display = "block";
     //document.getElementById("addStripe").disabled = false;
-    document.getElementById("addPaypal").disabled = false;
+    //document.getElementById("addPaypal").disabled = false;
     document.getElementById("addBank").disabled = false;
     document.getElementById("course_pay").disabled = true;
     name.disabled = true;
@@ -967,7 +968,7 @@ function selectMembership() {
   element.innerHTML = '';
   document.getElementById("blockPrice").disabled = false;
   document.getElementById("blockPrice").style.display = "block";
-  document.getElementById("addPaypal").style.display = "none";
+  //document.getElementById("addPaypal").style.display = "none";
   document.getElementById("addBank").style.display = "none";
   //document.getElementById("addStripe").style.display = "none";
   document.getElementById("sendPaymentEmail").disabled = true;
@@ -997,7 +998,7 @@ function paypalProcess() {
   document.getElementById("firstname_pay").disabled = true;
   document.getElementById("email_payment").disabled = true;
   document.getElementById("newmember").disabled = true;
-  document.getElementById("addPaypal").disabled = true;
+  //document.getElementById("addPaypal").disabled = true;
   document.getElementById("addBank").disabled = true;
   document.getElementById("blockPrice").disabled = true;
   
@@ -1242,10 +1243,13 @@ function bankProcess() {
   payment_status = document.getElementById("payment_status").value;
 
   let payment_status_var; 
+  let pay_yes_no;
   if (payment_status=="Paid") {
     payment_status_var="Kein";
+    pay_yes_no=true
   } else {
     payment_status_var="NotPaidYet";
+    pay_yes_no=false
   }
 
   payment_method = document.getElementById("payment_method").value;
@@ -1253,7 +1257,7 @@ function bankProcess() {
   document.getElementById("payment_method").disabled = true;
   document.getElementById("payment_status").disabled = true;
   document.getElementById("addBank").disabled = true;
-  document.getElementById("addPaypal").disabled = true;
+  //document.getElementById("addPaypal").disabled = true;
   document.getElementById("course_pay").disabled = true;
   document.getElementById("firstname_pay").disabled = true;
   document.getElementById("email_payment").disabled = true;
@@ -1347,7 +1351,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,String(year)+String(month),currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
+let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,String(year)+String(month),currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,pay_yes_no];
 
 payment_array.push(array0);
 
