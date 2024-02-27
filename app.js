@@ -328,11 +328,12 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += "</div>";
 
     var espace = ": ";
-    displayTable += "<div class=\"row\">"+"<strong>Adresse/Address</strong> "+adress+"</div>";
+    displayTable += "<div class=\"row\">"+"<strong>Adresse/Address</strong> "+espace+adress+"</div>";
     displayTable += "<div class=\"row\">"+"<strong>Day/Tag </strong> "+espace+dia+"</div>";
     displayTable += "<div class=\"row\">"+"<strong>Time/Uhrzeit </strong> "+espace+hora+"</div>";
     displayTable += "<div class=\"row\">"+"<strong>Date/Datum </strong> "+espace+fecha+"</div>";
-    displayTable += "<div class=\"row\">"+"<strong>Details/Mehr Infos </strong> "+espace+details+"</div>";
+    displayTable += "<div class=\"row\">"+"<strong>Level/Niveau </strong> "+espace+lebel+"</div>";
+    displayTable += "<div class=\"row\" style=\"color:#8B0000\" >"+"<strong>Details/Mehr Infos </strong> "+espace+details+"</div>";
     displayTable += "<div class=\"row\">"+" "+"</div>";
 
     displayTable += "<div class=\"row\"> </div>";
