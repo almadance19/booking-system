@@ -27,8 +27,8 @@ function getInit() {
 };
 
 // call API COURSES
-const url = 'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
 
+const url = 'https://script.google.com/macros/s/AKfycbwv-Gfb1WEq7zWSV9xi4B3VB1ZpBft6z1IHRsLE58i8qTp5i50GfrE5IIbxZqKJK62I/exec';
 
 //'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
 

@@ -31,7 +31,7 @@ function sleep(ms) {
 }
 
 // call API COURSES
-const url = 'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
+const url = 'https://script.google.com/macros/s/AKfycbwv-Gfb1WEq7zWSV9xi4B3VB1ZpBft6z1IHRsLE58i8qTp5i50GfrE5IIbxZqKJK62I/exec';
 
 const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
 
@@ -395,8 +395,8 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += "<div class=\"row\">"+"<strong>Day/Tag </strong> "+espace+dia+"</div>";
     displayTable += "<div class=\"row\">"+"<strong>Time/Uhrzeit </strong> "+espace+hora+"</div>";
     displayTable += "<div class=\"row\">"+"<strong>Date/Datum </strong> "+espace+fecha+"</div>";
-    displayTable += "<div class=\"row\" style=\"color:#8B0000\">"+"<strong>Level/Niveau </strong> "+espace+lebel+"</div>";
-    displayTable += "<div class=\"row\">"+"<strong>Details/Mehr Infos </strong> "+espace+details+"</div>";
+    displayTable += "<div class=\"row\">"+"<strong>Level/Niveau </strong> "+espace+lebel+"</div>";
+    displayTable += "<div class=\"row\" style=\"color:#8B0000\" >"+"<strong>Details/Mehr Infos </strong> "+espace+details+"</div>";
     displayTable += "<div class=\"row\">"+" "+"</div>";
 
     displayTable += "<div class=\"row\"> </div>";
