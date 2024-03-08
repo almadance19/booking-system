@@ -374,6 +374,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '<label for="email" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
     displayTable += "<input type=\"email\" id=\"email_registration\" class=\"form-control\" aria-describedby=\"emailHelp\" Value=\""+user_email+"\" >";
     displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
+    displayTable += '<small id="emailHelp2" class="form-text text-muted" style="color:yellow" >** You agree to be contacted by Alma Dance.</small>';
     displayTable += '<div id="display_error" style="color: red" ></div>';
     displayTable += '<div id="display_success" style="color: black" ></div>';
     displayTable += '</div>';
@@ -804,6 +805,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<label for="emaiemail_paymentl" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
     displayTable += "<input type=\"email\" id=\"email_payment\" class=\"form-control\" aria-describedby=\"emailHelp\" Value=\""+user_email+"\" >";
     displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
+    displayTable += '<small id="emailHelp2" class="form-text text-muted" style="color:yellow" >** You agree to be contacted by Alma Dance.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += "<input type=\"text\" id=\"pricemonthly\" class=\"form-control\" style=\"display:none\" aria-describedby=\"pricemonthlyHelp\" Value=\""+type_payment+"\" disabled>";
