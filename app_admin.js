@@ -44,6 +44,8 @@ const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hc
 var allPaymentsString =  "";
 var activePaymentString =  "";
 
+const date_today = new Date();
+
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -892,6 +894,13 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<option >Paypal</option>';
     displayTable += '</select>';
     displayTable += '</div>'; 
+
+    displayTable += '<div class="form-row">';
+    displayTable += '<label for="date_today_input" style="font-weight: bold" >Start Date (leave empty if today) </label>';
+    displayTable += "<input type=\"date\" id=\"date_today_input\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+date_today+"\" >";
+    displayTable += '<small id="date_today_Help" class="form-text text-muted" style="color:yellow" >**You can change the Value.</small>';
+    displayTable += '</div>';
+
     displayTable += '<div class="form-row">';
     displayTable += '<label for="price" style="font-weight: bold" >Preis EUR</label>';
     displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+price_total+"\" >";
@@ -918,7 +927,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += " onclick=\"bankProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Bankzahlung bestätigen\" style=\"display:none;background-color: rgb(172, 22, 22);\" id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Zahlung bestätigen\" style=\"display:none;background-color: rgb(172, 22, 22);\" id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"bankProcess_sendEmail()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
@@ -947,7 +956,9 @@ function selectMembership() {
     document.getElementById("addBank").style.display = "block";
     //document.getElementById("addStripe").style.display = "block";
     //document.getElementById("addStripe").disabled = false;
-    //document.getElementById("addPaypal").disabled = false;
+    
+
+
     document.getElementById("addBank").disabled = false;
     document.getElementById("course_pay").disabled = true;
     name.disabled = true;
@@ -1285,133 +1296,145 @@ function bankProcess() {
   var type_payment = document.getElementById("pricemonthly").value;
 
   //GET DATE
-  const date = new Date();
-  const date2 = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  // This arrangement can be altered based on how we want the date's format to appear.
-  let currentDate = `${day}-${month}-${year}`;  
-
-  let future_datum;
-    
+  var date = document.getElementById("date_today_input").value;
+  
+    // Define another variable with a value
+    // Check if myString is empty
+    if (date.length === 0) {
+        // If it's empty, assign the value of anotherVariable to myString
+        date = date_today;
+    } else {
+        date = new Date(date);
+    }
+  var date2 = document.getElementById("date_today_input").value;
+    if (date2.length === 0) {
+      date2 = date_today;
+    } else {
+      date2 = new Date(date);
+    }
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${day}-${month}-${year}`;  
+  
+    let future_datum;
+  
     if(type_payment=="Monthly") {
       future_datum = addMonths(date, Number(1));
     } else {
       future_datum = addMonths(date, Number(membershiptype_nr));
     }
-  let future_day = future_datum.getDate();
-  let future_month = future_datum.getMonth() + 1;
-  let future_year = future_datum.getFullYear();
-  let future_date = `${future_day}-${future_month}-${future_year}`;
-
-   //Contract
-  var contract_datum = addMonths(date2, Number(membershiptype_nr));
-  let contract_day = contract_datum.getDate();
-  let contract_month = contract_datum.getMonth() + 1;
-  let contract_year = contract_datum.getFullYear();
-  let contract_date = `${contract_day}-${contract_month}-${contract_year}`;   
-
-
-
-  var beginner_3_months = dict_prices["Beginners 1 Course - 3 Months"];
-  var beginner_6_months = dict_prices["Beginners 1 Course - 6 Months"];
-
-  btnBookaclass.style.display = 'block';
-
-  var displayTable = ""
-  var espace = ": ";
-  var displayTable = ""
-    displayTable += "<div class=\"container-fluid\">";
-    displayTable += "<div class=\"col\" style=\"font-weight: bold\" >";
-    displayTable += "<h3 id=\"paymentTitle\">Zahlungsdetails</h3>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\">Vielen Dank für Deine Anmeldung zu unserem Kurs(en). </p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\"> </p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\">Kurs: <strong>"+course_pay+" </strong>.</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\">Mitgliedschaftstyp: <strong>"+membershiptype+"</strong>.</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\"> </p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Um Deine Bestellung abzuschließen, bitte überweise den entsprechenden Betrag auf unser Bankkonto:</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />Gesamtbeitrag: <strong>"+course_price+" EUR</strong><br />Kontoinhaber: Ivan Eduardo Millan Jorge<br />IBAN: DE47 1001 1001 2620 4751 14<br />BIC: NTSBDEB1XXX<br />Verwendungszweck: Tanzkurs-"+currentDate+"-"+firstname_pay+"</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />Paypal-Zahlung:<br />Konto: millan.jorge.ie@gmail.com<br />Verwendungszweck: Tanzkurs-"+currentDate+"-"+firstname_pay+"</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Man kann Paypal-Zahlung als Freunde ohne die extra Paypal-Gebühren tätigen. Also gleiche Summe als bei der Banküberweisung.Einfach hier bestätigen & per Email oder bei deinem ersten Kurs melden.</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Du bekommst eine Zahlungsbestätigung per Email spätestens 24 hr nach Zahlungseingang.</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Deine Mitgliedschaft wird aktiv nach Zahlungseingang. Schreib uns gerne wenn Du Fragen zu unseren Kursen / Anmeldungen hast.</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Liebe Grüße / Best</p>";
-displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Eduardo &amp; Natalia<br />Alma Dance Team</p>";
-displayTable += "<input type=\"button\" value=\"Bankzahlungsmethode bestätigen\" style=\"background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail2\" class=\"btn btn-dark\" ";
-displayTable += " onclick=\"bankProcess_sendEmail()\" />";
-displayTable += "</div>";
-displayTable += "</div>";
-  const element = document.getElementById('bank-button-container');
-  element.innerHTML = displayTable;
-  document.getElementById('bank-button-container').style.display = 'block';
-
-/// SEND EMAIL FOR PAYMENT
-console.log(course_pay);
-
-payment_array.length = 0;
-
-let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,String(year)+String(month),currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,pay_yes_no];
-
-payment_array.push(array0);
-
-document.getElementById("sendPaymentEmail").disabled = false;
-document.getElementById("sendPaymentEmail").style.display = 'block';
-
-if(type_payment=="Monthly") {
-
-
-  for (let i = 0; i < (membershiptype_nr-1); i++) {
-    let future_datum2 = addMonths(date, Number(1));
-
-    let future_day2 = future_datum2.getDate();
-    let future_month2 = future_datum2.getMonth() ;
-    let future_month3 = future_datum2.getMonth() + 1;
-    let future_year2 = future_datum2.getFullYear();
-    let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
-    let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
-
-    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,payment_method,false,type_payment,String(year)+String(month),currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
-
-    payment_array.push(array);
-  }
-  console.log("future_payments_array");
-  console.log(payment_array);
-
-
-} 
-
-
-return payment_array
-};
- 
-
-function getFuturePayments() {
-  console.log("getFuturePayments");
-  for (let i = 0; i < future_payments_array.length; i++) {
-    console.log(future_payments_array[i]);
-  }
-}
-
-
-
-
-//// BANK PAYMENT
-async function  bankProcess_sendEmail(arr) {
-  console.log("sending pre bank cash payment");
-  document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails per Email versendet.Bitte prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
-  document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
-
-  sDataPay(payment_array);
-
-  await sleep(5000);
   
-  location.reload();
-
-}
-
+    let future_day = future_datum.getDate();
+    let future_month = future_datum.getMonth() + 1;
+    let future_year = future_datum.getFullYear();
+    let future_date = `${future_day}-${future_month}-${future_year}`;  
+  
+  
+    //Contract
+    var contract_datum = addMonths(date2, Number(membershiptype_nr));
+    let contract_day = contract_datum.getDate();
+    let contract_month = contract_datum.getMonth() + 1;
+    let contract_year = contract_datum.getFullYear();
+    let contract_date = `${contract_day}-${contract_month}-${contract_year}`; 
+  
+    btnBookaclass.style.display = 'block';
+  
+    var displayTable = ""
+    var espace = ": ";
+    var displayTable = ""
+      displayTable += "<div class=\"container-fluid\">";
+      displayTable += "<div class=\"col\" style=\"font-weight: bold\" >";
+      displayTable += "<h3 id=\"paymentTitle\">Payment Details</h3>";
+      displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Many thanks for registering to our course(s): "+firstname_pay+"</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Course(s): <strong>"+course_pay+" </strong>.</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Membership Type: <strong>"+membershiptype+"</strong>.</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Please complete the order by transfering the payment to our bank account:</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Total Amount: <strong>"+course_price+" EUR</strong><br />Kontoinhaber: Ivan Eduardo Millan Jorge<br />IBAN: DE47 1001 1001 2620 4751 14<br />BIC: NTSBDEB1XXX<br />Verwendungszweck: Tanzkurs-"+currentDate+"-"+firstname_pay+"</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />Or pay via Paypal <br />Account: millan.jorge.ie@gmail.com<br />Message: Tanzkurs-"+currentDate+"-"+firstname_pay+"</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Alternatively pay via Paypal as a Friend without the paypal fee.Just confirm here and write it per Email or at your first class.</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">After payment you will get your digital confirmation within the next 24 hrs.</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"><br />3/6/12 Months Subscription:<br />You create a regular transfer order with your bank or paypal paying monthly.</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Your Subscription will be active after payment. Feel free to write back if you have any questions.<br />We are looking forward to dancing with you!</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\"> </p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\"> </p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Best regards,</p>";
+  displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Eduardo &amp; Natalia<br />Alma Dance Team</p>";
+  displayTable += "<input type=\"button\" value=\"Confirm Bank Payment Method\" style=\"background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail2\" class=\"btn btn-dark\" ";
+  displayTable += " onclick=\"bankProcess_sendEmail()\" />";
+  displayTable += "</div>";
+  displayTable += "</div>";
+  
+  
+  const element = document.getElementById('bank-button-container');
+    element.innerHTML = displayTable;
+    document.getElementById('bank-button-container').style.display = 'block';
+  
+  /// SEND EMAIL FOR PAYMENT
+  console.log(course_pay);
+  
+  payment_array.length = 0;
+  
+  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
+  
+  payment_array.push(array0);
+  
+  console.log(payment_array);
+  
+  document.getElementById("sendPaymentEmail").disabled = false;
+  document.getElementById("sendPaymentEmail").style.display = 'block';
+  
+  if(type_payment=="Monthly") {
+  
+  
+    for (let i = 0; i < (membershiptype_nr-1); i++) {
+      let future_datum2 = addMonths(date, Number(1));
+  
+      let future_day2 = future_datum2.getDate();
+      let future_month2 = future_datum2.getMonth() ;
+      let future_month3 = future_datum2.getMonth() + 1;
+      let future_year2 = future_datum2.getFullYear();
+      let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
+      let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
+  
+      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+  
+      payment_array.push(array);
+    }
+    console.log("future_payments_array");
+    console.log(payment_array);
+  
+  
+  } 
+  
+  
+  return payment_array
+  };
+  
+  
+  function getFuturePayments() {
+    console.log("getFuturePayments");
+    for (let i = 0; i < future_payments_array.length; i++) {
+      console.log(future_payments_array[i]);
+    }
+  }
+  
+  //// BANK PAYMENT
+  async function  bankProcess_sendEmail(arr) {
+    console.log("sending pre bank cash payment");
+    document.getElementById("sendPaymentEmail").disabled = true;
+    document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder. After Payment you are registered.';
+    document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
+  
+    sDataPay(payment_array);
+  
+    //await sleep(5000);
+    //location.reload();
+  }
 
 
 ///   	UTILS    /// 
