@@ -102,6 +102,7 @@ function getData() {
         displayTable += "<th>Course</th>";
         displayTable += "<th>Day/Time</th>";
         displayTable += "<th>Day/Date</th>";
+        displayTable += "<th>Level</th>";
         displayTable += "</tr>";
         displayTable += '</thead>';
         var coma = ",";
@@ -113,15 +114,28 @@ function getData() {
     console.log(data);
     output.innerHTML = "";
     data.posts.forEach(function (val) {
-      if (val[10]==true && val[12]=="NEIN" ) {
+      if (val[10]==true && val[12]=="NEIN" && val[13]=="" ) {
         displayTable += "<tr class=\""+val[2]+"\" >";
         displayTable += "<td><input type=\"button\" value=\"Register\" class=\"btn btn-colour-1\" ";
         displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"')\" /></td>";
         displayTable += "<td>"+val[1]+"</td>";
         displayTable += "<td>"+val[5]+" "+val[7]+"</td>";
         displayTable += "<td>"+val[8]+"</td>";
+        displayTable += "<td>"+val[3]+"</td>";
         displayTable += "</tr>";
 
+      console.log(val);
+      } else if (val[10]==true && val[12]=="NEIN" ) {
+        displayTable += "<tr class=\"" + val[2] + "\" >";
+        displayTable += "<td><input type=\"button\" value=\"Pay & Register\" class=\"btn btn-colour-1\" ";
+        displayTable += "onclick=\"window.location.href='" + val[13] + "'\" /></td>"; // val[13] contains the URL (href)
+        //displayTable += "<td><input type=\"button\" value=\"Preregistration\" class=\"btn btn-colour-1\" ";
+        //displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"')\" /></td>";
+        displayTable += "<td>" + val[1] + "</td>";
+        displayTable += "<td>" + val[5] + " " + val[7] + "</td>";
+        displayTable += "<td>" + val[8] + "</td>";
+        displayTable += "<td>"+val[3]+"</td>";
+        displayTable += "</tr>";
       console.log(val);
       }
        
