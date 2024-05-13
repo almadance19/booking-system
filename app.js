@@ -1257,8 +1257,8 @@ displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;
 displayTable +="<p style=\"font-size: 14px; line-height: 160%;text-align: left;\"> </p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Best regards,</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Eduardo &amp; Natalia<br />Alma Dance Team</p>";
-displayTable += "<input type=\"button\" value=\"Confirm Bank Payment Method\" style=\"background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail2\" class=\"btn btn-dark\" ";
-displayTable += " onclick=\"bankProcess_sendEmail()\" />";
+// displayTable += "<input type=\"button\" value=\"Confirm Bank Payment Method\" style=\"background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail2\" class=\"btn btn-dark\" ";
+// displayTable += " onclick=\"bankProcess_sendEmail()\" />";
 displayTable += "</div>";
 displayTable += "</div>";
 
@@ -1279,7 +1279,7 @@ payment_array.push(array0);
 console.log(payment_array);
 
 document.getElementById("sendPaymentEmail").disabled = false;
-document.getElementById("sendPaymentEmail").style.display = 'block';
+document.getElementById("sendPaymentEmail").style.display = 'none';
 
 if(type_payment=="Monthly") {
 
@@ -1304,17 +1304,18 @@ if(type_payment=="Monthly") {
 
 } 
 
+  console.log("sending pre bank cash payment");
+  document.getElementById("sendPaymentEmail").disabled = true;
+  document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder. After Payment you are registered.';
+  document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
-return payment_array
+  sDataPay(payment_array);
+
+//return payment_array
 };
 
 
-function getFuturePayments() {
-  console.log("getFuturePayments");
-  for (let i = 0; i < future_payments_array.length; i++) {
-    console.log(future_payments_array[i]);
-  }
-}
+
 
 //// BANK PAYMENT
 async function  bankProcess_sendEmail(arr) {
@@ -1325,8 +1326,8 @@ async function  bankProcess_sendEmail(arr) {
 
   sDataPay(payment_array);
 
-  await sleep(5000);
-  location.reload();
+  //await sleep(5000);
+  ///location.reload();
 }
 
 

@@ -1325,8 +1325,8 @@ displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Deine Mitgliedschaft wird aktiv nach Zahlungseingang. Schreib uns gerne wenn Du Fragen zu unseren Kursen / Anmeldungen hast.</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Liebe Grüße / Best</p>";
 displayTable +="<p style=\"font-size: 14px; line-height: 160%; text-align: left;\">Eduardo &amp; Natalia<br />Alma Dance Team</p>";
-displayTable += "<input type=\"button\" value=\"Bankzahlungsmethode bestätigen\" style=\"background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail2\" class=\"btn btn-dark\" ";
-displayTable += " onclick=\"bankProcess_sendEmail()\" />";
+// displayTable += "<input type=\"button\" value=\"Bankzahlungsmethode bestätigen\" style=\"background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail2\" class=\"btn btn-dark\" ";
+// displayTable += " onclick=\"bankProcess_sendEmail()\" />";
 displayTable += "</div>";
 displayTable += "</div>";
   const element = document.getElementById('bank-button-container');
@@ -1343,7 +1343,7 @@ let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,curre
 payment_array.push(array0);
 
 document.getElementById("sendPaymentEmail").disabled = false;
-document.getElementById("sendPaymentEmail").style.display = 'block';
+document.getElementById("sendPaymentEmail").style.display = 'none';
 
 if(type_payment=="Monthly") {
 
@@ -1368,19 +1368,16 @@ if(type_payment=="Monthly") {
 
 } 
 
+console.log("sending pre bank cash payment");
+document.getElementById("sendPaymentEmail").disabled = true;
+document.getElementById("paymentTitle").innerText = 'Zahlungsdetails per Email versendet.Bitte prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
+document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
-return payment_array
+sDataPay(payment_array);
+
+//return payment_array
 };
  
-
-function getFuturePayments() {
-  console.log("getFuturePayments");
-  for (let i = 0; i < future_payments_array.length; i++) {
-    console.log(future_payments_array[i]);
-  }
-}
-
-
 
 
 //// BANK PAYMENT
@@ -1392,9 +1389,8 @@ async function  bankProcess_sendEmail(arr) {
 
   sDataPay(payment_array);
 
-  await sleep(5000);
-  
-  location.reload();
+  // await sleep(5000);  
+  // location.reload();
 
 }
 
