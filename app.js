@@ -813,7 +813,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "<input type=\"text\" id=\"membership\" class=\"form-control\" style=\"display:none\" Value=\""+membership+"\" disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
-    displayTable += '<label for="newmember" style="font-weight: bold" >Phone/Telefonnummer (optional) </label>';
+    displayTable += '<label for="newmember" style="font-weight: bold" >Phone/Telefonnummer </label>';
     displayTable += "<input type=\"phone\" id=\"newmember\" class=\"form-control\"   placeholder=\"Example +49 123 04235673\" Value=\""+""+"\" >";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
@@ -1306,7 +1306,7 @@ if(type_payment=="Monthly") {
 
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder. After Payment you are registered.';
+  document.getElementById("paymentTitle").innerText = 'Payment information here displayed and also has been sent to your email. Please check your spam folder as well, dont repeat this step. After Payment you are registered.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
@@ -1321,7 +1321,7 @@ if(type_payment=="Monthly") {
 async function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Payment Infos sent to your Email; Please also check your spam folder. After Payment you are registered.';
+  document.getElementById("paymentTitle").innerText = 'Payment information here displayed and also has been sent to your email. Please check your spam folder as well, dont repeat this step. After Payment you are registered.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);

@@ -882,7 +882,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "<input type=\"text\" id=\"membership\" class=\"form-control\" style=\"display:none\" Value=\""+membership+"\" disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
-    displayTable += '<label for="newmember" style="font-weight: bold" >Telefonnummer (optional) </label>';
+    displayTable += '<label for="newmember" style="font-weight: bold" >Telefonnummer </label>';
     displayTable += "<input type=\"phone\" id=\"newmember\" class=\"form-control\"   placeholder=\"Example +49 123 04235673\" Value=\""+""+"\" >";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
@@ -1370,7 +1370,7 @@ if(type_payment=="Monthly") {
 
 console.log("sending pre bank cash payment");
 document.getElementById("sendPaymentEmail").disabled = true;
-document.getElementById("paymentTitle").innerText = 'Zahlungsdetails per Email versendet.Bitte prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
+document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet.Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
 document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
 sDataPay(payment_array);
@@ -1384,7 +1384,7 @@ sDataPay(payment_array);
 async function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails per Email versendet.Bitte prüfe auch deinen Spamordner. Nach Zahlungseingang bist du offiziell angemeldet.';
+  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet.Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
