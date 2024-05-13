@@ -37,9 +37,10 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoiEob22J9wd1_xOtZ8G7XRXx3r5bkLO0zAw3vAWMd6f3fKveg/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycbxqrurYjV19v80mtMRsWRQpOzHUWxsTfE9-E71xnjfdUeVBbz9wae3rN4ilQNC1VOg/exec';
 
-const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hcen6sKh9UHKfTqjMPrnr1X-qTPOHx--HXTrIpobjv1p5TqSiQblGzlI4E/exec'
+// ALTE const url_payment = 'https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoiEob22J9wd1_xOtZ8G7XRXx3r5bkLO0zAw3vAWMd6f3fKveg/exec';
+//const url_future_payments = 'https://script.google.com/macros/s/AKfycbweIrEGMh_JOMbmJvnTLBngzpHRH6fEhDLjjU7VoKjC4YKApBrSglZNKkX2EvSOU74/exec';
 
 var allPaymentsString =  "";
 var activePaymentString =  "";
@@ -1217,6 +1218,7 @@ onError: function(err) {
 
 
     // Process Future Payments
+/*
         function sDataPay_Future(arr) {
           console.log(arr);
     
@@ -1233,9 +1235,7 @@ onError: function(err) {
              //repMessage.textContent = "Subscribed" ;
            })
          };
-
-
-
+*/
 
 function bankProcess() {
 
@@ -1370,7 +1370,7 @@ if(type_payment=="Monthly") {
 
 console.log("sending pre bank cash payment");
 document.getElementById("sendPaymentEmail").disabled = true;
-document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet.Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
+document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet. Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
 document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
 sDataPay(payment_array);
@@ -1384,7 +1384,7 @@ sDataPay(payment_array);
 async function  bankProcess_sendEmail(arr) {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
-  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet.Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
+  document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet. Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
   sDataPay(payment_array);
