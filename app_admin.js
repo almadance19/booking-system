@@ -1026,11 +1026,7 @@ function paypalProcess() {
   //show a receipt 
 };
 
-
-
-
 //// PAYPAL 
-
 
 async function initPayPalButton() {
   document.getElementById("price_shield").style.display = "block";
@@ -1205,8 +1201,6 @@ location.reload();
 
 
 }
-
-
     // Save Booking hl
     function sDataPay(arr) {
       console.log(arr);
@@ -1224,8 +1218,6 @@ location.reload();
          //repMessage.textContent = "Subscribed" ;
        })
      };
-
-
     // Process Future Payments
         function sDataPay_Future(arr) {
           console.log(arr);
@@ -1246,6 +1238,7 @@ location.reload();
 
 
 
+    
 
 function bankProcess() {
 
@@ -1254,12 +1247,15 @@ function bankProcess() {
   //send a email with payment details 
   payment_status = document.getElementById("payment_status").value;
 
+
   let payment_status_var; 
   let pay_yes_no;
   if (payment_status=="Paid") {
+    console.log("Paid");
     payment_status_var="Kein";
     pay_yes_no=true
   } else {
+    console.log("Not Paid Yet");
     payment_status_var="NotPaidYet";
     pay_yes_no=false
   }
@@ -1296,48 +1292,44 @@ function bankProcess() {
   var type_payment = document.getElementById("pricemonthly").value;
 
   //GET DATE
-  var date = document.getElementById("date_today_input").value;
+  var dateString = document.getElementById("date_today_input").value;
+  console.log(dateString);
   
     // Define another variable with a value
     // Check if myString is empty
-    if (date.length === 0) {
+    if (dateString.length === 0) {
         // If it's empty, assign the value of anotherVariable to myString
-        date = date_today;
+        var date = date_today;
+        var date2 = new Date();
+        var date3 = addMonths(new Date(), Number(1));
+        var date4 = addMonths(new Date(), Number(2));
+        var date5 = new Date();
     } else {
-        date = new Date(date);
+        const [yearD, monthD, dayD] = dateString.split('-').map(Number);
+        var date = new Date(yearD, monthD -1, dayD);
+        console.log(date);
+        var date2 = new Date(yearD, monthD -1, dayD);
+        var date3 = addMonths(new Date(yearD, monthD -1, dayD), Number(1));
+        var date4 = addMonths(new Date(yearD, monthD -1, dayD), Number(2));
+        var date5 = new Date(yearD, monthD -1, dayD);
     }
-  var date2 = document.getElementById("date_today_input").value;
-    if (date2.length === 0) {
-      date2 = date_today;
-    } else {
-      date2 = new Date(date);
-    }
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    // This arrangement can be altered based on how we want the date's format to appear.
-    let currentDate = `${day}-${month}-${year}`;  
+
+    let currentDate = formatDate(date);
   
     let future_datum;
-  
-    if(type_payment=="Monthly") {
-      future_datum = addMonths(date, Number(1));
+
+    if (type_payment == "Monthly") {
+        future_datum = addMonths(date5, 1);
     } else {
-      future_datum = addMonths(date, Number(membershiptype_nr));
+        future_datum = addMonths(date5, Number(membershiptype_nr));
     }
   
-    let future_day = future_datum.getDate();
-    let future_month = future_datum.getMonth() + 1;
-    let future_year = future_datum.getFullYear();
-    let future_date = `${future_day}-${future_month}-${future_year}`;  
-  
-  
-    //Contract
+    let future_date = formatDate(future_datum);
+
+    // Contract
     var contract_datum = addMonths(date2, Number(membershiptype_nr));
-    let contract_day = contract_datum.getDate();
-    let contract_month = contract_datum.getMonth() + 1;
-    let contract_year = contract_datum.getFullYear();
-    let contract_date = `${contract_day}-${contract_month}-${contract_year}`; 
+    let contract_date = formatDate(contract_datum); 
+
   
     btnBookaclass.style.display = 'block';
   
@@ -1379,7 +1371,7 @@ function bankProcess() {
   
   payment_array.length = 0;
   
-  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
+  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,"old 20245",currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
   
   payment_array.push(array0);
   
@@ -1392,16 +1384,18 @@ function bankProcess() {
   
   
     for (let i = 0; i < (membershiptype_nr-1); i++) {
-      let future_datum2 = addMonths(date, Number(1));
-  
-      let future_day2 = future_datum2.getDate();
-      let future_month2 = future_datum2.getMonth() ;
-      let future_month3 = future_datum2.getMonth() + 1;
-      let future_year2 = future_datum2.getFullYear();
-      let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
-      let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
-  
-      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+      // Add 1 month to date3 and format it
+      let future_datum2 = addMonths(date3, 1);
+      let future_date2 = formatDate(future_datum2);
+
+      // Add 1 month to date4 and format it
+      let future_datum3 = addMonths(date4, 1);
+      let future_date3 = formatDate(future_datum3);
+
+      console.log("Future Date 2:", future_date2);
+      console.log("Future Date 3:", future_date3);
+    
+      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,payment_method,false,type_payment,"old 20245",currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
   
       payment_array.push(array);
     }
@@ -1439,6 +1433,17 @@ function bankProcess() {
 
 ///   	UTILS    /// 
 ////ADD MONTH FUNTION
+function formatDate(date) {
+  let day = date.getDate();
+  let month = date.getMonth() + 1; // getMonth() is zero-based
+  let year = date.getFullYear();
+  
+  // Ensure day and month are always two digits
+  day = day < 10 ? '0' + day : day;
+  month = month < 10 ? '0' + month : month;
+  
+  return `${day}-${month}-${year}`;
+}
 
 
 function addMonths(date, months) {
