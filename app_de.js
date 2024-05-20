@@ -983,7 +983,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "<a class=\"btn btn-dark\" href=\""+stripe_link+"\" id=\"addStripe\" style=\"display:none;text-align:left\">Pay with Stripe</a>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Mit Paypal bezahlen (+3 EUR einmalig)\" style=\"display:none\"  id=\"addPaypal\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Mit Paypal bezahlen (+2 EUR Gebühr)\" style=\"display:none\"  id=\"addPaypal\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"renderPayPalButton('" + paypal_sub_id + "')\" disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
