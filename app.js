@@ -39,7 +39,8 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycbxqrurYjV19v80mtMRsWRQpOzHUWxsTfE9-E71xnjfdUeVBbz9wae3rN4ilQNC1VOg/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycby7wu-x6l6B8-NEG-EF12w7FrUlV9baOof03QL6uPgNPX2XGp6FM1jKR7AGkHEGBmM/exec';
+
 
 //ALTE https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoiEob22J9wd1_xOtZ8G7XRXx3r5bkLO0zAw3vAWMd6f3fKveg/exec
 //const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hcen6sKh9UHKfTqjMPrnr1X-qTPOHx--HXTrIpobjv1p5TqSiQblGzlI4E/exec'
@@ -199,7 +200,7 @@ function getPrices() {
         inputEl.style = "margin: 0px 4px 8px 3px;";
 
         inputEl.addEventListener('click', function() { 
-            Create_Payment_Form(val[0],val[2],val[5],val[6],val[4]); 
+            Create_Payment_Form(val[0],val[2],val[5],val[6],val[4],val[8]); 
         });
         document.getElementById(list[i].id).appendChild(inputEl); 
 
@@ -214,7 +215,7 @@ function getPrices() {
         inputEl.style = "margin: 0px 4px 8px 3px;";
 
         inputEl.addEventListener('click', function() { 
-          Create_Payment_Form_Abo(val[0],val[1],val[5],val[7],val[4]); 
+          Create_Payment_Form_Abo(val[0],val[1],val[5],val[6],val[4],val[8]); 
         });
         document.getElementById(list[i].id).appendChild(inputEl); 
 
@@ -235,25 +236,26 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses) { 
+async function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses,paypal_sub_id) { 
   await sleep(2500);
   
-  paymentForm(membership, price_total,nr_months,stripe_link,"One-time payment",nr_courses,"Total"); 
+  paymentForm(membership, price_total,nr_months,stripe_link,"One-time payment",nr_courses,"Total",paypal_sub_id); 
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
 
   document.getElementById('sect1').scrollIntoView();
 } 
 
-async function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses) { 
+async function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses,paypal_sub_id) { 
   await sleep(2500);
 
-  paymentForm(membership, price_total,nr_months,stripe_link,"Monthly Subscription",nr_courses,"Monthly");
+  paymentForm(membership, price_total,nr_months,stripe_link,"Monthly Subscription",nr_courses,"Monthly",paypal_sub_id);
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
 
   document.getElementById('sect1').scrollIntoView();
 } 
+
 
 /// CREATE THE SCHEDULER SECTION
 function bookClasses() {
@@ -263,6 +265,8 @@ function bookClasses() {
     document.querySelector(".section-1").style.display = 'none';
     const element = document.getElementById('paypal-button-container');
     element.innerHTML = '';
+    const element2 = document.getElementById('paypal-button-container-abo');
+    element2.innerHTML = '';
     const bank = document.getElementById('bank-button-container');
     bank.innerHTML = '';
     document.getElementById("price_shield").style.display = "none";
@@ -278,6 +282,12 @@ function bookClasses() {
 /// CREATE THE NEW MEMBERSHIP SECTION
 
 function showMemberships() {
+  const element = document.getElementById('paypal-button-container');
+    element.innerHTML = '';
+    const element2 = document.getElementById('paypal-button-container-abo');
+    element2.innerHTML = '';
+    const bank = document.getElementById('bank-button-container');
+    bank.innerHTML = '';
   var email_value = document.querySelector('input[name=email-membership]').value;
   if (email_value != '') { 
     document.querySelector(".section-1").style.display = 'block';
@@ -753,8 +763,16 @@ function sData(arr) {
 };
 
 
-function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,nr_courses,type_payment)
+function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,nr_courses,type_payment,paypal_sub_id)
 {
+  if (type_payment == "Total") {
+    var script1 = document.createElement('script');
+    script1.src = 'https://www.paypal.com/sdk/js?client-id=Ad_vdC1plSPko5d9oY4CJeobC3WYQqtoyOthXJ0IcKfo38y-Ya9wcgRTglhuWrNSRyub31mxXLhUuAFM&enable-funding=venmo&currency=EUR';
+    // TEST script1.src = 'https://www.paypal.com/sdk/js?client-id=AYz2EWPGuZ55NZIQNKS8yb1NpbvPP2G11aIaMHAzRw2Wk2ACO7tPRI41JbRQ7nfNB0MchqrFS7m8aRzy&enable-funding=venmo&currency=EUR';
+
+    script1.setAttribute('data-sdk-integration-source', 'button-factory');
+    document.head.appendChild(script1);
+
     document.querySelector(".section-1").style.display = 'block';
     var name_user = document.getElementById("User_name").value;
     var last_payment = document.getElementById("User_lastpayment").value;
@@ -862,6 +880,120 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "</div>";
     displayTable += "</div>";
     $("#pay-form-container").html(displayTable);
+  } else {
+      var script2 = document.createElement('script');
+      script2.src = 'https://www.paypal.com/sdk/js?client-id=Ad_vdC1plSPko5d9oY4CJeobC3WYQqtoyOthXJ0IcKfo38y-Ya9wcgRTglhuWrNSRyub31mxXLhUuAFM&enable-funding=venmo&vault=true&currency=EUR';
+      script2.setAttribute('data-sdk-integration-source', 'button-factory');
+      document.head.appendChild(script2);
+
+      document.querySelector(".section-1").style.display = 'block';
+      var name_user = document.getElementById("User_name").value;
+      var last_payment = document.getElementById("User_lastpayment").value;
+      var last_due_payment = document.getElementById("User_nextpayment").value;
+      var active = document.getElementById("User_active").value;
+      var user_email = document.getElementById("User_email").value;
+      document.querySelector(".section-2").style.display = 'none';
+      btnBookaclass.style.display = 'block';
+  
+      let name_user2; 
+  
+      if (name_user=="No Active User") {
+        name_user2=""
+      } else {name_user2=name_user}
+  
+  
+      var displayTable = ""
+      displayTable += "<div class=\"container-fluid\">";
+      displayTable += "<div class=\"col\" style=\"font-weight: bold\" >";
+  
+      var espace = ": ";
+      
+      displayTable += "<div class=\"row\"> </div>";
+      displayTable += "<div class=\"row\"> </div>";
+      displayTable += '<form autocomplete="on" style="background-color:white;color:black;width:90%">';
+      displayTable += '<div class="form-row">';
+      displayTable += "<label for=\"disabledTextInput\" style=\"font-weight: bold\" >"+membership+" / "+payment_type+"</label>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += '<label for="firstname" style="font-weight: bold">Name</label>';
+      displayTable += "<input  type=\"text\" id=\"firstname_pay\" class=\"form-control\" Value=\""+name_user2+"\" >";
+      displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += '<label for="course_pay" style="font-weight: bold">Course(s) / Kurs(e)</label>';
+      displayTable += '<select class="custom-select" multiple data-live-search="true" id="course_pay"  >';
+      displayTable += '<option >Bachata Fundamentals</option>';
+      displayTable += '<option >Bachata Improvers</option>';
+      displayTable += '<option >Bachata Intermediate</option>';
+      displayTable += '<option >Bachata Advanced</option>';
+      displayTable += '<option >Lady Styling Bachata</option>';
+      displayTable += '<option >Kizomba</option>';
+      displayTable += '<option >Salsa Fundamentals</option>';
+      displayTable += '<option >Salsa Improvers</option>';
+      displayTable += '<option >Salsa Intermediate</option>';
+      displayTable += '<option >Zouk Open Level</option>';
+      displayTable += '<option >Flatrate</option>';
+      displayTable += '</select>';
+      displayTable += '</div>'; 
+      displayTable += '<div class="form-row">';
+      displayTable += "<input type=\"text\" id=\"nr_courses\" class=\"form-control\" style=\"display:none\"  Value=\""+nr_courses+"\" disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += "<input type=\"text\" id=\"nr_months\" class=\"form-control\"  style=\"display:none\" Value=\""+nr_months+"\" disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += "<input type=\"text\" id=\"membership\" class=\"form-control\" style=\"display:none\" Value=\""+membership+"\" disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += '<label for="newmember" style="font-weight: bold" >Phone/Telefonnummer </label>';
+      displayTable += "<input type=\"phone\" id=\"newmember\" class=\"form-control\"   placeholder=\"Example +49 123 04235673\" Value=\""+""+"\" >";
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += '<label for="emaiemail_paymentl" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
+      displayTable += "<input type=\"email\" id=\"email_payment\" class=\"form-control\" aria-describedby=\"emailHelp\" Value=\""+user_email+"\" >";
+      displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
+      displayTable += '<small id="emailHelp2" class="form-text text-muted" style="color:yellow" >** You agree to be contacted by Alma Dance.</small>';
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += "<input type=\"text\" id=\"pricemonthly\" class=\"form-control\" style=\"display:none\" aria-describedby=\"pricemonthlyHelp\" Value=\""+type_payment+"\" disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-row">';
+      displayTable += '<label for="price" style="font-weight: bold" >Price / Preis EUR</label>';
+      displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+price_total+"\" disabled>";
+      displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly or all at once (3/6/12 months) with a Bank Regular Order </small>';
+      displayTable += '</div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<input type=\"button\" value=\"Select Payment Method Again\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
+      displayTable += " onclick=\"enablePriceCalculation()\"/disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<input type=\"button\" value=\"Pay\"  style=\"display:block\"  id=\"blockPrice\" class=\"btn btn-dark\" ";
+      displayTable += " onclick=\"blockPriceF()\" />";
+      displayTable += '</div>';
+      displayTable += '<div id="display_error_pay" style="color: red" ></div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<a class=\"btn btn-dark\" href=\""+stripe_link+"\" id=\"addStripe\" style=\"display:none;text-align:left\">Pay with Stripe</a>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<input type=\"button\" value=\"Pay with Paypal (+3 EUR One Time Fee)\" style=\"display:none\"  id=\"addPaypal\" class=\"btn btn-dark\" ";
+      displayTable += " onclick=\"renderPayPalButton('" + paypal_sub_id + "')\" disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<input type=\"button\" value=\"Bank payment (No Fee)\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
+      displayTable += " onclick=\"bankProcess()\" / disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<input type=\"button\" value=\"Confirm Bank Payment Method\" style=\"display:none;background-color: rgb(172, 22, 22);\"  id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
+      displayTable += " onclick=\"bankProcess_sendEmail()\" / disabled>";
+      displayTable += '</div>';
+      displayTable += '<div class="form-group col-md-3">';
+      displayTable += "<input type=\"button\" value=\"Select Membership Again\" id=\"getMembership\" class=\"btn btn-dark\" style=\"background-color: rgb(0, 3, 192);\" ";
+      displayTable += " onclick=\"selectMembership()\" />";
+      displayTable += '</div>';
+      displayTable += "</div>";
+      displayTable += "</div>";
+      $("#pay-form-container").html(displayTable);
+  }
 };
 
 function selectMembership() {
@@ -871,6 +1003,8 @@ function selectMembership() {
   bank.innerHTML = '';
   const element = document.getElementById('paypal-button-container');
   element.innerHTML = '';
+  const element2 = document.getElementById('paypal-button-container-abo');
+  element2.innerHTML = '';
 }
 
  function blockPriceF() {
@@ -901,6 +1035,8 @@ function selectMembership() {
   bank.innerHTML = '';
   const element = document.getElementById('paypal-button-container');
   element.innerHTML = '';
+  const element2 = document.getElementById('paypal-button-container-abo');
+  element2.innerHTML = '';
   document.getElementById("blockPrice").disabled = false;
   document.getElementById("blockPrice").style.display = "block";
   document.getElementById("addPaypal").style.display = "none";
@@ -930,7 +1066,7 @@ function paypalProcess() {
   var membershiptype =  document.getElementById("membership").value;
   var price_class = Number(document.getElementById("price_course").value) +2;
   document.getElementById("selectPriceAgain").disabled = false;
-  document.getElementById("selectPriceAgain").style.display = "block";
+  document.getElementById("selectPriceAgain").style.display = "none";
 
   document.getElementById("course_pay").disabled = true;
   document.getElementById("firstname_pay").disabled = true;
@@ -959,8 +1095,7 @@ function paypalProcess() {
 
 
 async function initPayPalButton() {
-  document.getElementById("price_shield").style.display = "block";
-
+  document.getElementById("price_shield").style.display = "none";
 
   var shipping = 0;
   var itemOptions = document.querySelector("#smart-button-container #item-options");
@@ -1038,7 +1173,7 @@ onApprove: function(data, actions) {
     // Show a success message within this page, e.g.
     var displayTable_thankyou = ""
     displayTable_thankyou += '<h3>Thank you for your payment!</h3>';
-    displayTable_thankyou += '<p>An Email was send to your Email with the Payment Confirmation was send to your Email Address.</p>';
+    displayTable_thankyou += '<p>An Email was send to your Email with the Payment Confirmation was send to your Email Address. Check also your spam folder. </p>';
     displayTable_thankyou += '<p>The System will be updated within 24 hrs.</p>';
     displayTable_thankyou += '<p>You can start </p>';
     const element = document.getElementById('message-button-small-container');
@@ -1049,6 +1184,7 @@ onApprove: function(data, actions) {
     output.innerHTML = '<h3>Thank you for your payment!</h3>';
     document.getElementById('smart-button-container').style.display = 'none';
     document.getElementById('paypal-button-container').style.display = 'none';
+    document.getElementById('paypal-button-container-abo').style.display = 'none';
     document.querySelector(".paypal").disabled = 'true';
 
       //Elements to take
@@ -1063,39 +1199,32 @@ onApprove: function(data, actions) {
     var type_payment = document.getElementById("pricemonthly").value;
 
     //GET DATE
-    const date = new Date();
-    const date2 = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    // This arrangement can be altered based on how we want the date's format to appear.
-    let currentDate = `${day}-${month}-${year}`;  
-  
-    let future_datum;
+      var date = new Date();
+      var date2 = new Date();
+      var date3 = addMonths(new Date(), Number(1));
+      var date4 = addMonths(new Date(), Number(2));
+var date5 = new Date();
 
-    if(type_payment=="Monthly") {
-      future_datum = addMonths(date, Number(1));
-    } else {
-      future_datum = addMonths(date, Number(membershiptype_nr));
-    }
 
-    let future_day = future_datum.getDate();
-    let future_month = future_datum.getMonth() + 1;
-    let future_year = future_datum.getFullYear();
-    let future_date = `${future_day}-${future_month}-${future_year}`; 
+      let currentDate = formatDate(date);
+      let future_datum;
 
-    //Contract
-    var contract_datum = addMonths(date2, Number(membershiptype_nr));
-    let contract_day = contract_datum.getDate();
-    let contract_month = contract_datum.getMonth() + 1;
-    let contract_year = contract_datum.getFullYear();
-    let contract_date = `${contract_day}-${contract_month}-${contract_year}`; 
+      if (type_payment == "Monthly") {
+          future_datum = addMonths(date5, 1);
+      } else {
+          future_datum = addMonths(date5, Number(membershiptype_nr));
+      }
+      let future_date = formatDate(future_datum);
+
+      // Contract
+      var contract_datum = addMonths(date2, Number(membershiptype_nr));
+      let contract_date = formatDate(contract_datum); 
 
     console.log('This person paid',firstname_pay, ", ",email_payment, ", ",idinput.value );
 
     payment_array.length = 0;
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,99996,currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
     console.log(arr_pay);
 
     payment_array.push(arr_pay);
@@ -1105,16 +1234,16 @@ onApprove: function(data, actions) {
     if(type_payment=="Monthly") {
     
       for (let i = 0; i < (membershiptype_nr-1); i++) {
-        let future_datum2 = addMonths(date, Number(1));
+          let future_datum2 = addMonths(date3, i);
+          let future_date2 = formatDate(future_datum2);
+          // Add 1 month to date4 and format it
+          let future_datum3 = addMonths(date4, i);
+          let future_date3 = formatDate(future_datum3);
+
+          console.log("Future Date 2:", future_date2);
+          console.log("Future Date 3:", future_date3);
     
-        let future_day2 = future_datum2.getDate();
-        let future_month2 = future_datum2.getMonth();
-        let future_month3 = future_datum2.getMonth() + 1;
-        let future_year2 = future_datum2.getFullYear();
-        let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
-        let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
-    
-        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
     
         payment_array.push(array);
       }
@@ -1130,7 +1259,6 @@ onError: function(err) {
 
 
 }
-
 
     // Save Booking hl
     function sDataPay(arr) {
@@ -1186,7 +1314,7 @@ function bankProcess() {
   document.getElementById("newmember").disabled = true;
   document.getElementById("blockPrice").disabled = true;
   document.getElementById("selectPriceAgain").disabled = false;
-  document.getElementById("selectPriceAgain").style.display = "block";
+  document.getElementById("selectPriceAgain").style.display = "none";
 
   console.log("Bank process")
   document.querySelector(".section-1").style.display = 'block';
@@ -1206,34 +1334,26 @@ function bankProcess() {
   var type_payment = document.getElementById("pricemonthly").value;
 
   //GET DATE
-  const date = new Date();
-  const date2 = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  // This arrangement can be altered based on how we want the date's format to appear.
-  let currentDate = `${day}-${month}-${year}`;  
-
-  let future_datum;
-
-  if(type_payment=="Monthly") {
-    future_datum = addMonths(date, Number(1));
-  } else {
-    future_datum = addMonths(date, Number(membershiptype_nr));
-  }
-
-  let future_day = future_datum.getDate();
-  let future_month = future_datum.getMonth() + 1;
-  let future_year = future_datum.getFullYear();
-  let future_date = `${future_day}-${future_month}-${future_year}`;  
+      var date = new Date();
+      var date2 = new Date();
+      var date3 = addMonths(new Date(), Number(1));
+      var date4 = addMonths(new Date(), Number(2));
+var date5 = new Date();
 
 
-  //Contract
-  var contract_datum = addMonths(date2, Number(membershiptype_nr));
-  let contract_day = contract_datum.getDate();
-  let contract_month = contract_datum.getMonth() + 1;
-  let contract_year = contract_datum.getFullYear();
-  let contract_date = `${contract_day}-${contract_month}-${contract_year}`; 
+      let currentDate = formatDate(date);
+      let future_datum;
+
+      if (type_payment == "Monthly") {
+          future_datum = addMonths(date5, 1);
+      } else {
+          future_datum = addMonths(date5, Number(membershiptype_nr));
+      }
+      let future_date = formatDate(future_datum);
+
+      // Contract
+      var contract_datum = addMonths(date2, Number(membershiptype_nr));
+      let contract_date = formatDate(contract_datum); 
 
   btnBookaclass.style.display = 'block';
 
@@ -1275,7 +1395,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
+let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
 
 payment_array.push(array0);
 
@@ -1288,23 +1408,21 @@ if(type_payment=="Monthly") {
 
 
   for (let i = 0; i < (membershiptype_nr-1); i++) {
-    let future_datum2 = addMonths(date, Number(1));
+          let future_datum2 = addMonths(date3, i);
+          let future_date2 = formatDate(future_datum2);
+          // Add 1 month to date4 and format it
+          let future_datum3 = addMonths(date4, i);
+          let future_date3 = formatDate(future_datum3);
 
-    let future_day2 = future_datum2.getDate();
-    let future_month2 = future_datum2.getMonth() ;
-    let future_month3 = future_datum2.getMonth() + 1;
-    let future_year2 = future_datum2.getFullYear();
-    let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
-    let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
+          console.log("Future Date 2:", future_date2);
+          console.log("Future Date 3:", future_date3);
 
-    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
 
     payment_array.push(array);
   }
   console.log("future_payments_array");
   console.log(payment_array);
-
-
 } 
 
   console.log("sending pre bank cash payment");
@@ -1333,16 +1451,129 @@ async function  bankProcess_sendEmail(arr) {
   ///location.reload();
 }
 
+///// SUBSCRIPTIONS 
+
+
+async function renderPayPalButton(planId) {
+  paypal.Buttons({
+      createSubscription: function(data, actions) {
+          return actions.subscription.create({
+              'plan_id': planId // Use the obtained plan ID
+          });
+      },
+      onApprove: function(data, actions) {
+        console.log('You have successfully subscribed:' + data.subscriptionID);
+        console.log(data);
+        // Show a success message within this page, e.g.
+      var displayTable_thankyou = ""
+      displayTable_thankyou += '<h3>Thank you for your payment!</h3>';
+      displayTable_thankyou += '<p>An Email was send to your Email with the Payment Confirmation was send to your Email Address. Check also your spam folder. </p>';
+      displayTable_thankyou += '<p>The System will be updated within 24 hrs.</p>';
+      displayTable_thankyou += '<p>You can start </p>';
+      const element = document.getElementById('message-button-small-container');
+      element.innerHTML = displayTable_thankyou;
+
+      console.log('Payment Processed');
+
+      output.innerHTML = '<h3>Thank you for your payment!</h3>';
+      document.getElementById('smart-button-container').style.display = 'none';
+      document.getElementById('paypal-button-container').style.display = 'none';
+      document.getElementById('paypal-button-container-abo').style.display = 'none';
+      document.querySelector(".paypal").disabled = 'true';
+
+        //Elements to take
+      var newmember = document.getElementById("newmember").value;
+      var membershiptype =  document.getElementById("membership").value;
+      var firstname_pay = document.getElementById("firstname_pay").value;
+      var email_payment = document.getElementById("email_payment").value;
+      var course_pay = $('#course_pay').val(); 
+      var membershiptype_nr = document.getElementById("nr_months").value;
+      var coursesnumber_nr = document.getElementById("nr_courses").value;
+      var course_price = document.getElementById("price_course").value;
+      var type_payment = document.getElementById("pricemonthly").value;
+
+      //GET DATE
+      var date = new Date();
+      var date2 = new Date();
+      var date3 = addMonths(new Date(), Number(1));
+      var date4 = addMonths(new Date(), Number(2));
+var date5 = new Date();
+
+
+      let currentDate = formatDate(date);
+      let future_datum;
+
+      if (type_payment == "Monthly") {
+          future_datum = addMonths(date5, 1);
+      } else {
+          future_datum = addMonths(date5, Number(membershiptype_nr));
+      }
+      let future_date = formatDate(future_datum);
+
+      // Contract
+      var contract_datum = addMonths(date2, Number(membershiptype_nr));
+      let contract_date = formatDate(contract_datum); 
+
+      console.log('This person paid',firstname_pay, ", ",email_payment, ", ",idinput.value );
+
+      payment_array.length = 0;
+
+      let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal Subscription",false,type_payment,99996,currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+      console.log(arr_pay);
+
+      payment_array.push(arr_pay);
+
+
+      //CREATE FUTURE OPEN PAYMENTS
+      if(type_payment=="Monthly") {
+
+        for (let i = 0; i < (membershiptype_nr-1); i++) {
+          let future_datum2 = addMonths(date3, i);
+          let future_date2 = formatDate(future_datum2);
+          // Add 1 month to date4 and format it
+          let future_datum3 = addMonths(date4, i);
+          let future_date3 = formatDate(future_datum3);
+
+          console.log("Future Date 2:", future_date2);
+          console.log("Future Date 3:", future_date3);
+      
+          let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal Subscription",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+      
+          payment_array.push(array);
+        }
+        console.log("future_payments_array");
+        } 
+        sDataPay(payment_array);
+
+      }
+  }).render('#paypal-button-container-abo');
+}
 
 
 ///   	UTILS    /// 
 ////ADD MONTH FUNTION
 
 
-function addMonths(date, months) {
-  date.setMonth(date.getMonth() + months);
+function formatDate(date) {
+  let day = date.getDate();
+  let month = date.getMonth() + 1; // getMonth() is zero-based
+  let year = date.getFullYear();
+  
+  // Ensure day and month are always two digits
+  day = day < 10 ? '0' + day : day;
+  month = month < 10 ? '0' + month : month;
+  
+  return `${day}-${month}-${year}`;
+}
 
-  return date;
+
+function addMonths(date, months) {
+  const targetMonth = date.getMonth() + months;
+  const year = date.getFullYear();
+  const lastDayOfMonth = new Date(year, targetMonth + 1, 0).getDate();
+  const targetDate = Math.min(date.getDate(), lastDayOfMonth);
+  const result = new Date(year, targetMonth, targetDate);
+  return result;
 }
 
 

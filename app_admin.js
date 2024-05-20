@@ -37,9 +37,8 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoiEob22J9wd1_xOtZ8G7XRXx3r5bkLO0zAw3vAWMd6f3fKveg/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycby7wu-x6l6B8-NEG-EF12w7FrUlV9baOof03QL6uPgNPX2XGp6FM1jKR7AGkHEGBmM/exec';
 
-const url_future_payments = 'https://script.google.com/macros/s/AKfycbyfsIY3x4hcen6sKh9UHKfTqjMPrnr1X-qTPOHx--HXTrIpobjv1p5TqSiQblGzlI4E/exec'
 
 var allPaymentsString =  "";
 var activePaymentString =  "";
@@ -1163,7 +1162,7 @@ onApprove: function(data, actions) {
 
     payment_array.length = 0;
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,99996,currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
     console.log(arr_pay);
 
     payment_array.push(arr_pay);
@@ -1182,7 +1181,7 @@ onApprove: function(data, actions) {
         let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
         let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
     
-        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,String(year)+String(month),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
     
         payment_array.push(array);
       }
@@ -1218,28 +1217,8 @@ location.reload();
          //repMessage.textContent = "Subscribed" ;
        })
      };
-    // Process Future Payments
-        function sDataPay_Future(arr) {
-          console.log(arr);
-    
-           let formData = new FormData();
-           formData.append('data', JSON.stringify(arr));
-           console.log("posting future PAYMENT in API")
-           fetch(url_future_payments, {
-             method: 'POST'
-             , body: formData
-           }).then(function (rep) {
-             return rep.json()
-           }).then(function (data) {
-              console.log("FUTURE PAYMENT POSTED");
-             //repMessage.textContent = "Subscribed" ;
-           })
-         };
-
-
 
     
-
 function bankProcess() {
 
   //create a new user if new
