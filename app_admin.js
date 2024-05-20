@@ -1371,7 +1371,7 @@ function bankProcess() {
   
   payment_array.length = 0;
   
-  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,"old 20245",currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
+  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,99996,currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
   
   payment_array.push(array0);
   
@@ -1385,17 +1385,17 @@ function bankProcess() {
   
     for (let i = 0; i < (membershiptype_nr-1); i++) {
       // Add 1 month to date3 and format it
-      let future_datum2 = addMonths(date3, 1);
+      let future_datum2 = addMonths(date3, i);
       let future_date2 = formatDate(future_datum2);
 
       // Add 1 month to date4 and format it
-      let future_datum3 = addMonths(date4, 1);
+      let future_datum3 = addMonths(date4, i);
       let future_date3 = formatDate(future_datum3);
 
       console.log("Future Date 2:", future_date2);
       console.log("Future Date 3:", future_date3);
     
-      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,payment_method,false,type_payment,"old 20245",currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,payment_method,false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
   
       payment_array.push(array);
     }
@@ -1447,9 +1447,12 @@ function formatDate(date) {
 
 
 function addMonths(date, months) {
-  date.setMonth(date.getMonth() + months);
-
-  return date;
+  const targetMonth = date.getMonth() + months;
+  const year = date.getFullYear();
+  const lastDayOfMonth = new Date(year, targetMonth + 1, 0).getDate();
+  const targetDate = Math.min(date.getDate(), lastDayOfMonth);
+  const result = new Date(year, targetMonth, targetDate);
+  return result;
 }
 
  function downloadPdfFromHtml(htmlString, fileName) {
