@@ -238,7 +238,7 @@ function getPrices() {
 
 async function Create_Payment_Form(membership, price_total,nr_months,stripe_link,nr_courses,paypal_sub_id) { 
   
-  await sleep(2500);
+  await sleep(1000);
   
   paymentForm(membership, price_total,nr_months,stripe_link,"Einmalige Zahlung",nr_courses,"Total",paypal_sub_id); 
   document.getElementById("stripe-container").style.display = 'none';
@@ -248,7 +248,7 @@ async function Create_Payment_Form(membership, price_total,nr_months,stripe_link
 
 async function Create_Payment_Form_Abo(membership, price_total,nr_months,stripe_link,nr_courses,paypal_sub_id) { 
 
-  await sleep(2500);
+  await sleep(1000);
   paymentForm(membership, price_total,nr_months,stripe_link,"Monatsabonnement",nr_courses,"Monthly",paypal_sub_id);
   document.getElementById("stripe-container").style.display = 'none';
   document.getElementById("payment-block").style.display = 'block';
