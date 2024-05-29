@@ -35,7 +35,9 @@ const url = 'https://script.google.com/macros/s/AKfycbwkx_YygwDyJRhkc_Rnl_s3a1LA
 // ALTE 'https://script.google.com/macros/s/AKfycbwFcDRbzmC0LsFZBn2Z5EL5Vn5DdwcT7Llh94W2xIaFy8h-iaGaYa-Wot7PlC4hU8Mt/exec';
 
 
-const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
+//const urluser_old =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
+
+const urluser = 'https://script.google.com/macros/s/AKfycbxjD7yb9lUFNxSx2lsRMKJ649gp26AsxjLQvr12G6YE7neCVku2lmaIrNWCl0K1kVg/exec';
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
@@ -503,8 +505,8 @@ function getUser(email_value) {
 
         }
         });
-        showPayment(data.activepayment);
-        showAllePayments(data.historypayments);
+        //showPayment(data.activepayment);
+        //showAllePayments(data.historypayments);
 
       });
       } else {

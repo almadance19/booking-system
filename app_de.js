@@ -33,7 +33,9 @@ function sleep(ms) {
 // call API COURSES
 const url = 'https://script.google.com/macros/s/AKfycbwkx_YygwDyJRhkc_Rnl_s3a1LAUz7q7f-GNT-HjCipwudJEwrARw38-_kOJ9gQSSpw/exec';
 
-const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
+//const urluser_old =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
+
+const urluser = 'https://script.google.com/macros/s/AKfycbxjD7yb9lUFNxSx2lsRMKJ649gp26AsxjLQvr12G6YE7neCVku2lmaIrNWCl0K1kVg/exec';
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
@@ -296,9 +298,11 @@ function showMemberships() {
     document.getElementById("payment-block").style.display = 'none';
     btnBookaclass.style.display = "block";
     document.querySelector(".section-1").scrollIntoView();
-      if (idinput.value=="Not Registered yet" || idinput.value=="No Active User") {
-        getUser(email_value);
-      } 
+
+    if (idinput.value=="Not Registered yet" || idinput.value=="No Active User") {
+      getUser(email_value);
+    } 
+
     } else {
       outputMembership.innerHTML = "Enter a valid email";
     }
@@ -504,8 +508,8 @@ function getUser(email_value) {
           
         }
         });
-        showPayment(data.activepayment);
-        showAllePayments(data.historypayments);
+        //showPayment(data.activepayment);
+        ///showAllePayments(data.historypayments);
 
       });
       } else {
