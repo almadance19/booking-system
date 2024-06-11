@@ -398,6 +398,11 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
+    displayTable += '<label for="telefon" style="font-weight: bold">Phone Number / Telefon</label>';
+    displayTable += "<input type=\"text\" id=\"telefon\" class=\"form-control\" Value=\""+"\" >";
+    displayTable += '<small id="telefonHelp" class="form-text text-muted" style="color:yellow" > .</small>';
+    displayTable += '</div>';
+    displayTable += '<div class="form-row">';
     displayTable += '<label for="email" style="font-weight: bold" >Email (mandatory/erforderlich) </label>';
     displayTable += "<input type=\"email\" id=\"email_registration\" class=\"form-control\" aria-describedby=\"emailHelp\" Value=\""+user_email+"\" >";
     displayTable += '<small id="emailHelp" class="form-text text-muted" style="color:yellow" >** Check your email is correct.</small>';
@@ -720,7 +725,7 @@ function showPayment(payment)
     function AddRow(id,name,adress,dia,hora,fecha,details,genre,last_payment,last_due_payment,active)
     {
       var firstname = document.getElementById("firstname").value;
-      var lastname = "";
+      var lastname = document.getElementById("telefon").value;
       var phone = document.getElementById("gender").value;
       var leader_jn = document.getElementById("leader_jn").value;
       var promocode = document.getElementById("promocode").value;
