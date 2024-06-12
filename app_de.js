@@ -861,7 +861,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<div class="form-row">';
     displayTable += '<label for="price" style="font-weight: bold" >Preis EUR</label>';
     displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+price_total+"\" disabled>";
-    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**Sie können nur monatlich oder auf einmal (3/6/12 Monate) mit einer regelmäßigen Bankanweisung zahlen.</small>';
+    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**Sie können nur monatlich (3/6/12 Monate) mit einer regelmäßigen Bank-Dauerauftrag zahlen.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
     displayTable += "<input type=\"button\" value=\"Zahlungsmethode erneut auswählen\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
@@ -977,7 +977,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<div class="form-row">';
     displayTable += '<label for="price" style="font-weight: bold" >Preis EUR</label>';
     displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+price_total+"\" disabled>";
-    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**Sie können nur monatlich oder auf einmal (3/6/12 Monate) mit einer regelmäßigen Bankanweisung zahlen.</small>';
+    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**Sie können nur monatlich (3/6/12 Monate) mit einer regelmäßigen Bank-Dauerauftrag zahlen.</small>';
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
     displayTable += "<input type=\"button\" value=\"Zahlungsmethode erneut auswählen\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
@@ -1438,13 +1438,16 @@ if(type_payment=="Monthly") {
   console.log("future_payments_array");
   console.log(payment_array);
 
+  document.getElementById("sendPaymentEmail").disabled = true;
+  document.getElementById("paymentTitle").innerText = 'BITTE UMBEDINGT BANK DAUERAUFTRAG ALS FOTO WEITERLEITEN. Zahlungsdetails hier dargestellt und auch per Email versendet. Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
+  document.getElementById("paymentTitle").style = "color: red;font-weight:bold"
 
-} 
-
-console.log("sending pre bank cash payment");
+} else {
 document.getElementById("sendPaymentEmail").disabled = true;
 document.getElementById("paymentTitle").innerText = 'Zahlungsdetails hier dargestellt und auch per Email versendet. Bitte prüfe auch deinen Spamordner & wiederhole nicht die Zahlungsauswahl. Nach Zahlungseingang bist du offiziell angemeldet.';
 document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
+
+}
 
 sDataPay(payment_array);
 

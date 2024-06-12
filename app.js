@@ -854,7 +854,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<div class="form-row">';
     displayTable += '<label for="price" style="font-weight: bold" >Price / Preis EUR</label>';
     displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+price_total+"\" disabled>";
-    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly or all at once (3/6/12 months) with a Bank Regular Order </small>';
+    displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly (3/6/12 months) ONLY with a Bank Regular Order </small>';
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
     displayTable += "<input type=\"button\" value=\"Select Payment Method Again\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
@@ -967,7 +967,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
       displayTable += '<div class="form-row">';
       displayTable += '<label for="price" style="font-weight: bold" >Price / Preis EUR</label>';
       displayTable += "<input type=\"text\" id=\"price_course\" class=\"form-control\" aria-describedby=\"priceHelp\" Value=\""+price_total+"\" disabled>";
-      displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly or all at once (3/6/12 months) with a Bank Regular Order </small>';
+      displayTable += '<small id="priceHelp" class="form-text text-muted" style="color:yellow" >**You can only pay monthly (3/6/12 months) ONLY with a Bank Regular Order </small>';
       displayTable += '</div>';
       displayTable += '<div class="form-group col-md-3">';
       displayTable += "<input type=\"button\" value=\"Select Payment Method Again\" style=\"display:none\"  id=\"selectPriceAgain\" class=\"btn btn-dark\" ";
@@ -1430,12 +1430,17 @@ if(type_payment=="Monthly") {
   }
   console.log("future_payments_array");
   console.log(payment_array);
-} 
+  document.getElementById("sendPaymentEmail").disabled = true;
+  document.getElementById("paymentTitle").innerText = 'PLEASE SEND US A PHOTO OF THE REGULAR BANK ORDER. Payment information here displayed and also has been sent to your email. Please check your spam folder as well, dont repeat this step. After Payment you are registered.';
+  document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
 
+} else {
   console.log("sending pre bank cash payment");
   document.getElementById("sendPaymentEmail").disabled = true;
   document.getElementById("paymentTitle").innerText = 'Payment information here displayed and also has been sent to your email. Please check your spam folder as well, dont repeat this step. After Payment you are registered.';
   document.getElementById("paymentTitle").style = "color: red;font-weight:bold";
+
+} 
 
   sDataPay(payment_array);
 
