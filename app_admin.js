@@ -854,6 +854,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<option >Salsa Improvers</option>';
     displayTable += '<option >Salsa Intermediate</option>';
     displayTable += '<option >Zouk Open Level</option>';
+    displayTable += '<option >Wedding Dance</option>';
     displayTable += '<option >Flatrate</option>';
     displayTable += '</select>';
     displayTable += '</div>'; 
