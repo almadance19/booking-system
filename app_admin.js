@@ -887,6 +887,13 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '</select>';
     displayTable += '</div>'; 
     displayTable += '<div class="form-row">';
+    displayTable += '<label for="send_email_flag" style="font-weight: bold">Send Email Confirmation </label>';
+    displayTable += '<select class="custom-select" multiple data-live-search="true" id="send_email_flag"  >';
+    displayTable += '<option >Yes</option>';
+    displayTable += '<option >No</option>';
+    displayTable += '</select>';
+    displayTable += '</div>';
+    displayTable += '<div class="form-row">';
     displayTable += '<label for="payment_method" style="font-weight: bold">Payment Method</label>';
     displayTable += '<select class="custom-select" multiple data-live-search="true" id="payment_method"  >';
     displayTable += '<option >Bank Überweisung</option>';
@@ -923,11 +930,11 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += " onclick=\"paypalProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Zahlung eintragen\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Continue\" style=\"display:none\"  id=\"addBank\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"bankProcess()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
-    displayTable += "<input type=\"button\" value=\"Zahlung bestätigen\" style=\"display:none;background-color: rgb(172, 22, 22);\" id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
+    displayTable += "<input type=\"button\" value=\"Save Payment\" style=\"display:none;background-color: rgb(172, 22, 22);\" id=\"sendPaymentEmail\" class=\"btn btn-dark\" ";
     displayTable += " onclick=\"bankProcess_sendEmail()\" / disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
@@ -1226,6 +1233,8 @@ function bankProcess() {
   //create a new payment not paid
   //send a email with payment details 
   payment_status = document.getElementById("payment_status").value;
+  send_email = document.getElementById("send_email_flag").value;
+  
 
 
   let payment_status_var; 
@@ -1240,10 +1249,19 @@ function bankProcess() {
     pay_yes_no=false
   }
 
+  let send_email_flag_var;
+
+  if (send_email=="Yes") {
+    send_email_flag_var = "Nein";
+  } else {
+    send_email_flag_var = "sent";
+  }
+
   payment_method = document.getElementById("payment_method").value;
 
   document.getElementById("payment_method").disabled = true;
   document.getElementById("payment_status").disabled = true;
+  document.getElementById("send_email_flag").disabled = true
   document.getElementById("addBank").disabled = true;
   //document.getElementById("addPaypal").disabled = true;
   document.getElementById("course_pay").disabled = true;
@@ -1351,7 +1369,7 @@ function bankProcess() {
   
   payment_array.length = 0;
   
-  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,99996,currentDate,payment_status_var,email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
+  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,99996,currentDate,payment_status_var,email_payment,send_email_flag_var,"",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
   
   payment_array.push(array0);
   
