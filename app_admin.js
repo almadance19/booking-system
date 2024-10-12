@@ -1,4 +1,4 @@
-//GIT GUIDE
+//GIT GUIDE Comment
 // git init
 //git remote add origin "https://github.com/almadance19/tanzschule_frankfurt.git"
 //git add --all
