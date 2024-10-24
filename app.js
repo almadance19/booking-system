@@ -28,10 +28,10 @@ function getInit() {
 
 // call API COURSES
 
-const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
+//const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
+const url = 'https://script.google.com/macros/s/AKfycbz0d1-vtqoAEpYNNJGTYE2xBPBwao9x7FGACo66PI8RP0XXQxsUkghU24gfJiN2sHV3/exec';
 
-//'https://script.google.com/macros/s/AKfycbwkx_YygwDyJRhkc_Rnl_s3a1LAUz7q7f-GNT-HjCipwudJEwrARw38-_kOJ9gQSSpw/exec';
 
 
 
@@ -126,7 +126,7 @@ function getData() {
       if (val[10]==true && val[12]=="NEIN" && val[13]=="" ) {
         displayTable += "<tr class=\""+val[2]+"\" >";
         displayTable += "<td><input type=\"button\" value=\"Register\" class=\"btn btn-colour-1\" ";
-        displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"')\" /></td>";
+        displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"',"+"'"+val[14]+"')\" /></td>";
         displayTable += "<td>"+val[1]+"</td>";
         displayTable += "<td>"+val[5]+" "+val[7]+"</td>";
         displayTable += "<td>"+val[8]+"</td>";
@@ -329,7 +329,7 @@ function getPayments() {
 
 // create book class modal
 
-function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
+function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details,openDate)
 {
     var name_user = document.getElementById("User_name").value;
     var last_payment = document.getElementById("User_lastpayment").value;
@@ -421,7 +421,7 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details)
     displayTable += '</div>';
     displayTable += '<div class="form-group col-md-3">';
     displayTable += "<input type=\"button\" value=\"Anmelden\" id=\"addRegis\" class=\"btn btn-colour-1\" ";
-    displayTable += " onclick=\"AddRow('"+id+"',"+"'"+name+"',"+"'"+adress+"',"+"'"+dia+"',"+"'"+hora+"',"+"'"+fecha+"',"+"'"+details+"',"+"'"+genre+"',"+"'"+last_payment+"',"+"'"+last_due_payment+"',"+"'"+active+"')\" />";
+    displayTable += " onclick=\"AddRow('"+id+"',"+"'"+name+"',"+"'"+adress+"',"+"'"+dia+"',"+"'"+hora+"',"+"'"+fecha+"',"+"'"+details+"',"+"'"+genre+"',"+"'"+last_payment+"',"+"'"+last_due_payment+"',"+"'"+active+"',"+"'"+openDate+"')\" />"; 
    
     displayTable += '</div>';
     displayTable += "</div>";
@@ -727,7 +727,7 @@ function showPayment(payment)
     
 
   /// Save Class Registration and Post in Classes Api
-    function AddRow(id,name,adress,dia,hora,fecha,details,genre,last_payment,last_due_payment,active)
+    function AddRow(id,name,adress,dia,hora,fecha,details,genre,last_payment,last_due_payment,active,openDate)
     {
       var firstname = document.getElementById("firstname").value;
       var lastname = document.getElementById("telefon").value;
@@ -736,7 +736,7 @@ function showPayment(payment)
       var promocode = document.getElementById("promocode").value;
       var promocode = document.getElementById("promocode").value;
       var email = document.getElementById("email_registration").value;
-      let arr = [firstname, lastname, phone, leader_jn, promocode, email,id,name,adress,dia,hora,fecha,details,genre,last_payment,last_due_payment,active];
+      let arr = [firstname, lastname, phone, leader_jn, promocode, email,id,name,adress,dia,hora,fecha,details,genre,last_payment,last_due_payment,active,openDate];
       if(firstname != ''   && leader_jn != ''  && email != '' && last_payment != 'Not Registered yet')
       {
       console.log(arr);
