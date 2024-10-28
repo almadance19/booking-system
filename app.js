@@ -5,7 +5,8 @@
 //git commit -m "commit message"
 //git commit -m "commit message"git push --force origin
 //git push --force origin master
-//
+//git remote show origin ... git remote remove origin
+// git remote set-url origin git://new.url.here  
 
 //ADD LOGIC TO CONTROL and MARK AKTIV PAYMENTS
 // DONE add option to pay monthly or all at once
