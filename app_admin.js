@@ -37,8 +37,7 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycby7wu-x6l6B8-NEG-EF12w7FrUlV9baOof03QL6uPgNPX2XGp6FM1jKR7AGkHEGBmM/exec';
-
+const url_payment = 'https://script.google.com/macros/s/AKfycbyXiOj1vOfV_d653d0bZBSKkpua06iZmzbUOCnBdvsEmFGw6ZLK4qWVkkOJbyPTbKM/exec';
 
 var allPaymentsString =  "";
 var activePaymentString =  "";
@@ -862,7 +861,8 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "<input type=\"text\" id=\"nr_courses\" class=\"form-control\" style=\"display:none\"  Value=\""+nr_courses+"\" disabled>";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
-    displayTable += "<input type=\"text\" id=\"nr_months\" class=\"form-control\"  style=\"display:none\" Value=\""+nr_months+"\" disabled>";
+    displayTable += '<label for="nr_months" style="font-weight: bold">Nr. Months</label>';
+    displayTable += "<input type=\"text\" id=\"nr_months\" class=\"form-control\"   Value=\""+nr_months+"\" >";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += "<input type=\"text\" id=\"membership\" class=\"form-control\" style=\"display:none\" Value=\""+membership+"\" disabled>";
