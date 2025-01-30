@@ -37,7 +37,7 @@ const urluser =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycbyXiOj1vOfV_d653d0bZBSKkpua06iZmzbUOCnBdvsEmFGw6ZLK4qWVkkOJbyPTbKM/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycbwDUilotiUtMaT_ZhrflBCjk3iL9y0TvJixwNczx3xf9o6-N0xS7MvG9MKRKQZY8fY/exec';
 
 var allPaymentsString =  "";
 var activePaymentString =  "";
@@ -1170,7 +1170,7 @@ onApprove: function(data, actions) {
 
     payment_array.length = 0;
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,99996,currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,getMonthString(date),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
     console.log(arr_pay);
 
     payment_array.push(arr_pay);
@@ -1188,8 +1188,9 @@ onApprove: function(data, actions) {
         let future_year2 = future_datum2.getFullYear();
         let future_date2 = `${future_day2}-${future_month2}-${future_year2}`;
         let future_date3 = `${future_day2}-${future_month3}-${future_year2}`;
+        const monthString2 = getMonthString(future_datum2);
     
-        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,monthString2,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
     
         payment_array.push(array);
       }
@@ -1369,7 +1370,7 @@ function bankProcess() {
   
   payment_array.length = 0;
   
-  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,99996,currentDate,payment_status_var,email_payment,send_email_flag_var,"",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
+  let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,payment_method,false,type_payment,getMonthString(date),currentDate,payment_status_var,email_payment,send_email_flag_var,"",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,payment_status_var,contract_date,pay_yes_no];
   
   payment_array.push(array0);
   
@@ -1392,8 +1393,9 @@ function bankProcess() {
 
       console.log("Future Date 2:", future_date2);
       console.log("Future Date 3:", future_date3);
+      const monthString2 = getMonthString(future_datum2);
     
-      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,payment_method,false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+      let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,payment_method,false,type_payment,monthString2,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
   
       payment_array.push(array);
     }
@@ -1431,6 +1433,13 @@ function bankProcess() {
 
 ///   	UTILS    /// 
 ////ADD MONTH FUNTION
+function getMonthString(date) {
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  return monthNames[date.getMonth()];
+}
+
 function formatDate(date) {
   let day = date.getDate();
   let month = date.getMonth() + 1; // getMonth() is zero-based

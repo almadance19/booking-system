@@ -41,7 +41,7 @@ const urluser = 'https://script.google.com/macros/s/AKfycbxjD7yb9lUFNxSx2lsRMKJ6
 
 const url_prices = 'https://script.google.com/macros/s/AKfycbxQJP0x0GEQQ7ZbdYxed1_EQfr5aRNonJWH82iEzg8wUn-M5cNy2l7yGZ2FPpx0Vz4D/exec';
 
-const url_payment = 'https://script.google.com/macros/s/AKfycby7wu-x6l6B8-NEG-EF12w7FrUlV9baOof03QL6uPgNPX2XGp6FM1jKR7AGkHEGBmM/exec';
+const url_payment = 'https://script.google.com/macros/s/AKfycbwDUilotiUtMaT_ZhrflBCjk3iL9y0TvJixwNczx3xf9o6-N0xS7MvG9MKRKQZY8fY/exec';
 
 
 // ALTE const url_payment = 'https://script.google.com/macros/s/AKfycbz8OUKWTGVbpTpcUXoiEob22J9wd1_xOtZ8G7XRXx3r5bkLO0zAw3vAWMd6f3fKveg/exec';
@@ -1243,7 +1243,7 @@ var date5 = new Date();
 
     payment_array.length = 0;
 
-    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,99996,currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+    let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,getMonthString(date),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
     console.log(arr_pay);
 
     payment_array.push(arr_pay);
@@ -1251,18 +1251,21 @@ var date5 = new Date();
 
     //CREATE FUTURE OPEN PAYMENTS
     if(type_payment=="Monthly") {
-
+      let future_datum2 = addMonths(new Date(), 0); // Start with next month
+      let future_datum3 = addMonths(new Date(), 1); // Start with 2 months from now
+    
       for (let i = 0; i < (membershiptype_nr-1); i++) {
-        let future_datum2 = addMonths(date3, i);
-        let future_date2 = formatDate(future_datum2);
-        // Add 1 month to date4 and format it
-        let future_datum3 = addMonths(date4, i);
-        let future_date3 = formatDate(future_datum3);
-
+        future_datum2 = addMonths(future_datum2, 1); // Add 1 month to the previous future_datum2
+        future_date2 = formatDate(future_datum2);
+        const monthString2 = getMonthString(future_datum2); // Get month string
+    
+        future_datum3 = addMonths(future_datum3, 1); // Add 1 month to the previous future_datum3
+        future_date3 = formatDate(future_datum3);
+    
         console.log("Future Date 2:", future_date2);
         console.log("Future Date 3:", future_date3);
     
-        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+        let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,monthString2,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
     
         payment_array.push(array);
       }
@@ -1415,7 +1418,7 @@ console.log(course_pay);
 
 payment_array.length = 0;
 
-let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
+let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Bank Überweisung",false,type_payment,getMonthString(date),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,false];
 
 payment_array.push(array0);
 
@@ -1423,19 +1426,21 @@ document.getElementById("sendPaymentEmail").disabled = false;
 document.getElementById("sendPaymentEmail").style.display = 'none';
 
 if(type_payment=="Monthly") {
-
+  let future_datum2 = addMonths(new Date(), 0); // Start with next month
+  let future_datum3 = addMonths(new Date(), 1); // Start with 2 months from now
 
   for (let i = 0; i < (membershiptype_nr-1); i++) {
-    let future_datum2 = addMonths(date3, i);
-    let future_date2 = formatDate(future_datum2);
-    // Add 1 month to date4 and format it
-    let future_datum3 = addMonths(date4, i);
-    let future_date3 = formatDate(future_datum3);
+    future_datum2 = addMonths(future_datum2, 1); // Add 1 month to the previous future_datum2
+    future_date2 = formatDate(future_datum2);
+    const monthString2 = getMonthString(future_datum2); // Get month string
+
+    future_datum3 = addMonths(future_datum3, 1); // Add 1 month to the previous future_datum3
+    future_date3 = formatDate(future_datum3);
 
     console.log("Future Date 2:", future_date2);
     console.log("Future Date 3:", future_date3);
 
-    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+    let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,monthString2,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
 
     payment_array.push(array);
   }
@@ -1459,6 +1464,12 @@ sDataPay(payment_array);
 };
  
 
+function getMonthString(date) {
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  return monthNames[date.getMonth()];
+}
 
 //// BANK PAYMENT
 async function  bankProcess_sendEmail(arr) {
@@ -1541,7 +1552,7 @@ var date5 = new Date();
 
         payment_array.length = 0;
 
-        let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,99996,currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+        let arr_pay = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Paypal",false,type_payment,getMonthString(date),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
         console.log(arr_pay);
 
         payment_array.push(arr_pay);
@@ -1549,18 +1560,21 @@ var date5 = new Date();
 
         //CREATE FUTURE OPEN PAYMENTS
         if(type_payment=="Monthly") {
-
+          let future_datum2 = addMonths(new Date(), 0); // Start with next month
+          let future_datum3 = addMonths(new Date(), 1); // Start with 2 months from now
+        
           for (let i = 0; i < (membershiptype_nr-1); i++) {
-            let future_datum2 = addMonths(date3, i);
-            let future_date2 = formatDate(future_datum2);
-            // Add 1 month to date4 and format it
-            let future_datum3 = addMonths(date4, i);
-            let future_date3 = formatDate(future_datum3);
-
+            future_datum2 = addMonths(future_datum2, 1); // Add 1 month to the previous future_datum2
+            future_date2 = formatDate(future_datum2);
+            const monthString2 = getMonthString(future_datum2); // Get month string
+        
+            future_datum3 = addMonths(future_datum3, 1); // Add 1 month to the previous future_datum3
+            future_date3 = formatDate(future_datum3);
+        
             console.log("Future Date 2:", future_date2);
             console.log("Future Date 3:", future_date3);
         
-            let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Paypal",false,type_payment,99996,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
+            let array = [String(newmember),idinput.value,firstname_pay,membershiptype,future_date2,course_price,"Bank Überweisung",false,type_payment,monthString2,currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",future_date2,future_date3,"NotPaidYet",contract_date,false];
         
             payment_array.push(array);
           }
