@@ -31,9 +31,7 @@ function getInit() {
 
 //const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbz0d1-vtqoAEpYNNJGTYE2xBPBwao9x7FGACo66PI8RP0XXQxsUkghU24gfJiN2sHV3/exec';
-
-
+const url = 'https://script.google.com/macros/s/AKfycbzYNRAPgtUJnBgp6TOdD_sRsT4pQwA8yLq2Qz-qAPvQqxrFHCt8d9BjUF7Fo4370EQL/exec';
 
 
 //'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
@@ -99,65 +97,106 @@ var payment_array = [];
 var future_payments_array = [];
 // gets classes data
  
+function compareDate(dateString) {
+  // Split the date string into day, month, and year components
+  const [day, month, year] = dateString.split('-');
+
+  // Create a Date object from the components (month is 0-indexed in JavaScript)
+  const date = new Date(year, month - 1, day);
+  console.log(date);
+
+  // Calculate today's date plus 15 days
+  const todayPlus15 = new Date();
+  todayPlus15.setDate(todayPlus15.getDate() + 14);
+  console.log(todayPlus15);
+
+  const result = date < todayPlus15;
+  console.log(result);
+
+  // Compare the dates and return the result
+  return date < todayPlus15;
+}
+
 function getData() {
-    	  var today = new Date();
-        var d = new Date();
-        var day = d.getDay();
-        var displayTable = '';
-        displayTable += '<div class=\"container float-left\" id=\"tableContainer\" >';
-        displayTable += '<table class=\"table table-striped\" id=\"mainTable\" >';
-        displayTable += '<thead  class=\"thead-dark\" >';
-        displayTable += "<tr>";
-        displayTable += "<th></th>";
-        displayTable += "<th>Course</th>";
-        displayTable += "<th>Day/Time</th>";
-        displayTable += "<th>Day/Date</th>";
-        displayTable += "<th>Level</th>";
-        displayTable += "</tr>";
-        displayTable += '</thead>';
-        var coma = ",";
+  var today = new Date();
+  var d = new Date();
+  var day = d.getDay();
+  var displayTable = '';
+  displayTable += '<div class="container float-left" id="tableContainer">';
+  displayTable += '<table class="table table-striped" id="mainTable">';
+  displayTable += '<thead class="thead-dark">';
+  displayTable += "<tr>";
+  displayTable += "<th></th>";
+  displayTable += "<th>Course</th>";
+  displayTable += "<th>Day/Time</th>";
+  displayTable += "<th>Day/Date</th>";
+  displayTable += "<th>Level</th>";
+  displayTable += "</tr>";
+  displayTable += '</thead>';
 
+  fetch(url).then(function(rep) {
+      return rep.json();
+  }).then(function(data) {
+      console.log(data);
+      output.innerHTML = "";
+      const newCourses = []; // Array to store new courses
 
-  fetch(url).then(function (rep) {
-    return rep.json()
-  }).then(function (data) {
-    console.log(data);
-    output.innerHTML = "";
-    data.posts.forEach(function (val) {
-      if (val[10]==true && val[12]=="NEIN" && val[13]=="" ) {
-        displayTable += "<tr class=\""+val[2]+"\" >";
-        displayTable += "<td><input type=\"button\" value=\"Register\" class=\"btn btn-colour-1\" ";
-        displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"',"+"'"+val[14]+"')\" /></td>";
-        displayTable += "<td>"+val[1]+"</td>";
-        displayTable += "<td>"+val[5]+" "+val[7]+"</td>";
-        displayTable += "<td>"+val[8]+"</td>";
-        displayTable += "<td>"+val[3]+"</td>";
-        displayTable += "</tr>";
+      data.posts.forEach(function(val) {
+          if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
+              // Add to new courses array
+              newCourses.push(val);
+          } else if (val[10] && val[12] === "NEIN" && val[13] === "" && compareDate(val[8])) {
+              // Existing logic for regular courses
+              displayTable += buildTableRow(val, "Register", "btn-colour-1");
+          } else if (val[10] && val[12] === "NEIN" && compareDate(val[8])) {
+              // Existing logic for payment courses
+              displayTable += buildTableRow(val, "Pay & Register", "btn-colour-1", val[13]);
+          }
+      });
 
-      console.log(val);
-      } else if (val[10]==true && val[12]=="NEIN" ) {
-        displayTable += "<tr class=\"" + val[2] + "\" >";
-        displayTable += "<td><input type=\"button\" value=\"Pay & Register\" class=\"btn btn-colour-1\" ";
-        displayTable += "onclick=\"window.location.href='" + val[13] + "'\" /></td>"; // val[13] contains the URL (href)
-        //displayTable += "<td><input type=\"button\" value=\"Preregistration\" class=\"btn btn-colour-1\" ";
-        //displayTable += " onclick=\"showStates('"+val[0]+"',"+"'"+val[1]+"',"+"'"+val[2]+"',"+"'"+val[3]+"',"+"'"+val[4]+"',"+"'"+val[5]+"',"+"'"+val[6]+"',"+"'"+val[7]+"',"+"'"+val[8]+"',"+"'"+val[11]+"')\" /></td>";
-        displayTable += "<td>" + val[1] + "</td>";
-        displayTable += "<td>" + val[5] + " " + val[7] + "</td>";
-        displayTable += "<td>" + val[8] + "</td>";
-        displayTable += "<td>"+val[3]+"</td>";
-        displayTable += "</tr>";
-      console.log(val);
+      // Close main table
+      displayTable += '</table></div>';
+
+      // Add new courses table if any
+      if (newCourses.length > 0) {
+          displayTable += '<div class="new-course-container">';
+          displayTable += '<table class="table table-striped new-course-table">';
+          displayTable += '<thead class="new-course-header">';
+          displayTable += "<tr><th colspan='5'>New Courses</th></tr>";
+          displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
+          displayTable += '</thead>';
+
+          newCourses.forEach(function(val) {
+              displayTable += buildTableRow(val, "Enroll Now", "btn-colour-1");
+          });
+
+          displayTable += '</table></div>';
       }
-       
-    } 
-    )
-        displayTable += '</table>';
-        displayTable += '</div>';     
-        document.getElementById("rowdata").innerHTML = displayTable;
 
-  })
+      document.getElementById("rowdata").innerHTML = displayTable;
+  });
 
-};
+  // Helper function to build table rows
+  function buildTableRow(val, btnText, btnClass, link) {
+      let row = "<tr class='" + val[2] + "'>";
+      row += "<td><input type='button' value='" + btnText + "' class='btn " + btnClass + "' ";
+      
+      if (link) {
+          row += "onclick=\"window.location.href='" + link + "'\"";
+      } else {
+          row += "onclick=\"showStates('" + val.join("','") + "')\"";
+          console.log(row)
+      }
+      
+      row += "/></td>";
+      row += "<td>" + val[1] + "</td>";
+      row += "<td>" + val[5] + " " + val[7] + "</td>";
+      row += "<td>" + val[8] + "</td>";
+      row += "<td>" + val[3] + "</td>";
+      row += "</tr>";
+      return row;
+  }
+}
 
 function getUserLocalData() { 
 
@@ -330,13 +369,14 @@ function getPayments() {
 
 // create book class modal
 
-function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,details,openDate)
+function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,timestamp,active_flag,details,oldFlag,newFlag,openDate,oDTime)
 {
     var name_user = document.getElementById("User_name").value;
     var last_payment = document.getElementById("User_lastpayment").value;
     var last_due_payment = document.getElementById("User_nextpayment").value;
     var active = document.getElementById("User_active").value;
     var user_email = document.getElementById("User_email").value;
+    console.log(openDate)
 
     let name_user2; 
 

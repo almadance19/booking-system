@@ -568,3 +568,36 @@
   }
 }
 /* End of Responsive */
+
+
+.new-course-container {
+  margin-top: 2rem;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  background-color: #f8fff8;
+}
+
+.new-course-table {
+  margin-bottom: 0;
+}
+
+.new-course-header {
+  background-color: #4CAF50 !important;
+  color: white;
+}
+
+.new-course-header tr:first-child th {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.btn-new-course {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #45a049;
+}
+
+.btn-new-course:hover {
+  background-color: #45a049;
+  color: white;
+}
