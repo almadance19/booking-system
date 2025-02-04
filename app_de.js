@@ -160,7 +160,7 @@ function getData() {
           displayTable += '<div class="new-course-container">';
           displayTable += '<table class="table table-striped new-course-table">';
           displayTable += '<thead class="new-course-header">';
-          displayTable += "<tr><th colspan='5'>Neue Kurse</th></tr>";
+          displayTable += "<tr><th colspan='5'>Kommende Neue Kurse (Warteliste)</th></tr>";
           displayTable += '<tr><th></th><th>Kurs</th><th>Tag/Uhrzeit</th><th>Tag/Datum</th><th>Niveau</th></tr>';
           displayTable += '</thead>';
 
