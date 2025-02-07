@@ -872,6 +872,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<option >Bachata Intermediate</option>';
     displayTable += '<option >Bachata Advanced</option>';
     displayTable += '<option >Lady Styling Bachata</option>';
+    displayTable += '<option >Lady Styling Salsa</option>';
     displayTable += '<option >Kizomba</option>';
     displayTable += '<option >Salsa Fundamentals</option>';
     displayTable += '<option >Salsa Improvers</option>';
@@ -989,6 +990,7 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += '<option >Bachata Intermediate</option>';
     displayTable += '<option >Bachata Advanced</option>';
     displayTable += '<option >Lady Styling Bachata</option>';
+    displayTable += '<option >Lady Styling Salsa</option>';
     displayTable += '<option >Kizomba</option>';
     displayTable += '<option >Salsa Fundamentals</option>';
     displayTable += '<option >Salsa Improvers</option>';
