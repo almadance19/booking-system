@@ -138,6 +138,7 @@ function getData() {
       console.log(data);
       output.innerHTML = "";
       const newCourses = []; // Array to store new courses
+      const newWorkshops = []; // Array to store new courses
 
       data.posts.forEach(function(val) {
           if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
@@ -149,6 +150,7 @@ function getData() {
           } else if (val[10] && val[12] === "NEIN" && compareDate(val[8])) {
               // Existing logic for payment courses
               displayTable += buildTableRow(val, "Zahlen + Anmelden", "btn-colour-1", val[13]);
+              newWorkshops.push(val);
           }
       });
 
@@ -169,6 +171,21 @@ function getData() {
           });
 
           displayTable += '</table></div>';
+      }
+
+      if (newWorkshops.length > 0) {
+        displayTable += '<div class="new-course-container">';
+        displayTable += '<table class="table table-striped new-course-table">';
+        displayTable += '<thead class="new-course-header">';
+        displayTable += "<tr><th colspan='5'>Weekend Workshops</th></tr>";
+        displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
+        displayTable += '</thead>';
+
+        newWorkshops.forEach(function(val) {
+            displayTable += buildTableRow(val, "Bezahlen & Anmelden", "btn-colour-1", val[13]);
+        });
+
+        displayTable += '</table></div>';
       }
 
       document.getElementById("rowdata").innerHTML = displayTable;
