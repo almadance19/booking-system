@@ -148,10 +148,10 @@ function getData() {
           if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
               // Add to new courses array
               newCourses.push(val);
-          } else if (val[10] && val[12] === "NEIN" && val[13] === "" && compareDate(val[8])) {
+          } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
               // Existing logic for regular courses
               displayTable += buildTableRow(val, "Register", "btn-colour-1");
-          } else if (val[10] && val[12] === "NEIN" && compareDate(val[8])) {
+          } else if (val[10] && val[12] === "NEIN" ) {
               // Existing logic for payment courses
               //displayTable += buildTableRow(val, "Pay & Register", "btn-colour-1", val[13]);
               newWorkshops.push(val);
@@ -186,7 +186,7 @@ function getData() {
         displayTable += '</thead>';
 
         newWorkshops.forEach(function(val) {
-            displayTable += buildTableRow(val, "Pay & Register", "btn-colour-1", val[13]);
+            displayTable += buildTableRow(val, "Register", "btn-colour-1", val[13]);
         });
 
         displayTable += '</table></div>';
