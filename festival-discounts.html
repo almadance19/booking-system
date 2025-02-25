@@ -13,12 +13,14 @@
   <meta property="og:description" content="Express & Connect. Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata  &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
   <meta name="description" content="Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
 
-  <title>Alma Dance Scheduler</title>
+  <title>Festival Discounts</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- icofont-css-link -->
-  <!--  <link rel="stylesheet" href="css/icofont.min.css"> -->
+  <link rel="stylesheet" href="css/icofont.min.css">
   <!-- Owl-Carosal-Style-link -->
   <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <!-- Bootstrap-Style-link -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- Aos-Style-link -->
   <link rel="stylesheet" href="css/aos.css">
   <!-- Coustome-Style-link -->
@@ -35,51 +37,57 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
-        "@id": "SportsActivityLocation",
-        "actionableFeedbackPolicy": "Alma Dance Frankfurt",
-        "additionalType": "https://alma-dance-frankfurt.de/",
-        "alternateName": "Tanzschule Alma Dance",
-        "areaServed": "Frankfurt am Main",
-        "description": "Join our amazing community to learn latin dance in Frankfurt. Meet new people, express yourself and grow by learning Salsa, Bachata & More.",
-      "image": [
-        "https://alma-dance-frankfurt.de/images/logo.webp",
-        "https://example.com/photos/4x3/photo.jpg",
-        "https://example.com/photos/16x9/photo.jpg"
-       ],
-      "name": "Alma Dance Frankfurt",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Dreieichstraße 35",
-        "addressLocality": "Frankfurt am Main",
-        "addressRegion": "Hessen",
-        "postalCode": "60594",
-        "addressCountry": "Germany"
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Viktoria"
+      "@type": "Event",
+      "@id": "DanceFestivalDiscounts",
+      "name": "Frankfurt Dance Festival Discounts & Info",
+      "description": "Find the best discounts and information on upcoming dance festivals, including Salsa and Bachata events in Frankfurt and around Europe.",
+      "url": "https://alma-dance-frankfurt.de/festivals",
+      "startDate": "2025-04-24",
+      "endDate": "2025-04-27",
+      "location": {
+        "@type": "Place",
+        "name": "Frankfurt Dance Festival Venue",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dreieichstraße 35",
+          "addressLocality": "Frankfurt am Main",
+          "addressRegion": "Hessen",
+          "postalCode": "60594",
+          "addressCountry": "Germany"
         }
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 50.10515822875264,
-        "longitude": 8.692279249077423
+      "offers": {
+        "@type": "Offer",
+        "name": "Early Bird Discount",
+        "price": "49.99",
+        "priceCurrency": "EUR",
+        "validFrom": "2025-01-01",
+        "validThrough": "2025-03-31",
+        "url": "https://alma-dance-frankfurt.de/festival-discounts"
       },
-      "url": "https://alma-dance-frankfurt.de/",
-      "telephone": "+49 1639641730",
-      "email": "info@alma-dance.de"
+      "organizer": {
+        "@type": "Organization",
+        "name": "Alma Dance Frankfurt",
+        "url": "https://alma-dance-frankfurt.de/",
+        "email": "info@alma-dance.de",
+        "telephone": "+49 1639641730"
+      },
+      "image": [
+        "https://alma-dance-frankfurt.de/images/festival-banner.webp"
+      ]
     }
-    </script>
+</script>
 
 
+<style>
+  .festival_section { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+    th { background: #84309a; color: white; }
+    .copy-btn { background: #84309a; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+    .copy-btn:hover { background: #007bff; }
+    .ticket-link { text-decoration: none; color: #007bff; font-weight: bold; }
+</style>
 
 </head>
 
@@ -141,13 +149,13 @@
               <a class="nav-link" href="location.html">Location</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://www.bachata-salsa-online.eu/">WE-Workshops</a>
+              <a class="nav-link" href="dance-partner-search.html">Dance Partner</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://wedding-dance-world.eu/index.html">Wedding Dance</a>
+              <a class="nav-link" href="https://wedding-dance-frankfurt.de/index.html">Wedding Dance</a>
             </li>
             <li class="nav-item">
               <div class="btn_block">
@@ -197,68 +205,38 @@
       </div>
   </div>
 </section>
-      <!-- Contact Form Section Start -->
-      <section class="contact_form row_am" data-aos="fade-in" data-aos-duration="1500">
-        <div class="contact_inner">
-          <div class="container">
-            <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-              <span class="title_badge">Message us</span>
-              <h2>Drop a message</h2>
-              <p>Fill up form below, our team will get back soon</p>
-            </div>
-            <form id ="form_message" data-aos="fade-up" data-aos-duration="1500">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <input id="first_name" type="text" style="color: black;"  class="form-control" placeholder="Name *" required>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <input id="email" type="email" style="color: black;"  class="form-control" placeholder="Email *" required>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <textarea id="message" class="form-control" style="color: black;" placeholder="Message"></textarea>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="coustome_checkbox">
-                    <label for="term_checkbox">
-                      <input type="checkbox" id="term_checkbox">
-                      <span class="checkmark"></span>
-                      I agree to receive emails, newsletters and promotional messages
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-4 text-right">
-                  <div class="btn_block">
-                    <!-- <div class="btn_bottom"></div> -->
-                    <div id="display_success"></div>
-                    <div id="btn_bottom"></div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <br>
-            <br>
-            <button  id="summit" class="btn puprple_btn ml-0">Submit</button>
-          </div>
-        </div>
-      </section>
-      <!-- Contact Form Section End -->
-  
+
+<section>
+  <section class="contact_section">
+    <div class="container">
+      <span class="title_badge">Festival Discounts</span>
+      <h2>Upcoming Dance Festivals</h2>
+      <p>Find the best discounts and information on upcoming dance festivals, including Salsa and Bachata events in Frankfurt and around Europe.</p>
+    </div>
+    <div class="festival_section">
+      <h2>Upcoming Dance Festivals</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>City</th>
+            <th>Start Date</th>
+            <th>Styles</th>
+            <th>Promo Code (Click to Copy)</th>
+            <th>Tickets</th>
+          </tr>
+        </thead>
+        <tbody id="festivalTable">
+          <tr><td colspan="3">Loading festivals...</td></tr>
+        </tbody>
+      </table>
+    </div>
+</section>
+
+
+
+
+
           <!-- Contact Us Section Start -->
           <section class="contact_section">
             <div class="container">
@@ -300,142 +278,7 @@
           </section>
           
 
-          <section class="row_am interface_section" style="padding: 0;margin: 0;">
-            <!-- container start -->
-            <div id="promotion-section" class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-              <span class="title_badge">Gallery</span>
-              <h2>Alma Dance<span> Highlights</span> </h2>
-              <h5>AT ALMA DANCE, THERE IS MORE TO IT THAN JUST DANCE COURSES… WE ARE A COMMUNITY!</h5>
-              <p>Dance is what makes us happy and gives us energy for the day.</p>
-              <p>We try to bring that to our classes and create a learning environment that is fun. We want to be the place where people make friends, feel comfortable and find balance to their working/student life.</p>
-            </div>  
-              <!-- screen slider start -->
-              <div class="screen_slider" data-aos="fade-up" data-aos-duration="1500">
-                <div id="screen_slider" class="owl-carousel owl-theme">
-                  <div class="item">
-                    <div class="screen_frame_img">
-                      <img loading="lazy" src="images/highlights1.webp" alt="bachata class frankfurt">
-                      <p></p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screen_frame_img">
-                      <img loading="lazy" src="images/highlights7.webp" alt="salsakurs aktion frankfurt">
-                      <p></p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screen_frame_img">
-                      <img loading="lazy" src="images/highlights2.webp" alt="bachatakurs aktion frankfurt">
-                      <p></p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screen_frame_img">
-                      <img loading="lazy" src="images/highlights3.webp" alt="Salsa class choreo">
-                      <p></p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screen_frame_img">
-                      <img loading="lazy" src="images/highlights6.webp" alt="bachata dancer frankfurt">
-                      <p></p>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screen_frame_img">
-                      <img loading="lazy" src="images/highlights5.webp" alt="latin dance frankfurt">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- screen slider end -->
-            <!-- container end -->
-          </section>
-          
-          <!-- Contact Us Section End -->
-          <section id="agenda-container" class="how_it_section">
-            <div class="how_it_inner" data-aos="fade-in" data-aos-duration="1500">
-              <div class="container">
-                <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
-                  <span class="title_badge"></span>
-                  <h2><span>Location</span></h2>
-                  <a href="https://maps.app.goo.gl/oLDcUZ7JxAanWwod9"><h4 class="">Alt-Bornheim 35, 60385 Frankfurt am Main </p></a>
-                  </div>
-                <div class="map_block row_am" data-aos="fade-in" data-aos-duration="1500">
-                  <div class="container">
-                    <iframe title="Location Alma Dance" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4398.778018899204!2d8.708018510485141!3d50.127860325948355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0f71905f8aff%3A0xc9a56681f6e2a1c0!2sAlma%20Dance%20Frankfurt!5e0!3m2!1sen!2sde!4v1709016672888!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div>
-                </div>
-                <h4>How to get there</h4>
-                <p>Das Studio ist sehr gut mit der U-Bahn zu erreichen.</p>
-                <p>Die Haltestellen "Bornheim Mitte" & "Seckbacher Landstraße" sind nur wenige Meter von unserem Hauptstandort entfernt.</p>
-              </div>
-            </div>
-          </section>
 
-<!-- PROGRAM FOTOS-Section start -->
-<section class="row_am interface_section">
-  <!-- container start -->
-  <div id="promotion-section" class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-    <span class="title_badge">Promotions</span>
-    <h2>Alma Dance<span> Highlights & Promotions</span> </h2>
-    <h4>We have flexible options for everyone, take a look at our promotions and get in contact for more.</h4>
-    <p>At Alma Dance, we dance to express and connect with ourselves and others. When we dance, we do it from our heart and soul, because only then it becomes more than just a movement.</p>
-    <p>For us, dance is art.</p>
-  </div>  
-    <!-- screen slider start -->
-    <div class="screen_slider" data-aos="fade-up" data-aos-duration="1500">
-      <div id="screen_slider" class="owl-carousel owl-theme">
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/prom1.webp" alt="bachata class promotion">
-            <p></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/promo3.webp" alt="salsakurs aktion">
-            <p></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/promo2.webp" alt="bachatakurs aktion">
-            <p></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/prom3.webp" alt="bachata class promotion">
-            <p></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/prom6.webp" alt="bachata class promotion">
-            <p></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/prom4.webp" alt="bachata class promotion">
-            <p></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="screen_frame_img">
-            <img src="images/prom5.webp" alt="bachata class promotion">
-            <p></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- screen slider end -->
-  <!-- container end -->
-</section>
-<!-- PROGRAM FOTOS-Section end -->
 
 
     <!-- Footer-Section start -->
@@ -556,7 +399,6 @@
 
 
 
-
 <script>
     $("#typed").typed({
       strings: ["Type Writing Text", "Auto Type Text", "Add any text you like here."],
@@ -578,6 +420,37 @@
         card.style.top = `${topStyle}px`;
         topStyle += 30;
       })
+
+      fetch('https://script.google.com/macros/s/AKfycby2nnqTgUDcZZ8dSzS3o5lG8frQJMtViZx4FRfz75I3xm677SGq2OjjcoDdCy4Yfljz/exec') // Replace with actual URL
+      .then(response => response.json())
+        .then(data => {
+          const festivalTable = document.getElementById("festivalTable");
+          festivalTable.innerHTML = ""; // Clear placeholder
+
+          data.forEach(festival => {
+            if (festival.flag  === "NEIN") {
+            let row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${festival.name}</td>
+              <td>${festival.city}</td>
+              <td>${String(festival.startdate).slice(0, 10)}</td>
+              <td>${festival.styles}</td>
+              <td>
+                <button class="copy-btn" onclick="copyPromo('${festival.promoCode}')">
+                  ${festival.promoCode}
+                </button>
+              </td>
+              <td>
+                <a class="ticket-link" href="${festival.link}" target="_blank">Tickets Website</a>
+              </td>
+            `;
+            festivalTable.appendChild(row);
+            }
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching festival data:", error);
+        });
   
     }
     );
@@ -591,60 +464,11 @@
       });
     });
   
-  
-    //// MESSAGES -----------------------------------------------
-  
-  const url_message = 'https://script.google.com/macros/s/AKfycbxIo6Q0Yqq5NjBiJSY5OZMOKylCJ4uR64RVvL8VKVTInGL-hCv3Hprs0rSSM2TbCbM/exec';
-
-  const form_message = document.getElementById("summit");
-  
-  form_message.addEventListener('click', handleFormSubmit);
-
-  const url_parameter = 'alma_dance';
-  
-  
-  
-  function handleFormSubmit(formObject){
-  var firstname = document.getElementById("first_name").value;
-  var message = document.getElementById("message").value;
-  var email = document.getElementById("email").value;
-  
-  if(firstname != '' && message != ''   && email != '' ) {
-  document.getElementById("summit").disabled = true;
-  document.getElementById("display_success").innerHTML = "We received your message. We will get back to you";
-  //send menssage 
-  let arr = [ firstname,message,email,url_parameter];
-  console.log(arr);
-  sData(arr);
-  
-  var firstname = document.getElementById("first_name").disabled = true;
-  var message = document.getElementById("message").disabled = true;
-  var email = document.getElementById("email").disabled = true;
-  
-  } else {
-  var alert = "There are misssing informations, please fill out the form";
-  document.getElementById("display_success").innerHTML = alert;
-  }
-  }
-  
-  
-      // Save Booking hl
-  function sData(arr) {
-  let formData = new FormData();
-  console.log(arr);
-  formData.append('data', JSON.stringify(arr));
-  const url_api = url_message;
-  console.log("posting registration in API")
-  console.log(url_api)
-  fetch(url_message, {
-    method: 'POST'
-    , body: formData
-  }).then(function (rep) {
-    return rep.json()
-  }).then(function (data) {
-     console.log("Subscribed");
-  })
-  };
+    function copyPromo(code) {
+      navigator.clipboard.writeText(code)
+        .then(() => alert("Promo code copied: " + code))
+        .catch(err => console.error("Failed to copy promo code:", err));
+    }
   
     </script>
 <link rel="stylesheet" href="css/icofont.min.css">
