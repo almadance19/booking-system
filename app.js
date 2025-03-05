@@ -31,7 +31,7 @@ function getInit() {
 
 //const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbzYNRAPgtUJnBgp6TOdD_sRsT4pQwA8yLq2Qz-qAPvQqxrFHCt8d9BjUF7Fo4370EQL/exec';
+const url = 'https://script.google.com/macros/s/AKfycbyPHArfq7Ekj8NqBDEGKiv9FDzb2yK0iex-idXUVhXJwgZG--9PJfP9vppU086xCG3_/exec';
 
 const url_fixed_classes = 'https://script.google.com/macros/s/AKfycbxby_GB-Dg74c8gH7SwVmGdcVAoccYsOg2QkevfHQ8HIce5Aa7WGVlsw9xQFaqOh84/exec';
 
@@ -449,17 +449,18 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,timestamp,a
     displayTable += '<div class="form-row">';
     displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">Registration Type</label>';
     displayTable += '<select class="custom-select" id="leader_jn">';
-    displayTable += '<option>Active Member /Mitglied </option>';
     displayTable += '<option>Trial Class / Probestunde</option>';
+    displayTable += '<option>Active Member /Mitglied </option>';
     displayTable += '<option>Workshops / Workshops</option>';
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="exampleFormControlSelect3" style="font-weight: bold">Class Type</label>';
     displayTable += '<select class="custom-select" id="promocode">';
+    displayTable += '<option>Individual Class & Trial Class</option>';
+    displayTable += '<option>Wellpass/Gympass</option>';
     displayTable += '<option>Regular Course</option>';
     displayTable += '<option>4-10er Karte</option>';
-    displayTable += '<option>Individual Class & Trial Class</option>';
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
