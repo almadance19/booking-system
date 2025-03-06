@@ -121,6 +121,7 @@ function getData() {
   var day = d.getDay();
   var displayTable = '';
   displayTable += '<div class="container float-left" id="tableContainer">';
+  displayTable += "<tr><th colspan='5'>Laufende regelmäßige Kurse</th></tr>";
   displayTable += '<table class="table table-striped" id="mainTable">';
   displayTable += '<thead class="thead-dark">';
   displayTable += "<tr>";
@@ -159,10 +160,11 @@ function getData() {
 
       // Add new courses table if any
       if (newCourses.length > 0) {
-          displayTable += '<div class="new-course-container">';
-          displayTable += '<table class="table table-striped new-course-table">';
-          displayTable += '<thead class="new-course-header">';
+          displayTable += '<br/>';
+          displayTable += '<div class="container float-left">';
           displayTable += "<tr><th colspan='5'>Kommende Neue Kurse (Warteliste)</th></tr>";
+          displayTable += '<table class="table table-striped">';
+          displayTable += '<thead class="thead-dark ">';
           displayTable += '<tr><th></th><th>Kurs</th><th>Tag/Uhrzeit</th><th>Tag/Datum</th><th>Niveau</th></tr>';
           displayTable += '</thead>';
 
@@ -174,10 +176,11 @@ function getData() {
       }
 
       if (newWorkshops.length > 0) {
-        displayTable += '<div class="new-course-container">';
-        displayTable += '<table class="table table-striped new-course-table">';
-        displayTable += '<thead class="new-course-header">';
+        displayTable += '<br/>';
+        displayTable += '<div class="container float-left">';
         displayTable += "<tr><th colspan='5'>Weekend Workshops</th></tr>";
+        displayTable += '<table class="table table-striped">';
+        displayTable += '<thead class="thead-dark ">';
         displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
         displayTable += '</thead>';
 
