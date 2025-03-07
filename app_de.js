@@ -115,11 +115,19 @@ function compareDate(dateString) {
   return date < todayPlus15;
 }
 
-function getData() {
+
+
+function getData() { 
   var today = new Date();
   var d = new Date();
   var day = d.getDay();
   var displayTable = '';
+
+  // Add buttons to navigate to New Classes and New Workshops with padding and margin
+  displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">Kommende Neue Kurse (Warteliste)</button> ';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">Kommende Workshops</button>';
+  displayTable += '</div>';
   displayTable += '<div class="container float-left" id="tableContainer">';
   displayTable += "<tr><th colspan='5'>Laufende regelmäßige Kurse</th></tr>";
   displayTable += '<table class="table table-striped" id="mainTable">';
@@ -138,30 +146,23 @@ function getData() {
   }).then(function(data) {
       console.log(data);
       output.innerHTML = "";
-      const newCourses = []; // Array to store new courses
-      const newWorkshops = []; // Array to store new courses
+      const newCourses = [];
+      const newWorkshops = [];
 
       data.posts.forEach(function(val) {
-        if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
-            // Add to new courses array
-            newCourses.push(val);
-        } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
-            // Existing logic for regular courses
-            displayTable += buildTableRow(val, "Register", "btn-colour-1");
-        } else if (val[10] && val[12] === "NEIN" ) {
-            // Existing logic for payment courses
-            //displayTable += buildTableRow(val, "Pay & Register", "btn-colour-1", val[13]);
-            newWorkshops.push(val);
-        }
-    });
+          if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
+              newCourses.push(val);
+          } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
+              displayTable += buildTableRow(val, "Anmelden", "btn-colour-1");
+          } else if (val[10] && val[12] === "NEIN" ) {
+              newWorkshops.push(val);
+          }
+      });
 
-      // Close main table
       displayTable += '</table></div>';
 
-      // Add new courses table if any
       if (newCourses.length > 0) {
-          displayTable += '<br/>';
-          displayTable += '<div class="container float-left">';
+        displayTable += '<div class="container float-left" id="newCoursesTable">';
           displayTable += "<tr><th colspan='5'>Kommende Neue Kurse (Warteliste)</th></tr>";
           displayTable += '<table class="table table-striped">';
           displayTable += '<thead class="thead-dark ">';
@@ -173,19 +174,18 @@ function getData() {
           });
 
           displayTable += '</table></div>';
-      }
-
+      } 
+      
       if (newWorkshops.length > 0) {
-        displayTable += '<br/>';
-        displayTable += '<div class="container float-left">';
+        displayTable += '<div class="container float-left" id="newWorkshopsTable">';
         displayTable += "<tr><th colspan='5'>Weekend Workshops</th></tr>";
         displayTable += '<table class="table table-striped">';
         displayTable += '<thead class="thead-dark ">';
-        displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
+        displayTable += '<tr><th></th><th>Kurs</th><th>Tag/Uhrzeit</th><th>Tag/Datum</th><th>Niveau</th></tr>';
         displayTable += '</thead>';
 
         newWorkshops.forEach(function(val) {
-            displayTable += buildTableRow(val, "Anmelden", "btn-colour-1", val[13]);
+            displayTable += buildTableRow(val, "Voranmeldung", "btn-colour-1", val[13]);
         });
 
         displayTable += '</table></div>';
@@ -194,7 +194,6 @@ function getData() {
       document.getElementById("rowdata").innerHTML = displayTable;
   });
 
-  // Helper function to build table rows
   function buildTableRow(val, btnText, btnClass, link) {
       let row = "<tr class='" + val[2] + "'>";
       row += "<td><input type='button' value='" + btnText + "' class='btn " + btnClass + "' ";
@@ -214,9 +213,12 @@ function getData() {
       row += "</tr>";
       return row;
   }
+
 }
 
-
+function scrollToElement(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
 
 function getUserLocalData() { 
 

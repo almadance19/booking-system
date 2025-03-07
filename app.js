@@ -119,11 +119,17 @@ function compareDate(dateString) {
   return date < todayPlus15;
 }
 
-function getData() {
+function getData() { 
   var today = new Date();
   var d = new Date();
   var day = d.getDay();
   var displayTable = '';
+
+  // Add buttons to navigate to New Classes and New Workshops with padding and margin
+  displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">View Classes to be opened</button> ';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">View New Workshops</button>';
+  displayTable += '</div>';
   displayTable += '<div class="container float-left" id="tableContainer">';
   displayTable += "<tr><th colspan='5'>Regular Weekly Classes</th></tr>";
   displayTable += '<table class="table table-striped" id="mainTable">';
@@ -142,29 +148,23 @@ function getData() {
   }).then(function(data) {
       console.log(data);
       output.innerHTML = "";
-      const newCourses = []; // Array to store new courses
-      const newWorkshops = []; // Array to store new courses
+      const newCourses = [];
+      const newWorkshops = [];
 
       data.posts.forEach(function(val) {
           if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
-              // Add to new courses array
               newCourses.push(val);
           } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
-              // Existing logic for regular courses
               displayTable += buildTableRow(val, "Register", "btn-colour-1");
           } else if (val[10] && val[12] === "NEIN" ) {
-              // Existing logic for payment courses
-              //displayTable += buildTableRow(val, "Pay & Register", "btn-colour-1", val[13]);
               newWorkshops.push(val);
           }
       });
 
-      // Close main table
       displayTable += '</table></div>';
 
-      // Add new courses table if any
       if (newCourses.length > 0) {
-        displayTable += '<div class="container float-left">';
+        displayTable += '<div class="container float-left" id="newCoursesTable">';
           displayTable += "<tr><th colspan='5'>New Courses (Waitinglist - Not opened yet)</th></tr>";
           displayTable += '<table class="table table-striped">';
           displayTable += '<thead class="thead-dark ">';
@@ -179,7 +179,7 @@ function getData() {
       } 
       
       if (newWorkshops.length > 0) {
-        displayTable += '<div class="container float-left">';
+        displayTable += '<div class="container float-left" id="newWorkshopsTable">';
         displayTable += "<tr><th colspan='5'>Weekend Workshops</th></tr>";
         displayTable += '<table class="table table-striped">';
         displayTable += '<thead class="thead-dark ">';
@@ -196,7 +196,6 @@ function getData() {
       document.getElementById("rowdata").innerHTML = displayTable;
   });
 
-  // Helper function to build table rows
   function buildTableRow(val, btnText, btnClass, link) {
       let row = "<tr class='" + val[2] + "'>";
       row += "<td><input type='button' value='" + btnText + "' class='btn " + btnClass + "' ";
@@ -216,7 +215,14 @@ function getData() {
       row += "</tr>";
       return row;
   }
+
 }
+
+function scrollToElement(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+
 
 function getUserLocalData() { 
 
