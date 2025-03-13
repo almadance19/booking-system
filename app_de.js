@@ -125,7 +125,7 @@ function getData() {
 
   // Add buttons to navigate to New Classes and New Workshops with padding and margin
   displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">Kommende Neue Kurse (Warteliste)</button> ';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">Kommende Neue Kurse (Warteliste - Kursöffnung ab 3 Paare.)</button> ';
   displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">Kommende Workshops</button>';
   displayTable += '</div>';
   displayTable += '<div class="container float-left" id="tableContainer">';
@@ -163,7 +163,7 @@ function getData() {
 
       if (newCourses.length > 0) {
         displayTable += '<div class="container float-left" id="newCoursesTable">';
-          displayTable += "<tr><th colspan='5'>Kommende Neue Kurse (Warteliste)</th></tr>";
+          displayTable += "<tr><th colspan='5'>Kommende Neue Kurse (Warteliste - Kursöffnung ab 3 Paare.)</th></tr>";
           displayTable += '<table class="table table-striped">';
           displayTable += '<thead class="thead-dark ">';
           displayTable += '<tr><th></th><th>Kurs</th><th>Tag/Uhrzeit</th><th>Tag/Datum</th><th>Niveau</th></tr>';

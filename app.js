@@ -165,7 +165,7 @@ function getData() {
 
       if (newCourses.length > 0) {
         displayTable += '<div class="container float-left" id="newCoursesTable">';
-          displayTable += "<tr><th colspan='5'>New Courses (Waitinglist - Not opened yet)</th></tr>";
+          displayTable += "<tr><th colspan='5'>New Courses (Waitinglist - Course will be opened if enough registrations)</th></tr>";
           displayTable += '<table class="table table-striped">';
           displayTable += '<thead class="thead-dark ">';
           displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
