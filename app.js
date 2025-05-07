@@ -31,7 +31,9 @@ function getInit() {
 
 //const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbzYNRAPgtUJnBgp6TOdD_sRsT4pQwA8yLq2Qz-qAPvQqxrFHCt8d9BjUF7Fo4370EQL/exec';
+const url = 'https://script.google.com/macros/s/AKfycbyPHArfq7Ekj8NqBDEGKiv9FDzb2yK0iex-idXUVhXJwgZG--9PJfP9vppU086xCG3_/exec';
+
+const url_fixed_classes = 'https://script.google.com/macros/s/AKfycbxby_GB-Dg74c8gH7SwVmGdcVAoccYsOg2QkevfHQ8HIce5Aa7WGVlsw9xQFaqOh84/exec';
 
 
 //'https://script.google.com/macros/s/AKfycby11BJT6bxuoo5nc65Gk1aMyHV4dMdrm8MYayi9lbKCZKVuqf89LxHfbz6NZ8km6zX6/exec';
@@ -117,12 +119,19 @@ function compareDate(dateString) {
   return date < todayPlus15;
 }
 
-function getData() {
+function getData() { 
   var today = new Date();
   var d = new Date();
   var day = d.getDay();
   var displayTable = '';
+
+  // Add buttons to navigate to New Classes and New Workshops with padding and margin
+  displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">View Classes to be opened</button> ';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">View New Workshops</button>';
+  displayTable += '</div>';
   displayTable += '<div class="container float-left" id="tableContainer">';
+  displayTable += "<tr><th colspan='5'>Regular Weekly Classes</th></tr>";
   displayTable += '<table class="table table-striped" id="mainTable">';
   displayTable += '<thead class="thead-dark">';
   displayTable += "<tr>";
@@ -139,30 +148,26 @@ function getData() {
   }).then(function(data) {
       console.log(data);
       output.innerHTML = "";
-      const newCourses = []; // Array to store new courses
+      const newCourses = [];
+      const newWorkshops = [];
 
       data.posts.forEach(function(val) {
           if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
-              // Add to new courses array
               newCourses.push(val);
-          } else if (val[10] && val[12] === "NEIN" && val[13] === "" && compareDate(val[8])) {
-              // Existing logic for regular courses
+          } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
               displayTable += buildTableRow(val, "Register", "btn-colour-1");
-          } else if (val[10] && val[12] === "NEIN" && compareDate(val[8])) {
-              // Existing logic for payment courses
-              displayTable += buildTableRow(val, "Pay & Register", "btn-colour-1", val[13]);
+          } else if (val[10] && val[12] === "NEIN" ) {
+              newWorkshops.push(val);
           }
       });
 
-      // Close main table
       displayTable += '</table></div>';
 
-      // Add new courses table if any
       if (newCourses.length > 0) {
-          displayTable += '<div class="new-course-container">';
-          displayTable += '<table class="table table-striped new-course-table">';
-          displayTable += '<thead class="new-course-header">';
-          displayTable += "<tr><th colspan='5'>New Courses (Waitinglist - Not opened yet)</th></tr>";
+        displayTable += '<div class="container float-left" id="newCoursesTable">';
+          displayTable += "<tr><th colspan='5'>New Courses (Trial Class - to be opened if enough participants)</th></tr>";
+          displayTable += '<table class="table table-striped">';
+          displayTable += '<thead class="thead-dark ">';
           displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
           displayTable += '</thead>';
 
@@ -171,12 +176,26 @@ function getData() {
           });
 
           displayTable += '</table></div>';
+      } 
+      
+      if (newWorkshops.length > 0) {
+        displayTable += '<div class="container float-left" id="newWorkshopsTable">';
+        displayTable += "<tr><th colspan='5'>Weekend Workshops</th></tr>";
+        displayTable += '<table class="table table-striped">';
+        displayTable += '<thead class="thead-dark ">';
+        displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
+        displayTable += '</thead>';
+
+        newWorkshops.forEach(function(val) {
+            displayTable += buildTableRow(val, "Register", "btn-colour-1", val[13]);
+        });
+
+        displayTable += '</table></div>';
       }
 
       document.getElementById("rowdata").innerHTML = displayTable;
   });
 
-  // Helper function to build table rows
   function buildTableRow(val, btnText, btnClass, link) {
       let row = "<tr class='" + val[2] + "'>";
       row += "<td><input type='button' value='" + btnText + "' class='btn " + btnClass + "' ";
@@ -196,7 +215,14 @@ function getData() {
       row += "</tr>";
       return row;
   }
+
 }
+
+function scrollToElement(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+
 
 function getUserLocalData() { 
 
@@ -430,17 +456,18 @@ function showStates(id,name,genre,lebel,adress,dia,day_nr,hora,fecha,timestamp,a
     displayTable += '<div class="form-row">';
     displayTable += '<label for="exampleFormControlSelect2" style="font-weight: bold">Registration Type</label>';
     displayTable += '<select class="custom-select" id="leader_jn">';
-    displayTable += '<option>Active Member /Mitglied </option>';
     displayTable += '<option>Trial Class / Probestunde</option>';
+    displayTable += '<option>Active Member /Mitglied </option>';
     displayTable += '<option>Workshops / Workshops</option>';
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
     displayTable += '<label for="exampleFormControlSelect3" style="font-weight: bold">Class Type</label>';
     displayTable += '<select class="custom-select" id="promocode">';
+    displayTable += '<option>Individual Class & Trial Class</option>';
+    displayTable += '<option>Wellpass/Gympass</option>';
     displayTable += '<option>Regular Course</option>';
     displayTable += '<option>4-10er Karte</option>';
-    displayTable += '<option>Individual Class & Trial Class</option>';
     displayTable += '</select>';
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
