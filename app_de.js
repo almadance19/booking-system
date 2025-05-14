@@ -148,13 +148,18 @@ function getData() {
       output.innerHTML = "";
       const newCourses = [];
       const newWorkshops = [];
+      const futureClasses = [];
 
       data.posts.forEach(function(val) {
           if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
               newCourses.push(val);
           } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
               displayTable += buildTableRow(val, "Anmelden", "btn-colour-1");
-          } else if (val[10] && val[12] === "NEIN" ) {
+          }
+          else if (val[10] && val[12] === "NEIN" && val[13] === "Future" ) {
+            futureClasses.push(val);
+          }    
+          else if (val[10] && val[12] === "NEIN" ) {
               newWorkshops.push(val);
           }
       });
@@ -186,6 +191,20 @@ function getData() {
 
         newWorkshops.forEach(function(val) {
             displayTable += buildTableRow(val, "Voranmeldung", "btn-colour-1", val[13]);
+        });
+
+        displayTable += '</table></div>';
+      }
+      if (futureClasses.length > 0) {
+        displayTable += '<div class="container float-left" id="futureClassesTable">';
+        displayTable += "<tr><th colspan='5'>Kurse weiter in der Zukunft</th></tr>";
+        displayTable += '<table class="table table-striped">';
+        displayTable += '<thead class="thead-dark ">';
+        displayTable += '<tr><th></th><th>Kurs</th><th>Tag/Uhrzeit</th><th>Tag/Datum</th><th>Niveau</th></tr>';
+        displayTable += '</thead>';
+
+        futureClasses.forEach(function(val) {
+         displayTable += buildTableRow(val, "Anmelden", "btn-colour-1");
         });
 
         displayTable += '</table></div>';

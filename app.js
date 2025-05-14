@@ -151,13 +151,18 @@ function getData() {
       output.innerHTML = "";
       const newCourses = [];
       const newWorkshops = [];
+      const futureClasses = [];
 
       data.posts.forEach(function(val) {
           if (val[10] && val[13] === "New Course" && val[12] === "NEIN") {
               newCourses.push(val);
           } else if (val[10] && val[12] === "NEIN" && val[13] === "Regular" && compareDate(val[8])) {
               displayTable += buildTableRow(val, "Register", "btn-colour-1");
-          } else if (val[10] && val[12] === "NEIN" ) {
+          }
+          else if (val[10] && val[12] === "NEIN" && val[13] === "Future" ) {
+              futureClasses.push(val);
+          }          
+          else if (val[10] && val[12] === "NEIN" ) {
               newWorkshops.push(val);
           }
       });
@@ -177,8 +182,7 @@ function getData() {
           });
 
           displayTable += '</table></div>';
-      } 
-      
+      }    
       if (newWorkshops.length > 0) {
         displayTable += '<div class="container float-left" id="newWorkshopsTable">';
         displayTable += "<tr><th colspan='5'>Weekend Workshops</th></tr>";
@@ -193,6 +197,20 @@ function getData() {
 
         displayTable += '</table></div>';
       }
+      if (futureClasses.length > 0) {
+        displayTable += '<div class="container float-left" id="futureClassesTable">';
+          displayTable += "<tr><th colspan='5'>Classes in 2 & 3 Weeks</th></tr>";
+          displayTable += '<table class="table table-striped">';
+          displayTable += '<thead class="thead-dark ">';
+          displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
+          displayTable += '</thead>';
+
+          futureClasses.forEach(function(val) {
+              displayTable += buildTableRow(val, "Register", "btn-colour-1");
+          });
+
+          displayTable += '</table></div>';
+      } 
 
       document.getElementById("rowdata").innerHTML = displayTable;
   });
