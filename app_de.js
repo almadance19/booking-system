@@ -159,7 +159,7 @@ function getData() {
           else if (val[10] && val[12] === "NEIN" && val[13] === "Future" ) {
             futureClasses.push(val);
           }    
-          else if (val[10] && val[12] === "NEIN" ) {
+          else if (val[10] && val[12] === "NEIN" && val[13] !== "Regular") {
               newWorkshops.push(val);
           }
       });
