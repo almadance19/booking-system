@@ -128,8 +128,8 @@ function getData() {
 
   // Add buttons to navigate to New Classes and New Workshops with padding and margin
   displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">View Classes to be opened</button> ';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">View New Workshops</button>';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">New Courses to be opened</button> ';
+  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">Coming Workshops</button>';
   displayTable += '</div>';
   displayTable += '<div class="container float-left" id="tableContainer">';
   displayTable += "<tr><th colspan='5'>Regular Weekly Classes</th></tr>";
