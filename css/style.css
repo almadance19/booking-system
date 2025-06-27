@@ -150,7 +150,7 @@ h3 {
 /* container */
 .button-container {
     display: flex;
-    gap: 1rem; /* Space between buttons horizontally */
+    gap: 2rem; /* Space between buttons horizontally */
     flex-wrap: wrap; /* Allows buttons to wrap if the screen is too narrow */
   }
 

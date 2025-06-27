@@ -127,7 +127,7 @@ function getData() {
   var displayTable = '';
 
   // Add buttons to navigate to New Classes and New Workshops with padding and margin
-  displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
+  displayTable += '<div class="button-container">';
   displayTable += '<button class="btn puprple_btn ml-0" onclick="scrollToElement(\'newCoursesTable\')">New Courses to be opened</button> ';
   displayTable += '<button class="btn puprple_btn ml-0" onclick="scrollToElement(\'futureClassesTable\')">Waiting List</button> ';
   displayTable += '<button class="btn puprple_btn ml-0" onclick="scrollToElement(\'newWorkshopsTable\')">Coming Workshops</button>';
