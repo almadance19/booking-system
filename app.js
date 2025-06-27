@@ -31,7 +31,7 @@ function getInit() {
 
 //const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbxDJAo4IgZjhTDWZeOQkaf7FBfs77Q_lCfA53jp1zOGCQSHT2rdc6CRUmN-safC7bP1/exec';
+const url = 'https://script.google.com/macros/s/AKfycbye1LAEtWLW6r1LtKqOjFNSAde1YL4xmWjKov3DPqymIhkp_UNFWS5f1Q7FjNZuogUu/exec';
 
 
 const url_fixed_classes = 'https://script.google.com/macros/s/AKfycbxby_GB-Dg74c8gH7SwVmGdcVAoccYsOg2QkevfHQ8HIce5Aa7WGVlsw9xQFaqOh84/exec';
@@ -128,8 +128,9 @@ function getData() {
 
   // Add buttons to navigate to New Classes and New Workshops with padding and margin
   displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">New Courses to be opened</button> ';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">Coming Workshops</button>';
+  displayTable += '<button class="btn puprple_btn ml-0" onclick="scrollToElement(\'newCoursesTable\')">New Courses to be opened</button> ';
+  displayTable += '<button class="btn puprple_btn ml-0" onclick="scrollToElement(\'futureClassesTable\')">Waiting List</button> ';
+  displayTable += '<button class="btn puprple_btn ml-0" onclick="scrollToElement(\'newWorkshopsTable\')">Coming Workshops</button>';
   displayTable += '</div>';
   displayTable += '<div class="container float-left" id="tableContainer">';
   displayTable += "<tr><th colspan='5'>Regular Weekly Classes</th></tr>";
@@ -171,7 +172,7 @@ function getData() {
 
       if (newCourses.length > 0) {
         displayTable += '<div class="container float-left" id="newCoursesTable">';
-          displayTable += "<tr><th colspan='5'>New Courses (Trial Class - to be opened if enough participants)</th></tr>";
+          displayTable += "<tr><th colspan='5'>New Courses (Trial Class - regular course to be opened if enough participants)</th></tr>";
           displayTable += '<table class="table table-striped">';
           displayTable += '<thead class="thead-dark ">';
           displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';
@@ -199,7 +200,7 @@ function getData() {
       }
       if (futureClasses.length > 0) {
         displayTable += '<div class="container float-left" id="futureClassesTable">';
-          displayTable += "<tr><th colspan='5'>Classes in 2 & 3 Weeks</th></tr>";
+          displayTable += "<tr><th colspan='5'>Waiting List - starting soon if enough registrations</th></tr>";
           displayTable += '<table class="table table-striped">';
           displayTable += '<thead class="thead-dark ">';
           displayTable += '<tr><th></th><th>Course</th><th>Day/Time</th><th>Day/Date</th><th>Level</th></tr>';

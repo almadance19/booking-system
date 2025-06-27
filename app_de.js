@@ -33,7 +33,7 @@ function sleep(ms) {
 // call API COURSES
 //const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbxDJAo4IgZjhTDWZeOQkaf7FBfs77Q_lCfA53jp1zOGCQSHT2rdc6CRUmN-safC7bP1/exec';
+const url = 'https://script.google.com/macros/s/AKfycbye1LAEtWLW6r1LtKqOjFNSAde1YL4xmWjKov3DPqymIhkp_UNFWS5f1Q7FjNZuogUu/exec';
 
 //const urluser_old =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
 
@@ -124,10 +124,11 @@ function getData() {
   var displayTable = '';
 
   // Add buttons to navigate to New Classes and New Workshops with padding and margin
-  displayTable += '<div class="container float-left" style="margin: 20px 0; padding: 10px 0;">';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newCoursesTable\')">Kommende Neue Kurse (Warteliste - Kursöffnung ab 3 Paare.)</button> ';
-  displayTable += '<button class="btn btn-dark" onclick="scrollToElement(\'newWorkshopsTable\')">Kommende Workshops</button>';
-  displayTable += '</div>';
+  displayTable += '<div class="button-container">';
+  displayTable += '  <button class="btn puprple_btn" onclick="scrollToElement(\'newCoursesTable\')">New Courses to be opened</button>';
+  displayTable += '  <button class="btn puprple_btn" onclick="scrollToElement(\'futureClassesTable\')">Waiting List</button>';
+  displayTable += '  <button class="btn puprple_btn" onclick="scrollToElement(\'newWorkshopsTable\')">Coming Workshops</button>';
+  displayTable += '</div>'; 
   displayTable += '<div class="container float-left" id="tableContainer">';
   displayTable += "<tr><th colspan='5'>Laufende regelmäßige Kurse</th></tr>";
   displayTable += '<table class="table table-striped" id="mainTable">';
@@ -197,7 +198,7 @@ function getData() {
       }
       if (futureClasses.length > 0) {
         displayTable += '<div class="container float-left" id="futureClassesTable">';
-        displayTable += "<tr><th colspan='5'>Kurse weiter in der Zukunft</th></tr>";
+        displayTable += "<tr><th colspan='5'>Warteliste - Kommende neue Kurse </th></tr>";
         displayTable += '<table class="table table-striped">';
         displayTable += '<thead class="thead-dark ">';
         displayTable += '<tr><th></th><th>Kurs</th><th>Tag/Uhrzeit</th><th>Tag/Datum</th><th>Niveau</th></tr>';

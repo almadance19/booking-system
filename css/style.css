@@ -139,6 +139,23 @@ h3 {
     color: var(--text-white);
 }
 
+@media (max-width: 768px) {
+    .button-container {
+      display: flex;
+      flex-direction: column; /* Stack the buttons vertically */
+      gap: 1rem;              /* This is the space between your buttons. Clean and simple! */
+    }
+  }
+
+/* container */
+.button-container {
+    display: flex;
+    gap: 1rem; /* Space between buttons horizontally */
+    flex-wrap: wrap; /* Allows buttons to wrap if the screen is too narrow */
+  }
+
+
+
 @media screen and (min-width:1200px) {
     .container {
         max-width: 1170px;
