@@ -277,40 +277,55 @@ function getPrices() {
       dict_prices_monthly[promocode] = promocode_value_monthly;
 
       var list = document.getElementsByClassName("price-container");
-      for (var i = 0; i < list.length; i++) {
-      //console.log(list[i].id); 
-      if (list[i].id==val[0] ) {
-        document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR";
-
-        var inputEl = document.createElement('input'); 
-        inputEl.type = 'button';
-        inputEl.className = "btn btn-colour-1"; 
-        inputEl.value = "Einmalige Zahlung";
-        inputEl.style = "margin: 0px 4px 8px 3px;";
-
-        inputEl.addEventListener('click', function() { 
-          Create_Payment_Form(val[0],val[2],val[5],val[6],val[4],val[8]); 
-        });
-        document.getElementById(list[i].id).appendChild(inputEl); 
-
-      }
-
-      if (list[i].id==val[0] & val[7]!="NO" ) {
-        document.getElementById(list[i].id).getElementsByTagName('span')[0].innerHTML=" "+val[1]+" EUR EUR (Monthly)";
-        
-        var inputEl = document.createElement('input'); 
-        inputEl.type = 'button';
-        inputEl.className = "btn btn-colour-1"; 
-        inputEl.value = "Monatliche Zahlung";
-        inputEl.style = "margin: 0px 4px 8px 3px;";
-
-        inputEl.addEventListener('click', function() { 
-          Create_Payment_Form_Abo(val[0],val[1],val[5],val[6],val[4],val[8]); 
-        });
-        document.getElementById(list[i].id).appendChild(inputEl); 
-
-      }
-}
+      for (var i = 0; i < list.length; i++) { 
+        if (list[i].id == val[0]) {
+          const container = document.getElementById(list[i].id);
+      
+          // Always update the price
+          container.getElementsByTagName('span')[0].innerHTML = " " + val[1] + " EUR";
+      
+          // Remove existing One-time payment buttons (if any)
+          const buttons = container.getElementsByTagName('input');
+          for (let b = buttons.length - 1; b >= 0; b--) {
+            if (buttons[b].value === "One-time payment") {
+              container.removeChild(buttons[b]);
+            }
+          }
+      
+          if (val[7] === "NO") {
+            // Add One-time payment button only if val[7] is "NO"
+            var inputEl = document.createElement('input'); 
+            inputEl.type = 'button';
+            inputEl.className = "btn btn-colour-1"; 
+            inputEl.value = "einmalige Zahlung";
+            inputEl.style = "margin: 0px 4px 8px 3px;";
+      
+            inputEl.addEventListener('click', function() { 
+              Create_Payment_Form(val[0], val[2], val[5], val[6], val[4], val[8]); 
+            });
+      
+            container.appendChild(inputEl); 
+          }
+      
+          if (val[7] !== "NO") {
+            // Update price text to indicate monthly
+            container.getElementsByTagName('span')[0].innerHTML = " " + val[1] + " EUR (Monthly)";
+      
+            var monthlyEl = document.createElement('input'); 
+            monthlyEl.type = 'button';
+            monthlyEl.className = "btn btn-colour-1"; 
+            monthlyEl.value = "monatliches Abonnement";
+            monthlyEl.style = "margin: 0px 4px 8px 3px;";
+      
+            monthlyEl.addEventListener('click', function() { 
+              Create_Payment_Form_Abo(val[0], val[1], val[5], val[6], val[4], val[8]); 
+            });
+      
+            container.appendChild(monthlyEl); 
+          }
+        }
+      }      
+ 
 
     } 
     )

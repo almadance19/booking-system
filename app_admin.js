@@ -836,6 +836,11 @@ function paymentForm(membership, price_total,nr_months,stripe_link,payment_type,
     displayTable += "<label for=\"disabledTextInput\" style=\"font-weight: bold\" >"+membership+" / "+payment_type+"</label>";
     displayTable += '</div>';
     displayTable += '<div class="form-row">';
+    displayTable += '<label for="membership" style="font-weight: bold">Name</label>';
+    displayTable += "<input type=\"text\" id=\"membership_id\" class=\"form-control\" Value=\""+membership+"\" >";
+    displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
+    displayTable += '</div>';
+    displayTable += '<div class="form-row">';
     displayTable += '<label for="firstname" style="font-weight: bold">Name</label>';
     displayTable += "<input type=\"text\" id=\"firstname_pay\" class=\"form-control\" Value=\""+name_user2+"\" >";
     displayTable += '<small id="nameHelp" class="form-text text-muted" style="color:yellow" >** Check your name is correct.</small>';
