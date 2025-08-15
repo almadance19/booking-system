@@ -110,7 +110,7 @@ function compareDate(dateString) {
 
   // Calculate today's date plus 15 days
   const todayPlus15 = new Date();
-  todayPlus15.setDate(todayPlus15.getDate() + 14);
+  todayPlus15.setDate(todayPlus15.getDate() + 25);
   console.log(todayPlus15);
 
   const result = date < todayPlus15;
