@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Alma Dance Methodology Test</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #d6336c; /* A vibrant pink for titles */
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Tab System */
+        .tab-container {
+            overflow: hidden;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab-container button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-container button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .tab-container button.active {
+            color: #d6336c;
+            border-bottom: 3px solid #d6336c;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 6px 12px;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Test Form Styling */
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #e9ecef;
+            background-color: #fdfdfd;
+        }
+        
+        .question-block h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+            color: #343a40;
+        }
+
+        .question-block label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .question-block input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        #submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #d6336c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #submit-btn:hover {
+            background-color: #c2255c;
+        }
+
+        #results {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+        
+        /* Summary Styling */
+        #summary h2 {
+            border-bottom: 2px solid #d6336c;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        
+        #summary p {
+            margin-bottom: 15px;
+        }
+
+        #summary ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        
+        #summary strong {
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>The Alma Dance Methodology</h1>
+
+        <div class="tab-container">
+            <button class="tab-link active" onclick="openTab(event, 'Test')">Test</button>
+            <button class="tab-link" onclick="openTab(event, 'Summary')">Summary</button>
+        </div>
+
+        <div id="Test" class="tab-content" style="display: block;">
+            <p><strong>Instructions:</strong> Choose the best answer for each question.</p>
+            <form id="quizForm">
+                
+                <h2>The Alma Dance Methodology 1: Core Philosophy & Pillars</h2>
+                <div class="question-block">
+                    <h3>1. What is the core philosophy of the Alma Dance method?</h3>
+                    <label><input type="radio" name="q1" value="a"> a) Primarily teaching complex dance steps.</label>
+                    <label><input type="radio" name="q1" value="b"> b) Bachata as a dialogue between two partners and the music.</label>
+                    <label><input type="radio" name="q1" value="c"> c) Focusing solely on the physical fitness of dancers.</label>
+                    <label><input type="radio" name="q1" value="d"> d) Prioritizing emotional expression over technical fundamentals.</label>
+                </div>
+                <div class="question-block">
+                    <h3>2. Which of the following is NOT one of the four main pillars of the Alma Dance Method?</h3>
+                    <label><input type="radio" name="q2" value="a"> a) Conexión (Connection)</label>
+                    <label><input type="radio" name="q2" value="b"> b) Musicalidad (Musicality)</label>
+                    <label><input type="radio" name="q2" value="c"> c) Coreografía (Choreography)</label>
+                    <label><input type="radio" name="q2" value="d"> d) Técnica (Technique)</label>
+                </div>
+                <div class="question-block">
+                    <h3>3. The goal of the "Conexión" pillar is to:</h3>
+                    <label><input type="radio" name="q3" value="a"> a) Perform complex aerials and lifts.</label>
+                    <label><input type="radio" name="q3" value="b"> b) Create a seamless, intuitive dance dialogue where movement feels effortless and responsive.</label>
+                    <label><input type="radio" name="q3" value="c"> c) Strictly adhere to predefined choreographies.</label>
+                    <label><input type="radio" name="q3" value="d"> d) Focus on individual styling without partner interaction.</label>
+                </div>
+                <div class="question-block">
+                    <h3>4. The "Musicalidad" pillar empowers dancers to:</h3>
+                    <label><input type="radio" name="q4" value="a"> a) Count only the basic steps.</label>
+                    <label><input type="radio" name="q4" value="b"> b) Ignore instrumental accents.</label>
+                    <label><input type="radio" name="q4" value="c"> c) Improvise with confidence and adapt to musical changes.</label>
+                    <label><input type="radio" name="q4" value="d"> d) Rely solely on their partner for timing.</label>
+                </div>
+                <div class="question-block">
+                    <h3>5. What is the main objective of the "Dance Fitness" pillar?</h3>
+                    <label><input type="radio" name="q5" value="a"> a) To learn new dance moves quickly.</label>
+                    <label><input type="radio" name="q5" value="b"> b) To develop physical capabilities for strong movements, injury prevention, and longevity.</label>
+                    <label><input type="radio" name="q5" value="c"> c) To only focus on flexibility exercises.</label>
+                    <label><input type="radio" name="q5" value="d"> d) To achieve a specific body type.</label>
+                </div>
+
+                <h2>The Alma Dance Methodology 2: Connection</h2>
+                <div class="question-block">
+                    <h3>6. Connection in partner dance is described as:</h3>
+                    <label><input type="radio" name="q6" value="a"> a) Only physical contact between partners.</label>
+                    <label><input type="radio" name="q6" value="b"> b) The non-verbal communication that allows for smooth, expressive, and enjoyable dance.</label>
+                    <label><input type="radio" name="q6" value="c"> c) Primarily about complex lead-follow patterns.</label>
+                    <label><input type="radio" name="q6" value="d"> d) Maintaining a rigid frame throughout the dance.</label>
+                </div>
+                 <div class="question-block">
+                    <h3>7. Which of the following is a type of connection mentioned?</h3>
+                    <label><input type="radio" name="q7" value="a"> a) Mental Connection</label>
+                    <label><input type="radio" name="q7" value="b"> b) Visual Connection</label>
+                    <label><input type="radio" name="q7" value="c"> c) Auditory Connection</label>
+                    <label><input type="radio" name="q7" value="d"> d) Environmental Connection</label>
+                </div>
+                <div class="question-block">
+                    <h3>8. For leaders, how should signals for movement come?</h3>
+                    <label><input type="radio" name="q8" value="a"> a) Forcefully from the arms.</label>
+                    <label><input type="radio" name="q8" value="b"> b) Primarily from the core and body movement.</label>
+                    <label><input type="radio" name="q8" value="c"> c) Through verbal cues only.</label>
+                    <label><input type="radio" name="q8" value="d"> d) By anticipating the follower's next move.</label>
+                </div>
+                <div class="question-block">
+                    <h3>9. What is a key instruction for followers regarding leading?</h3>
+                    <label><input type="radio" name="q9" value="a"> a) To anticipate or guess what's next.</label>
+                    <label><input type="radio" name="q9" value="b"> b) To resist the lead whenever possible.</label>
+                    <label><input type="radio" name="q9" value="c"> c) To listen, maintain their frame, and receive the signal without collapsing.</label>
+                    <label><input type="radio" name="q9" value="d"> d) To always try to lead back.</label>
+                </div>
+                <div class="question-block">
+                    <h3>10. What does the concept of "Frame, Not Force" emphasize about connection?</h3>
+                    <label><input type="radio" name="q10" value="a"> a) Connection should be a death grip for stability.</label>
+                    <label><input type="radio" name="q10" value="b"> b) It should be a stable, flexible frame, like a shock absorber.</label>
+                    <label><input type="radio" name="q10" value="c"> c) There should be no physical contact.</label>
+                    <label><input type="radio" name="q10" value="d"> d) The frame should be completely rigid.</label>
+                </div>
+
+                <h2>The Alma Dance Methodology 3: Movement</h2>
+                <div class="question-block">
+                    <h3>11. Why is understanding the use of space, movement lines, and directional language crucial in Bachata?</h3>
+                    <label><input type="radio" name="q11" value="a"> a) To solely impress spectators.</label>
+                    <label><input type="radio" name="q11" value="b"> b) To make movements more complicated.</label>
+                    <label><input type="radio" name="q11" value="c"> c) For enhancing physical and visual connection, maintaining orientation, and creating clear mental representations.</label>
+                    <label><input type="radio" name="q11" value="d"> d) To limit creative expression.</label>
+                </div>
+                <div class="question-block">
+                    <h3>12. The two basic lines of movement in Bachata are:</h3>
+                    <label><input type="radio" name="q12" value="a"> a) Diagonal and Circular.</label>
+                    <label><input type="radio" name="q12" value="b"> b) Main Line and Secondary Line.</label>
+                    <label><input type="radio" name="q12" value="c"> c) Forward and Backward.</label>
+                    <label><input type="radio" name="q12" value="d"> d) Horizontal and Vertical.</label>
+                </div>
+                <div class="question-block">
+                    <h3>13. "Choreographic Phrasing" indicates that most movements in Bachata are built in phrases of how many counts?</h3>
+                    <label><input type="radio" name="q13" value="a"> a) 2 or 4 counts</label>
+                    <label><input type="radio" name="q13" value="b"> b) 4 or 8 counts</label>
+                    <label><input type="radio" name="q13" value="c"> c) 6 or 10 counts</label>
+                    <label><input type="radio" name="q13" value="d"> d) 12 or 16 counts</label>
+                </div>
+                <div class="question-block">
+                    <h3>14. How should leads indicate movement direction and energy?</h3>
+                    <label><input type="radio" name="q14" value="a"> a) Through verbal commands.</label>
+                    <label><input type="radio" name="q14" value="b"> b) Using body position/movement and pre-leads.</label>
+                    <label><input type="radio" name="q14" value="c"> c) By pushing or pulling the follower.</label>
+                    <label><input type="radio" name="q14" value="d"> d) Only through eye contact.</label>
+                </div>
+                <div class="question-block">
+                    <h3>15. What is the "Open Position" embrace ideal for?</h3>
+                    <label><input type="radio" name="q15" value="a"> a) Small, controlled body movements.</label>
+                    <label><input type="radio" name="q15" value="b"> b) More breathed controlled movements in sync with the partner.</label>
+                    <label><input type="radio" name="q15" value="c"> c) Big movements around the dancefloor.</label>
+                    <label><input type="radio" name="q15" value="d"> d) Leading from intention without contact.</label>
+                </div>
+
+                <h2>The Alma Dance Methodology 4: Transitions</h2>
+                <div class="question-block">
+                    <h3>16. What are transitions described as in dance?</h3>
+                    <label><input type="radio" name="q16" value="a"> a) Only the start and end of a move.</label>
+                    <label><input type="radio" name="q16" value="b"> b) The invisible thread that connects steps, isolations, and styling into one cohesive expression.</label>
+                    <label><input type="radio" name="q16" value="c"> c) Isolated movements performed without connection.</label>
+                    <label><input type="radio" name="q16" value="d"> d) Random changes in direction.</label>
+                </div>
+                <div class="question-block">
+                    <h3>17. Why do transitions matter in Bachata partner work?</h3>
+                    <label><input type="radio" name="q17" value="a"> a) They make dancing robotic.</label>
+                    <label><input type="radio" name="q17" value="b"> b) They cause loss of connection.</label>
+                    <label><input type="radio" name="q17" value="c"> c) They are essential for smooth lead and follow communication and prevent disjointed dancing.</label>
+                    <label><input type="radio" name="q17" value="d"> d) They eliminate the need for musicality.</label>
+                </div>
+                <div class="question-block">
+                    <h3>18. What is a key technique for "Preparing" a transition?</h3>
+                    <label><input type="radio" name="q18" value="a"> a) Moving abruptly into the new movement.</label>
+                    <label><input type="radio" name="q18" value="b"> b) Forcing the partner into position.</label>
+                    <label><input type="radio" name="q18" value="c"> c) Clear directional intention, preparing movements in the opposite direction, and breath awareness.</label>
+                    <label><input type="radio" name="q18" value="d"> d) Ignoring contact and positioning.</label>
+                </div>
+                <div class="question-block">
+                    <h3>19. When "Performing" a transition, what is important for leaders to avoid?</h3>
+                    <label><input type="radio" name="q19" value="a"> a) Clear initiation.</label>
+                    <label><input type="radio" name="q19" value="b"> b) Abrupt cuts.</label>
+                    <label><input type="radio" name="q19" value="c"> c) Strong weight transfers.</label>
+                    <label><input type="radio" name="q19" value="d"> d) Clear spine position.</label>
+                </div>
+                <div class="question-block">
+                    <h3>20. What is a powerful transition tool that creates anticipation and gives space for musical interpretation?</h3>
+                    <label><input type="radio" name="q20" value="a"> a) Continuous high-speed movement.</label>
+                    <label><input type="radio" name="q20" value="b"> b) A well-timed pause and reset.</label>
+                    <label><input type="radio" name="q20" value="c"> c) Ignoring physical listening.</label>
+                    <label><input type="radio" name="q20" value="d"> d) Random changes in energy.</label>
+                </div>
+
+                <h2>The Alma Dance Methodology 5: Isolations & Undulations</h2>
+                <div class="question-block">
+                    <h3>21. What is the primary goal of practicing body isolation in Bachata?</h3>
+                    <label><input type="radio" name="q21" value="a"> a) To perform complex aerials.</label>
+                    <label><input type="radio" name="q21" value="b"> b) To avoid looking like a "robot" and add texture, musicality, and flow.</label>
+                    <label><input type="radio" name="q21" value="c"> c) To solely focus on footwork.</label>
+                    <label><input type="radio" name="q21" value="d"> d) To learn new choreographies quickly.</label>
+                </div>
+                <div class="question-block">
+                    <h3>22. Which of the following is NOT listed as a key isolation area?</h3>
+                    <label><input type="radio" name="q22" value="a"> a) Ribcage/Chest</label>
+                    <label><input type="radio" name="q22" value="b"> b) Hips</label>
+                    <label><input type="radio" name="q22" value="c"> c) Elbows</label>
+                    <label><input type="radio" name="q22" value="d"> d) Shoulders</label>
+                </div>
+                <div class="question-block">
+                    <h3>23. What are undulations primarily described as?</h3>
+                    <label><input type="radio" name="q23" value="a"> a) Sharp, distinct movements.</label>
+                    <label><input type="radio" name="q23" value="b"> b) Wave-like movements that travel through the body.</label>
+                    <label><input type="radio" name="q23" value="c"> c) Stationary poses.</label>
+                    <label><input type="radio" name="q23" value="d"> d) Jumps and leaps.</label>
+                </div>
+                <div class="question-block">
+                    <h3>24. What is the benefit of mastering isolations and undulations in partner work?</h3>
+                    <label><input type="radio" name="q24" value="a"> a) It allows for less connection.</label>
+                    <label><input type="radio" name="q24" value="b"> b) It promotes mechanical dancing.</label>
+                    <label><input type="radio" name="q24" value="c"> c) It enables responsive following, clean leading, and enhanced musicality.</label>
+                    <label><input type="radio" name="q24" value="d"> d) It makes movements more rigid.</label>
+                </div>
+                <div class="question-block">
+                    <h3>25. According to the document, where should the lead primarily come from?</h3>
+                    <label><input type="radio" name="q25" value="a"> a) The arms.</label>
+                    <label><input type="radio" name="q25" value="b"> b) The legs.</label>
+                    <label><input type="radio" name="q25" value="c"> c) The core and body movement.</label>
+                    <label><input type="radio" name="q25" value="d"> d) The head.</label>
+                </div>
+
+                <h2>The Alma Dance Methodology 6: Legato vs Staccato in Bachata</h2>
+                <div class="question-block">
+                    <h3>26. How is "Legato" movement defined in Bachata?</h3>
+                    <label><input type="radio" name="q26" value="a"> a) Short, sharp, and punctuated.</label>
+                    <label><input type="radio" name="q26" value="b"> b) Smooth, fluid, and uninterrupted.</label>
+                    <label><input type="radio" name="q26" value="c"> c) Primarily percussive.</label>
+                    <label><input type="radio" name="q26" value="d"> d) Consisting of controlled freezes.</label>
+                </div>
+                <div class="question-block">
+                    <h3>27. When should Legato movement typically be used in Bachata?</h3>
+                    <label><input type="radio" name="q27" value="a"> a) During percussion-heavy parts of the music.</label>
+                    <label><input type="radio" name="q27" value="b"> b) To emphasize rhythm and surprise.</label>
+                    <label><input type="radio" name="q27" value="c"> c) During melodic, lyrical phrases or romantic musical interpretations.</label>
+                    <label><input type="radio" name="q27" value="d"> d) In urban or fusion Bachata where sharpness is desired.</label>
+                </div>
+                <div class="question-block">
+                    <h3>28. What does "Staccato" movement refer to?</h3>
+                    <label><input type="radio" name="q28" value="a"> a) Movements that are continuous and flowing.</label>
+                    <label><input type="radio" name="q28" value="b"> b) Wave-like motions through the body.</label>
+                    <label><input type="radio" name="q28" value="c"> c) Movements that are short, sharp, and punctuated, with each action distinct.</label>
+                    <label><input type="radio" name="q28" value="d"> d) Movements that are solely breath-driven.</label>
+                </div>
+                <div class="question-block">
+                    <h3>29. Which of the following is an example of Staccato movement in Bachata?</h3>
+                    <label><input type="radio" name="q29" value="a"> a) Slow hip rotations.</label>
+                    <label><input type="radio" name="q29" value="b"> b) Connected arm styling with seamless transitions.</label>
+                    <label><input type="radio" name="q29" value="c"> c) Quick hip taps and pops.</label>
+                    <label><input type="radio" name="q29" value="d"> d) Body rolls that travel slowly.</label>
+                </div>
+                <div class="question-block">
+                    <h3>30. What is considered the "real artistry" when combining Legato and Staccato movements?</h3>
+                    <label><input type="radio" name="q30" value="a"> a) Only using Legato movements.</label>
+                    <label><input type="radio" name="q30" value="b"> b) Only using Staccato movements.</label>
+                    <label><input type="radio" name="q30" value="c"> c) The ability to switch between movement qualities or even combine them.</label>
+                    <label><input type="radio" name="q30" value="d"> d) Avoiding any contrast in movement.</label>
+                </div>
+
+                <button type="button" id="submit-btn">Submit Test</button>
+            </form>
+            <div id="results"></div>
+        </div>
+
+        <div id="Summary" class="tab-content">
+            <h2>The Alma Dance Methodology 1: Core Philosophy & Pillars</h2>
+            <p>This document outlines the core philosophy of the Alma Dance Mentoring program, which views Bachata as a dialogue between partners and music. It emphasizes a deeper understanding of general dance principles, connection, musicality, physical fitness, and technical fundamentals. The method is built upon four interdependent pillars:</p>
+            <ul>
+                <li><strong>Conexión (Connection):</strong> Focuses on the physical and mental link between lead and follow for seamless, intuitive dance.</li>
+                <li><strong>Musicalidad (Musicality):</strong> Empowers dancers to interpret Bachata music, identify beats and instruments, and adapt movement to various styles.</li>
+                <li><strong>Técnica (Technique):</strong> Emphasizes clean and efficient execution of body movement, including grounding, turns, breathing, posture, and isolations.</li>
+                <li><strong>Dance Fitness:</strong> Focuses on physical conditioning to support performance, prevent injury, and ensure longevity in dance.</li>
+            </ul>
+            <p>An "Extra Pillar" is also mentioned:</p>
+            <ul>
+                <li><strong>Mindset & Growth:</strong> Focuses on mental resilience, a growth mindset, self-expression, and continuous improvement.</li>
+            </ul>
+            <p>The document also touches on exercises to improve connection and the importance of understanding directions and choreography positioning.</p>
+
+            <h2>The Alma Dance Methodology 2: Connection</h2>
+            <p>This document elaborates on the concept of "Connection" in partner dance, defining it as non-verbal communication that allows for smooth, expressive, and enjoyable dancing. It breaks down connection into:</p>
+            <ul>
+                <li><strong>Physical Connection:</strong> Involves frame, hand/body contact, resistance, and matching pressure.</li>
+                <li><strong>Visual Connection:</strong> Includes eye contact and peripheral awareness.</li>
+                <li><strong>Emotional Connection:</strong> Encompasses presence, respect, and dancing "with" your partner.</li>
+            </ul>
+            <p>It provides techniques for Bachata connection, such as frame control, intention-leading, weight transfer awareness, breath matching, and basic timing. A key takeaway is "Frame, Not Force," emphasizing a flexible yet clear frame. It also distinguishes between initiating (leading) and responding (following), noting that leads should come from the core, and followers should listen without anticipating.</p>
+
+            <h2>The Alma Dance Methodology 3: Movement</h2>
+            <p>This document focuses on "Directions & Movement Positioning," highlighting its importance for enhancing connection, maintaining orientation, creating clear mental representations of movements, and expressing intentional and aesthetic movement patterns. Key concepts include:</p>
+            <ul>
+                <li><strong>Use of Lines of Reference:</strong> Main Line, Secondary Line, and Center, with diagonal and circular lines as supportive.</li>
+                <li><strong>Linear vs. Circular Movements:</strong> Differentiating between straight-line (slot) and curved (rotational) movements for clarity and fluidity.</li>
+                <li><strong>Pathways and Travel:</strong> Understanding whether choreography is stationary, traveling, or rotational.</li>
+                <li><strong>Choreographic Phrasing:</strong> Movements typically occur in phrases of 4 or 8 counts, often starting on 1 and 5.</li>
+                <li><strong>Directional Language:</strong> Using clock or compass points for clarity.</li>
+                <li><strong>Clear Directional Intention:</strong> Leaders signaling direction with body movement, and followers staying responsive.</li>
+                <li><strong>Use of Embrace:</strong> Adjusting distance based on movement needs (Open, Semi-Close, Close, Contact Leading, WI-FI/No Contact positions).</li>
+                <li><strong>Body Orientation & Relative Positioning:</strong> Defined by the upper body, hips, feet, and alignment with the partner.</li>
+            </ul>
+
+            <h2>The Alma Dance Methodology 4: Transitions</h2>
+            <p>This document describes "Transitions" as the art of moving between movements, defining them as the "invisible thread" that connects all dance elements. Transitions can be physical, directional, dynamic, or emotional. They are crucial for preventing disjointed dancing, matching musical mood, smooth lead-follow communication, and allowing for breath and improvisation. The document outlines "Transitional Movements" such as:</p>
+            <ul>
+                <li><strong>Weight & Rotation:</strong> Smooth weight shifts and upper body leading rotation.</li>
+                <li><strong>Level:</strong> Rising or lowering the center of gravity.</li>
+                <li><strong>Tempo:</strong> Adjusting speed.</li>
+                <li><strong>Energy:</strong> Switching between high/low intensity or legato/staccato.</li>
+                <li><strong>Body Part:</strong> Moving one body structure at a time.</li>
+            </ul>
+            <p>"Transition Techniques and Training Tools" include preparing (contact, directional intention, breath awareness), performing (clear initiation/termination, speed/acceleration), and repeating (pause/reset, linking exercises). Key aspects in partner Bachata emphasize mutual understanding and physical communication through frame, preparation, timing, and physical listening.</p>
+            
+            <h2>The Alma Dance Methodology 5: Isolations & Undulations</h2>
+            <p>This document delves into "Body Isolation" and "Undulations" as foundational for expressive and fluid dancing.</p>
+            <ul>
+                <li><strong>Isolations:</strong> Defined as moving one body part independently from the rest (e.g., head, shoulders, ribcage, hips, feet/ankles). They enhance styling, improve coordination, and build responsiveness.</li>
+                <li><strong>Undulations:</strong> Refer to wave-like movements traveling through the body (e.g., vertical body roll, reverse body roll, lateral undulation, spinal waves). They add sensuality, improve mobility, and develop rhythmical expression.</li>
+            </ul>
+            <p>The document also explores "Joint Mobility and Movement Possibilities" for the neck, shoulders, spine, hips, knees, and ankles, and provides drills for integration (e.g., Head to Hip Sequence, Wall Body Waves, Joint Mobility Circuit). In partner work, these skills allow for responsive following, clean leading, and enhanced musicality.</p>
+
+            <h2>The Alma Dance Methodology 6: Legato vs Staccato in Bachata</h2>
+            <p>This document focuses on "Movement Quality," specifically the contrast between Legato and Staccato movements in Bachata.</p>
+            <ul>
+                <li><strong>Legato Movement:</strong> Defined as smooth, fluid, and uninterrupted, flowing like water. Examples include slow body rolls, hip rotations, and seamless arm styling. It's used for melodic, lyrical phrases, sensual Bachata, and to convey softness or emotional vulnerability, with key sensations being breath-driven, gravity-aware, and continuous.</li>
+                <li><strong>Staccato Movement:</strong> Defined as short, sharp, and punctuated, with each action distinct. Examples include quick hip taps, shoulder hits, and controlled freezes. It's used for percussion-heavy music, emphasizing rhythm or surprise, and in urban/fusion Bachata where energy and sharpness are desired, with key sensations being percussive, tension/release, and intentional pauses.</li>
+            </ul>
+            <p>The document emphasizes that "Contrast Is Power," encouraging dancers to combine Legato and Staccato movements for enhanced musicality and visual engagement. It also provides "Partner Connection Tips" for both leaders and followers on how to signal and respond to these movement qualities.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- Tab Functionality ---
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // --- Quiz Functionality ---
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            const correctAnswers = {
+                q1: 'b', q2: 'c', q3: 'b', q4: 'c', q5: 'b',
+                q6: 'b', q7: 'b', q8: 'b', q9: 'c', q10: 'b',
+                q11: 'c', q12: 'b', q13: 'b', q14: 'b', q15: 'c',
+                q16: 'b', q17: 'c', q18: 'c', q19: 'b', q20: 'b',
+                q21: 'b', q22: 'c', q23: 'b', q24: 'c', q25: 'c',
+                q26: 'b', q27: 'c', q28: 'c', q29: 'c', q30: 'c'
+            };
+
+            const form = document.getElementById('quizForm');
+            let score = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+
+            for (const question in correctAnswers) {
+                const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            const resultsContainer = document.getElementById('results');
+            const percentage = (score / totalQuestions * 100).toFixed(1);
+            resultsContainer.innerHTML = `You scored ${score} out of ${totalQuestions} (${percentage}%)`;
+            resultsContainer.style.display = 'block';
+            
+            // Scroll to the results
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+
+</body>
+</html>
