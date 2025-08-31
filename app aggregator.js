@@ -1806,7 +1806,7 @@ console.log(course_pay);
 payment_array.length = 0;
 
 
-let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Free",false,type_payment,getMonthString(date),currentDate,"Kein",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"Active",contract_date,true];
+let array0 = [String(newmember),idinput.value,firstname_pay,membershiptype,currentDate,course_price,"Free",false,type_payment,getMonthString(date),currentDate,"NotPaidYet",email_payment,"nein","",course_pay.toString(),coursesnumber_nr,membershiptype_nr,"",currentDate,future_date,"NotPaidYet",contract_date,true];
 
 payment_array.push(array0);
 
