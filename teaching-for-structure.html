@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structuring the Teaching of Movements & Techniques</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Studio -->
+    <!-- Application Structure Plan: The application abandons the linear slide format for a thematic, single-page dashboard structure with a sticky top navigation. The key sections are: 'Core Principles', 'The Breakdown Framework', 'Inspiration & Sources', 'Classroom in Action', and 'Teacher Exercise'. This non-linear, topic-based architecture was chosen because it better serves the user (a dance teacher) as a quick reference tool rather than a one-time presentation. A teacher can immediately jump to a specific topic like 'how to structure a class' or 'how to break down a move' without sequential navigation, making the content more usable and accessible for practical, on-the-job needs. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Principles of Good Teaching -> Goal: Inform -> Viz/Presentation: Interactive cards with hover effects (HTML/Tailwind) -> Interaction: Hover to highlight -> Justification: Breaks down core ideas into digestible, visually separated chunks.
+        - Report Info: Layering the Learning -> Goal: Organize/Show Progression -> Viz/Presentation: Vertical stepper diagram (HTML/Tailwind) -> Interaction: Scroll-based highlighting -> Justification: Visually represents the hierarchical and progressive nature of learning.
+        - Report Info: Movement Breakdown Framework -> Goal: Organize/Instruct -> Viz/Presentation: Tab-like interactive component (HTML/JS) -> Interaction: Click to reveal step details -> Justification: Focuses user attention on one step at a time, mirroring a methodical teaching process.
+        - Report Info: Class Flow Example (Time Allocation) -> Goal: Visualize Proportions -> Viz/Presentation: Donut Chart (Chart.js/Canvas) -> Interaction: Hover on segments for tooltips with details -> Justification: A donut chart is the most effective way to show the parts of a whole (a 60-minute class), making time distribution immediately obvious.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #C5A087;
+            border-bottom-color: #C5A087;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+         @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-[#6D5D53]">Teacher's Guide</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#principles" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Core Principles</a>
+                        <a href="#framework" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Breakdown Framework</a>
+                        <a href="#inspiration" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Inspiration</a>
+                        <a href="#in-action" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Classroom in Action</a>
+                        <a href="#exercise" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Teacher Exercise</a>
+                    </div>
+                </div>
+                 <div class="md:hidden">
+                    <select id="mobile-nav" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-[#C5A087] focus:border-[#C5A087] sm:text-sm rounded-md">
+                        <option value="#principles">Core Principles</option>
+                        <option value="#framework">Breakdown Framework</option>
+                        <option value="#inspiration">Inspiration</option>
+                        <option value="#in-action">Classroom in Action</option>
+                        <option value="#exercise">Teacher Exercise</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#6D5D53] tracking-tight">Structuring the Teaching of Movements & Techniques</h1>
+            <p class="mt-4 text-lg text-gray-600">An interactive guide for dance instructors.</p>
+        </div>
+
+        <section id="principles" class="py-12 md:py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D53]">Core Teaching Principles</h2>
+                <p class="mt-2 text-md text-gray-500">This section covers the foundational concepts of effective teaching and progressive learning. These principles form the bedrock of a well-structured class, ensuring students not only learn the steps but truly understand the movement.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-6 text-[#8B796E]">Pillars of Good Teaching</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Clarity</h4>
+                            <p class="text-gray-600 mt-1">Break movements into logical, digestible steps.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Progression</h4>
+                            <p class="text-gray-600 mt-1">Always move from simple to complex, building on prior knowledge.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Adaptation</h4>
+                            <p class="text-gray-600 mt-1">Adjust explanations for beginners vs. advanced dancers.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Repetition + Variation</h4>
+                            <p class="text-gray-600 mt-1">Repeat to build muscle memory, but vary to keep interest.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Feedback Loop</h4>
+                            <p class="text-gray-600 mt-1">Observe students, correct gently, and encourage self-discovery.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-6 text-[#8B796E]">Layering the Learning</h3>
+                    <div class="relative pl-8 border-l-2 border-[#D9C9BC]">
+                        <div class="mb-8">
+                            <div class="absolute w-6 h-6 bg-[#C5A087] rounded-full -left-3 border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Level 1: Mechanics</h4>
+                            <p class="text-gray-600 mt-1">What are my feet doing? Focus on the basic steps and patterns.</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="absolute w-6 h-6 bg-[#C5A087] rounded-full -left-3 border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Level 2: Technique</h4>
+                            <p class="text-gray-600 mt-1">How is my body supporting balance, connection, and isolation?</p>
+                        </div>
+                        <div class="mb-8">
+                            <div class="absolute w-6 h-6 bg-[#C5A087] rounded-full -left-3 border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Level 3: Musicality</h4>
+                            <p class="text-gray-600 mt-1">Where does this movement fit within the rhythm and melody of the music?</p>
+                        </div>
+                        <div>
+                            <div class="absolute w-6 h-6 bg-[#C5A087] rounded-full -left-3 border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-[#6D5D53]">Level 4: Expression/Style</h4>
+                            <p class="text-gray-600 mt-1">How can I make this movement my own and express my personality?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="border-t border-gray-200"></div>
+
+        <section id="framework" class="py-12 md:py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D53]">The Movement Breakdown Framework</h2>
+                <p class="mt-2 text-md text-gray-500">Here we provide a systematic, step-by-step approach for introducing any new technique. Use the interactive tabs below to walk through the process, ensuring no detail is missed when you present a move to your students.</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div id="framework-nav" class="flex md:flex-col md:w-1/3 space-x-2 md:space-x-0 md:space-y-2 overflow-x-auto pb-2">
+                    <button data-step="1" class="framework-tab flex-shrink-0 text-left w-full p-4 rounded-lg font-semibold bg-[#EAE3DC] text-[#6D5D53]">1. Name & Context</button>
+                    <button data-step="2" class="framework-tab flex-shrink-0 text-left w-full p-4 rounded-lg font-semibold bg-transparent text-gray-500">2. Demonstration</button>
+                    <button data-step="3" class="framework-tab flex-shrink-0 text-left w-full p-4 rounded-lg font-semibold bg-transparent text-gray-500">3. Isolation</button>
+                    <button data-step="4" class="framework-tab flex-shrink-0 text-left w-full p-4 rounded-lg font-semibold bg-transparent text-gray-500">4. Step-by-Step</button>
+                    <button data-step="5" class="framework-tab flex-shrink-0 text-left w-full p-4 rounded-lg font-semibold bg-transparent text-gray-500">5. Common Mistakes</button>
+                    <button data-step="6" class="framework-tab flex-shrink-0 text-left w-full p-4 rounded-lg font-semibold bg-transparent text-gray-500">6. Reintegration</button>
+                </div>
+                <div class="md:w-2/3 bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                    <div id="framework-content">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="border-t border-gray-200"></div>
+
+        <section id="inspiration" class="py-12 md:py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D53]">Teaching Inspiration from Other Sources</h2>
+                 <p class="mt-2 text-md text-gray-500">Great teachers are also great students. This section explores how to effectively and ethically incorporate material learned from other classes, workshops, or online videos into your own teaching practice.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-4 text-[#8B796E]">From Other Classes</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-600">
+                        <li><strong>Adapt, don't just copy.</strong> Make the material fit your unique style and your students' specific needs.</li>
+                        <li><strong>Credit the source</strong> when relevant. This is especially important in teacher development settings to maintain professional integrity.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-4 text-[#8B796E]">From Videos / Online</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-600">
+                        <li><strong>Analyze carefully.</strong> Deconstruct the timing, lead/follow mechanics, and musical application before you attempt to teach it.</li>
+                        <li><strong>Simplify.</strong> Online videos often show advanced, flashy variations. Your job is to create a beginner-friendly entry point.</li>
+                        <li><strong>Build progressions.</strong> Introduce the foundational basics first, then layer the "inspired" technique on top.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <div class="border-t border-gray-200"></div>
+
+        <section id="in-action" class="py-12 md:py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D53]">The Classroom in Action</h2>
+                <p class="mt-2 text-md text-gray-500">Theory meets practice. Here, you'll find a visual breakdown of a balanced class structure and a toolbox of essential techniques to keep your teaching dynamic, efficient, and effective.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-6 text-[#8B796E]">Example 60-Minute Class Flow</h3>
+                    <div class="chart-container">
+                        <canvas id="classFlowChart"></canvas>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-2xl font-semibold text-center mb-6 text-[#8B796E]">The Teacher's Toolbox</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-md text-[#6D5D53]">Use Keywords</h4>
+                            <p class="text-gray-600 text-sm mt-1">Develop short cues instead of long explanations.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-md text-[#6D5D53]">Be Visual + Verbal</h4>
+                            <p class="text-gray-600 text-sm mt-1">Demonstrate and describe the movement simultaneously.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-md text-[#6D5D53]">Vary Formats</h4>
+                            <p class="text-gray-600 text-sm mt-1">Switch between individual, partner, and group exercises.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-md text-[#6D5D53]">Encourage Reflection</h4>
+                            <p class="text-gray-600 text-sm mt-1">Ask students, “How did that feel for you?”</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 col-span-1 sm:col-span-2">
+                             <h4 class="font-bold text-md text-[#6D5D53]">Apply Progressive Overload</h4>
+                            <p class="text-gray-600 text-sm mt-1">Each week, add one new challenge on top of known material to ensure continuous growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="border-t border-gray-200"></div>
+
+        <section id="exercise" class="py-12 md:py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D53]">Meta-Teaching Exercise</h2>
+                <p class="mt-2 text-md text-gray-500">Put your knowledge to the test. This exercise is designed for you and your fellow teachers to practice the principles discussed today, reinforcing the framework through hands-on application and peer feedback.</p>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                <ol class="space-y-4 list-decimal list-inside text-gray-700">
+                    <li><strong class="font-semibold text-[#6D5D53]">Task:</strong> Pick a move you learned recently from a workshop or video.</li>
+                    <li><strong class="font-semibold text-[#6D5D53]">Prepare:</strong> Break it down using the Movement Breakdown Framework discussed in this guide.</li>
+                    <li><strong class="font-semibold text-[#6D5D53]">Teach:</strong> Instruct a small group on the move in a concise 5–10 minute session.</li>
+                    <li><strong class="font-semibold text-[#6D5D53]">Feedback:</strong> Receive constructive peer feedback on your clarity, progression, and adaptation to the group's needs.</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2025 Dance Teacher's Interactive Guide. A tool for better teaching.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const frameworkContentData = {
+                1: {
+                    title: "Name & Context",
+                    content: `
+                        <p class="text-gray-700 mb-4">Start by giving the movement a clear name. This creates a shared vocabulary in your class.</p>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                            <li><strong>What is the move called?</strong> Use the common name, and mention any aliases if they exist.</li>
+                            <li><strong>Where does it fit?</strong> Explain its purpose. Is it a social move, a performance piece, or a technical drill?</li>
+                        </ul>
+                    `
+                },
+                2: {
+                    title: "Demonstration",
+                    content: `
+                        <p class="text-gray-700 mb-4">Show the movement in its entirety before breaking it down. This gives students a clear visual goal.</p>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                           <li>Show the move once, in full flow, connected to music if possible.</li>
+                           <li>Do this <strong>without any verbal explanation</strong>. Let the movement speak for itself first.</li>
+                        </ul>
+                    `
+                },
+                3: {
+                    title: "Isolation",
+                    content: `
+                         <p class="text-gray-700 mb-4">Dissect the movement into its core components. This helps students focus on one aspect at a time without feeling overwhelmed.</p>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                            <li><strong>Leader's Role:</strong> What are the specific cues and movements for the lead?</li>
+                            <li><strong>Follower's Role:</strong> What should the follower be feeling for and executing?</li>
+                            <li><strong>Connection:</strong> Where are the points of contact and what kind of connection is it (e.g., compression, tension)?</li>
+                            <li><strong>Timing:</strong> What is the count or rhythmic structure of the move?</li>
+                        </ul>
+                    `
+                },
+                4: {
+                    title: "Step-by-Step Breakdown",
+                    content: `
+                         <p class="text-gray-700 mb-4">Teach the movement in a logical sequence, building from the ground up. This layered approach is crucial for complex patterns.</p>
+                        <p class="text-center font-semibold text-lg text-gray-600">Footwork → Body Movement → Connection → Musicality</p>
+                    `
+                },
+                5: {
+                    title: "Address Common Mistakes",
+                    content: `
+                        <p class="text-gray-700 mb-4">Proactively address the errors you know students are likely to make. This saves time and prevents bad habits from forming.</p>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                           <li>Highlight typical errors related to balance, timing, or connection.</li>
+                           <li>Explain <strong>why</strong> it's a mistake and demonstrate the correct way.</li>
+                        </ul>
+                    `
+                },
+                6: {
+                    title: "Reintegration",
+                    content: `
+                        <p class="text-gray-700 mb-4">Put all the pieces back together. This final step solidifies the learning process.</p>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                           <li>Dance the move in context again, now that students understand the details.</li>
+                           <li>Encourage students to practice it, integrating the corrections and fine points you've discussed.</li>
+                        </ul>
+                    `
+                }
+            };
+            
+            const frameworkNav = document.getElementById('framework-nav');
+            const frameworkContentContainer = document.getElementById('framework-content');
+            
+            function updateFrameworkContent(step) {
+                const data = frameworkContentData[step];
+                if (data) {
+                    frameworkContentContainer.innerHTML = `
+                        <h3 class="text-2xl font-bold text-[#6D5D53] mb-4">${data.title}</h3>
+                        ${data.content}
+                    `;
+                }
+                
+                document.querySelectorAll('.framework-tab').forEach(tab => {
+                    if (tab.dataset.step === step) {
+                        tab.classList.remove('bg-transparent', 'text-gray-500');
+                        tab.classList.add('bg-[#EAE3DC]', 'text-[#6D5D53]');
+                    } else {
+                        tab.classList.remove('bg-[#EAE3DC]', 'text-[#6D5D53]');
+                        tab.classList.add('bg-transparent', 'text-gray-500');
+                    }
+                });
+            }
+            
+            frameworkNav.addEventListener('click', (e) => {
+                if (e.target.matches('.framework-tab')) {
+                    const step = e.target.dataset.step;
+                    updateFrameworkContent(step);
+                }
+            });
+            
+            updateFrameworkContent('1');
+
+            const ctx = document.getElementById('classFlowChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Warm-Up (12.5%)', 'Recap (8.3%)', 'New Content (33.3%)', 'Guided Drills (16.7%)', 'Integration (16.7%)', 'Wrap-Up (8.3%)'],
+                    datasets: [{
+                        label: 'Minutes',
+                        data: [7.5, 5, 20, 10, 10, 5],
+                        backgroundColor: [
+                            '#C5A087',
+                            '#D9C9BC',
+                            '#8B796E',
+                            '#A89A90',
+                            '#6D5D53',
+                            '#EAE3DC'
+                        ],
+                        borderColor: '#FDFBF8',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                             labels: {
+                                color: '#4A4A4A',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + ' min';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
+                        mobileNav.value = `#${id}`;
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            mobileNav.addEventListener('change', (e) => {
+                 window.location.hash = e.target.value;
+            });
+        });
+    </script>
+
+</body>
+</html>
