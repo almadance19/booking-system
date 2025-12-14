@@ -56,6 +56,7 @@ const url_payment = 'https://script.google.com/macros/s/AKfycbwDUilotiUtMaT_Zhrf
 
 var allPaymentsString =  "";
 var activePaymentString =  "";
+const scheduleDaysAhead = 45; // Number of days ahead to decide which classes to show by comparing classes dates to today 
 
 //get buttons 
 const output = document.querySelector('.output');
@@ -110,7 +111,7 @@ function compareDate(dateString) {
 
   // Calculate today's date plus 15 days
   const todayPlus15 = new Date();
-  todayPlus15.setDate(todayPlus15.getDate() + 25);
+  todayPlus15.setDate(todayPlus15.getDate() + scheduleDaysAhead);
   console.log(todayPlus15);
 
   const result = date < todayPlus15;
