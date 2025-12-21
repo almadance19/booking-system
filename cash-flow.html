@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance School Financial Blueprint</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .calculator-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .calculator-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .calculator-card h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .phase-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .phase-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .insight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 3rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Dance School Financial Blueprint</h1>
+            <p class="subtitle">Customer Acquisition Cost (CAC) & Lifetime Value (LTV) Optimization Calculator</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('monthly')">Monthly Calculator</button>
+            <button class="tab-btn" onclick="switchTab('yearly')">Yearly Projections</button>
+            <button class="tab-btn" onclick="switchTab('growth')">Growth Roadmap</button>
+            <button class="tab-btn" onclick="switchTab('formulas')">Financial Formulas</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <h2>Financial Dashboard</h2>
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3>Current Status</h3>
+                    <div class="metric-grid">
+                        <div class="metric-item">
+                            <div class="metric-value" id="currentStudents">90</div>
+                            <div class="metric-label">Students</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="currentRevenue">€5,850</div>
+                            <div class="metric-label">Monthly Revenue</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="currentProfit">€2,850</div>
+                            <div class="metric-label">Monthly Profit</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="currentMargin">48.7%</div>
+                            <div class="metric-label">Profit Margin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-card">
+                    <h3>Target Status</h3>
+                    <div class="metric-grid">
+                        <div class="metric-item">
+                            <div class="metric-value" id="targetStudents">150</div>
+                            <div class="metric-label">Students</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="targetRevenue">€9,750</div>
+                            <div class="metric-label">Monthly Revenue</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="targetProfit">€5,850</div>
+                            <div class="metric-label">Monthly Profit</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="targetMargin">60%</div>
+                            <div class="metric-label">Profit Margin</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Performance Comparison</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Current (90 Students)</th>
+                        <th>Target (150 Students)</th>
+                        <th>Improvement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monthly Revenue</td>
+                        <td>€5,850</td>
+                        <td>€9,750</td>
+                        <td>+67%</td>
+                    </tr>
+                    <tr>
+                        <td>Fixed Costs</td>
+                        <td>€2,000</td>
+                        <td>€2,600</td>
+                        <td>+30%</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing Spend</td>
+                        <td>€1,000</td>
+                        <td>€1,300</td>
+                        <td>+30%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monthly Profit</strong></td>
+                        <td><strong>€2,850</strong></td>
+                        <td><strong>€5,850</strong></td>
+                        <td><strong>+105%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <h4>Key Insight</h4>
+                <p>Scaling from 90 to 150 students increases revenue by 67% while costs only grow by 30%, resulting in profit growth of 105%!</p>
+            </div>
+        </div>
+
+        <!-- Monthly Calculator Tab -->
+        <div id="monthly" class="tab-content">
+            <h2>Monthly Financial Calculator</h2>
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3>Input Your Numbers</h3>
+                    <div class="input-group">
+                        <label for="monthlyStudents">Total Students</label>
+                        <input type="number" id="monthlyStudents" value="90" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="monthlyFee">Monthly Fee per Student (€)</label>
+                        <input type="number" id="monthlyFee" value="65" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="fixedCosts">Fixed Costs (€)</label>
+                        <input type="number" id="fixedCosts" value="2000" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="marketingSpend">Marketing Spend (€)</label>
+                        <input type="number" id="marketingSpend" value="1000" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="newStudents">New Students This Month</label>
+                        <input type="number" id="newStudents" value="15" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="retentionMonths">Average Retention (Months)</label>
+                        <input type="number" id="retentionMonths" value="6" min="1">
+                    </div>
+                    <button class="download-btn" onclick="calculateMonthly()">Calculate</button>
+                </div>
+
+                <div class="calculator-card">
+                    <h3>Results</h3>
+                    <div class="result-box">
+                        <div class="result-label">Monthly Revenue</div>
+                        <div class="result-value" id="calcRevenue">€5,850</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Monthly Profit</div>
+                        <div class="result-value" id="calcProfit">€2,850</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Profit Margin</div>
+                        <div class="result-value" id="calcMargin">48.7%</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Customer Acquisition Cost (CAC)</div>
+                        <div class="result-value" id="calcCAC">€66.67</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Lifetime Value (LTV)</div>
+                        <div class="result-value" id="calcLTV">€390</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">LTV:CAC Ratio</div>
+                        <div class="result-value" id="calcRatio">5.85</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>Interpretation Guide</h4>
+                <p><strong>LTV:CAC Ratio:</strong> &gt;3 = Healthy, &gt;5 = Excellent</p>
+                <p><strong>Profit Margin:</strong> &gt;40% = Good, &gt;50% = Excellent</p>
+                <p><strong>CAC Payback:</strong> Should be ≤2 months at €65 monthly fee</p>
+            </div>
+        </div>
+
+        <!-- Yearly Projections Tab -->
+        <div id="yearly" class="tab-content">
+            <h2>Yearly Financial Projections</h2>
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3>Yearly Projection Input</h3>
+                    <div class="input-group">
+                        <label for="startStudents">Starting Students</label>
+                        <input type="number" id="startStudents" value="90" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="monthlyGrowth">Monthly Growth Rate (%)</label>
+                        <input type="number" id="monthlyGrowth" value="5" min="0" max="50" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label for="monthlyChurn">Monthly Churn Rate (%)</label>
+                        <input type="number" id="monthlyChurn" value="16.7" min="0" max="100" step="0.1">
+                    </div>
+                    <button class="download-btn" onclick="calculateYearly()">Project Year</button>
+                </div>
+
+                <div class="calculator-card">
+                    <h3>12-Month Projection</h3>
+                    <div id="yearlyResults" style="max-height: 400px; overflow-y: auto;">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Students</th>
+                                    <th>Revenue</th>
+                                    <th>Profit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projectionTable">
+                                <!-- Filled by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-card">
+                <h3>Annual Summary</h3>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value" id="annualRevenue">€0</div>
+                        <div class="metric-label">Total Annual Revenue</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="annualProfit">€0</div>
+                        <div class="metric-label">Total Annual Profit</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="endingStudents">0</div>
+                        <div class="metric-label">Students at Year End</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value" id="avgMargin">0%</div>
+                        <div class="metric-label">Average Profit Margin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Growth Roadmap Tab -->
+        <div id="growth" class="tab-content">
+            <h2>3-Phase Growth Roadmap</h2>
+            
+            <div class="phase-card">
+                <h4>Phase 1: Acquisition Focus (Months 1-2)</h4>
+                <p><strong>Marketing Budget:</strong> €2,500/month (+150%)</p>
+                <p><strong>Target:</strong> 25 new students/month</p>
+                <p><strong>Focus:</strong> Scale advertising, hire admin help, systemize leads</p>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value">€2,500</div>
+                        <div class="metric-label">Marketing Budget</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">€100</div>
+                        <div class="metric-label">Target CAC</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">25</div>
+                        <div class="metric-label">New Students/Month</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <h4>Phase 2: Retention Stabilization (Months 3-5)</h4>
+                <p><strong>Marketing Budget:</strong> €1,800/month</p>
+                <p><strong>Target:</strong> Increase retention to 8 months</p>
+                <p><strong>Focus:</strong> Implement "5-Month Milestone" program</p>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value">8 months</div>
+                        <div class="metric-label">Target Retention</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">19</div>
+                        <div class="metric-label">New Students Needed</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">€520</div>
+                        <div class="metric-label">Target LTV</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <h4>Phase 3: Optimization (Month 6+)</h4>
+                <p><strong>Marketing Budget:</strong> €1,300/month (sustainable)</p>
+                <p><strong>Target:</strong> Maintain 150 students at 60% margin</p>
+                <p><strong>Focus:</strong> Referral programs, CAC optimization</p>
+                <div class="metric-grid">
+                    <div class="metric-item">
+                        <div class="metric-value">150</div>
+                        <div class="metric-label">Student Cap</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">60%</div>
+                        <div class="metric-label">Target Margin</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">5.2:1</div>
+                        <div class="metric-label">LTV:CAC Ratio</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Growth Timeline</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Timeframe</th>
+                        <th>Students</th>
+                        <th>Revenue</th>
+                        <th>Profit</th>
+                        <th>Margin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Baseline (Now)</td>
+                        <td>90</td>
+                        <td>€5,850</td>
+                        <td>€2,850</td>
+                        <td>48.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 1 End (Month 2)</td>
+                        <td>115</td>
+                        <td>€7,475</td>
+                        <td>€3,375</td>
+                        <td>45.2%</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 2 End (Month 5)</td>
+                        <td>135</td>
+                        <td>€8,775</td>
+                        <td>€4,375</td>
+                        <td>49.9%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 3+ (Month 6+)</strong></td>
+                        <td><strong>150</strong></td>
+                        <td><strong>€9,750</strong></td>
+                        <td><strong>€5,850</strong></td>
+                        <td><strong>60.0%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulas Tab -->
+        <div id="formulas" class="tab-content">
+            <h2>Financial Formulas & Metrics</h2>
+            
+            <div class="calculator-card">
+                <h3>Core Formulas</h3>
+                
+                <div class="highlight">
+                    <h4>Customer Acquisition Cost (CAC)</h4>
+                    <p><strong>Formula:</strong> CAC = Total Marketing Spend ÷ New Students Acquired</p>
+                    <p><strong>Target:</strong> ≤ €100 per student</p>
+                    <p><strong>Purpose:</strong> Measures acquisition efficiency</p>
+                </div>
+                
+                <div class="highlight">
+                    <h4>Lifetime Value (LTV)</h4>
+                    <p><strong>Formula:</strong> LTV = Monthly Revenue per Student × Average Months Stayed</p>
+                    <p><strong>Current:</strong> €65 × 6 = €390</p>
+                    <p><strong>Target:</strong> €65 × 8 = €520</p>
+                </div>
+                
+                <div class="highlight">
+                    <h4>Payback Period</h4>
+                    <p><strong>Formula:</strong> Payback Months = CAC ÷ Monthly Revenue per Student</p>
+                    <p><strong>Target:</strong> ≤ 2 months</p>
+                </div>
+                
+                <div class="highlight">
+                    <h4>Break-Even Point</h4>
+                    <p><strong>Formula:</strong> Break-Even Students = (Fixed Costs + Marketing) ÷ Revenue per Student</p>
+                    <p><strong>Current:</strong> (€2,000 + €1,000) ÷ €65 = 46 students</p>
+                    <p><strong>Target:</strong> (€2,600 + €1,300) ÷ €65 = 60 students</p>
+                </div>
+                
+                <div class="highlight">
+                    <h4>Churn Rate</h4>
+                    <p><strong>Formula:</strong> Monthly Churn = (Students Lost ÷ Starting Students) × 100</p>
+                    <p><strong>Current:</strong> 16.7% (6-month retention)</p>
+                    <p><strong>Target:</strong> 12.5% (8-month retention)</p>
+                </div>
+            </div>
+
+            <div class="calculator-card">
+                <h3>Success Metrics Dashboard</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target Value</th>
+                            <th>Warning Signal</th>
+                            <th>Why It Matters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>New Students/Month</td>
+                            <td>19-25</td>
+                            <td>&lt; 15</td>
+                            <td>Maintains student base</td>
+                        </tr>
+                        <tr>
+                            <td>Maximum CAC</td>
+                            <td>€100</td>
+                            <td>&gt; €120</td>
+                            <td>Ensures 2-month payback</td>
+                        </tr>
+                        <tr>
+                            <td>Student Retention</td>
+                            <td>8 months</td>
+                            <td>&lt; 6 months</td>
+                            <td>Reduces acquisition pressure</td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Churn Rate</td>
+                            <td>12.5%</td>
+                            <td>&gt; 16.7%</td>
+                            <td>Indicates retention issues</td>
+                        </tr>
+                        <tr>
+                            <td>Profit Margin</td>
+                            <td>60%</td>
+                            <td>&lt; 50%</td>
+                            <td>Ensures healthy scaling</td>
+                        </tr>
+                        <tr>
+                            <td>LTV:CAC Ratio</td>
+                            <td>5:1</td>
+                            <td>&lt; 3:1</td>
+                            <td>Measures acquisition efficiency</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <h3>Export Your Data</h3>
+            <p>Download your calculations and projections:</p>
+            <a href="#" class="download-btn" onclick="exportData()">Export as PDF</a>
+            <a href="#" class="download-btn" onclick="exportCSV()" style="margin-left: 10px;">Export as CSV</a>
+            <button class="download-btn" onclick="printPage()" style="margin-left: 10px;">Print Report</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Dance School Financial Blueprint Calculator v1.0</p>
+            <p>Designed for sustainable growth from 90 to 150 students</p>
+            <p>© 2024 Dance School Financial Management System</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Set active button
+            event.target.classList.add('active');
+            
+            // Recalculate if needed
+            if (tabName === 'monthly') calculateMonthly();
+            if (tabName === 'yearly') calculateYearly();
+        }
+
+        // Monthly Calculator
+        function calculateMonthly() {
+            const students = parseFloat(document.getElementById('monthlyStudents').value) || 0;
+            const fee = parseFloat(document.getElementById('monthlyFee').value) || 0;
+            const fixed = parseFloat(document.getElementById('fixedCosts').value) || 0;
+            const marketing = parseFloat(document.getElementById('marketingSpend').value) || 0;
+            const newStudents = parseFloat(document.getElementById('newStudents').value) || 1;
+            const retention = parseFloat(document.getElementById('retentionMonths').value) || 1;
+
+            // Calculations
+            const revenue = students * fee;
+            const totalCosts = fixed + marketing;
+            const profit = revenue - totalCosts;
+            const margin = revenue > 0 ? (profit / revenue * 100).toFixed(1) : 0;
+            const cac = newStudents > 0 ? marketing / newStudents : 0;
+            const ltv = fee * retention;
+            const ratio = cac > 0 ? (ltv / cac).toFixed(2) : 0;
+
+            // Update display
+            document.getElementById('calcRevenue').textContent = `€${revenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('calcProfit').textContent = `€${profit.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('calcMargin').textContent = `${margin}%`;
+            document.getElementById('calcCAC').textContent = `€${cac.toFixed(2)}`;
+            document.getElementById('calcLTV').textContent = `€${ltv.toFixed(0)}`;
+            document.getElementById('calcRatio').textContent = ratio;
+        }
+
+        // Yearly Projections
+        function calculateYearly() {
+            const startStudents = parseFloat(document.getElementById('startStudents').value) || 0;
+            const monthlyGrowth = parseFloat(document.getElementById('monthlyGrowth').value) || 0;
+            const monthlyChurn = parseFloat(document.getElementById('monthlyChurn').value) || 0;
+            
+            const table = document.getElementById('projectionTable');
+            table.innerHTML = '';
+            
+            let currentStudents = startStudents;
+            let totalRevenue = 0;
+            let totalProfit = 0;
+            const fee = 65;
+            
+            for (let month = 1; month <= 12; month++) {
+                // Calculate net growth
+                const newStudents = currentStudents * (monthlyGrowth / 100);
+                const lostStudents = currentStudents * (monthlyChurn / 100);
+                
+                // Update student count
+                currentStudents = currentStudents + newStudents - lostStudents;
+                
+                // Calculate monthly financials
+                const monthlyFixed = 2000 * (1 + (currentStudents - 90) * 0.005); // Scale with growth
+                const monthlyMarketing = 1000 * (1 + (currentStudents - 90) * 0.005);
+                const monthlyRevenue = currentStudents * fee;
+                const monthlyProfit = monthlyRevenue - monthlyFixed - monthlyMarketing;
+                
+                totalRevenue += monthlyRevenue;
+                totalProfit += monthlyProfit;
+                
+                // Add row to table
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>Month ${month}</td>
+                    <td>${Math.round(currentStudents)}</td>
+                    <td>€${Math.round(monthlyRevenue).toLocaleString()}</td>
+                    <td>€${Math.round(monthlyProfit).toLocaleString()}</td>
+                `;
+                table.appendChild(row);
+            }
+            
+            // Update summary
+            const avgMargin = totalRevenue > 0 ? (totalProfit / totalRevenue * 100).toFixed(1) : 0;
+            
+            document.getElementById('annualRevenue').textContent = `€${Math.round(totalRevenue).toLocaleString()}`;
+            document.getElementById('annualProfit').textContent = `€${Math.round(totalProfit).toLocaleString()}`;
+            document.getElementById('endingStudents').textContent = Math.round(currentStudents);
+            document.getElementById('avgMargin').textContent = `${avgMargin}%`;
+        }
+
+        // Export functions
+        function exportData() {
+            alert('PDF export functionality would be implemented here. In a real application, this would generate a PDF report.');
+        }
+
+        function exportCSV() {
+            alert('CSV export functionality would be implemented here. This would download your data as a spreadsheet.');
+        }
+
+        function printPage() {
+            window.print();
+        }
+
+        // Initialize calculations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateMonthly();
+            calculateYearly();
+        });
+    </script>
+</body>
+</html>
