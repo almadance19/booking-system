@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alma Dance Frankfurt Journey Roadmap | Salsa, Bachata, Zouk & Kizomba</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding-bottom: 50px;
+        }
+        
+        /* Navigation Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #8a2387, #e94057);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #8a2387;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #8a2387, #e94057);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: #8a2387;
+            font-weight: 600;
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #8a2387;
+            cursor: pointer;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #8a2387, #e94057, #f27121);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+        
+        .dance-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .dance-icon {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .dance-icon i {
+            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .roadmap-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #8a2387;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2387, #e94057);
+        }
+        
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .methodology-card {
+            background: #f9f7ff;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid #e94057;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .methodology-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .methodology-card h3 {
+            color: #8a2387;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .methodology-card i {
+            color: #e94057;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .timeline-container {
+            position: relative;
+            margin: 50px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, #8a2387, #f27121);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border-top: 4px solid #8a2387;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            border-top-color: #e94057;
+        }
+        
+        .timeline-item:nth-child(3) .timeline-content {
+            border-top-color: #f27121;
+        }
+        
+        .timeline-item:nth-child(4) .timeline-content {
+            border-top-color: #4A00E0;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -13px;
+            background-color: white;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            border: 4px solid #8a2387;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -13px;
+            right: auto;
+            border-color: #e94057;
+        }
+        
+        .timeline-item:nth-child(3) .timeline-content::after {
+            border-color: #f27121;
+        }
+        
+        .timeline-item:nth-child(4) .timeline-content::after {
+            border-color: #4A00E0;
+        }
+        
+        .level {
+            display: inline-block;
+            background: linear-gradient(to right, #8a2387, #e94057);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-content h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .duration {
+            color: #e94057;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .motivation-section {
+            background: linear-gradient(135deg, #fdfcfb, #f9f7ff);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 1px solid #eae1f6;
+        }
+        
+        .motivation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .motivation-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .motivation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .motivation-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #8a2387;
+        }
+        
+        .motivation-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .progress-tracking {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .progress-bar-container {
+            background-color: #f0f0f0;
+            height: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .milestone-markers {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 10px;
+        }
+        
+        .milestone {
+            text-align: center;
+            position: relative;
+            width: 24%;
+        }
+        
+        .milestone::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border: 3px solid #8a2387;
+            border-radius: 50%;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        .milestone:nth-child(2)::before {
+            border-color: #e94057;
+        }
+        
+        .milestone:nth-child(3)::before {
+            border-color: #f27121;
+        }
+        
+        .milestone:nth-child(4)::before {
+            border-color: #4A00E0;
+        }
+        
+        .milestone.active::before {
+            background-color: #8a2387;
+        }
+        
+        .milestone:nth-child(2).active::before {
+            background-color: #e94057;
+        }
+        
+        .milestone:nth-child(3).active::before {
+            background-color: #f27121;
+        }
+        
+        .milestone:nth-child(4).active::before {
+            background-color: #4A00E0;
+        }
+        
+        .milestone-label {
+            font-weight: 600;
+            margin-top: 10px;
+            color: #333;
+        }
+        
+        .milestone-time {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #8a2387, #e94057);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #8a2387;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: #f8f9fa;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Navigation */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-content::after {
+                left: -13px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                left: -13px;
+                right: auto;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Alma Dance Frankfurt School</div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/booking">Booking</a></li>
+                <li><a href="/Pricing">Prices</a></li>
+                <li><a href="/contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <div class="container">
+            <h1>Alma Dance Frankfurt Journey Roadmap</h1>
+            <p class="subtitle">Your personalized path to mastering Bachata, Salsa, Zouk & Kizomba. Follow this roadmap to track your progress and stay motivated throughout your 12-month dance journey.</p>
+            
+            <div class="dance-icons">
+                <div class="dance-icon">
+                    <i class="fas fa-heart"></i>
+                    <span>Bachata</span>
+                </div>
+                <div class="dance-icon">
+                    <i class="fas fa-fire"></i>
+                    <span>Salsa</span>
+                </div>
+                <div class="dance-icon">
+                    <i class="fas fa-wind"></i>
+                    <span>Zouk</span>
+                </div>
+                <div class="dance-icon">
+                    <i class="fas fa-compact-disc"></i>
+                    <span>Kizomba</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="roadmap-container">
+            <h2 class="section-title">Our Teaching Methodology</h2>
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Progressive Learning</h3>
+                    <p>Structured curriculum that builds from foundational moves to advanced combinations, ensuring solid understanding at each level.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Social Practice</h3>
+                    <p>Weekly social dance events to practice with different partners and apply what you've learned in a real dance environment.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Personalized Feedback</h3>
+                    <p>Small class sizes with individual attention from instructors to correct technique and accelerate your progress.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <i class="fas fa-music"></i>
+                    <h3>Musicality Training</h3>
+                    <p>Learn to connect with the music, understand rhythms, and express yourself through movement to different Latin music styles.</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Your 12-Month Dance Journey</h2>
+        
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="level">Level 1</span>
+                        <h3>Basics Foundation</h3>
+                        <span class="duration">2 Months</span>
+                        <p>Master fundamental steps, basic timing, and partner connection. Learn simple turns and basic footwork for all four dance styles.</p>
+                        <ul>
+                            <li>Basic steps & timing for Bachata, Salsa, Zouk & Kizomba</li>
+                            <li>Proper posture and frame</li>
+                            <li>Introduction to Latin music rhythms</li>
+                            <li>Social dance etiquette</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="level">Level 2</span>
+                        <h3>Improvers Development</h3>
+                        <span class="duration">4 Months</span>
+                        <p>Expand your vocabulary with more turns, combinations, and styling. Develop better lead/follow techniques and musicality.</p>
+                        <ul>
+                            <li>Multiple turn patterns for each dance style</li>
+                            <li>Basic styling elements for followers</li>
+                            <li>Introduction to musicality and hitting breaks</li>
+                            <li>Transitioning between different dance styles</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="level">Level 3</span>
+                        <h3>Intermediate Skills</h3>
+                        <span class="duration">6 Months</span>
+                        <p>Refine technique, learn more complex patterns, and develop personal style. Focus on smooth transitions and advanced musicality.</p>
+                        <ul>
+                            <li>Advanced combinations and footwork variations</li>
+                            <li>Body movement and isolations</li>
+                            <li>Advanced leading/following techniques</li>
+                            <li>Dance improvisation skills</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="level">Level 4</span>
+                        <h3>Intermediate-Advanced Mastery</h3>
+                        <span class="duration">6+ Months</span>
+                        <p>Master complex combinations, develop your unique style, and prepare for performance-level dancing. Optional performance team participation.</p>
+                        <ul>
+                            <li>Performance choreography elements</li>
+                            <li>Advanced musical interpretation</li>
+                            <li>Styling workshops and personal expression</li>
+                            <li>Mentoring opportunities for newer students</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-tracking">
+            <h2 class="section-title">Track Your Progress</h2>
+            <p>Visualize your journey through our 12-month program. Mark your current level to see how far you've come and what's ahead!</p>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="milestone-markers">
+                <div class="milestone" data-level="1">
+                    <div class="milestone-label">Basics</div>
+                    <div class="milestone-time">Months 1-2</div>
+                </div>
+                <div class="milestone" data-level="2">
+                    <div class="milestone-label">Improvers</div>
+                    <div class="milestone-time">Months 3-6</div>
+                </div>
+                <div class="milestone" data-level="3">
+                    <div class="milestone-label">Intermediate</div>
+                    <div class="milestone-time">Months 7-12</div>
+                </div>
+                <div class="milestone" data-level="4">
+                    <div class="milestone-label">Advanced</div>
+                    <div class="milestone-time">12+ Months</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="margin-bottom: 15px;"><strong>Mark your current level:</strong></p>
+                <button class="level-btn" data-target="0">Not Started</button>
+                <button class="level-btn" data-target="25">Level 1</button>
+                <button class="level-btn" data-target="50">Level 2</button>
+                <button class="level-btn" data-target="75">Level 3</button>
+                <button class="level-btn" data-target="100">Level 4</button>
+            </div>
+        </div>
+        
+        <div class="motivation-section">
+            <h2 class="section-title">Stay Motivated on Your Dance Journey</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Learning to dance is a marathon, not a sprint. Here's how to stay motivated throughout your 12-month journey:</p>
+            
+            <div class="motivation-cards">
+                <div class="motivation-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Celebrate Milestones</h3>
+                    <p>We recognize your progress with certificates and celebrations at each level completion.</p>
+                </div>
+                
+                <div class="motivation-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Regular Socials</h3>
+                    <p>Monthly themed social dances to practice skills, meet fellow students, and have fun!</p>
+                </div>
+                
+                <div class="motivation-card">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Dance Community</h3>
+                    <p>Join our vibrant community of dancers who support and motivate each other.</p>
+                </div>
+                
+                <div class="motivation-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Performance Opportunities</h3>
+                    <p>Showcase your skills in student showcases and performances throughout the year.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Ready to Start Your Dance Journey?</h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; opacity: 0.95;">Join hundreds of students who have transformed their lives through Alma Dance Frankfurt. Follow the roadmap to success!</p>
+            <a href="/booking" class="cta-button">Begin Your Dance Journey Today</a>
+        </div>
+        
+        <footer>
+            <p>© 2023 Alma Dance Frankfurt School | Bachata • Salsa • Zouk • Kizomba</p>
+            <p style="margin-top: 10px;">Follow our roadmap to 12-month dance mastery!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                
+                // Change icon based on menu state
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+            
+            // Progress bar functionality
+            const progressBar = document.getElementById('progressBar');
+            const levelButtons = document.querySelectorAll('.level-btn');
+            const milestones = document.querySelectorAll('.milestone');
+            
+            // Set default progress to 0%
+            progressBar.style.width = '0%';
+            
+            // Add click events to level buttons
+            levelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetWidth = this.getAttribute('data-target');
+                    progressBar.style.width = targetWidth + '%';
+                    
+                    // Update milestone active states
+                    const level = parseInt(targetWidth) / 25;
+                    milestones.forEach((milestone, index) => {
+                        if (index < level) {
+                            milestone.classList.add('active');
+                        } else {
+                            milestone.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update button styles
+                    levelButtons.forEach(btn => btn.style.opacity = '0.7');
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1.05)';
+                });
+            });
+            
+            // Style the level buttons
+            levelButtons.forEach(button => {
+                button.style.backgroundColor = '#8a2387';
+                button.style.color = 'white';
+                button.style.border = 'none';
+                button.style.padding = '10px 20px';
+                button.style.margin = '5px';
+                button.style.borderRadius = '30px';
+                button.style.cursor = 'pointer';
+                button.style.transition = 'all 0.3s ease';
+                button.style.fontWeight = '600';
+                
+                button.addEventListener('mouseover', function() {
+                    this.style.backgroundColor = '#e94057';
+                });
+                
+                button.addEventListener('mouseout', function() {
+                    if (!this.style.opacity || this.style.opacity === '0.7') {
+                        this.style.backgroundColor = '#8a2387';
+                    }
+                });
+            });
+            
+            // Initialize with Level 1 selected
+            document.querySelector('.level-btn[data-target="25"]').click();
+            
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname;
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

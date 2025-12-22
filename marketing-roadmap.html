@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance School Marketing Strategy - Core Four Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #6a11cb;
+        }
+        
+        h1 {
+            color: #2d2b55;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #6a11cb;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        h3 {
+            color: #2575fc;
+            margin: 20px 0 10px;
+        }
+        
+        h4 {
+            color: #11998e;
+            margin: 15px 0 8px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .audience-card {
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .warm-private { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+        .warm-public { background: linear-gradient(135deg, #6a11cb, #2575fc); }
+        .cold-private { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .cold-public { background: linear-gradient(135deg, #4568dc, #b06ab3); }
+        
+        .framework-section {
+            margin: 30px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: #e0e0ff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #6a11cb;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover {
+            background: #d0d0ff;
+        }
+        
+        .tab-btn.active {
+            background: #6a11cb;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0ff;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .strategy-card {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid;
+        }
+        
+        .warm-private-border { border-top-color: #ff7e5f; }
+        .warm-public-border { border-top-color: #6a11cb; }
+        .cold-private-border { border-top-color: #11998e; }
+        .cold-public-border { border-top-color: #4568dc; }
+        
+        .metrics {
+            background: #e6f7ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6, #ffeaa7);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #fdcb6e;
+            margin: 20px 0;
+        }
+        
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .quarter {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid;
+        }
+        
+        .q1 { border-left-color: #ff7e5f; }
+        .q2 { border-left-color: #6a11cb; }
+        .q3 { border-left-color: #11998e; }
+        .q4 { border-left-color: #4568dc; }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .conversion-rates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .rate-card {
+            padding: 15px;
+            border-radius: 6px;
+            color: white;
+            text-align: center;
+        }
+        
+        .principle {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .audience-grid,
+            .strategy-grid,
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dance School Marketing Strategy</h1>
+            <p class="subtitle">Alex Hormozi's Core Four Framework Applied to Dance Education</p>
+        </header>
+        
+        <div class="section">
+            <h2>🏆 Core Philosophy</h2>
+            <p><strong>"Building confidence and community through exceptional technical training."</strong></p>
+            <p>Every marketing decision should ladder up to this core promise.</p>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Audience Strategy Framework</h2>
+            
+            <div class="audience-grid">
+                <div class="audience-card warm-private">
+                    <h3>🔥 Warm Private Audience</h3>
+                    <p><strong>Who:</strong> Current students, email list, referrals</p>
+                    <ul>
+                        <li>Highest conversion rate (15-25%)</li>
+                        <li>Lowest acquisition cost</li>
+                        <li>Highest lifetime value potential</li>
+                    </ul>
+                </div>
+                
+                <div class="audience-card warm-public">
+                    <h3>🔥 Warm Public Audience</h3>
+                    <p><strong>Who:</strong> Social media followers, website visitors, past students</p>
+                    <ul>
+                        <li>Medium conversion rate (5-15%)</li>
+                        <li>Know your brand but haven't committed</li>
+                        <li>Engaged but not activated</li>
+                    </ul>
+                </div>
+                
+                <div class="audience-card cold-private">
+                    <h3>❄️ Cold Private Audience</h3>
+                    <p><strong>Who:</strong> Referral leads, community contacts, partnerships</p>
+                    <ul>
+                        <li>Medium-high conversion rate (8-18%)</li>
+                        <li>Social proof lowers resistance</li>
+                        <li>Trust established through connection</li>
+                    </ul>
+                </div>
+                
+                <div class="audience-card cold-public">
+                    <h3>❄️ Cold Public Audience</h3>
+                    <p><strong>Who:</strong> Paid ad targets, local search, walk-ins</p>
+                    <ul>
+                        <li>Lowest conversion rate (1-5%)</li>
+                        <li>Highest acquisition cost</li>
+                        <li>No prior relationship exists</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 The Core Four Marketing Framework</h2>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab(1)">1. Acquisition</button>
+                <button class="tab-btn" onclick="showTab(2)">2. Activation</button>
+                <button class="tab-btn" onclick="showTab(3)">3. Monetization</button>
+                <button class="tab-btn" onclick="showTab(4)">4. Retention</button>
+            </div>
+            
+            <!-- Acquisition Tab -->
+            <div id="tab1" class="tab-content active">
+                <h3>1. ACQUISITION: Getting Strangers to Know You</h3>
+                <p><strong>Goal:</strong> Generate leads at the lowest possible cost</p>
+                
+                <div class="strategy-grid">
+                    <div class="strategy-card warm-private-border">
+                        <h4>🔥 Warm Private Audience</h4>
+                        <ul>
+                            <li><strong>Referral Program:</strong> "Refer a Friend: You both get one month free"</li>
+                            <li><strong>Email Sequences:</strong> Win-back campaigns for inactive students</li>
+                            <li><strong>Internal Upsell:</strong> "Sibling Enrollment Special"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card warm-public-border">
+                        <h4>🔥 Warm Public Audience</h4>
+                        <ul>
+                            <li><strong>Social Media Retargeting:</strong> Show ads to engaged followers</li>
+                            <li><strong>Lead Magnet:</strong> "5 Common Dance Mistakes" free video series</li>
+                            <li><strong>Webinar/Workshop:</strong> Live Q&A with head instructor</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-private-border">
+                        <h4>❄️ Cold Private Audience</h4>
+                        <ul>
+                            <li><strong>Partnership Referrals:</strong> Local schools, pediatricians, sports clubs</li>
+                            <li><strong>Community Events:</strong> Library workshops, school demos</li>
+                            <li><strong>Networking:</strong> Parent groups, local business associations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-public-border">
+                        <h4>❄️ Cold Public Audience</h4>
+                        <ul>
+                            <li><strong>Hyper-Local Facebook/Instagram Ads:</strong> Target parents within 5-mile radius</li>
+                            <li><strong>Google Search Ads:</strong> "dance classes near me" keywords</li>
+                            <li><strong>Local SEO:</strong> Optimize for "best dance school in [city]"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎁 The "Hero" Free Offer (For All Audiences)</h4>
+                    <p><strong>"Confidence on the Floor" Starter Workshop:</strong> A free 45-minute workshop for absolute beginners with a promised "first win" - one simple combination they can show off immediately.</p>
+                </div>
+                
+                <div class="conversion-rates">
+                    <div class="rate-card" style="background: #ff7e5f;">
+                        <h4>Warm Private</h4>
+                        <p>20-25% Conversion</p>
+                    </div>
+                    <div class="rate-card" style="background: #6a11cb;">
+                        <h4>Warm Public</h4>
+                        <p>10-15% Conversion</p>
+                    </div>
+                    <div class="rate-card" style="background: #11998e;">
+                        <h4>Cold Private</h4>
+                        <p>12-18% Conversion</p>
+                    </div>
+                    <div class="rate-card" style="background: #4568dc;">
+                        <h4>Cold Public</h4>
+                        <p>3-8% Conversion</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activation Tab -->
+            <div id="tab2" class="tab-content">
+                <h3>2. ACTIVATION: Turning Prospects into First-Time Paid Students</h3>
+                <p><strong>Goal:</strong> Get leads to experience their "First Win" and pay for first core offering</p>
+                
+                <div class="strategy-grid">
+                    <div class="strategy-card warm-private-border">
+                        <h4>🔥 Warm Private Audience</h4>
+                        <ul>
+                            <li><strong>Personal Invitation:</strong> "As a valued community member, we're reserving a spot for you"</li>
+                            <li><strong>Early Access:</strong> 48-hour priority registration before public</li>
+                            <li><strong>Testimonial Integration:</strong> Show similar students' success stories</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card warm-public-border">
+                        <h4>🔥 Warm Public Audience</h4>
+                        <ul>
+                            <li><strong>Limited-Time Bonus:</strong> "Enroll this week and get free dance shoes rental"</li>
+                            <li><strong>Social Proof:</strong> Share transformation stories from similar beginners</li>
+                            <li><strong>Webinar to Course Funnel:</strong> Special offer at end of free workshop</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-private-border">
+                        <h4>❄️ Cold Private Audience</h4>
+                        <ul>
+                            <li><strong>Partner Discount:</strong> "Mention [Partner Name] for 15% off first course"</li>
+                            <li><strong>Success Session:</strong> One-on-one goal setting call (not sales call)</li>
+                            <li><strong>Risk Reversal:</strong> "Money-back guarantee if no confidence after 4 weeks"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-public-border">
+                        <h4>❄️ Cold Public Audience</h4>
+                        <ul>
+                            <li><strong>Clear Next Step:</strong> "First Steps" 8-Week Fundamentals Course ($199)</li>
+                            <li><strong>Simplified Choice:</strong> Only one beginner option presented initially</li>
+                            <li><strong>Immediate Onboarding:</strong> Book first class within 24 hours of sign-up</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎯 The Irresistible Core Offer</h4>
+                    <p><strong>"First Steps" 8-Week Fundamentals Course:</strong> Fixed-length, progressive curriculum with tangible outcome: "Dance in our student showcase" or "Master our 8-week curriculum."</p>
+                </div>
+            </div>
+            
+            <!-- Monetization Tab -->
+            <div id="tab3" class="tab-content">
+                <h3>3. MONETIZATION: Making More Money From Existing Students</h3>
+                <p><strong>Goal:</strong> Increase Lifetime Value (LTV) before they think of leaving</p>
+                
+                <div class="strategy-grid">
+                    <div class="strategy-card warm-private-border">
+                        <h4>🔥 Warm Private Audience</h4>
+                        <ul>
+                            <li><strong>Unlimited Membership:</strong> Primary offer after 8-week course ($129/month)</li>
+                            <li><strong>Elite Programs:</strong> Invitation-only competition teams</li>
+                            <li><strong>Family Packages:</strong> Discount for multiple family members</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card warm-public-border">
+                        <h4>🔥 Warm Public Audience</h4>
+                        <ul>
+                            <li><strong>Masterclass Series:</strong> Quarterly workshops with guest instructors ($99/event)</li>
+                            <li><strong>Specialty Workshops:</strong> "Parent-Child Dance Weekends"</li>
+                            <li><strong>Digital Products:</strong> "Practice at Home" video library subscription</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-private-border">
+                        <h4>❄️ Cold Private Audience</h4>
+                        <ul>
+                            <li><strong>Semi-Private Coaching:</strong> Small-group "Spotlight Sessions" ($50/session)</li>
+                            <li><strong>Event Packages:</strong> Wedding dance choreography packages</li>
+                            <li><strong>Corporate Programs:</strong> Team-building dance workshops</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-public-border">
+                        <h4>❄️ Cold Public Audience</h4>
+                        <ul>
+                            <li><strong>Performance Packages:</strong> Recital costumes + video ($199-399)</li>
+                            <li><strong>Merchandise:</strong> Branded apparel fostering community pride</li>
+                            <li><strong>Downsell Option:</strong> 4-Class Punch Card for limited commitment</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>💰 Monetization Ladder</h4>
+                    <div style="text-align: center; margin: 20px 0;">
+                        <div style="padding: 15px; background: #6a11cb; color: white; border-radius: 6px; margin: 10px auto; max-width: 300px;">
+                            Beginner Course ($199)
+                        </div>
+                        <div style="font-size: 24px; margin: 10px;">↓</div>
+                        <div style="padding: 15px; background: #2575fc; color: white; border-radius: 6px; margin: 10px auto; max-width: 300px;">
+                            Monthly Membership ($129/mo)
+                        </div>
+                        <div style="font-size: 24px; margin: 10px;">↓</div>
+                        <div style="padding: 15px; background: #11998e; color: white; border-radius: 6px; margin: 10px auto; max-width: 300px;">
+                            Add-ons ($50-100/mo)
+                        </div>
+                        <div style="font-size: 24px; margin: 10px;">↓</div>
+                        <div style="padding: 15px; background: #4568dc; color: white; border-radius: 6px; margin: 10px auto; max-width: 300px;">
+                            Events/Packages ($99-399)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Retention Tab -->
+            <div id="tab4" class="tab-content">
+                <h3>4. RETENTION: Keeping Students For Years</h3>
+                <p><strong>Goal:</strong> Eliminate churn by creating unmatched value and community</p>
+                
+                <div class="strategy-grid">
+                    <div class="strategy-card warm-private-border">
+                        <h4>🔥 Warm Private Audience</h4>
+                        <ul>
+                            <li><strong>Loyalty Program:</strong> "Dance Journey Rewards" - milestones earn perks</li>
+                            <li><strong>Student Leadership Path:</strong> Assistant → Junior Teacher roles</li>
+                            <li><strong>Alumni Rate:</strong> Special pricing for returning graduates</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card warm-public-border">
+                        <h4>🔥 Warm Public Audience</h4>
+                        <ul>
+                            <li><strong>Private Community:</strong> Facebook group with exclusive content</li>
+                            <li><strong>Progress Tracking:</strong> Digital skill badges and certificates</li>
+                            <li><strong>Monthly Highlights:</strong> "Dancer of the Month" social features</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-private-border">
+                        <h4>❄️ Cold Private Audience</h4>
+                        <ul>
+                            <li><strong>Personal Check-ins:</strong> Quarterly "progress review" calls</li>
+                            <li><strong>Family Involvement:</strong> Parent observation weeks with feedback sessions</li>
+                            <li><strong>Milestone Celebrations:</strong> Physical cards for dance anniversaries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card cold-public-border">
+                        <h4>❄️ Cold Public Audience</h4>
+                        <ul>
+                            <li><strong>Email Nurture:</strong> Weekly "win" updates and educational content</li>
+                            <li><strong>Social Proof:</strong> Regular student transformation stories</li>
+                            <li><strong>Event Calendar:</strong> Clear yearly schedule of performances and socials</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🤝 Retention Superpowers</h4>
+                    <ul>
+                        <li><strong>Community Events:</strong> Student socials, parent mixers, watch parties</li>
+                        <li><strong>Progress Recognition:</strong> Annual progress videos sent to parents/students</li>
+                        <li><strong>Alumni Network:</strong> Connect current students with graduates in college dance programs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Implementation Timeline & Metrics</h2>
+            
+            <div class="timeline">
+                <div class="quarter q1">
+                    <h3>Quarter 1: Foundation & Retention Focus</h3>
+                    <ul>
+                        <li>Audit current student journey for leaks</li>
+                        <li>Build free workshop and 8-week course curriculum</li>
+                        <li>Implement referral program and one community event</li>
+                        <li><strong>Key Metric:</strong> Student Retention Rate ↑ 10%</li>
+                    </ul>
+                </div>
+                
+                <div class="quarter q2">
+                    <h3>Quarter 2: Acquisition & Activation Launch</h3>
+                    <ul>
+                        <li>Run first free workshop cycle</li>
+                        <li>Launch hyper-local ads to cold audiences</li>
+                        <li>Formalize 2 school partnerships</li>
+                        <li><strong>Key Metrics:</strong> Cost Per Lead & Activation Rate</li>
+                    </ul>
+                </div>
+                
+                <div class="quarter q3">
+                    <h3>Quarter 3: Monetization Expansion</h3>
+                    <ul>
+                        <li>Launch premium masterclass weekends</li>
+                        <li>Introduce performance packages for holiday recital</li>
+                        <li>Test merchandise line</li>
+                        <li><strong>Key Metric:</strong> Average Revenue Per Student</li>
+                    </ul>
+                </div>
+                
+                <div class="quarter q4">
+                    <h3>Quarter 4: Systemization & Planning</h3>
+                    <ul>
+                        <li>Systemize successful processes into checklists</li>
+                        <li>Plan next annual calendar around this cycle</li>
+                        <li>Analyze full year data</li>
+                        <li><strong>Key Metric:</strong> Lifetime Value</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="principle">
+            <h2>💡 Final Hormozi Principle</h2>
+            <p>"Double down on what works and cut what doesn't."</p>
+            <p>Track where your best students come from (which referral source? which partnership?) and pour your energy and resources there. Your dance school isn't just a service; it's a community and a transformation. Market the transformation, and the students will fill your studio.</p>
+        </div>
+        
+        <div class="section">
+            <h2>📝 Implementation Notes</h2>
+            <ol>
+                <li>Start with the audience that's easiest to convert (Warm Private)</li>
+                <li>Build systems for each audience type before scaling</li>
+                <li>Measure everything - what gets measured gets improved</li>
+                <li>Focus on customer lifetime value, not just initial sign-up</li>
+                <li>Community building is your #1 retention tool</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabNumber) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById('tab' + tabNumber).classList.add('active');
+            
+            // Activate clicked button
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Initialize first tab as active
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab(1);
+        });
+    </script>
+</body>
+</html>
