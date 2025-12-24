@@ -90,53 +90,50 @@
           </span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Startseite</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+          <ul class="navbar-nav ml-auto" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+            <li class="nav-item active">
+              <a class="nav-link" itemprop="url" href="index.html">Home</a>
             </li>
             <!-- secondery menu start -->
             <li class="nav-item has_dropdown">
-              <a class="nav-link" itemprop="url" href="stile.html">Stile</a>
+              <a class="nav-link" itemprop="url" href="tanzstile.html">Styles</a>
               <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
               <div class="sub_menu">
                 <ul>
-                  <li><a href="bachata-kurse-frankfurt.html">Bachata</a></li>
-                  <li><a href="salsa-kurse-frankfurt.html">Salsa</a></li>
-                  <li><a href="zouk-kurse-frankfurt.html">Zouk</a></li>
-                  <li><a href="kizomba-kurse-frankfurt.html">Kizomba</a></li>
-                  <li><a href="reggaeton-kurse-frankfurt.html">Reggaeton</a></li>
+                  <li><a href="bachata-tanzkurse-frankfurt.html">Bachata</a></li>
+                  <li><a href="salsa-tanzkurse-frankfurt.html">Salsa</a></li>
+                  <li><a href="zouk-tanzkurse-frankfurt.html">Zouk</a></li>
+                  <li><a href="kizomba-tanzkurse-frankfurt.html">Kizomba</a></li>
+                  <li><a href="woechentliche-tanzevents-frankfurt.html">Wöchentliche Tanzevents</a></li>
                 </ul>
               </div>
             </li>
             <!-- secondery menu end -->
-            <li class="nav-item">
-              <a class="nav-link" href="preise.html">Preise</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="pricing_de.html">Preise</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kursplan.html">Kursplan</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="kursplan.html">Kursplan</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="buchung.html">Buchung</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="booking_de.html">Buchen</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="woechentliche-tanzevents-frankfurt.html">Wöchentliche Praxis</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="standort.html">Standort</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="standort.html">Standort</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="https://www.bachata-salsa-online.eu/">WE-Workshops</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="tanzpartner-suche.html">Tanzpartner</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="kontakt.html">Kontakt</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kontakt.html">Kontakt</a>
+            <li class="nav-item" itemprop="name">
+              <a class="nav-link" itemprop="url" href="https://hochzeitstanzfrankfurt.eu/">Hochzeitstanz</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://wedding-dance-frankfurt.de/index.html">Hochzeitstanz</a>
-            </li>
-            <li class="nav-item">
+            <li class="nav-item" itemprop="name">
               <div class="btn_block">
-                <a class="nav-link dark_btn" href="weekly-practice.html">English</a>
+                <a class="nav-link dark_btn" href="home.html">English</a>
                 <div class="btn_bottom"></div>
               </div>
             </li>
@@ -471,20 +468,25 @@
 </section>
 
     <!-- Footer-Section start -->
-    <footer class="white_text" data-aos="fade-in" data-aos-duration="1500">
+        <footer class="white_text" data-aos="fade-in" data-aos-duration="1500">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="logo_side">
+              <!-- <div class="logo">
+                <a href="#">
+                  <img loading="lazy" src="images/ft_logo.webp" alt="Logo">
+                </a>
+              </div> -->
               <div class="news_letter">
-                <h3>Newsletter abonnieren</h3>
+                <h3>Subscribe newsletter</h3>
                 <p>Seien Sie der Erste, der die neuesten Beiträge in Ihrem Posteingang erhält.</p>
                 <form>
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Geben Sie Ihre E-Mail ein">
+                    <input type="email" class="form-control" placeholder="Enter your email">
                     <button class="btn"><i class="icofont-paper-plane"></i></button>
                   </div>
-                  <p class="note">Durch Klicken auf den "Senden"-Link stimmen Sie zu, Nachrichten und Werbeaktionen von uns zu erhalten.</p>
+                  <p class="note">Wenn Sie auf den Link "Senden" klicken, erklären Sie sich damit einverstanden, von uns Nachrichten und Werbeaktionen zu erhalten.</p>
                 </form>
               </div>
               <ul class="contact_info">
@@ -501,9 +503,13 @@
           </div>
           <div class="col-md-6">
             <div class="download_side">
-              <h3>Das Tanzerlebnis</h3>
+              <h3>The Dance Experience</h3>
               <ul class="app_btn">
-                <!-- App buttons placeholder -->
+                <!-- <li>
+                  <a class="navbar-brand" href="index.html">
+                    <img loading="lazy" src="images/logo.webp" alt="Logo">
+                  </a>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -516,13 +522,14 @@
               <p>©Alma Dance Frankfurt by Eduardo Millan</p>
             </div>
             <ul class="links">
-              <li><a href="https://alma-dance-frankfurt.de/kursplan.html">Kursplan</a></li>
-              <li><a href="https://alma-dance-frankfurt.de/woechentliche-tanzevents-frankfurt.html">Wöchentliche Praxis</a></li>
-              <li><a href="https://alma-dance-frankfurt.de/preise.html">Preise</a></li>
-              <li><a href="https://alma-dance-frankfurt.de/kontakt.html">Kontakt</a></li>
+              <li><a href="kursplan.html">Kursplan</a></li>
+              <li><a href="tanzschule-frankfurt.html">Über uns</a></li>
+              <li><a href="pricing_de.html">Prices</a></li>
+              <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
             <div class="design_by">
-              <p><a href="https://alma-dance.de/privacy-policy" target="blank">Datenschutzerklärung</a></p>
+              <!-- <p>Crafted by <a href="https://alma-dance.de" target="blank">Eduardo Millan</a></p> -->
+              <p><a href="https://alma-dance.de/privacy-policy" target="blank">Privacy Policy</a></p>
               <p><a href="https://alma-dance.de/impressum" target="blank">Impressum</a></p>
             </div>
           </div>
