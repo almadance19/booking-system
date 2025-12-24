@@ -4333,3 +4333,65 @@ footer .download_side .app_btn li a img {
   .btn-colour-1:hover {
      background-color: #ff5e0e;
   }
+
+          .roadmap-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+                .section-title {
+            color: #8a2387;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+
+                .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #8a2387, #e94057);
+        }
+
+                .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .methodology-card {
+            background: #f9f7ff;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid #e94057;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .methodology-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .methodology-card h3 {
+            color: #8a2387;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .methodology-card i {
+            color: #e94057;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: block;
+        }
