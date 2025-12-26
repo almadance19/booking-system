@@ -715,6 +715,14 @@ header.fixed .navbar {
     margin-bottom: 10px;
 }
 
+.service_section .service_text h1 {
+    font-size: 30px;
+    color: black
+    letter-spacing: -1.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
 .banner_section .banner_text p {
     padding: 0 80px;
     color: var(--text-white);
@@ -725,6 +733,19 @@ header.fixed .navbar {
     width: 100%;
     text-align: center;
     margin-top: 30px;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.trust-item a:hover {
+  text-decoration: underline;
+}
+
+.trust-item a:hover i {
+  color: #ee0f34;
 }
 
 .banner_section .banner_text .qrcode p {
