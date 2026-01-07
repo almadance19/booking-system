@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alma Dance Frankfurt - Attendance Guidelines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 30px 0;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .studio-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #FFD700;
+        }
+        
+        .language-switch {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .language-switch:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .language-switch a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .guidelines-section, .video-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            color: #2c3e50;
+        }
+        
+        .section-icon {
+            font-size: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        .platforms {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .checkbox-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .terms-list {
+            list-style-type: none;
+        }
+        
+        .term-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #3498db;
+        }
+        
+        .term-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .membership-options {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .option-card {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f0f7ff;
+            border: 1px solid #d0e4ff;
+        }
+        
+        .option-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .option-price {
+            font-weight: 700;
+            color: #6a11cb;
+            margin: 10px 0;
+        }
+        
+        .note {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .registration-link {
+            display: inline-block;
+            background-color: #6a11cb;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .registration-link:hover {
+            background-color: #2575fc;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin-top: 20px;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        
+        .video-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>Studio Attendance Guidelines</h1>
+                    <div class="studio-name">Alma Dance Frankfurt</div>
+                    <p>For Aggregator Platform Clients</p>
+                </div>
+                <div class="language-switch">
+                    <a href="aggregator-de.html">
+                        <span>🇩🇪</span> 
+                        <span>Deutsch Version</span>
+                    </a>
+                </div>
+             <div class="language-switch">
+                    <a href="home.html">
+                        <span>HOME</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content-wrapper">
+            <main class="guidelines-section">
+                <div class="section-title">
+                    <span class="section-icon">📝</span>
+                    <h2>Attendance Guidelines for Aggregator Clients</h2>
+                </div>
+                
+                <div class="platforms">
+                    <p><strong>Platforms:</strong></p>
+                    <div class="checkbox-list">
+                        <div class="checkbox-item">☐ Wellpass</div>
+                        <div class="checkbox-item">☐ Gympass</div>
+                        <div class="checkbox-item">☐ Urban Sports</div>
+                        <div class="checkbox-item">☐ Other: _______________</div>
+                    </div>
+                </div>
+                
+                <div class="section-title">
+                    <span class="section-icon">🎯</span>
+                    <h2>Purpose of these Conditions</h2>
+                </div>
+                <p>This document outlines the participation conditions for clients attending Alma Dance Frankfurt via aggregator platforms such as Wellpass or Gympass. It ensures fair access to limited class space and encourages commitment to learning and regular participation.</p>
+                
+                <p>All participants should register for one of the following membership options at our website:</p>
+                <a href="https://www.bachata-salsa-online.eu/new-subscription" class="registration-link" target="_blank">Register for Membership →</a>
+                
+                <div class="section-title">
+                    <span class="section-icon">✅</span>
+                    <h2>Terms & Conditions</h2>
+                </div>
+                
+                <ul class="terms-list">
+                    <li class="term-item">
+                        <div class="term-title">
+                            <span>🗓</span>
+                            <span>Trial Period (1 Month)</span>
+                        </div>
+                        <p>New aggregator clients have a 1-month trial period to explore Alma Dance classes. After this period, clients are required to select a membership plan to continue attending regularly.</p>
+                    </li>
+                    
+                    <li class="term-item">
+                        <div class="term-title">
+                            <span>💃</span>
+                            <span>Membership Options for Couple Dance Courses</span>
+                        </div>
+                        <p>Clients must choose one of the following options after the trial period:</p>
+                        
+                        <div class="membership-options">
+                            <div class="option-card">
+                                <div class="option-title">OPTION 1 – LIGHT</div>
+                                <p>For attending 1 class per week on different days (Check-in via platform required) a One-Time Payment or Monthly Fee is required:</p>
+                                <div class="option-price">10 €/Monthly for 12 Months</div>
+                                <div class="option-price">12 €/Monthly for 6 Months</div>
+                                <div class="option-price">15 €/Monthly for 3 Months</div>
+                                <div class="note">***Wellpass members can make a double check in instead of the extra payment for this option</div>
+                            </div>
+                            
+                            <div class="option-card">
+                                <div class="option-title">OPTION 1 – MEDIUM</div>
+                                <p>For attending 2 classes per week on different days (Check-in via platform required) a One-Time Payment or Monthly Fee is required:</p>
+                                <div class="option-price">20 €/Monthly for 12 Months</div>
+                                <div class="option-price">25 €/Monthly for 6 Months</div>
+                                <div class="option-price">30 €/Monthly for 3 Months</div>
+                                <div class="note">***Wellpass members can make a double check in instead + subscribe to LIGHT Option</div>
+                            </div>
+                            
+                            <div class="option-card">
+                                <div class="option-title">OPTION 2 – FLATRATE</div>
+                                <p>For unlimited access to all classes (Check-in via platform required) Charged monthly:</p>
+                                <div class="option-price">€40 / month – 12-month commitment</div>
+                                <div class="option-price">€45 / month – 6-month commitment</div>
+                                <div class="option-price">€50 / month – 3-month commitment</div>
+                            </div>
+                            
+                            <div class="option-card">
+                                <div class="option-title">OPTION 3 – SOLO DANCE COURSES (e.g. Hip Hop, Styling)</div>
+                                <p>Attendance allowed with platform check-in only. No additional payment required. Clients must still accept and follow the attendance and booking conditions.</p>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="term-item">
+                        <div class="term-title">
+                            <span>📲</span>
+                            <span>Pre-Booking Requirement</span>
+                        </div>
+                        <p>All clients must pre-book classes via our WhatsApp group or the studio website. Walk-in attendance is not guaranteed and may be declined if the class is full or not booked in advance.</p>
+                    </li>
+                    
+                    <li class="term-item">
+                        <div class="term-title">
+                            <span>❌</span>
+                            <span>No-Show / Late Cancellation Policy</span>
+                        </div>
+                        <p>Cancellations must be made at least <span class="highlight">6 hours</span> before class. Failure to cancel in time or no-shows may result in:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Temporary booking restrictions</li>
+                            <li>A €5 administrative fee (by frequent concurrence)</li>
+                        </ul>
+                    </li>
+                    
+                    <li class="term-item">
+                        <div class="term-title">
+                            <span>📅</span>
+                            <span>Minimum Attendance Expectation</span>
+                        </div>
+                        <p>Clients must attend at least <span class="highlight">3 classes per month</span> to remain active in our booking system. Clients with lower attendance may lose access to advanced or choreography-based classes.</p>
+                    </li>
+                    
+                    <li class="term-item">
+                        <div class="term-title">
+                            <span>🧾</span>
+                            <span>Studio Rights</span>
+                        </div>
+                        <p>Alma Dance Frankfurt reserves the right to update class access and membership rules for aggregator clients at any time with prior written notice.</p>
+                    </li>
+                </ul>
+            </main>
+            
+            <aside class="video-section">
+                <div class="section-title">
+                    <span class="section-icon">🎬</span>
+                    <h2>How-To Video Guide</h2>
+                </div>
+                <p>Watch this instructional video to learn how to book classes, check-in via your platform, and make the most of your Alma Dance Frankfurt experience.</p>
+                   <div class="video-container">
+                    <!-- <iframe src="https://www.youtube.com/embed/ZGgzXMrVgGY?si=DhOrhZ1Sl1QybVt3" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe> -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZGgzXMrVgGY?si=DhOrhZ1Sl1QybVt3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    
+                </div>
+
+                <a href="https://www.bachata-salsa-online.eu/new-subscription" class="registration-link" target="_blank">Register for Membership →</a>
+
+                <div style="margin-top: 30px; padding: 20px; background-color: #f0f7ff; border-radius: 10px;">
+                    <div class="section-title">
+                        <span class="section-icon">💡</span>
+                        <h3>Quick Tips</h3>
+                    </div>
+                    <ul style="margin-left: 20px;">
+                        <li>Always book your class in advance</li>
+                        <li>Check-in via your platform when arriving at the studio</li>
+                        <li>Cancel at least 6 hours before class if you cannot attend</li>
+                        <li>Maintain minimum 3 classes per month to keep booking privileges</li>
+                        <li>Choose the membership option that fits your dance goals</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background-color: #fff8e1; border-radius: 10px;">
+                    <div class="section-title">
+                        <span class="section-icon">📞</span>
+                        <h3>Need Help?</h3>
+                    </div>
+                    <p>If you have questions about the guidelines or need assistance with booking, contact us:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Email: info@alma-dance.de</li>
+                        <li>Website: alma-dance-frankfurt.de/</li>
+                        <li>WhatsApp Booking Group: Available after registration</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        
+        <footer>
+            <p>Alma Dance Frankfurt • Studio Attendance Guidelines for Aggregator Clients • Last updated: March 2023</p>
+            <p>These conditions are subject to change with prior written notice.</p>
+        </footer>
+    </div>
+</body>
+</html>
