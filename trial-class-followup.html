@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f9f9f9; }
+        table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13px; }
+        th { background-color: #4CAF50; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .btn-save { background: #2196F3; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; }
+        .btn-save:hover { background: #0b7dda; }
+        input[type="text"] { width: 100px; padding: 4px; }
+    </style>
+</head>
+<body>
+
+    <h2>Event Management Dashboard</h2>
+    <div style="margin-bottom: 20px;">
+        <label>Start: </label><input type="date" id="start">
+        <label>End: </label><input type="date" id="end">
+        <button onclick="fetchData()" style="padding: 5px 15px;">Filter Data</button>
+    </div>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Row</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Event Name</th>
+                <th>Day</th>
+                <th>Hour</th>
+                <th>Event Date (Edit)</th>
+                <th>Attended</th>
+                <th>Followup</th>
+                <th>Sub</th>
+                <th>Cancel</th>
+                <th>Wellpass</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhTA7S25aJ4X8afwedNH9btLuvVbRGAE3lwQYF5uCmfqnSK0x-WrWusH-4tCi34TI/exec';
+
+        async function fetchData() {
+            const start = document.getElementById('start').value;
+            const end = document.getElementById('end').value;
+            if(!start || !end) return alert("Please select date range");
+
+            const response = await fetch(`${SCRIPT_URL}?start=${start}&end=${end}`);
+            const data = await response.json();
+            
+            const tbody = document.querySelector('#dataTable tbody');
+            tbody.innerHTML = '';
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.rowNumber}</td>
+                    <td>${row.EMAIL}</td>
+                    <td>${row['VORNAME']}</td>
+                    <td>${row['EVENT NAME']}</td>
+                    <td>${row['EVENT DAY']}</td>
+                    <td>${row['EVENT HOUR']}</td>
+                    <td><input type="date" value="${row['EVENT DATE']}" id="date-${row.rowNumber}"></td>
+                    <td><input type="checkbox" ${row.Attended ? 'checked' : ''} id="att-${row.rowNumber}"></td>
+                    <td><input type="checkbox" ${row.Folloup ? 'checked' : ''} id="fol-${row.rowNumber}"></td>
+                    <td><input type="checkbox" ${row.Subscription ? 'checked' : ''} id="sub-${row.rowNumber}"></td>
+                    <td><input type="checkbox" ${row.Cancelled ? 'checked' : ''} id="can-${row.rowNumber}"></td>
+                    <td><input type="checkbox" ${row.Wellpass ? 'checked' : ''} id="wel-${row.rowNumber}"></td>
+                    <td><button class="btn-save" onclick="saveRow(${row.rowNumber})">Save</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function saveRow(rowNum) {
+            const payload = {
+                rowNumber: rowNum,
+                EVENT_DATE: document.getElementById(`date-${rowNum}`).value,
+                Attended: document.getElementById(`att-${rowNum}`).checked,
+                Folloup: document.getElementById(`fol-${rowNum}`).checked,
+                Subscription: document.getElementById(`sub-${rowNum}`).checked,
+                Cancelled: document.getElementById(`can-${rowNum}`).checked,
+                Wellpass: document.getElementById(`wel-${rowNum}`).checked
+            };
+
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            });
+            
+            if (response.ok) {
+                alert('Row ' + rowNum + ' updated successfully!');
+            }
+        }
+    </script>
+</body>
+</html>
