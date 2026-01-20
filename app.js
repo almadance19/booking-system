@@ -31,8 +31,9 @@ function getInit() {
 
 //const url = 'https://script.google.com/macros/s/AKfycbxBWMPR_Qpnhnh4Qxt93oZFbsOfqeNMIy5qrMrEdyf8ExLSGry-o1fVMC3YvgvzCCpn/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbye1LAEtWLW6r1LtKqOjFNSAde1YL4xmWjKov3DPqymIhkp_UNFWS5f1Q7FjNZuogUu/exec';
+//const url = 'https://script.google.com/macros/s/AKfycbye1LAEtWLW6r1LtKqOjFNSAde1YL4xmWjKov3DPqymIhkp_UNFWS5f1Q7FjNZuogUu/exec';
 
+const url = 'https://script.google.com/macros/s/AKfycbx9qYFjSAt0RN9JfqRznA6wguKneIG5If08ugR6D48bpzQNqZZjfMu_PVhQkVtC3q0c/exec';
 
 const url_fixed_classes = 'https://script.google.com/macros/s/AKfycbxby_GB-Dg74c8gH7SwVmGdcVAoccYsOg2QkevfHQ8HIce5Aa7WGVlsw9xQFaqOh84/exec';
 

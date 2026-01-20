@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alma Dance Frankfurt Manager</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 15px; 
+            color: #333; 
+            line-height: 1.5;
+            background-color: #f8f9fa;
+        }
+        
+        .header { 
+            display: flex; 
+            flex-direction: row;
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 10px; 
+            margin-bottom: 20px; 
+        }
+
+        .studio-info { font-size: 0.85rem; color: #666; margin-top: -15px; margin-bottom: 20px; }
+        h2 { font-size: 1.25rem; margin: 0; color: #000; }
+        
+        .section-card { 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-bottom: 20px; 
+            background: #fff; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+        
+        .cancel-section { border-left: 5px solid #d93025; background: #fffafb; }
+        .faq { background: #eee; padding: 15px; border-radius: 8px; font-size: 0.9em; }
+        .hidden { display: none !important; }
+        
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; }
+        input, select, button { 
+            width: 100%; 
+            padding: 14px; 
+            margin-top: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+        }
+        
+        button { background: #000; color: #fff; font-weight: bold; cursor: pointer; border: none; }
+        button:disabled { background: #666; cursor: not-allowed; }
+        .btn-cancel { background: #d93025; }
+        
+        .lang-switcher-container { display: flex; gap: 8px; }
+        .lang-btn { 
+            width: auto; padding: 6px 12px; font-size: 13px; background: #fff; border: 1px solid #ccc; border-radius: 20px; cursor: pointer;
+        }
+        .lang-btn.active { background: #000; color: #fff; border-color: #000; }
+        
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.85); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 1000; font-weight: bold;
+        }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #000; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin-bottom: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .msg { margin-top: 15px; font-weight: bold; text-align: center; padding: 10px; border-radius: 8px; }
+        .msg-success { background: #e6ffed; color: #22863a; border: 1px solid #22863a; }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <div class="spinner"></div>
+        <div id="overlay-text">Loading...</div>
+    </div>
+
+    <div class="header">
+        <h2 id="ui-title">Alma Dance Frankfurt</h2>
+        <div class="lang-switcher-container">
+            <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">🇬🇧 EN</button>
+            <button id="btn-de" class="lang-btn" onclick="setLanguage('de')">🇩🇪 DE</button>
+        </div>
+    </div>
+    <div class="studio-info">Alt Bornheim 35, 60385 Frankfurt am Main</div>
+
+    <div id="formContainer" class="hidden">
+        <div class="section-card" style="border: none; box-shadow: none; background: transparent; padding: 0;">
+            <p><strong><span id="ui-name">Name</span>:</strong> <span id="displayVorName"></span></p>
+            <p><strong><span id="ui-class">Class</span>:</strong> <span id="displayClassName"></span></p>
+            <p><strong><span id="ui-schedule">Current</span>:</strong> <span id="displayDay"></span> @ <span id="displayHour"></span></p>
+        </div>
+
+        <div class="section-card">
+            <h3 id="ui-title-rebook">Reschedule</h3>
+            <label id="ui-label-date">Select Date (7-day intervals):</label>
+            <input type="date" id="eventDate" step="7">
+            <button onclick="updateData('rebook')" id="ui-btn-rebook">Save New Date</button>
+            <div id="msg-rebook" class="msg hidden"></div>
+        </div>
+
+        <div class="faq" style="margin-bottom: 20px;">
+            <h3 id="ui-faq-title">FAQs</h3>
+            <ul id="faq-list" style="padding-left: 20px; margin: 0;"></ul>
+        </div>
+
+        <div class="section-card cancel-section">
+            <h3 id="ui-title-cancel">Cancel</h3>
+            <label id="ui-label-reason">Reason:</label>
+            <select id="cancelReason">
+                <option value="" id="ui-opt-select">-- Select --</option>
+                <option value="sickness" id="ui-opt-sick">Sickness</option>
+                <option value="unforseen event" id="ui-opt-event">Unforeseen Event</option>
+                <option value="another reason" id="ui-opt-other">Another Reason</option>
+            </select>
+            <button class="btn-cancel" onclick="updateData('cancel')" id="ui-btn-cancel">Cancel My Spot</button>
+            <div id="msg-cancel" class="msg hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyRScU-UXgGOTB8UF170Pxd9qgopQ28ctn9zB6MZnm-HJKsIkwxniZBmVmbT4Qpgg/exec';
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const rownumber = urlParams.get('rownumber');
+
+        let currentLang = 'en';
+        const translations = {
+            en: {
+                loading: "Loading details...", processing: "Saving...",
+                title: "Alma Dance Frankfurt", name: "Name", class: "Class", schedule: "Current",
+                titleRebook: "Reschedule Class", date: "Select Date (7-day steps allowed):", btnRebook: "Save Date",
+                titleCancel: "Cancel Participation", reason: "Reason for Cancellation:", btnCancel: "Confirm Cancellation",
+                select: "-- Select --", sick: "Sickness", event: "Unforeseen Event", other: "Another Reason",
+                faqTitle: "Important Info", success: "Success! Changes saved.",
+                faqs: ["Address: Alt Bornheim 35, Frankfurt.", "Arrival: 15min before start.", "Comfortable clothes & clean shoes.", "Partner rotation included for people without a partner.",  "The class costs only 5 Euros payable on-site on cash. If you register you get your money back; if you the class was not what you expected, give us a feedback and get it back.","Parkhaus Bürgerhaus Bornheim is 7 min walking distance from the school and cost only 1 EUR per hour."]
+            },
+            de: {
+                loading: "Lade Details...", processing: "Speichere...",
+                title: "Alma Dance Frankfurt", name: "Name", class: "Kurs", schedule: "Aktuell",
+                titleRebook: "Termin ändern", date: "Datum wählen (7-Tage-Schritte):", btnRebook: "Datum speichern",
+                titleCancel: "Teilnahme absagen", reason: "Grund für die Absage:", btnCancel: "Absage bestätigen",
+                select: "-- Auswählen --", sick: "Krankheit", event: "Unvorhergesehen", other: "Anderer Grund",
+                faqTitle: "Wichtige Infos", success: "Erfolg! Änderungen gespeichert.",
+                faqs: ["Adresse: Alt Bornheim 35, Frankfurt.", "Ankunft: 15 Min. vor Beginn.", "Bequeme Kleidung & saubere Schuhe.", "Partnerwechsel im Kurs für Personen ohne Tanzpartner.",  "Der Kurs kostet nur 5 Euro, zahlbar vor Ort in bar. Bei Anmeldung bekommst du dein Geld als Mitgliedschaftanzahlung zurück; wenn dir der Kurs nicht gefallen hat, gib uns Feedback und du bekommst es ebenfalls zurück.","Parkhaus Bürgerhaus Bornheim ist 7 Gehminuten entfernt und kostet nur 1 EUR pro Stunde."]
+            }
+        };
+
+        function showLoading(isProcessing = false) {
+            document.getElementById('overlay-text').innerText = isProcessing ? translations[currentLang].processing : translations[currentLang].loading;
+            document.getElementById('overlay').classList.remove('hidden');
+        }
+
+        function hideLoading() { document.getElementById('overlay').classList.add('hidden'); }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+            updateUI();
+        }
+
+        function updateUI() {
+            const t = translations[currentLang];
+            document.getElementById('ui-title').innerText = t.title;
+            document.getElementById('ui-name').innerText = t.name;
+            document.getElementById('ui-class').innerText = t.class;
+            document.getElementById('ui-schedule').innerText = t.schedule;
+            document.getElementById('ui-title-rebook').innerText = t.titleRebook;
+            document.getElementById('ui-label-date').innerText = t.date;
+            document.getElementById('ui-btn-rebook').innerText = t.btnRebook;
+            document.getElementById('ui-title-cancel').innerText = t.titleCancel;
+            document.getElementById('ui-label-reason').innerText = t.reason;
+            document.getElementById('ui-btn-cancel').innerText = t.btnCancel;
+            document.getElementById('ui-opt-select').innerText = t.select;
+            document.getElementById('ui-opt-sick').innerText = t.sick;
+            document.getElementById('ui-opt-event').innerText = t.event;
+            document.getElementById('ui-opt-other').innerText = t.other;
+            document.getElementById('ui-faq-title').innerText = t.faqTitle;
+            document.getElementById('faq-list').innerHTML = t.faqs.map(f => `<li>${f}</li>`).join('');
+        }
+
+        async function loadData() {
+            showLoading(false);
+            try {
+                const response = await fetch(`${scriptUrl}?email=${email}&rownumber=${rownumber}`);
+                const data = await response.json();
+                if (data.error) { document.body.innerHTML = "<div class='section-card'>Unauthorized Access</div>"; return; }
+
+                document.getElementById('displayVorName').innerText = data.vorname;
+                document.getElementById('displayClassName').innerText = data.eventName;
+                document.getElementById('displayDay').innerText = data.eventDay;
+                document.getElementById('displayHour').innerText = data.eventHour;
+                
+                const dateInput = document.getElementById('eventDate');
+                dateInput.value = data.eventDate;
+                
+                // LOGIC CHANGE: To allow 7 days before, we subtract 7 days from the current sheet date for the "min" value
+                let originalDate = new Date(data.eventDate);
+                let minDate = new Date(originalDate);
+                minDate.setDate(originalDate.getDate() - 7); 
+                dateInput.min = minDate.toISOString().split('T')[0];
+                
+                document.getElementById('formContainer').classList.remove('hidden');
+                updateUI();
+            } catch (e) { alert("Error loading data."); } finally { hideLoading(); }
+        }
+
+        async function updateData(type) {
+            showLoading(true);
+            const payload = {
+                email: email, rownumber: rownumber,
+                newDate: document.getElementById('eventDate').value,
+                cancelled: type === 'cancel' ? 'TRUE' : 'FALSE',
+                reason: type === 'cancel' ? document.getElementById('cancelReason').value : ''
+            };
+            try {
+                const response = await fetch(scriptUrl, { method: 'POST', body: JSON.stringify(payload) });
+                if (await response.text() === "Success") {
+                    const msgDiv = document.getElementById(type === 'cancel' ? 'msg-cancel' : 'msg-rebook');
+                    msgDiv.innerText = translations[currentLang].success;
+                    msgDiv.className = "msg msg-success";
+                    msgDiv.classList.remove('hidden');
+                }
+            } catch (e) { alert("Error saving."); } finally { hideLoading(); }
+        }
+        loadData();
+    </script>
+</body>
+</html>

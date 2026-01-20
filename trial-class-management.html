@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alma Dance Manager</title>
+    <style>
+        :root {
+            --alma-white: #ffffff;
+            --alma-dark: #000000;
+            --alma-gray: #f8f9fa;
+            --alma-border: #e0e0e0;
+            --alma-primary: #360e40b4;
+            --alma-danger: #d93025;
+            --alma-success: #22863a;
+            --alma-warning: #ffc107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--alma-dark);
+            background-color: var(--alma-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(to bottom right, var(--alma-gray), var(--alma-white));
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Alma Dance Branding */
+        .alma-brand {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--alma-border);
+        }
+
+        .alma-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--alma-primary);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .alma-logo::after {
+            content: " ";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--alma-danger);
+            border-radius: 50%;
+            top: -5px;
+            right: -15px;
+            animation: pulse 2s infinite;
+        }
+
+        .alma-tagline {
+            color: #666;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--alma-border);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h2 {
+            color: var(--alma-primary);
+            font-size: 1.5rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* Loading States */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--alma-border);
+            border-top-color: var(--alma-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loading-message {
+            font-size: 1.1rem;
+            color: var(--alma-primary);
+            text-align: center;
+            padding: 0 20px;
+            max-width: 300px;
+        }
+
+        .processing-message {
+            background-color: var(--alma-warning);
+            color: var(--alma-dark);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Sections as Cards */
+        .section-card {
+            border: 1px solid var(--alma-border);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            background: var(--alma-white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .cancel-section {
+            border-color: #ffcfcf;
+            background: linear-gradient(135deg, #fffafb, #fff0f0);
+            border-left: 4px solid var(--alma-danger);
+        }
+
+        .faq {
+            background: var(--alma-gray);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            border-left: 4px solid var(--alma-primary);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Form Elements */
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--alma-primary);
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border: 1px solid var(--alma-border);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--alma-primary);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background: var(--alma-primary);
+            color: var(--alma-white);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+            padding: 16px;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-cancel {
+            background: var(--alma-danger);
+        }
+
+        .btn-cancel:hover {
+            background-color: #c62828;
+        }
+
+        /* Language Switcher */
+        .lang-switcher-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            width: auto;
+            padding: 10px 15px;
+            font-size: 14px;
+            background: var(--alma-white);
+            color: var(--alma-dark);
+            border: 2px solid var(--alma-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--alma-primary);
+            color: var(--alma-white);
+            border-color: var(--alma-primary);
+        }
+
+        /* User Info */
+        .user-info {
+            background: var(--alma-gray);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--alma-primary);
+        }
+
+        .user-info p {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--alma-border);
+        }
+
+        .user-info p:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        /* Messages */
+        .msg {
+            margin-top: 15px;
+            font-weight: 600;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .msg-success {
+            background: #e6ffed;
+            color: var(--alma-success);
+            display: block;
+            border: 1px solid #b7eb8f;
+        }
+
+        /* FAQ List */
+        #faq-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #faq-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        #faq-list li:last-child {
+            border-bottom: none;
+        }
+
+        #faq-list li::before {
+            content: "•";
+            color: var(--alma-primary);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .alma-logo {
+                font-size: 2rem;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            
+            .header h2 {
+                min-width: auto;
+            }
+            
+            .lang-switcher-container {
+                justify-content: center;
+            }
+            
+            .section-card {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            input, select, button {
+                padding: 12px;
+            }
+            
+            button {
+                padding: 14px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .alma-logo {
+                font-size: 1.8rem;
+            }
+            
+            .header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section-card {
+                padding: 15px 12px;
+            }
+            
+            .lang-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .lang-switcher-container,
+            button,
+            .faq,
+            .cancel-section {
+                display: none;
+            }
+            
+            .section-card {
+                border: 1px solid #000;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="initialLoading">
+        <div class="loading-spinner"></div>
+        <div class="loading-message">Loading your trial class details...</div>
+    </div>
+
+    <div class="container">
+        <div class="alma-brand">
+            <div class="alma-logo">ALMA DANCE</div>
+            <div class="alma-tagline">Dance Studio Management</div>
+        </div>
+
+        <div class="header">
+            <h2 id="ui-title">Trial Class Manager</h2>
+            <div class="lang-switcher-container">
+                <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">
+                    <span>🇬🇧</span> EN
+                </button>
+                <button id="btn-de" class="lang-btn" onclick="setLanguage('de')">
+                    <span>🇩🇪</span> DE
+                </button>
+            </div>
+        </div>
+
+        <div class="processing-message" id="processingMessage">
+            Please wait while we save your changes...
+        </div>
+
+        <div id="formContainer" class="hidden">
+            <div class="user-info">
+                <p><strong><span id="ui-name">Name</span>:</strong> <span id="displayVorName"></span></p>
+                <p><strong><span id="ui-class">Class</span>:</strong> <span id="displayClassName"></span></p>
+                <p><strong><span id="ui-schedule">Current</span>:</strong> <span id="displayDay"></span>, <span id="displayHour"></span></p>
+            </div>
+
+            <div class="section-card">
+                <h3 id="ui-title-rebook">Reschedule Class</h3>
+                <label id="ui-label-date">New Date (7-day intervals):</label>
+                <input type="date" id="eventDate" step="7">
+                <button onclick="updateData('rebook')" id="ui-btn-rebook">Update Date</button>
+                <div id="msg-rebook" class="msg"></div>
+            </div>
+
+            <div class="faq">
+                <h3 id="ui-faq-title">Trial Class FAQs</h3>
+                <ul id="faq-list"></ul>
+            </div>
+
+            <div class="section-card cancel-section">
+                <h3 id="ui-title-cancel">Cancel Participation</h3>
+                <label id="ui-label-reason">Reason for Cancellation:</label>
+                <select id="cancelReason">
+                    <option value="" id="ui-opt-select">-- Select --</option>
+                    <option value="sickness" id="ui-opt-sick">Sickness</option>
+                    <option value="unforseen event" id="ui-opt-event">Unforeseen Event</option>
+                    <option value="another reason" id="ui-opt-other">Another Reason</option>
+                </select>
+                <button class="btn-cancel" onclick="updateData('cancel')" id="ui-btn-cancel">Cancel My Spot</button>
+                <div id="msg-cancel" class="msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzAwranXii6megm0Cg1d8QdhQIlaWU8X1i6tWMQI21Za3bTXaPT5W0NrQb-s_IjV4d_/exec';
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const rownumber = urlParams.get('rownumber');
+
+        let currentLang = 'en';
+        const translations = {
+            en: {
+                title: "Trial Class Manager",
+                name: "Name",
+                class: "Class",
+                schedule: "Day / Hour Scheduled",
+                titleRebook: "Reschedule Class",
+                date: "New Date (7-day intervals):",
+                btnRebook: "Save New Date",
+                titleCancel: "Cancel Participation",
+                reason: "Reason for Cancellation:",
+                btnCancel: "Confirm Cancellation",
+                select: "-- Select --",
+                sick: "Sickness",
+                event: "Unforeseen Event",
+                other: "Another Reason",
+                faqTitle: "Important Trial Class Information",
+                success: "Changes saved successfully!",
+                processing: "Please wait while we save your changes...",
+                loading: "Loading your trial class details...",
+                faqs: [
+                    "Wear comfortable clothes suitable for movement.",
+                    "Please arrive 15 minutes before the class starts.",
+                    "No dance partner needed for trial classes.",
+                    "Rescheduling is allowed only once per booking.",
+                    "Parking is available near the studio.",
+                    "Water will be provided, but bring your own bottle if preferred.",
+                    "The studio has changing rooms and lockers available."
+                ]
+            },
+            de: {
+                title: "Kurs-Verwaltung",
+                name: "Vorname",
+                class: "Kurs",
+                schedule: "Wochentag / Uhrzeit",
+                titleRebook: "Termin verschieben",
+                date: "Neues Datum (7-Tage-Intervall):",
+                btnRebook: "Neues Datum speichern",
+                titleCancel: "Teilnahme absagen",
+                reason: "Grund für die Absage:",
+                btnCancel: "Absage bestätigen",
+                select: "-- Auswählen --",
+                sick: "Krankheit",
+                event: "Unvorhergesehenes Ereignis",
+                other: "Anderer Grund",
+                faqTitle: "Wichtige Informationen zur Probestunde",
+                success: "Änderungen erfolgreich gespeichert!",
+                processing: "Bitte warten Sie, während wir Ihre Änderungen speichern...",
+                loading: "Lade Ihre Probestunden-Details...",
+                faqs: [
+                    "Bequeme, bewegungsfreundliche Kleidung tragen.",
+                    "Bitte kommen Sie 15 Minuten vor Kursbeginn an.",
+                    "Für Probestunden wird kein Tanzpartner benötigt.",
+                    "Terminänderung ist nur einmal pro Buchung möglich.",
+                    "Parkplätze sind in der Nähe des Studios verfügbar.",
+                    "Wasser wird bereitgestellt, eigene Flasche kann mitgebracht werden.",
+                    "Das Studio verfügt über Umkleiden und Schließfächer."
+                ]
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+            updateUI();
+        }
+
+        function updateUI() {
+            const t = translations[currentLang];
+            document.getElementById('ui-title').innerText = t.title;
+            document.getElementById('ui-name').innerText = t.name;
+            document.getElementById('ui-class').innerText = t.class;
+            document.getElementById('ui-schedule').innerText = t.schedule;
+            document.getElementById('ui-title-rebook').innerText = t.titleRebook;
+            document.getElementById('ui-label-date').innerText = t.date;
+            document.getElementById('ui-btn-rebook').innerText = t.btnRebook;
+            document.getElementById('ui-title-cancel').innerText = t.titleCancel;
+            document.getElementById('ui-label-reason').innerText = t.reason;
+            document.getElementById('ui-btn-cancel').innerText = t.btnCancel;
+            document.getElementById('ui-opt-select').innerText = t.select;
+            document.getElementById('ui-opt-sick').innerText = t.sick;
+            document.getElementById('ui-opt-event').innerText = t.event;
+            document.getElementById('ui-opt-other').innerText = t.other;
+            document.getElementById('ui-faq-title').innerText = t.faqTitle;
+            document.getElementById('faq-list').innerHTML = t.faqs.map(f => `<li>${f}</li>`).join('');
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch(`${scriptUrl}?email=${email}&rownumber=${rownumber}`);
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.body.innerHTML = `
+                        <div class="container">
+                            <div class="alma-brand">
+                                <div class="alma-logo">ALMA DANCE</div>
+                                <div class="alma-tagline">Dance Studio Management</div>
+                            </div>
+                            <div class="section-card" style="text-align: center; padding: 40px 20px;">
+                                <h3 style="color: var(--alma-danger); margin-bottom: 20px;">Unauthorized Access</h3>
+                                <p>Please use the link provided in your confirmation email to access this page.</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                document.getElementById('displayVorName').innerText = data.vorname;
+                document.getElementById('displayClassName').innerText = data.eventName;
+                document.getElementById('displayDay').innerText = data.eventDay;
+                document.getElementById('displayHour').innerText = data.eventHour;
+                
+                const dateInput = document.getElementById('eventDate');
+                dateInput.value = data.eventDate;
+                dateInput.min = data.eventDate;
+                
+                document.getElementById('initialLoading').classList.add('hidden');
+                document.getElementById('formContainer').classList.remove('hidden');
+                updateUI();
+            } catch (e) {
+                console.error(e);
+                document.getElementById('initialLoading').innerHTML = `
+                    <div style="text-align: center;">
+                        <div style="color: var(--alma-danger); font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+                        <div class="loading-message">Error loading data. Please check your connection and try again.</div>
+                    </div>
+                `;
+            }
+        }
+
+        async function updateData(type) {
+            const processingMessage = document.getElementById('processingMessage');
+            processingMessage.style.display = 'block';
+            processingMessage.textContent = translations[currentLang].processing;
+
+            try {
+                const payload = {
+                    email: email, 
+                    rownumber: rownumber,
+                    newDate: document.getElementById('eventDate').value,
+                    cancelled: type === 'cancel' ? 'TRUE' : 'FALSE',
+                    reason: type === 'cancel' ? document.getElementById('cancelReason').value : ''
+                };
+
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.text();
+                
+                processingMessage.style.display = 'none';
+                
+                if (result === "Success") {
+                    const msgDiv = document.getElementById(type === 'cancel' ? 'msg-cancel' : 'msg-rebook');
+                    msgDiv.innerText = translations[currentLang].success;
+                    msgDiv.className = "msg msg-success";
+                    
+                    if(type === 'cancel') {
+                        setTimeout(() => {
+                            alert(translations[currentLang].success);
+                        }, 100);
+                    }
+                    
+                    // Clear the processing message
+                    setTimeout(() => {
+                        processingMessage.style.display = 'none';
+                    }, 500);
+                }
+            } catch (error) {
+                processingMessage.style.display = 'none';
+                alert('An error occurred. Please try again.');
+                console.error(error);
+            }
+        }
+
+        // Initialize date input to only allow future dates
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('eventDate');
+            if (dateInput) {
+                dateInput.min = today;
+            }
+        });
+
+        loadData();
+    </script>
+</body>
+</html>
