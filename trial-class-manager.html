@@ -94,7 +94,7 @@
         <div class="section-card" style="border: none; box-shadow: none; background: transparent; padding: 0;">
             <p><strong><span id="ui-name">Name</span>:</strong> <span id="displayVorName"></span></p>
             <p><strong><span id="ui-class">Class</span>:</strong> <span id="displayClassName"></span></p>
-            <p><strong><span id="ui-schedule">Current</span>:</strong> <span id="displayDay"></span> @ <span id="displayHour"></span></p>
+            <p><strong><span id="ui-schedule">Day & Time</span>:</strong> <span id="displayDay"></span> @ <span id="displayHour"></span></p>
         </div>
 
         <div class="section-card">
@@ -125,7 +125,7 @@
     </div>
 
     <script>
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyRScU-UXgGOTB8UF170Pxd9qgopQ28ctn9zB6MZnm-HJKsIkwxniZBmVmbT4Qpgg/exec';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxwgY7OmYPSSMKzYqT9x6Tr7GkS0PE8Ayd5YvJ2ydGzH6TnXzeuOCv75wOx8ILRMzg/exec';
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
         const rownumber = urlParams.get('rownumber');
@@ -134,21 +134,21 @@
         const translations = {
             en: {
                 loading: "Loading details...", processing: "Saving...",
-                title: "Alma Dance Frankfurt", name: "Name", class: "Class", schedule: "Current",
+                title: "Alma Dance Frankfurt", name: "Name", class: "Class", schedule: "Day & Time",
                 titleRebook: "Reschedule Class", date: "Select Date (7-day steps allowed):", btnRebook: "Save Date",
                 titleCancel: "Cancel Participation", reason: "Reason for Cancellation:", btnCancel: "Confirm Cancellation",
                 select: "-- Select --", sick: "Sickness", event: "Unforeseen Event", other: "Another Reason",
                 faqTitle: "Important Info", success: "Success! Changes saved.",
-                faqs: ["Address: Alt Bornheim 35, Frankfurt.", "Arrival: 15min before start.", "Comfortable clothes & clean shoes.", "Partner rotation included for people without a partner.",  "The class costs only 5 Euros payable on-site on cash. If you register you get your money back; if you the class was not what you expected, give us a feedback and get it back.","Parkhaus Bürgerhaus Bornheim is 7 min walking distance from the school and cost only 1 EUR per hour."]
+                faqs: ["Address: Alt Bornheim 35, Frankfurt.", "Arrival: 10 min before start.", "Comfortable clothes & clean shoes.", "Partner rotation included for people without a partner.",  "The class costs only 5 Euros payable on-site on cash. If you register you get your money back; if you the class was not what you expected, give us a feedback and get it back.","Parkhaus Bürgerhaus Bornheim is 7 min walking distance from the school and cost only 1 EUR per hour."]
             },
             de: {
                 loading: "Lade Details...", processing: "Speichere...",
-                title: "Alma Dance Frankfurt", name: "Name", class: "Kurs", schedule: "Aktuell",
+                title: "Alma Dance Frankfurt", name: "Name", class: "Kurs", schedule: "Wochentag & Uhrzeit",
                 titleRebook: "Termin ändern", date: "Datum wählen (7-Tage-Schritte):", btnRebook: "Datum speichern",
                 titleCancel: "Teilnahme absagen", reason: "Grund für die Absage:", btnCancel: "Absage bestätigen",
                 select: "-- Auswählen --", sick: "Krankheit", event: "Unvorhergesehen", other: "Anderer Grund",
                 faqTitle: "Wichtige Infos", success: "Erfolg! Änderungen gespeichert.",
-                faqs: ["Adresse: Alt Bornheim 35, Frankfurt.", "Ankunft: 15 Min. vor Beginn.", "Bequeme Kleidung & saubere Schuhe.", "Partnerwechsel im Kurs für Personen ohne Tanzpartner.",  "Der Kurs kostet nur 5 Euro, zahlbar vor Ort in bar. Bei Anmeldung bekommst du dein Geld als Mitgliedschaftanzahlung zurück; wenn dir der Kurs nicht gefallen hat, gib uns Feedback und du bekommst es ebenfalls zurück.","Parkhaus Bürgerhaus Bornheim ist 7 Gehminuten entfernt und kostet nur 1 EUR pro Stunde."]
+                faqs: ["Adresse: Alt Bornheim 35, Frankfurt.", "Ankunft: 10 Min. vor Beginn.", "Bequeme Kleidung & saubere Schuhe.", "Partnerwechsel im Kurs für Personen ohne Tanzpartner.",  "Der Kurs kostet nur 5 Euro, zahlbar vor Ort in bar. Bei Anmeldung bekommst du dein Geld als Mitgliedschaftanzahlung zurück; wenn dir der Kurs nicht gefallen hat, gib uns Feedback und du bekommst es ebenfalls zurück.","Parkhaus Bürgerhaus Bornheim ist 7 Gehminuten entfernt und kostet nur 1 EUR pro Stunde."]
             }
         };
 
