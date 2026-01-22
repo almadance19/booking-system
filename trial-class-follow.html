@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -14,6 +13,80 @@
         .btn-save { background: #1976d2; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .loading-message { background: white; padding: 20px 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: bold; }
+        /* New export button styles */
+        .export-btn { background: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        .export-btn:hover { background: #45a049; }
+        .export-btn:disabled { background: #cccccc; cursor: not-allowed; }
+        /* Message button styles */
+        .btn-message { 
+            background: #9c27b0; 
+            color: white; 
+            border: none; 
+            padding: 6px 12px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 10px; 
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .btn-message:hover { background: #7b1fa2; }
+        .btn-message:disabled { 
+            background: #cccccc; 
+            cursor: not-allowed; 
+            opacity: 0.6;
+        }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .template-preview {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f9f9f9;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .btn-send {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-send:hover { background: #b71c1c; }
+        .btn-cancel {
+            background: #757575;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .btn-cancel:hover { background: #616161; }
     </style>
 </head>
 <body>
@@ -23,6 +96,7 @@
     <p>2. Chose a date one day before your desired date and one day after.</p>
     <p>3. Make changes directly in the table.</p> 
     <p>4. Click "Save All Changes" to update.</p>
+    <p>5. Use the "Send Message" button to send emails based on status.</p>
     
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
         <div class="loading-message" id="loadingMessage">Loading...</div>
@@ -31,6 +105,7 @@
     <div class="filter-section">
         <input type="date" id="start"> bis <input type="date" id="end">
         <button onclick="fetchData()">Load</button>
+        <button class="export-btn" onclick="exportStatusCSV()" id="exportBtn" disabled>Export Status CSV</button>
         <input type="text" id="filterName" onkeyup="applyFilters()" placeholder="Search Vorname...">
         <span id="changeCounter" style="margin-left:auto; color: #e65100;"></span>
     </div>
@@ -46,10 +121,11 @@
                 <th>Gender</th>
                 <th>Membership</th>
                 <th>Event Date</th>
-                <th>Attended</th>
-                <th>Followup</th>
+                <th>No ShowUp</th>
+                <th>Showup-Followup</th>
                 <th>Subscription</th>
-                <th>Cancel</th>
+                <th>Cancelled</th>
+                <th>Send Message</th> <!-- New column -->
             </tr>
         </thead>
         <tbody></tbody>
@@ -59,14 +135,53 @@
         <button class="btn-save" onclick="saveAllChanges()">Save All Changes</button>
     </div>
 
+    <!-- Modal for message preview and sending -->
+    <div id="messageModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Send Message</h3>
+            <div id="messageDetails">
+                <p><strong>Recipient:</strong> <span id="recipientName"></span> (<span id="recipientEmail"></span>)</p>
+                <p><strong>Event:</strong> <span id="eventName"></span> on <span id="eventDate"></span></p>
+                <p><strong>Status:</strong> <span id="statusType"></span></p>
+            </div>
+            <div class="template-preview" id="templatePreview">
+                Loading email template...
+            </div>
+            <div>
+                <button class="btn-send" onclick="sendMessage()">Send Email</button>
+                <button class="btn-cancel" onclick="closeMessageModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxizFWFQoj6ELicv8xbmHsPfJpKwGgFj1lrtlI8_H7Odf1-5V_ThtXZi_qa74pPhu0/exec'; 
-
+        const MESSAGE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2e0JQqgrx-RfralfQkNHjQZ1O5UmHLe7BGpmQkNAH8EOmNuJ-u4DIGVBqwprki6w/exec';  
         let USER_PASS = "";
         let MASTER_DATA = [];
         let PENDING_CHANGES = {};
+        let currentMessageRow = null;
 
-        window.onload = () => { USER_PASS = prompt("Enter Password:"); };
+        window.onload = () => { 
+            USER_PASS = prompt("Enter Password:");
+            setDefaultDates(); // This will set the default dates to yesterday and today
+        };
+
+        // Add the setDefaultDates function
+        function setDefaultDates() {
+            const today = new Date();
+            const yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+            
+            // Format dates as YYYY-MM-DD
+            const formatDate = (date) => {
+                return date.toISOString().split('T')[0];
+            };
+            
+            // Set the date inputs
+            document.getElementById('start').value = formatDate(yesterday);
+            document.getElementById('end').value = formatDate(today);
+        }
 
         function showLoading(message) {
             document.getElementById('loadingMessage').textContent = message;
@@ -102,6 +217,8 @@
                 MASTER_DATA = JSON.parse(raw);
                 hideLoading();
                 applyFilters();
+                // Enable export button after data is loaded
+                document.getElementById('exportBtn').disabled = false;
             } catch (error) {
                 hideLoading();
                 alert("Error loading data: " + error.message);
@@ -139,6 +256,10 @@
                 const dObj = row['EVENT DATE'] ? new Date(row['EVENT DATE']) : null;
                 const dStr = dObj ? [dObj.getFullYear(), String(dObj.getMonth()+1).padStart(2,'0'), String(dObj.getDate()).padStart(2,'0')].join('-') : '';
 
+                // Check if any status is selected
+                const hasStatus = row.Attended || row.Folloup || row.Subscription || row.Cancelled;
+                const statusType = getStatusType(row);
+
                 tr.innerHTML = `
                     <td>${row.rowNumber}</td>
                     <td>${row['EVENT NAME'] || ''}</td>
@@ -152,9 +273,142 @@
                     <td><input type="checkbox" ${row.Folloup ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Folloup', this.checked)"></td>
                     <td><input type="checkbox" ${row.Subscription ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Subscription', this.checked)"></td>
                     <td><input type="checkbox" ${row.Cancelled ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Cancelled', this.checked)"></td>
+                    <td>
+                        <button class="btn-message" 
+                                onclick="prepareMessage(${row.rowNumber})" 
+                                ${!hasStatus || !row.EMAIL ? 'disabled' : ''}>
+                            Send Message
+                        </button>
+                    </td>
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function getStatusType(row) {
+            if (row.Attended) return "noshowup";
+            if (row.Folloup) return "showupfollowup";
+            if (row.Subscription) return "subscription";
+            if (row.Cancelled) return "cancelled";
+            return null;
+        }
+
+        function prepareMessage(rowNumber) {
+            const row = MASTER_DATA.find(r => r.rowNumber === rowNumber);
+            if (!row || !row.EMAIL) {
+                alert("No email address found for this row");
+                return;
+            }
+
+            const statusType = getStatusType(row);
+            if (!statusType) {
+                alert("Please select a status first (No ShowUp, Followup, Subscription, or Cancelled)");
+                return;
+            }
+
+            currentMessageRow = rowNumber;
+            
+            // Populate modal details
+            document.getElementById('recipientName').textContent = row.VORNAME || 'N/A';
+            document.getElementById('recipientEmail').textContent = row.EMAIL;
+            document.getElementById('eventName').textContent = row['EVENT NAME'] || 'N/A';
+            
+            // Format event date
+            const dObj = row['EVENT DATE'] ? new Date(row['EVENT DATE']) : null;
+            const formattedDate = dObj ? dObj.toLocaleDateString('de-DE') : 'N/A';
+            document.getElementById('eventDate').textContent = formattedDate;
+            
+            // Set status display name
+            const statusDisplay = {
+                'noshowup': 'No Show Up',
+                'showupfollowup': 'Showup Followup',
+                'subscription': 'Subscription',
+                'cancelled': 'Cancelled'
+            };
+            document.getElementById('statusType').textContent = statusDisplay[statusType] || statusType;
+            
+            // Load email template preview
+            loadTemplatePreview(row, statusType);
+            
+            // Show modal
+            document.getElementById('messageModal').style.display = 'flex';
+        }
+
+        async function loadTemplatePreview(row, statusType) {
+            try {
+                // This would call your Google Apps Script to get the template
+                // For now, we'll show a placeholder
+                const preview = document.getElementById('templatePreview');
+                preview.innerHTML = `
+                    <p><strong>Template for ${statusType}:</strong></p>
+                    <p>Dear ${row.VORNAME || 'Student'},</p>
+                    <p>Regarding your participation in "${row['EVENT NAME'] || 'the event'}" on ${row['EVENT DATE'] ? new Date(row['EVENT DATE']).toLocaleDateString('de-DE') : 'the scheduled date'}.</p>
+                    <p>This is an automated message based on your status: ${statusType}.</p>
+                    <p>Best regards,<br>Dance School</p>
+                `;
+            } catch (error) {
+                document.getElementById('templatePreview').innerHTML = 
+                    '<p style="color: red;">Error loading template: ' + error.message + '</p>';
+            }
+        }
+
+        async function sendMessage() {
+            if (!currentMessageRow) return;
+            
+            const row = MASTER_DATA.find(r => r.rowNumber === currentMessageRow);
+            const statusType = getStatusType(row);
+            
+            if (!row.EMAIL || !statusType) {
+                alert("Missing email or status information");
+                return;
+            }
+
+            showLoading("Sending message...");
+            
+            try {
+                // Prepare the data to send
+                const messageData = {
+                    email: row.EMAIL,
+                    name: row.VORNAME || '',
+                    eventName: row['EVENT NAME'] || '',
+                    eventDate: row['EVENT DATE'] || '',
+                    statusType: statusType,
+                    key: USER_PASS
+                };
+
+                // Encode data as URL parameters for GET request
+                const params = new URLSearchParams();
+                params.append('email', messageData.email);
+                params.append('name', messageData.name);
+                params.append('eventName', messageData.eventName);
+                params.append('eventDate', messageData.eventDate);
+                params.append('statusType', messageData.statusType);
+                params.append('key', messageData.key);
+
+                // Use GET request instead of POST to avoid CORS preflight
+                const response = await fetch(`${MESSAGE_SCRIPT_URL}?${params.toString()}`);
+                
+                const result = await response.text();
+                
+                hideLoading();
+                closeMessageModal();
+                
+                if (result.includes("Success") || result.includes("sent")) {
+                    alert(`Message sent successfully to ${row.VORNAME} (${row.EMAIL})`);
+                } else {
+                    alert("Error sending message: " + result);
+                }
+                
+            } catch (error) {
+                hideLoading();
+                alert("Error sending message: " + error.message);
+            }
+        }
+
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').style.display = 'none';
+            currentMessageRow = null;
         }
 
         async function saveAllChanges() {
@@ -185,9 +439,71 @@
                 alert("Error saving changes: " + error.message);
             }
         }
+
+        // NEW EXPORT FUNCTIONALITY
+        function getStatusRows() {
+            return MASTER_DATA.filter(row => {
+                return row.Attended === true || 
+                       row.Folloup === true || 
+                       row.Subscription === true || 
+                       row.Cancelled === true;
+            });
+        }
+
+        function getStatusLabel(row) {
+            if (row.Attended === true) return "No Show Up";
+            if (row.Folloup === true) return "Followup";
+            if (row.Subscription === true) return "Subscription";
+            if (row.Cancelled === true) return "Cancelled";
+            return "Unknown";
+        }
+
+        function safeString(value) {
+            if (value === null || value === undefined) {
+                return '';
+            }
+            return String(value).replace(/"/g, '""');
+        }
+
+        function exportStatusCSV() {
+            if (MASTER_DATA.length === 0) {
+                alert("Please load data first using the date filters!");
+                return;
+            }
+
+            const statusRows = getStatusRows();
+            
+            if (statusRows.length === 0) {
+                alert("No rows with TRUE status found to export!\n\nStatus columns: No ShowUp, Followup, Subscription, Cancelled");
+                return;
+            }
+
+            const headers = ["VORNAME", "TELEFON", "EVENT NAME", "EMAIL", "STATUS"];
+            let csvContent = headers.join(",") + "\n";
+            
+            statusRows.forEach(row => {
+                const status = getStatusLabel(row);
+                const csvRow = [
+                    `"${safeString(row.VORNAME)}"`,
+                    `"${safeString(row.TELEFON)}"`,
+                    `"${safeString(row['EVENT NAME'])}"`,
+                    `"${safeString(row.EMAIL)}"`,
+                    `"${status}"`
+                ];
+                csvContent += csvRow.join(",") + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `status_export_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`Exported ${statusRows.length} rows with TRUE status to CSV file.\n\nColumns exported: VORNAME, TELEFON, EVENT NAME, EMAIL, STATUS`);
+        }
     </script>
 </body>
 </html>
-
-
-

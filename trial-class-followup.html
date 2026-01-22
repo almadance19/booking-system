@@ -1,101 +1,268 @@
-<!DOCTYPE html>
 <html>
 <head>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f9f9f9; }
+        body { font-family: 'Segoe UI', sans-serif; padding: 10px; background-color: #f4f7f6; }
+        .filter-section { background: white; padding: 15px; border-radius: 8px; display: flex; gap: 10px; align-items: center; border: 1px solid #ddd; margin-bottom: 15px; }
         table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13px; }
-        th { background-color: #4CAF50; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-        .btn-save { background: #2196F3; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; }
-        .btn-save:hover { background: #0b7dda; }
-        input[type="text"] { width: 100px; padding: 4px; }
+        th, td { border: 1px solid #eee; padding: 10px; text-align: left; font-size: 11px; }
+        th { background-color: #2e7d32; color: white; position: sticky; top: 0; }
+        tr:hover { background-color: #f1f1f1; }
+        .row-changed { background-color: #fff9c4 !important; }
+        input[type="date"], input[type="text"] { padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        .floating-actions { position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: none; }
+        .btn-save { background: #1976d2; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .loading-message { background: white; padding: 20px 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: bold; }
+        /* New export button styles */
+        .export-btn { background: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        .export-btn:hover { background: #45a049; }
+        .export-btn:disabled { background: #cccccc; cursor: not-allowed; }
     </style>
 </head>
 <body>
 
-    <h2>Event Management Dashboard</h2>
-    <div style="margin-bottom: 20px;">
-        <label>Start: </label><input type="date" id="start">
-        <label>End: </label><input type="date" id="end">
-        <button onclick="fetchData()" style="padding: 5px 15px;">Filter Data</button>
+    <h3>Dance School Management</h3>
+    <p>1. Use the date filters to load and search data.</p>
+    <p>2. Chose a date one day before your desired date and one day after.</p>
+    <p>3. Make changes directly in the table.</p> 
+    <p>4. Click "Save All Changes" to update.</p>
+    
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-message" id="loadingMessage">Loading...</div>
+    </div>
+    
+    <div class="filter-section">
+        <input type="date" id="start"> bis <input type="date" id="end">
+        <button onclick="fetchData()">Load</button>
+        <button class="export-btn" onclick="exportStatusCSV()" id="exportBtn" disabled>Export Status CSV</button>
+        <input type="text" id="filterName" onkeyup="applyFilters()" placeholder="Search Vorname...">
+        <span id="changeCounter" style="margin-left:auto; color: #e65100;"></span>
     </div>
 
     <table id="dataTable">
         <thead>
             <tr>
                 <th>Row</th>
-                <th>Email</th>
+                <th>Class</th>
                 <th>Name</th>
-                <th>Event Name</th>
-                <th>Day</th>
-                <th>Hour</th>
-                <th>Event Date (Edit)</th>
-                <th>Attended</th>
-                <th>Followup</th>
-                <th>Sub</th>
-                <th>Cancel</th>
-                <th>Wellpass</th>
-                <th>Action</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Gender</th>
+                <th>Membership</th>
+                <th>Event Date</th>
+                <th>No ShowUp</th>
+                <th>Showup-Followup</th>
+                <th>Subscription</th>
+                <th>Cancelled</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
 
+    <div id="saveContainer" class="floating-actions">
+        <button class="btn-save" onclick="saveAllChanges()">Save All Changes</button>
+    </div>
+
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhTA7S25aJ4X8afwedNH9btLuvVbRGAE3lwQYF5uCmfqnSK0x-WrWusH-4tCi34TI/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxizFWFQoj6ELicv8xbmHsPfJpKwGgFj1lrtlI8_H7Odf1-5V_ThtXZi_qa74pPhu0/exec'; 
+
+        let USER_PASS = "";
+        let MASTER_DATA = [];
+        let PENDING_CHANGES = {};
+
+        window.onload = () => { USER_PASS = prompt("Enter Password:"); };
+
+        function showLoading(message) {
+            document.getElementById('loadingMessage').textContent = message;
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
 
         async function fetchData() {
-            const start = document.getElementById('start').value;
-            const end = document.getElementById('end').value;
-            if(!start || !end) return alert("Please select date range");
-
-            const response = await fetch(`${SCRIPT_URL}?start=${start}&end=${end}`);
-            const data = await response.json();
+            if(!USER_PASS) return;
             
+            const s = document.getElementById('start').value;
+            const e = document.getElementById('end').value;
+            
+            if (!s || !e) {
+                alert("Please select both start and end dates");
+                return;
+            }
+            
+            showLoading("Loading data from server...");
+            
+            try {
+                const resp = await fetch(`${SCRIPT_URL}?start=${s}&end=${e}&key=${encodeURIComponent(USER_PASS)}`);
+                const raw = await resp.text();
+                
+                if(raw.includes("Access Denied")) {
+                    hideLoading();
+                    return alert("Wrong Password");
+                }
+                
+                MASTER_DATA = JSON.parse(raw);
+                hideLoading();
+                applyFilters();
+                // Enable export button after data is loaded
+                document.getElementById('exportBtn').disabled = false;
+            } catch (error) {
+                hideLoading();
+                alert("Error loading data: " + error.message);
+            }
+        }
+
+        function trackChange(rowNum, field, value) {
+            if (!PENDING_CHANGES[rowNum]) PENDING_CHANGES[rowNum] = { rowNumber: rowNum };
+            PENDING_CHANGES[rowNum][field] = value;
+            document.getElementById(`tr-${rowNum}`).classList.add('row-changed');
+            updateUI();
+        }
+
+        function updateUI() {
+            const count = Object.keys(PENDING_CHANGES).length;
+            document.getElementById('changeCounter').innerText = count > 0 ? `${count} changes pending` : "";
+            document.getElementById('saveContainer').style.display = count > 0 ? "block" : "none";
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('filterName').value.toLowerCase();
+            const filtered = MASTER_DATA.filter(r => String(r.VORNAME).toLowerCase().includes(search));
+            renderTable(filtered);
+        }
+
+        function renderTable(data) {
             const tbody = document.querySelector('#dataTable tbody');
             tbody.innerHTML = '';
-
             data.forEach(row => {
                 const tr = document.createElement('tr');
+                tr.id = `tr-${row.rowNumber}`;
+                if (PENDING_CHANGES[row.rowNumber]) tr.className = 'row-changed';
+
+                // Date Formatting for Berlin
+                const dObj = row['EVENT DATE'] ? new Date(row['EVENT DATE']) : null;
+                const dStr = dObj ? [dObj.getFullYear(), String(dObj.getMonth()+1).padStart(2,'0'), String(dObj.getDate()).padStart(2,'0')].join('-') : '';
+
                 tr.innerHTML = `
                     <td>${row.rowNumber}</td>
-                    <td>${row.EMAIL}</td>
-                    <td>${row['VORNAME']}</td>
-                    <td>${row['EVENT NAME']}</td>
-                    <td>${row['EVENT DAY']}</td>
-                    <td>${row['EVENT HOUR']}</td>
-                    <td><input type="date" value="${row['EVENT DATE']}" id="date-${row.rowNumber}"></td>
-                    <td><input type="checkbox" ${row.Attended ? 'checked' : ''} id="att-${row.rowNumber}"></td>
-                    <td><input type="checkbox" ${row.Folloup ? 'checked' : ''} id="fol-${row.rowNumber}"></td>
-                    <td><input type="checkbox" ${row.Subscription ? 'checked' : ''} id="sub-${row.rowNumber}"></td>
-                    <td><input type="checkbox" ${row.Cancelled ? 'checked' : ''} id="can-${row.rowNumber}"></td>
-                    <td><input type="checkbox" ${row.Wellpass ? 'checked' : ''} id="wel-${row.rowNumber}"></td>
-                    <td><button class="btn-save" onclick="saveRow(${row.rowNumber})">Save</button></td>
+                    <td>${row['EVENT NAME'] || ''}</td>
+                    <td>${row['VORNAME'] || ''}</td>
+                    <td>${row['EMAIL'] || ''}</td>
+                    <td>${row['TELEFON'] || ''}</td>
+                    <td>${row['GENDER'] || ''}</td>
+                    <td>${row['MEMBERSHIP'] || ''}</td>
+                    <td><input type="date" value="${dStr}" onchange="trackChange(${row.rowNumber}, 'EVENT DATE', this.value)"></td>
+                    <td><input type="checkbox" ${row.Attended ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Attended', this.checked)"></td>
+                    <td><input type="checkbox" ${row.Folloup ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Folloup', this.checked)"></td>
+                    <td><input type="checkbox" ${row.Subscription ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Subscription', this.checked)"></td>
+                    <td><input type="checkbox" ${row.Cancelled ? 'checked' : ''} onchange="trackChange(${row.rowNumber}, 'Cancelled', this.checked)"></td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        async function saveRow(rowNum) {
-            const payload = {
-                rowNumber: rowNum,
-                EVENT_DATE: document.getElementById(`date-${rowNum}`).value,
-                Attended: document.getElementById(`att-${rowNum}`).checked,
-                Folloup: document.getElementById(`fol-${rowNum}`).checked,
-                Subscription: document.getElementById(`sub-${rowNum}`).checked,
-                Cancelled: document.getElementById(`can-${rowNum}`).checked,
-                Wellpass: document.getElementById(`wel-${rowNum}`).checked
-            };
-
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            });
-            
-            if (response.ok) {
-                alert('Row ' + rowNum + ' updated successfully!');
+        async function saveAllChanges() {
+            if (Object.keys(PENDING_CHANGES).length === 0) {
+                alert("No changes to save!");
+                return;
             }
+            
+            showLoading("Saving changes to server...");
+            
+            try {
+                const payload = { key: USER_PASS, updates: Object.values(PENDING_CHANGES) };
+                const resp = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+                const result = await resp.text();
+                
+                if (result === "Success") {
+                    hideLoading();
+                    alert("Saved!");
+                    PENDING_CHANGES = {};
+                    updateUI();
+                    fetchData();
+                } else {
+                    hideLoading();
+                    alert("Error saving changes: " + result);
+                }
+            } catch (error) {
+                hideLoading();
+                alert("Error saving changes: " + error.message);
+            }
+        }
+
+        // NEW EXPORT FUNCTIONALITY
+        function getStatusRows() {
+            // Filter rows where any of the status columns is TRUE
+            // Note: Based on your table, the status columns in MASTER_DATA are:
+            // Attended (No ShowUp), Folloup (Followup), Subscription, Cancelled
+            return MASTER_DATA.filter(row => {
+                return row.Attended === true || 
+                       row.Folloup === true || 
+                       row.Subscription === true || 
+                       row.Cancelled === true;
+            });
+        }
+
+        function getStatusLabel(row) {
+            if (row.Attended === true) return "No Show Up";
+            if (row.Folloup === true) return "Followup";
+            if (row.Subscription === true) return "Subscription";
+            if (row.Cancelled === true) return "Cancelled";
+            return "Unknown";
+        }
+
+        function safeString(value) {
+            // Handle null, undefined, numbers, and strings safely
+            if (value === null || value === undefined) {
+                return '';
+            }
+            // Convert to string first, then escape quotes
+            return String(value).replace(/"/g, '""');
+        }
+
+        function exportStatusCSV() {
+            if (MASTER_DATA.length === 0) {
+                alert("Please load data first using the date filters!");
+                return;
+            }
+
+            const statusRows = getStatusRows();
+            
+            if (statusRows.length === 0) {
+                alert("No rows with TRUE status found to export!\n\nStatus columns: No ShowUp, Followup, Subscription, Cancelled");
+                return;
+            }
+
+            // Create CSV content with requested columns
+            const headers = ["VORNAME", "TELEFON", "EVENT NAME", "EMAIL", "STATUS"];
+            let csvContent = headers.join(",") + "\n";
+            
+            statusRows.forEach(row => {
+                const status = getStatusLabel(row);
+                const csvRow = [
+                    `"${safeString(row.VORNAME)}"`,
+                    `"${safeString(row.TELEFON)}"`,
+                    `"${safeString(row['EVENT NAME'])}"`,
+                    `"${safeString(row.EMAIL)}"`,
+                    `"${status}"`
+                ];
+                csvContent += csvRow.join(",") + "\n";
+            });
+
+            // Download CSV file
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `status_export_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message with count
+            alert(`Exported ${statusRows.length} rows with TRUE status to CSV file.\n\nColumns exported: VORNAME, TELEFON, EVENT NAME, EMAIL, STATUS`);
         }
     </script>
 </body>
