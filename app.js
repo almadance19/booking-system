@@ -33,7 +33,7 @@ function getInit() {
 
 //const url = 'https://script.google.com/macros/s/AKfycbye1LAEtWLW6r1LtKqOjFNSAde1YL4xmWjKov3DPqymIhkp_UNFWS5f1Q7FjNZuogUu/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbxwLkFzzR2x6OtH62WoNsZqECxluc4H7pyReYfoM-_sWhFBlKmS8tVuGFeK_Jg1qOli/exec';
+const url = 'https://script.google.com/macros/s/AKfycby30atKdw-S3-LMVMPePXgZCmt0_RF3Ez0D4Ja53UcIRB05bSZ0asLatEFZzZmw_UUy/exec';
 
 const url_fixed_classes = 'https://script.google.com/macros/s/AKfycbxby_GB-Dg74c8gH7SwVmGdcVAoccYsOg2QkevfHQ8HIce5Aa7WGVlsw9xQFaqOh84/exec';
 

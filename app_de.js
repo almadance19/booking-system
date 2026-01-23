@@ -35,7 +35,7 @@ function sleep(ms) {
 
 //const url = 'https://script.google.com/macros/s/AKfycbye1LAEtWLW6r1LtKqOjFNSAde1YL4xmWjKov3DPqymIhkp_UNFWS5f1Q7FjNZuogUu/exec';
 
-const url = 'https://script.google.com/macros/s/AKfycbxwLkFzzR2x6OtH62WoNsZqECxluc4H7pyReYfoM-_sWhFBlKmS8tVuGFeK_Jg1qOli/exec';
+const url = 'https://script.google.com/macros/s/AKfycby30atKdw-S3-LMVMPePXgZCmt0_RF3Ez0D4Ja53UcIRB05bSZ0asLatEFZzZmw_UUy/exec';
 
 //const urluser_old =  'https://script.google.com/macros/s/AKfycbzWu6k32M7XjlK51cEYH-5qqO0Az5cHKI1zypbU_nHwFxzGGP2DmOa4U0u6FbY9AO-r/exec';
 
