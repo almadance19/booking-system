@@ -1,8 +1,84 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salsa & Bachata Level Assessment</title>
+    
+    <title>Salsa & Bachata Level Test for Beginners | Find Your Dance Level in Frankfurt</title>
+    <meta name="description" content="Take our 2-minute Salsa & Bachata level test for beginners in Frankfurt. Find your exact dance level and get matched with the perfect class. No partner needed!">
+    <meta name="keywords" content="salsa level test, bachata level assessment, dance level finder, salsa classes for beginners frankfurt, bachata beginner level, latin dance level test, how to know my salsa level">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:title" content="Free Salsa & Bachata Level Test | Find Your Dance Level in Frankfurt">
+    <meta property="og:description" content="2-minute test to determine your exact Salsa & Bachata level. Get matched with the perfect class for your skill level. Join Alma Dance Frankfurt today!">
+    <meta property="og:image" content="https://alma-dance-frankfurt.de/images/dance-level-test-frankfurt.webp">
+    <meta property="og:url" content="https://alma-dance-frankfurt.de/salsa-bachata-level-test-frankfurt.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://alma-dance-frankfurt.de/salsa-bachata-level-test-frankfurt.html">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Salsa & Bachata Dance Level Assessment",
+      "description": "Free online assessment to determine your Salsa and Bachata dance level in Frankfurt",
+      "educationalLevel": "Beginner to Advanced",
+      "assesses": "Dance skills, technique, social dancing ability",
+      "numberOfQuestions": 4,
+      "typicalAgeRange": "18-65",
+      "timeRequired": "PT2M",
+      "url": "https://alma-dance-frankfurt.de/salsa-bachata-level-test-frankfurt.html",
+      "provider": {
+        "@type": "DanceSchool",
+        "name": "Alma Dance Frankfurt",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Frankfurt",
+          "addressRegion": "Hesse",
+          "addressCountry": "DE"
+        }
+      }
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I know if I'm a beginner or intermediate in Salsa/Bachata?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Take our 2-minute level test! Beginners typically know basic steps but need guidance, while intermediate dancers can comfortably dance socially with different partners and execute turns with good technique."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I've never danced Salsa or Bachata before?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perfect! You'll likely be placed in our Introduction level. Our beginner classes are designed specifically for absolute beginners - no prior experience needed!"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I take the test if I learned Salsa/Bachata years ago?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Our test considers both your past experience and current comfort level. Many students return to dance after a break and find our assessment helps them start at the right level."
+          }
+        }
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -109,6 +185,33 @@
             margin-bottom: 30px;
         }
         
+        .intro-content {
+            margin-bottom: 40px;
+        }
+        
+        .intro-content h2 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .intro-content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .intro-content li {
+            margin-bottom: 8px;
+        }
+        
+        .why-test-box {
+            background-color: #e3f2fd;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
         .level-description {
             background-color: #f5f5f5;
             border-radius: var(--border-radius);
@@ -195,6 +298,18 @@
             margin-top: 20px;
         }
         
+        .next-steps {
+            background-color: #f3e5f5;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .next-steps h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
         .levels-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -248,6 +363,20 @@
             background-color: #f57c00;
         }
         
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .cta-box h2 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
         footer {
             text-align: center;
             margin-top: 40px;
@@ -290,15 +419,40 @@
         .de {
             display: none;
         }
+        
+        .test-progress {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: right;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="en">Salsa & Bachata Level Assessment</h1>
-            <h1 class="de">Salsa & Bachata Niveau-Einschätzung</h1>
-            <p class="subtitle en">Find your dance level and the right trial class for you</p>
-            <p class="subtitle de">Finde dein Tanzniveau und die richtige Probestunde für dich</p>
+            <h1 class="en">Find Your Salsa & Bachata Level in Frankfurt</h1>
+            <h1 class="de">Finde dein Salsa & Bachata Niveau in Frankfurt</h1>
+            <p class="subtitle en">2-minute assessment to match you with the perfect dance class</p>
+            <p class="subtitle de">2-minütige Einschätzung, um dich mit dem perfekten Tanzkurs zu verbinden</p>
             
             <div class="language-toggle">
                 <button class="lang-btn active" id="en-btn">English</button>
@@ -306,25 +460,82 @@
             </div>
         </header>
         
-        <div class="btn-container">
-            <a href="booking.html" class="nav-btn">
-                <i class="fas fa-home"></i> 
-                <span class="en">Back to Home</span>
-                <span class="de">Zurück zur Startseite</span>
-            </a>
+        <!-- Pre-Test Introduction Content -->
+        <div class="intro-content">
+            <div class="en">
+                <h2>Not Sure Where to Start? You're Not Alone!</h2>
+                <p>Choosing the right dance level is the most common challenge for beginners. Many people either:</p>
+                <ul>
+                    <li>Start too advanced and feel frustrated</li>
+                    <li>Start too basic and feel bored</li>
+                    <li>Don't know how to measure their actual skill level</li>
+                    <li>Underestimate or overestimate their abilities</li>
+                </ul>
+                
+                <div class="why-test-box">
+                    <h3>Why Take This Level Test?</h3>
+                    <p>Our assessment has helped over 1,000 dancers in Frankfurt find their perfect starting point. It's based on 4 key factors that professional instructors use to evaluate dance levels:</p>
+                    <p>✅ <strong>Experience Duration</strong> - How long you've been dancing</p>
+                    <p>✅ <strong>Technical Foundation</strong> - Your grasp of basic steps and technique</p>
+                    <p>✅ <strong>Social Dance Ability</strong> - How comfortable you are dancing with different partners</p>
+                    <p>✅ <strong>Musicality & Body Movement</strong> - Your connection to music and body awareness</p>
+                </div>
+                
+                <h3>How It Works</h3>
+                <p>1. <strong>Answer 4 simple questions</strong> about your dance experience and comfort level</p>
+                <p>2. <strong>Get your personalized level result</strong> instantly</p>
+                <p>3. <strong>Receive class recommendations</strong> tailored to your exact skill level</p>
+                <p>4. <strong>Book your trial class</strong> with confidence knowing it's the right fit</p>
+            </div>
+            
+            <div class="de">
+                <h2>Unsicher wo du anfangen sollst? Du bist nicht allein!</h2>
+                <p>Die Wahl des richtigen Tanzlevels ist die häufigste Herausforderung für Anfänger. Viele Menschen:</p>
+                <ul>
+                    <li>Fangen zu fortgeschritten an und sind frustriert</li>
+                    <li>Fangen zu einfach an und sind gelangweilt</li>
+                    <li>Wissen nicht, wie sie ihr tatsächliches Können einschätzen sollen</li>
+                    <li>Unterschätzen oder überschätzen ihre Fähigkeiten</li>
+                </ul>
+                
+                <div class="why-test-box">
+                    <h3>Warum diesen Level-Test machen?</h3>
+                    <p>Unsere Einschätzung hat über 1.000 Tänzern in Frankfurt geholfen, ihren perfekten Startpunkt zu finden. Sie basiert auf 4 Schlüsselfaktoren, die professionelle Lehrer zur Bewertung von Tanzlevels verwenden:</p>
+                    <p>✅ <strong>Erfahrungsdauer</strong> - Wie lange du bereits tanzt</p>
+                    <p>✅ <strong>Technische Grundlagen</strong> - Dein Verständnis von Grundschritten und Technik</p>
+                    <p>✅ <strong>Soziale Tanzfähigkeit</strong> - Wie sicher du dich mit verschiedenen Partnern fühlst</p>
+                    <p>✅ <strong>Musikalität & Körperbewegung</strong> - Deine Verbindung zur Musik und Körperbewusstsein</p>
+                </div>
+                
+                <h3>So funktioniert es</h3>
+                <p>1. <strong>Beantworte 4 einfache Fragen</strong> über deine Tanzerfahrung und dein Komfortlevel</p>
+                <p>2. <strong>Erhalte sofort dein persönliches Level-Ergebnis</strong></p>
+                <p>3. <strong>Bekomme Kursempfehlungen</strong>, die auf dein genaues Können zugeschnitten sind</p>
+                <p>4. <strong>Buche deine Probestunde</strong> mit dem Wissen, dass sie genau passt</p>
+            </div>
         </div>
         
         <div class="assessment-container">
+            <!-- Progress Bar -->
+            <div class="test-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text en">Answer all questions to see your result</div>
+                <div class="progress-text de">Beantworte alle Fragen, um dein Ergebnis zu sehen</div>
+            </div>
+            
             <div class="level-description en">
-                <h2>Our Dance Levels</h2>
-                <p>We offer 5 levels for both Salsa and Bachata: Introduction (4-6 weeks), Beginners (2-3 months), Improvers (4-6 months), Intermediate (6 months), and Advanced (6 months). This assessment will help you determine which trial class is best for you.</p>
+                <h2>Our Dance Levels Explained</h2>
+                <p>We offer 5 progressive levels for both Salsa and Bachata in Frankfurt. Each level builds upon the previous one, ensuring steady progress. This assessment matches you with the ideal starting point.</p>
             </div>
             
             <div class="level-description de">
-                <h2>Unsere Tanzlevel</h2>
-                <p>Wir bieten 5 Level für Salsa und Bachata an: Einführung (4-6 Wochen), Anfänger (2-3 Monate), Fortgeschrittene Anfänger (4-6 Monate), Mittelstufe (6 Monate) und Fortgeschrittene (6 Monate). Diese Einschätzung hilft dir, die beste Probestunde für dich zu finden.</p>
+                <h2>Unsere Tanzlevel erklärt</h2>
+                <p>Wir bieten 5 aufeinander aufbauende Level für Salsa und Bachata in Frankfurt an. Jedes Level baut auf dem vorherigen auf und gewährleistet stetigen Fortschritt. Diese Einschätzung bringt dich zu deinem idealen Startpunkt.</p>
             </div>
             
+            <!-- Questions -->
             <div class="question-section">
                 <div class="question en">1. How long have you been dancing Salsa or Bachata?</div>
                 <div class="question de">1. Wie lange tanzt du schon Salsa oder Bachata?</div>
@@ -473,15 +684,47 @@
                 
                 <div class="recommendation en" id="recommendation">We recommend trying our Introduction trial class (4-6 weeks of basics)</div>
                 <div class="recommendation de" id="recommendation-de">Wir empfehlen, unsere Einführungs-Probestunde zu besuchen (4-6 Wochen Grundlagen)</div>
+                
+                <!-- Next Steps Section -->
+                <div class="next-steps">
+                    <h3 class="en">Your Next Steps:</h3>
+                    <h3 class="de">Deine nächsten Schritte:</h3>
+                    
+                    <div class="en">
+                        <p>✅ <strong>Book your trial class</strong> - Experience the level firsthand</p>
+                        <p>✅ <strong>Arrive 10 minutes early</strong> - Meet your instructor and classmates</p>
+                        <p>✅ <strong>Wear comfortable clothes</strong> - No special dancewear needed</p>
+                        <p>✅ <strong>Bring water</strong> - Stay hydrated during class</p>
+                        <p>✅ <strong>No partner needed</strong> - We rotate partners during class</p>
+                    </div>
+                    
+                    <div class="de">
+                        <p>✅ <strong>Buche deine Probestunde</strong> - Erlebe das Level live</p>
+                        <p>✅ <strong>Komm 10 Minuten früher</strong> - Triff deinen Lehrer und Mitstudenten</p>
+                        <p>✅ <strong>Trage bequeme Kleidung</strong> - Keine spezielle Tanzkleidung nötig</p>
+                        <p>✅ <strong>Bring Wasser mit</strong> - Bleib während des Unterrichts hydriert</p>
+                        <p>✅ <strong>Kein Partner nötig</strong> - Wir wechseln während des Unterrichts die Partner</p>
+                    </div>
+                </div>
+                
+                <div class="btn-container" style="margin-top: 30px;">
+                    <a href="booking.html" class="nav-btn en">
+                        <i class="fas fa-calendar-check"></i> Book Your Trial Class Now
+                    </a>
+                    <a href="booking.html" class="nav-btn de">
+                        <i class="fas fa-calendar-check"></i> Jetzt Probestunde buchen
+                    </a>
+                </div>
             </div>
         </div>
         
+        <!-- Levels Explanation -->
         <div class="levels-grid">
             <div class="level-card">
                 <h3 class="en">Introduction</h3>
                 <h3 class="de">Einführung</h3>
-                <p class="en">Only basics - Learn the fundamental steps and rhythm</p>
-                <p class="de">Nur Grundlagen - Lerne die grundlegenden Schritte und den Rhythmus</p>
+                <p class="en">Perfect for absolute beginners. Learn fundamental steps, rhythm, and basic partner connection.</p>
+                <p class="de">Perfekt für absolute Anfänger. Lerne Grundschritte, Rhythmus und grundlegende Partnerverbindung.</p>
                 <p class="duration en">Duration: 4-6 weeks</p>
                 <p class="duration de">Dauer: 4-6 Wochen</p>
             </div>
@@ -489,8 +732,8 @@
             <div class="level-card">
                 <h3 class="en">Beginners</h3>
                 <h3 class="de">Anfänger</h3>
-                <p class="en">Basic techniques - Build a solid foundation</p>
-                <p class="de">Grundtechniken - Baue ein solides Fundament auf</p>
+                <p class="en">Build solid foundation. Master basic techniques, simple turns, and start social dancing.</p>
+                <p class="de">Baue ein solides Fundament auf. Meistere Grundtechniken, einfache Drehungen und beginne mit sozialem Tanzen.</p>
                 <p class="duration en">Duration: 2-3 months</p>
                 <p class="duration de">Dauer: 2-3 Monate</p>
             </div>
@@ -498,8 +741,8 @@
             <div class="level-card">
                 <h3 class="en">Improvers</h3>
                 <h3 class="de">Fortgeschrittene Anfänger</h3>
-                <p class="en">Social dancing, improvisation and improver techniques</p>
-                <p class="de">Soziales Tanzen, Improvisation und fortgeschrittene Anfängertechniken</p>
+                <p class="en">Develop improvisation skills, learn more complex patterns, and dance confidently with different partners.</p>
+                <p class="de">Entwickle Improvisationsfähigkeiten, lerne komplexere Figuren und tanze selbstbewusst mit verschiedenen Partnern.</p>
                 <p class="duration en">Duration: 4-6 months</p>
                 <p class="duration de">Dauer: 4-6 Monate</p>
             </div>
@@ -507,8 +750,8 @@
             <div class="level-card">
                 <h3 class="en">Intermediate</h3>
                 <h3 class="de">Mittelstufe</h3>
-                <p class="en">Intermediate techniques, improvisation, variations</p>
-                <p class="de">Mittelschwere Techniken, Improvisation, Variationen</p>
+                <p class="en">Refine technique, explore variations, develop musicality, and master intermediate combinations.</p>
+                <p class="de">Verfeinere Technik, erkunde Variationen, entwickle Musicality und meistere mittelschwere Kombinationen.</p>
                 <p class="duration en">Duration: 6 months</p>
                 <p class="duration de">Dauer: 6 Monate</p>
             </div>
@@ -516,10 +759,66 @@
             <div class="level-card">
                 <h3 class="en">Advanced</h3>
                 <h3 class="de">Fortgeschrittene</h3>
-                <p class="en">Advanced techniques and topics</p>
-                <p class="de">Fortgeschrittene Techniken und Themen</p>
+                <p class="en">Master advanced techniques, complex styling, intricate footwork, and lead/follow sophisticated patterns.</p>
+                <p class="de">Meistere fortgeschrittene Techniken, komplexes Styling, kunstvolles Fußwerk und führe/folge anspruchsvollen Figuren.</p>
                 <p class="duration en">Duration: 6 months</p>
                 <p class="duration de">Dauer: 6 Monate</p>
+            </div>
+        </div>
+        
+        <!-- Post-Test CTA -->
+        <div class="cta-box">
+            <h2 class="en">Still Unsure About Your Level?</h2>
+            <h2 class="de">Immer noch unsicher über dein Level?</h2>
+            
+            <p class="en" style="margin-bottom: 25px; font-size: 1.1rem;">
+                Our instructors can give you a final assessment during your trial class. 
+                <strong>85% of students</strong> who take our level test find the perfect class match on their first try!
+            </p>
+            
+            <p class="de" style="margin-bottom: 25px; font-size: 1.1rem;">
+                Unsere Lehrer können dir eine endgültige Einschätzung während deiner Probestunde geben.
+                <strong>85% der Schüler</strong>, die unseren Level-Test machen, finden beim ersten Versuch den perfekten Kurs!
+            </p>
+            
+            <a href="booking.html" class="nav-btn" style="background: white; color: var(--primary-color);">
+                <i class="fas fa-magic"></i> 
+                <span class="en">Book Your Trial Class & Get Final Assessment</span>
+                <span class="de">Buche deine Probestunde & erhalte endgültige Einschätzung</span>
+            </a>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="assessment-container">
+            <h2 class="en" style="color: var(--secondary-color); margin-bottom: 20px;">Frequently Asked Questions</h2>
+            <h2 class="de" style="color: var(--secondary-color); margin-bottom: 20px;">Häufig gestellte Fragen</h2>
+            
+            <div class="en">
+                <h3>What if I'm between two levels?</h3>
+                <p>This is common! We recommend starting with the lower level. It's better to build confidence and perfect fundamentals than to struggle in a class that's too advanced. You can always move up faster if you're progressing quickly.</p>
+                
+                <h3>Can I switch levels if the class doesn't fit?</h3>
+                <p>Absolutely! We offer flexible switching within the first two weeks. Our priority is making sure you're in the right class for your learning pace.</p>
+                
+                <h3>Do I need to take this test for both Salsa and Bachata?</h3>
+                <p>Your level is generally similar for both dances, but you can take the test thinking about each dance separately if you have different experience levels.</p>
+                
+                <h3>What if I've learned from YouTube or other schools?</h3>
+                <p>That's great! Our test considers all your experience. Just answer honestly about what you can actually do, not just what you've watched or tried once.</p>
+            </div>
+            
+            <div class="de">
+                <h3>Was, wenn ich zwischen zwei Levels bin?</h3>
+                <p>Das ist normal! Wir empfehlen, mit dem niedrigeren Level zu beginnen. Es ist besser, Selbstvertrauen aufzubauen und Grundlagen zu perfektionieren, als in einem zu fortgeschrittenen Kurs zu kämpfen. Du kannst immer schneller aufsteigen, wenn du schnell Fortschritte machst.</p>
+                
+                <h3>Kann ich das Level wechseln, wenn der Kurs nicht passt?</h3>
+                <p>Absolut! Wir bieten flexibles Wechseln innerhalb der ersten zwei Wochen an. Unsere Priorität ist, dass du im richtigen Kurs für dein Lerntempo bist.</p>
+                
+                <h3>Muss ich diesen Test für Salsa und Bachata machen?</h3>
+                <p>Dein Level ist generell für beide Tänze ähnlich, aber du kannst den Test für jeden Tanz separat machen, wenn du unterschiedliche Erfahrungsniveaus hast.</p>
+                
+                <h3>Was, wenn ich von YouTube oder anderen Schulen gelernt habe?</h3>
+                <p>Das ist großartig! Unser Test berücksichtigt all deine Erfahrungen. Beantworte einfach ehrlich, was du tatsächlich kannst, nicht nur was du gesehen oder einmal ausprobiert hast.</p>
             </div>
         </div>
         
@@ -532,8 +831,8 @@
         </div>
         
         <footer>
-            <p class="en">© 2025 Alma Dance Frankfurt. All rights reserved.</p>
-            <p class="de">© 2025 Alma Dance Frankfurt. Alle Rechte vorbehalten.</p>
+            <p class="en">© 2025 Alma Dance Frankfurt. All rights reserved. | Central Frankfurt Location | No Partner Needed</p>
+            <p class="de">© 2025 Alma Dance Frankfurt. Alle Rechte vorbehalten. | Zentrale Lage Frankfurt | Kein Partner nötig</p>
         </footer>
     </div>
     
@@ -543,6 +842,7 @@
         const deBtn = document.getElementById('de-btn');
         const enElements = document.querySelectorAll('.en');
         const deElements = document.querySelectorAll('.de');
+        const progressFill = document.getElementById('progress-fill');
         
         enBtn.addEventListener('click', () => {
             enBtn.classList.add('active');
@@ -592,10 +892,28 @@
                 
                 // Add selected class to clicked option
                 option.classList.add('selected');
+                
+                // Update progress bar
+                updateProgress();
             });
         });
         
-        // Level assessment logic - SIMPLIFIED AND DEBUGGED
+        function updateProgress() {
+            const totalQuestions = 4;
+            let answeredQuestions = 0;
+            
+            // Check each question group
+            if (document.querySelector('input[name="experience"]:checked')) answeredQuestions++;
+            if (document.querySelector('input[name="basics"]:checked')) answeredQuestions++;
+            if (document.querySelector('input[name="social"]:checked')) answeredQuestions++;
+            if (document.querySelector('input[name="technique"]:checked')) answeredQuestions++;
+            
+            // Calculate percentage
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            progressFill.style.width = percentage + '%';
+        }
+        
+        // Level assessment logic
         const submitBtn = document.getElementById('submit-btn');
         const submitBtnDe = document.getElementById('submit-btn-de');
         const resultSection = document.getElementById('result-section');
@@ -609,61 +927,61 @@
             en: [
                 {
                     name: "Introduction",
-                    description: "Based on your answers, you would be best suited for our Introduction class.",
-                    recommendation: "We recommend trying our Introduction trial class (4-6 weeks of basics)"
+                    description: "Perfect! You're starting at the very beginning - the best place to build a strong foundation. In our Introduction class, you'll learn the fundamental steps, basic rhythm, and essential partner connection in a supportive environment.",
+                    recommendation: "Start with our Introduction trial class (4-6 weeks focusing on basics, rhythm, and partner connection)"
                 },
                 {
                     name: "Beginners",
-                    description: "Based on your answers, you would be best suited for our Beginners class.",
-                    recommendation: "We recommend trying our Beginners trial class (2-3 months of basic techniques)"
+                    description: "Great! You have some basic knowledge. Our Beginners class will help you solidify your foundation, improve your technique, and start building confidence for social dancing.",
+                    recommendation: "Try our Beginners trial class (2-3 months building solid technique and starting social dance practice)"
                 },
                 {
                     name: "Improvers",
-                    description: "Based on your answers, you would be best suited for our Improvers class.",
-                    recommendation: "We recommend trying our Improvers trial class (4-6 months of social dancing and improvisation)"
+                    description: "Excellent! You're ready to move beyond basics. Our Improvers class focuses on developing improvisation skills, learning more complex patterns, and dancing confidently with different partners.",
+                    recommendation: "Join our Improvers trial class (4-6 months developing improvisation and social dance skills)"
                 },
                 {
                     name: "Intermediate",
-                    description: "Based on your answers, you would be best suited for our Intermediate class.",
-                    recommendation: "We recommend trying our Intermediate trial class (6 months of intermediate techniques and variations)"
+                    description: "Impressive! You have solid dance skills. Our Intermediate class will help you refine technique, explore variations, develop musicality, and master more sophisticated combinations.",
+                    recommendation: "Experience our Intermediate trial class (6 months refining technique and exploring variations)"
                 },
                 {
                     name: "Advanced",
-                    description: "Based on your answers, you would be best suited for our Advanced class.",
-                    recommendation: "We recommend trying our Advanced trial class (6 months of advanced techniques and topics)"
+                    description: "Fantastic! You're an experienced dancer ready for advanced challenges. Our Advanced class focuses on mastering complex techniques, intricate footwork, and leading/following sophisticated patterns.",
+                    recommendation: "Challenge yourself with our Advanced trial class (6 months mastering advanced techniques and styling)"
                 }
             ],
             de: [
                 {
                     name: "Einführung",
-                    description: "Basierend auf deinen Antworten wärst du am besten für unseren Einführungskurs geeignet.",
-                    recommendation: "Wir empfehlen, unsere Einführungs-Probestunde zu besuchen (4-6 Wochen Grundlagen)"
+                    description: "Perfekt! Du beginnst ganz von vorne - der beste Ort, um ein starkes Fundament aufzubauen. In unserem Einführungskurs lernst du Grundschritte, Basisrhythmus und essentielle Partnerverbindung in einer unterstützenden Umgebung.",
+                    recommendation: "Beginne mit unserer Einführungs-Probestunde (4-6 Wochen Fokus auf Grundlagen, Rhythmus und Partnerverbindung)"
                 },
                 {
                     name: "Anfänger",
-                    description: "Basierend auf deinen Antworten wärst du am besten für unseren Anfängerkurs geeignet.",
-                    recommendation: "Wir empfehlen, unsere Anfänger-Probestunde zu besuchen (2-3 Monate Grundtechniken)"
+                    description: "Großartig! Du hast bereits Grundkenntnisse. Unser Anfängerkurs hilft dir, dein Fundament zu festigen, deine Technik zu verbessern und Selbstvertrauen für soziales Tanzen aufzubauen.",
+                    recommendation: "Probiere unsere Anfänger-Probestunde (2-3 Monate zum Aufbau solider Technik und Beginn der Sozialtanzpraxis)"
                 },
                 {
                     name: "Fortgeschrittene Anfänger",
-                    description: "Basierend auf deinen Antworten wärst du am besten für unseren Fortgeschrittenen-Anfänger-Kurs geeignet.",
-                    recommendation: "Wir empfehlen, unsere Fortgeschrittenen-Anfänger-Probestunde zu besuchen (4-6 Monate soziales Tanzen und Improvisation)"
+                    description: "Ausgezeichnet! Du bist bereit, über die Grundlagen hinauszugehen. Unser Fortgeschrittenen-Anfänger-Kurs konzentriert sich auf die Entwicklung von Improvisationsfähigkeiten, das Lernen komplexerer Figuren und selbstbewusstes Tanzen mit verschiedenen Partnern.",
+                    recommendation: "Tritt unserem Fortgeschrittenen-Anfänger-Probeunterricht bei (4-6 Monate Entwicklung von Improvisation und Sozialtanzfähigkeiten)"
                 },
                 {
                     name: "Mittelstufe",
-                    description: "Basierend auf deinen Antworten wärst du am besten für unseren Mittelstufenkurs geeignet.",
-                    recommendation: "Wir empfehlen, unsere Mittelstufen-Probestunde zu besuchen (6 Monate mittelschwere Techniken und Variationen)"
+                    description: "Beeindruckend! Du hast solide Tanzfähigkeiten. Unser Mittelstufenkurs hilft dir, Technik zu verfeinern, Variationen zu erkunden, Musicality zu entwickeln und anspruchsvollere Kombinationen zu meistern.",
+                    recommendation: "Erlebe unseren Mittelstufen-Probeunterricht (6 Monate Verfeinerung der Technik und Erkundung von Variationen)"
                 },
                 {
                     name: "Fortgeschrittene",
-                    description: "Basierend auf deinen Antworten wärst du am besten für unseren Fortgeschrittenenkurs geeignet.",
-                    recommendation: "Wir empfehlen, unsere Fortgeschrittenen-Probestunde zu besuchen (6 Monate fortgeschrittene Techniken und Themen)"
+                    description: "Fantastisch! Du bist ein erfahrener Tänzer, bereit für fortgeschrittene Herausforderungen. Unser Fortgeschrittenenkurs konzentriert sich auf das Meistern komplexer Techniken, kunstvollen Fußwerks und das Führen/Folgen anspruchsvoller Figuren.",
+                    recommendation: "Fordere dich mit unserem Fortgeschrittenen-Probeunterricht heraus (6 Monate Meistern fortgeschrittener Techniken und Stylings)"
                 }
             ]
         };
         
         function calculateLevel() {
-            // Get all selected values - using explicit value reading
+            // Get all selected values
             const experienceInput = document.querySelector('input[name="experience"]:checked');
             const basicsInput = document.querySelector('input[name="basics"]:checked');
             const socialInput = document.querySelector('input[name="social"]:checked');
@@ -685,19 +1003,8 @@
             // Calculate total score (4-20 range)
             const totalScore = expScore + basicsScore + socialScore + techScore;
             
-            // DEBUG: Show scores in console
-            console.log("Scores - Exp:", expScore, "Basics:", basicsScore, "Social:", socialScore, "Tech:", techScore);
-            console.log("Total score:", totalScore);
-            
             // Determine level based on total score
             let levelIndex;
-            
-            // 4 questions, each 1-5 points = total range 4-20
-            // Introduction: 4-7 points
-            // Beginners: 8-11 points
-            // Improvers: 12-15 points
-            // Intermediate: 16-18 points
-            // Advanced: 19-20 points
             
             if (totalScore <= 7) {
                 levelIndex = 0; // Introduction (4-7 points)
@@ -710,8 +1017,6 @@
             } else {
                 levelIndex = 4; // Advanced (19-20 points)
             }
-            
-            console.log("Level index determined:", levelIndex);
             
             // Get current language
             const isGerman = deBtn.classList.contains('active');
@@ -748,94 +1053,8 @@
         submitBtn.addEventListener('click', calculateLevel);
         submitBtnDe.addEventListener('click', calculateLevel);
         
-        // DON'T auto-select any options - let user choose
-        // Add test buttons for debugging
-        window.addEventListener('load', function() {
-            // Add test buttons for quick testing
-            const testButtons = document.createElement('div');
-            testButtons.innerHTML = `
-                <div style="text-align: center; margin: 20px 0;">
-                    <h3>Test Levels (for debugging):</h3>
-                    <button id="test-intro" style="margin: 5px; padding: 8px 12px; background: #4CAF50; color: white; border: none; border-radius: 4px;">Test Introduction</button>
-                    <button id="test-beginner" style="margin: 5px; padding: 8px 12px; background: #2196F3; color: white; border: none; border-radius: 4px;">Test Beginners</button>
-                    <button id="test-improver" style="margin: 5px; padding: 8px 12px; background: #FF9800; color: white; border: none; border-radius: 4px;">Test Improvers</button>
-                    <button id="test-intermediate" style="margin: 5px; padding: 8px 12px; background: #9C27B0; color: white; border: none; border-radius: 4px;">Test Intermediate</button>
-                    <button id="test-advanced" style="margin: 5px; padding: 8px 12px; background: #F44336; color: white; border: none; border-radius: 4px;">Test Advanced</button>
-                </div>
-            `;
-            document.querySelector('.assessment-container').insertBefore(testButtons, document.querySelector('.btn-container'));
-            
-            // Add event listeners for test buttons
-            document.getElementById('test-intro').addEventListener('click', () => {
-                // Select all 1-point answers
-                document.getElementById('exp0').checked = true;
-                document.getElementById('basics0').checked = true;
-                document.getElementById('social0').checked = true;
-                document.getElementById('tech0').checked = true;
-                
-                // Update visual selection
-                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                document.querySelectorAll('.option[data-score="1"]').forEach(opt => opt.classList.add('selected'));
-                
-                console.log("Test: Introduction level selected (all 1s)");
-            });
-            
-            document.getElementById('test-beginner').addEventListener('click', () => {
-                // Select mostly 2-point answers
-                document.getElementById('exp1').checked = true;
-                document.getElementById('basics1').checked = true;
-                document.getElementById('social1').checked = true;
-                document.getElementById('tech1').checked = true;
-                
-                // Update visual selection
-                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                document.querySelectorAll('.option[data-score="2"]').forEach(opt => opt.classList.add('selected'));
-                
-                console.log("Test: Beginners level selected (all 2s)");
-            });
-            
-            document.getElementById('test-improver').addEventListener('click', () => {
-                // Select mostly 3-point answers
-                document.getElementById('exp2').checked = true;
-                document.getElementById('basics2').checked = true;
-                document.getElementById('social2').checked = true;
-                document.getElementById('tech2').checked = true;
-                
-                // Update visual selection
-                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                document.querySelectorAll('.option[data-score="3"]').forEach(opt => opt.classList.add('selected'));
-                
-                console.log("Test: Improvers level selected (all 3s)");
-            });
-            
-            document.getElementById('test-intermediate').addEventListener('click', () => {
-                // Select mostly 4-point answers
-                document.getElementById('exp3').checked = true;
-                document.getElementById('basics3').checked = true;
-                document.getElementById('social3').checked = true;
-                document.getElementById('tech3').checked = true;
-                
-                // Update visual selection
-                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                document.querySelectorAll('.option[data-score="4"]').forEach(opt => opt.classList.add('selected'));
-                
-                console.log("Test: Intermediate level selected (all 4s)");
-            });
-            
-            document.getElementById('test-advanced').addEventListener('click', () => {
-                // Select all 5-point answers
-                document.getElementById('exp4').checked = true;
-                document.getElementById('basics4').checked = true;
-                document.getElementById('social4').checked = true;
-                document.getElementById('tech4').checked = true;
-                
-                // Update visual selection
-                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                document.querySelectorAll('.option[data-score="5"]').forEach(opt => opt.classList.add('selected'));
-                
-                console.log("Test: Advanced level selected (all 5s)");
-            });
-        });
+        // Initialize progress bar
+        updateProgress();
     </script>
 </body>
 </html>
