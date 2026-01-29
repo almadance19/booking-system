@@ -125,7 +125,8 @@
     </div>
 
     <script>
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxwgY7OmYPSSMKzYqT9x6Tr7GkS0PE8Ayd5YvJ2ydGzH6TnXzeuOCv75wOx8ILRMzg/exec';
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbxr1HuPGfusJLA2e1WYsBeBXm0m_bNSheJvvG1DVu0T7xYXgTitmayqx4KQ8gpdXt8/exec";
+
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
         const rownumber = urlParams.get('rownumber');
@@ -220,6 +221,7 @@
                 cancelled: type === 'cancel' ? 'TRUE' : 'FALSE',
                 reason: type === 'cancel' ? document.getElementById('cancelReason').value : ''
             };
+            console.log(payload);
             try {
                 const response = await fetch(scriptUrl, { method: 'POST', body: JSON.stringify(payload) });
                 if (await response.text() === "Success") {
