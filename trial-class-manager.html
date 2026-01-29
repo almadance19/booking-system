@@ -105,12 +105,12 @@
             <div id="msg-rebook" class="msg hidden"></div>
         </div>
 
-        <div class="faq" style="margin-bottom: 20px;">
-            <h3 id="ui-faq-title">FAQs</h3>
-            <ul id="faq-list" style="padding-left: 20px; margin: 0;"></ul>
+        <div style="text-align: center; margin: 20px 0;">
+            <h2 id="or-text" style="color: #d93025;"> OR </h2>
         </div>
 
         <div class="section-card cancel-section">
+            <h2 style="color: #d93025;">⚠️ Danger Zone  ⚠️ </h2>
             <h3 id="ui-title-cancel">Cancel</h3>
             <label id="ui-label-reason">Reason:</label>
             <select id="cancelReason">
@@ -122,10 +122,14 @@
             <button class="btn-cancel" onclick="updateData('cancel')" id="ui-btn-cancel">Cancel My Spot</button>
             <div id="msg-cancel" class="msg hidden"></div>
         </div>
+                <div class="faq" style="margin-bottom: 20px;">
+            <h3 id="ui-faq-title">FAQs</h3>
+            <ul id="faq-list" style="padding-left: 20px; margin: 0;"></ul>
+        </div>
     </div>
 
     <script>
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbxr1HuPGfusJLA2e1WYsBeBXm0m_bNSheJvvG1DVu0T7xYXgTitmayqx4KQ8gpdXt8/exec";
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbx2BLUxXNjcXS2fdo2d-BWuRUTIfgxPtIV_WWl_d8Du8iMtwgW1mV7EM1XYTyjZGzI/exec";
 
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
@@ -136,7 +140,7 @@
             en: {
                 loading: "Loading details...", processing: "Saving...",
                 title: "Alma Dance Frankfurt", name: "Name", class: "Class", schedule: "Day & Time",
-                titleRebook: "Reschedule Class", date: "Select Date:", btnRebook: "Save Date",
+                titleRebook: "Reschedule Class Trial to Another Date", date: "Select Date:", btnRebook: "Save Date",
                 titleCancel: "Cancel Participation", reason: "Reason for Cancellation:", btnCancel: "Confirm Cancellation",
                 select: "-- Select --", sick: "Sickness", event: "Unforeseen Event", other: "Another Reason",
                 faqTitle: "Important Info", success: "Success! Changes saved.",
@@ -145,7 +149,7 @@
             de: {
                 loading: "Lade Details...", processing: "Speichere...",
                 title: "Alma Dance Frankfurt", name: "Name", class: "Kurs", schedule: "Wochentag & Uhrzeit",
-                titleRebook: "Termin ändern", date: "Datum wählen :", btnRebook: "Datum speichern",
+                titleRebook: "Datum der Probestunde ändern", date: "Datum wählen :", btnRebook: "Datum speichern",
                 titleCancel: "Teilnahme absagen", reason: "Grund für die Absage:", btnCancel: "Absage bestätigen",
                 select: "-- Auswählen --", sick: "Krankheit", event: "Unvorhergesehen", other: "Anderer Grund",
                 faqTitle: "Wichtige Infos", success: "Erfolg! Änderungen gespeichert.",
@@ -177,6 +181,7 @@
             document.getElementById('ui-label-date').innerText = t.date;
             document.getElementById('ui-btn-rebook').innerText = t.btnRebook;
             document.getElementById('ui-title-cancel').innerText = t.titleCancel;
+            document.getElementById('or-text').innerText = " " + (currentLang === 'en' ? "OR" : "ODER") + " ";
             document.getElementById('ui-label-reason').innerText = t.reason;
             document.getElementById('ui-btn-cancel').innerText = t.btnCancel;
             document.getElementById('ui-opt-select').innerText = t.select;
