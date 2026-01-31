@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Membership Recommendation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .quiz-container {
+            padding: 30px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: #b21f1f;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1a2a6c;
+            display: inline-block;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option {
+            padding: 18px 20px;
+            background-color: #f5f7ff;
+            border: 2px solid #e0e5ff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .option:hover {
+            background-color: #e8edff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .option.selected {
+            background-color: #1a2a6c;
+            color: white;
+            border-color: #1a2a6c;
+        }
+
+        .option-icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e5ff;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-prev {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-prev:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn-next {
+            background-color: #b21f1f;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background-color: #9a1a1a;
+        }
+
+        .btn-submit {
+            background-color: #1a2a6c;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #15225c;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e5ff;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            width: 20%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            text-align: right;
+            font-weight: 600;
+            color: #1a2a6c;
+            margin-top: 5px;
+        }
+
+        .result-container {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            color: #b21f1f;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 2.2rem;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+        }
+
+        .result-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .recommendation-box {
+            background-color: #f5f7ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #1a2a6c;
+        }
+
+        .recommendation-title {
+            font-size: 1.5rem;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-details {
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .recommendation-details ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .recommendation-details li {
+            margin-bottom: 8px;
+        }
+
+        .btn-restart {
+            background-color: #fdbb2d;
+            color: #333;
+            margin: 20px auto 0;
+            display: block;
+        }
+
+        .btn-restart:hover {
+            background-color: #f0a91c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container, .result-container {
+                padding: 20px;
+            }
+            
+            .option {
+                padding: 15px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="language-toggle">
+                <button class="lang-btn" id="langToggle">
+                    <i class="fas fa-globe"></i>
+                    <span id="langText">Deutsch</span>
+                </button>
+            </div>
+            <h1 id="headerTitle">Dance Membership Recommendation</h1>
+            <p class="subtitle" id="headerSubtitle">Find your perfect dance membership after completing the trial class</p>
+        </header>
+        
+        <div class="quiz-container" id="quizContainer">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Question 1 of 5</div>
+            </div>
+            
+            <!-- Question 1 -->
+            <div class="question active" id="question1">
+                <div class="question-number">1</div>
+                <h2 id="q1Title">How often do you plan to attend classes per week?</h2>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-icon"><i class="far fa-calendar-alt"></i></div>
+                        <span id="q1Option1">1 time</span>
+                    </div>
+                    <div class="option" data-value="2-3">
+                        <div class="option-icon"><i class="far fa-calendar-check"></i></div>
+                        <span id="q1Option2">2-3 times</span>
+                    </div>
+                    <div class="option" data-value="4+">
+                        <div class="option-icon"><i class="fas fa-calendar-week"></i></div>
+                        <span id="q1Option3">4 or more times</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question" id="question2">
+                <div class="question-number">2</div>
+                <h2 id="q2Title">What is your primary dancing goal?</h2>
+                <div class="options">
+                    <div class="option" data-value="social">
+                        <div class="option-icon"><i class="fas fa-users"></i></div>
+                        <span id="q2Option1">Socializing</span>
+                    </div>
+                    <div class="option" data-value="great">
+                        <div class="option-icon"><i class="fas fa-star"></i></div>
+                        <span id="q2Option2">Become a great dancer</span>
+                    </div>
+                    <div class="option" data-value="competition">
+                        <div class="option-icon"><i class="fas fa-trophy"></i></div>
+                        <span id="q2Option3">Competition</span>
+                    </div>
+                    <div class="option" data-value="instructor">
+                        <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <span id="q2Option4">Become an instructor</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question" id="question3">
+                <div class="question-number">3</div>
+                <h2 id="q3Title">How many dance styles are you interested in?</h2>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <span id="q3Option1">1 style</span>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-icon"><i class="fas fa-music"></i><i class="fas fa-music"></i></div>
+                        <span id="q3Option2">2 styles</span>
+                    </div>
+                    <div class="option" data-value="3+">
+                        <div class="option-icon"><i class="fas fa-music"></i><i class="fas fa-music"></i><i class="fas fa-music"></i></div>
+                        <span id="q3Option3">3 or more styles</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question" id="question4">
+                <div class="question-number">4</div>
+                <h2 id="q4Title">How fast do you want to progress in your dancing skills?</h2>
+                <div class="options">
+                    <div class="option" data-value="slow">
+                        <div class="option-icon"><i class="fas fa-walking"></i></div>
+                        <span id="q4Option1">Slowly without pressure</span>
+                    </div>
+                    <div class="option" data-value="moderate">
+                        <div class="option-icon"><i class="fas fa-running"></i></div>
+                        <span id="q4Option2">Moderately</span>
+                    </div>
+                    <div class="option" data-value="fast">
+                        <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                        <span id="q4Option3">Quickly</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question" id="question5">
+                <div class="question-number">5</div>
+                <h2 id="q5Title">Do you want private lessons?</h2>
+                <div class="options">
+                    <div class="option" data-value="yes">
+                        <div class="option-icon"><i class="fas fa-check-circle"></i></div>
+                        <span id="q5Option1">Yes</span>
+                    </div>
+                    <div class="option" data-value="no">
+                        <div class="option-icon"><i class="fas fa-times-circle"></i></div>
+                        <span id="q5Option2">No</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-prev" id="prevBtn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span id="prevText">Previous</span>
+                </button>
+                <button class="btn btn-next" id="nextBtn">
+                    <span id="nextText">Next</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="result-container" id="resultContainer">
+            <div class="result-header">
+                <div class="result-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h2 id="resultTitle">Your Membership Recommendation</h2>
+                <p class="result-subtitle" id="resultSubtitle">Based on your answers, here's the perfect dance membership for you</p>
+            </div>
+            
+            <div class="recommendation-box">
+                <h3 class="recommendation-title" id="recommendationTitle">Recommended Membership</h3>
+                <div class="recommendation-details" id="recommendationDetails">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <button class="btn btn-restart" id="restartBtn">
+                <i class="fas fa-redo"></i>
+                <span id="restartText">Take the Quiz Again</span>
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Dance Studio Membership Quiz &copy; 2023 | Created after completing the trial class</p>
+    </footer>
+
+    <script>
+        // Language data
+        const translations = {
+            en: {
+                // Header
+                headerTitle: "Dance Membership Recommendation",
+                headerSubtitle: "Find your perfect dance membership after completing the trial class",
+                langText: "Deutsch",
+                
+                // Questions
+                q1Title: "How often do you plan to attend classes per week?",
+                q1Option1: "1 time",
+                q1Option2: "2-3 times",
+                q1Option3: "4 or more times",
+                
+                q2Title: "What is your primary dancing goal?",
+                q2Option1: "Socializing",
+                q2Option2: "Become a great dancer",
+                q2Option3: "Competition",
+                q2Option4: "Become an instructor",
+                
+                q3Title: "How many dance styles are you interested in?",
+                q3Option1: "1 style",
+                q3Option2: "2 styles",
+                q3Option3: "3 or more styles",
+                
+                q4Title: "How fast do you want to progress in your dancing skills?",
+                q4Option1: "Slowly without pressure",
+                q4Option2: "Moderately",
+                q4Option3: "Quickly",
+                
+                q5Title: "Do you want private lessons?",
+                q5Option1: "Yes",
+                q5Option2: "No",
+                
+                // Navigation
+                prevText: "Previous",
+                nextText: "Next",
+                submitText: "Submit",
+                
+                // Progress
+                progressText: "Question 1 of 5",
+                
+                // Results
+                resultTitle: "Your Membership Recommendation",
+                resultSubtitle: "Based on your answers, here's the perfect dance membership for you",
+                recommendationTitle: "Recommended Membership",
+                restartText: "Take the Quiz Again",
+                
+                // Membership recommendations
+                basicTitle: "Basic Membership",
+                standardTitle: "Standard Membership",
+                premiumTitle: "Premium Membership",
+                proTitle: "Pro Membership",
+                
+                // Result texts will be generated dynamically
+            },
+            de: {
+                // Header
+                headerTitle: "Tanz-Mitgliedschaftsempfehlung",
+                headerSubtitle: "Finden Sie die perfekte Tanzmitgliedschaft nach Abschluss der Probeklasse",
+                langText: "English",
+                
+                // Questions
+                q1Title: "Wie oft planen Sie pro Woche am Unterricht teilzunehmen?",
+                q1Option1: "1 Mal",
+                q1Option2: "2-3 Mal",
+                q1Option3: "4 Mal oder öfter",
+                
+                q2Title: "Was ist Ihr primäres Tanzziel?",
+                q2Option1: "Sozialisierung",
+                q2Option2: "Ein großartiger Tänzer werden",
+                q2Option3: "Wettbewerb",
+                q2Option4: "Tanzlehrer werden",
+                
+                q3Title: "An wie vielen Tanzstilen sind Sie interessiert?",
+                q3Option1: "1 Stil",
+                q3Option2: "2 Stile",
+                q3Option3: "3 oder mehr Stile",
+                
+                q4Title: "Wie schnell möchten Sie Ihre Tanzfähigkeiten verbessern?",
+                q4Option1: "Langsam und ohne Druck",
+                q4Option2: "Mäßig",
+                q4Option3: "Schnell",
+                
+                q5Title: "Möchten Sie Privatunterricht?",
+                q5Option1: "Ja",
+                q5Option2: "Nein",
+                
+                // Navigation
+                prevText: "Zurück",
+                nextText: "Weiter",
+                submitText: "Absenden",
+                
+                // Progress
+                progressText: "Frage 1 von 5",
+                
+                // Results
+                resultTitle: "Ihre Mitgliedschaftsempfehlung",
+                resultSubtitle: "Basierend auf Ihren Antworten ist hier die perfekte Tanzmitgliedschaft für Sie",
+                recommendationTitle: "Empfohlene Mitgliedschaft",
+                restartText: "Quiz nochmal machen",
+                
+                // Membership recommendations
+                basicTitle: "Basis-Mitgliedschaft",
+                standardTitle: "Standard-Mitgliedschaft",
+                premiumTitle: "Premium-Mitgliedschaft",
+                proTitle: "Pro-Mitgliedschaft",
+                
+                // Result texts will be generated dynamically
+            }
+        };
+
+        // Current language
+        let currentLang = 'en';
+        
+        // Quiz state
+        let currentQuestion = 1;
+        let answers = {
+            q1: null,
+            q2: null,
+            q3: null,
+            q4: null,
+            q5: null
+        };
+        
+        // DOM elements
+        const langToggle = document.getElementById('langToggle');
+        const langText = document.getElementById('langText');
+        const headerTitle = document.getElementById('headerTitle');
+        const headerSubtitle = document.getElementById('headerSubtitle');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const quizContainer = document.getElementById('quizContainer');
+        const resultContainer = document.getElementById('resultContainer');
+        const restartBtn = document.getElementById('restartBtn');
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up event listeners for language toggle
+            langToggle.addEventListener('click', toggleLanguage);
+            
+            // Set up event listeners for navigation
+            prevBtn.addEventListener('click', goToPrevQuestion);
+            nextBtn.addEventListener('click', goToNextQuestion);
+            
+            // Set up event listener for restart button
+            restartBtn.addEventListener('click', restartQuiz);
+            
+            // Set up event listeners for options
+            setupOptionListeners();
+            
+            // Update UI based on current question
+            updateUI();
+        });
+        
+        // Toggle between English and German
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            applyLanguage();
+            
+            // If we're on the results page, regenerate results in the new language
+            if (resultContainer.style.display === 'block') {
+                showResults();
+            }
+        }
+        
+        // Apply language to all UI elements
+        function applyLanguage() {
+            const lang = translations[currentLang];
+            
+            // Update header
+            headerTitle.textContent = lang.headerTitle;
+            headerSubtitle.textContent = lang.headerSubtitle;
+            langText.textContent = lang.langText;
+            
+            // Update question titles and options
+            document.getElementById('q1Title').textContent = lang.q1Title;
+            document.getElementById('q1Option1').textContent = lang.q1Option1;
+            document.getElementById('q1Option2').textContent = lang.q1Option2;
+            document.getElementById('q1Option3').textContent = lang.q1Option3;
+            
+            document.getElementById('q2Title').textContent = lang.q2Title;
+            document.getElementById('q2Option1').textContent = lang.q2Option1;
+            document.getElementById('q2Option2').textContent = lang.q2Option2;
+            document.getElementById('q2Option3').textContent = lang.q2Option3;
+            document.getElementById('q2Option4').textContent = lang.q2Option4;
+            
+            document.getElementById('q3Title').textContent = lang.q3Title;
+            document.getElementById('q3Option1').textContent = lang.q3Option1;
+            document.getElementById('q3Option2').textContent = lang.q3Option2;
+            document.getElementById('q3Option3').textContent = lang.q3Option3;
+            
+            document.getElementById('q4Title').textContent = lang.q4Title;
+            document.getElementById('q4Option1').textContent = lang.q4Option1;
+            document.getElementById('q4Option2').textContent = lang.q4Option2;
+            document.getElementById('q4Option3').textContent = lang.q4Option3;
+            
+            document.getElementById('q5Title').textContent = lang.q5Title;
+            document.getElementById('q5Option1').textContent = lang.q5Option1;
+            document.getElementById('q5Option2').textContent = lang.q5Option2;
+            
+            // Update navigation buttons
+            document.getElementById('prevText').textContent = lang.prevText;
+            document.getElementById('nextText').textContent = currentQuestion < 5 ? lang.nextText : lang.submitText;
+            
+            // Update progress text
+            updateProgressText();
+            
+            // Update result page elements
+            document.getElementById('resultTitle').textContent = lang.resultTitle;
+            document.getElementById('resultSubtitle').textContent = lang.resultSubtitle;
+            document.getElementById('recommendationTitle').textContent = lang.recommendationTitle;
+            document.getElementById('restartText').textContent = lang.restartText;
+        }
+        
+        // Set up event listeners for option selection
+        function setupOptionListeners() {
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionId = this.closest('.question').id;
+                    const questionNumber = parseInt(questionId.replace('question', ''));
+                    const value = this.getAttribute('data-value');
+                    
+                    // Clear previous selection for this question
+                    const questionOptions = this.parentElement.querySelectorAll('.option');
+                    questionOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Select current option
+                    this.classList.add('selected');
+                    
+                    // Save answer
+                    answers[`q${questionNumber}`] = value;
+                    
+                    // Enable next button
+                    nextBtn.disabled = false;
+                });
+            });
+        }
+        
+        // Go to the previous question
+        function goToPrevQuestion() {
+            if (currentQuestion > 1) {
+                // Hide current question
+                document.getElementById(`question${currentQuestion}`).classList.remove('active');
+                
+                // Decrement current question
+                currentQuestion--;
+                
+                // Show previous question
+                document.getElementById(`question${currentQuestion}`).classList.add('active');
+                
+                // Update UI
+                updateUI();
+            }
+        }
+        
+        // Go to the next question or submit if last question
+        function goToNextQuestion() {
+            // Check if answer is selected
+            if (!answers[`q${currentQuestion}`]) {
+                return;
+            }
+            
+            if (currentQuestion < 5) {
+                // Hide current question
+                document.getElementById(`question${currentQuestion}`).classList.remove('active');
+                
+                // Increment current question
+                currentQuestion++;
+                
+                // Show next question
+                document.getElementById(`question${currentQuestion}`).classList.add('active');
+                
+                // Update UI
+                updateUI();
+            } else {
+                // Last question, show results
+                showResults();
+            }
+        }
+        
+        // Update UI elements based on current question
+        function updateUI() {
+            // Update progress bar
+            const progressPercentage = (currentQuestion / 5) * 100;
+            progressFill.style.width = `${progressPercentage}%`;
+            
+            // Update progress text
+            updateProgressText();
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestion === 1;
+            
+            // Check if answer is selected for current question
+            const hasAnswer = answers[`q${currentQuestion}`] !== null;
+            nextBtn.disabled = !hasAnswer;
+            
+            // Update next button text for last question
+            const nextText = document.getElementById('nextText');
+            if (currentQuestion === 5) {
+                nextText.textContent = currentLang === 'en' ? 'Submit' : 'Absenden';
+            } else {
+                nextText.textContent = currentLang === 'en' ? 'Next' : 'Weiter';
+            }
+            
+            // Restore selected option for current question if exists
+            if (answers[`q${currentQuestion}`]) {
+                const currentQuestionElement = document.getElementById(`question${currentQuestion}`);
+                const options = currentQuestionElement.querySelectorAll('.option');
+                options.forEach(option => {
+                    if (option.getAttribute('data-value') === answers[`q${currentQuestion}`]) {
+                        option.classList.add('selected');
+                    }
+                });
+            }
+        }
+        
+        // Update progress text based on current language
+        function updateProgressText() {
+            const lang = translations[currentLang];
+            progressText.textContent = lang.progressText.replace("1", currentQuestion);
+        }
+        
+        // Show results
+        function showResults() {
+            // Hide quiz container
+            quizContainer.style.display = 'none';
+            
+            // Show result container
+            resultContainer.style.display = 'block';
+            
+            // Generate recommendation
+            generateRecommendation();
+        }
+        
+        // Generate membership recommendation based on answers
+        function generateRecommendation() {
+            const lang = translations[currentLang];
+            let membership = '';
+            let details = '';
+            
+            // Determine membership based on answers
+            const frequency = answers.q1;
+            const goal = answers.q2;
+            const styles = answers.q3;
+            const speed = answers.q4;
+            const privateLessons = answers.q5;
+            
+            // Logic for membership recommendation
+            if (frequency === '1' && goal === 'social' && speed !== 'fast') {
+                membership = lang.basicTitle;
+                if (currentLang === 'en') {
+                    details = `
+                        <p>Perfect for social dancers who want to enjoy classes once a week.</p>
+                        <ul>
+                            <li><strong>Classes:</strong> 1 class per week</li>
+                            <li><strong>Focus:</strong> Social dancing and basic steps</li>
+                            <li><strong>Best for:</strong> Those who want to dance for fun and socialization</li>
+                            <li><strong>Progress pace:</strong> ${speed === 'slow' ? 'Slow and relaxed' : 'Moderate pace'}</li>
+                        </ul>
+                    `;
+                } else {
+                    details = `
+                        <p>Perfekt für Gesellschaftstänzer, die einmal pro Woche Unterricht genießen möchten.</p>
+                        <ul>
+                            <li><strong>Unterricht:</strong> 1 Klasse pro Woche</li>
+                            <li><strong>Fokus:</strong> Gesellschaftstanz und Grundschritte</li>
+                            <li><strong>Am besten für:</strong> Diejenigen, die zum Spaß und zur Geselligkeit tanzen möchten</li>
+                            <li><strong>Fortschrittsgeschwindigkeit:</strong> ${speed === 'slow' ? 'Langsam und entspannt' : 'Mäßiges Tempo'}</li>
+                        </ul>
+                    `;
+                }
+            } else if (
+                (frequency === '2-3' && goal === 'great') || 
+                (frequency === '1' && goal === 'competition') ||
+                (styles !== '1' && frequency === '2-3')
+            ) {
+                membership = lang.standardTitle;
+                if (currentLang === 'en') {
+                    details = `
+                        <p>Ideal for dedicated dancers who want to become great dancers with 2-3 classes per week.</p>
+                        <ul>
+                            <li><strong>Classes:</strong> 2-3 classes per week</li>
+                            <li><strong>Focus:</strong> Building strong foundation and technique</li>
+                            <li><strong>Styles:</strong> ${styles === '1' ? '1 style' : styles === '2' ? '2 styles' : '3 or more styles'}</li>
+                            <li><strong>Best for:</strong> Those serious about improving their dancing skills</li>
+                            <li><strong>Progress pace:</strong> ${speed === 'fast' ? 'Quick progression' : 'Steady improvement'}</li>
+                        </ul>
+                    `;
+                } else {
+                    details = `
+                        <p>Ideal für engagierte Tänzer, die mit 2-3 Kursen pro Woche großartige Tänzer werden möchten.</p>
+                        <ul>
+                            <li><strong>Unterricht:</strong> 2-3 Klassen pro Woche</li>
+                            <li><strong>Fokus:</strong> Aufbau eines soliden Fundaments und Technik</li>
+                            <li><strong>Stile:</strong> ${styles === '1' ? '1 Stil' : styles === '2' ? '2 Stile' : '3 oder mehr Stile'}</li>
+                            <li><strong>Am besten für:</strong> Diejenigen, die ernsthaft ihre Tanzfähigkeiten verbessern möchten</li>
+                            <li><strong>Fortschrittsgeschwindigkeit:</strong> ${speed === 'fast' ? 'Schneller Fortschritt' : 'Stetige Verbesserung'}</li>
+                        </ul>
+                    `;
+                }
+            } else if (
+                (frequency === '4+' || goal === 'instructor') ||
+                (goal === 'competition' && frequency === '2-3') ||
+                (goal === 'great' && speed === 'fast' && frequency === '2-3')
+            ) {
+                membership = lang.premiumTitle;
+                if (currentLang === 'en') {
+                    details = `
+                        <p>Designed for serious dancers aiming for competition or instructor level with frequent practice.</p>
+                        <ul>
+                            <li><strong>Classes:</strong> 4 or more classes per week</li>
+                            <li><strong>Focus:</strong> Mastery, competition preparation, or instructor training</li>
+                            <li><strong>Styles:</strong> Multiple styles to build versatility</li>
+                            <li><strong>Best for:</strong> Competitive dancers or future instructors</li>
+                            <li><strong>Progress pace:</strong> Fast-track to advanced levels</li>
+                            ${privateLessons === 'yes' ? '<li><strong>Includes:</strong> Discount on private lessons</li>' : ''}
+                        </ul>
+                    `;
+                } else {
+                    details = `
+                        <p>Konzipiert für ernsthafte Tänzer, die auf Wettbewerbs- oder Ausbilderebene mit häufigem Training abzielen.</p>
+                        <ul>
+                            <li><strong>Unterricht:</strong> 4 oder mehr Klassen pro Woche</li>
+                            <li><strong>Fokus:</strong> Meisterschaft, Wettbewerbsvorbereitung oder Ausbildertraining</li>
+                            <li><strong>Stile:</strong> Mehrere Stile für Vielseitigkeit</li>
+                            <li><strong>Am besten für:</strong> Wettkampftänzer oder zukünftige Ausbilder</li>
+                            <li><strong>Fortschrittsgeschwindigkeit:</strong> Schneller Weg zu fortgeschrittenen Levels</li>
+                            ${privateLessons === 'yes' ? '<li><strong>Beinhaltet:</strong> Rabatt auf Privatunterricht</li>' : ''}
+                        </ul>
+                    `;
+                }
+            } else {
+                // Default to standard membership
+                membership = lang.standardTitle;
+                if (currentLang === 'en') {
+                    details = `
+                        <p>A balanced membership for dancers who want to improve at a comfortable pace.</p>
+                        <ul>
+                            <li><strong>Classes:</strong> ${frequency === '1' ? '1 class' : frequency === '2-3' ? '2-3 classes' : '4+ classes'} per week</li>
+                            <li><strong>Focus:</strong> Solid technique and enjoyable learning</li>
+                            <li><strong>Styles:</strong> ${styles === '1' ? '1 style' : styles === '2' ? '2 styles' : '3 or more styles'}</li>
+                            <li><strong>Best for:</strong> Dancers who want consistent improvement</li>
+                            <li><strong>Progress pace:</strong> ${speed === 'slow' ? 'Slow and steady' : speed === 'moderate' ? 'Moderate' : 'Quick'}</li>
+                        </ul>
+                    `;
+                } else {
+                    details = `
+                        <p>Eine ausgewogene Mitgliedschaft für Tänzer, die sich in einem angenehmen Tempo verbessern möchten.</p>
+                        <ul>
+                            <li><strong>Unterricht:</strong> ${frequency === '1' ? '1 Klasse' : frequency === '2-3' ? '2-3 Klassen' : '4+ Klassen'} pro Woche</li>
+                            <li><strong>Fokus:</strong> Solide Technik und angenehmes Lernen</li>
+                            <li><strong>Stile:</strong> ${styles === '1' ? '1 Stil' : styles === '2' ? '2 Stile' : '3 oder mehr Stile'}</li>
+                            <li><strong>Am besten für:</strong> Tänzer, die konsistente Verbesserung wünschen</li>
+                            <li><strong>Fortschrittsgeschwindigkeit:</strong> ${speed === 'slow' ? 'Langsam und stetig' : speed === 'moderate' ? 'Mäßig' : 'Schnell'}</li>
+                        </ul>
+                    `;
+                }
+            }
+            
+            // Add private lessons recommendation if selected
+            if (privateLessons === 'yes') {
+                if (currentLang === 'en') {
+                    details += `<p><strong>Private Lessons:</strong> We recommend adding private lessons to accelerate your progress and focus on specific goals.</p>`;
+                } else {
+                    details += `<p><strong>Privatunterricht:</strong> Wir empfehlen, Privatunterricht hinzuzufügen, um Ihren Fortschritt zu beschleunigen und sich auf bestimmte Ziele zu konzentrieren.</p>`;
+                }
+            }
+            
+            // Update the result display
+            document.getElementById('recommendationTitle').textContent = membership;
+            document.getElementById('recommendationDetails').innerHTML = details;
+        }
+        
+        // Restart the quiz
+        function restartQuiz() {
+            // Reset state
+            currentQuestion = 1;
+            answers = {
+                q1: null,
+                q2: null,
+                q3: null,
+                q4: null,
+                q5: null
+            };
+            
+            // Hide result container
+            resultContainer.style.display = 'none';
+            
+            // Show quiz container
+            quizContainer.style.display = 'block';
+            
+            // Show first question
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            document.getElementById('question1').classList.add('active');
+            
+            // Clear all selected options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Update UI
+            updateUI();
+        }
+    </script>
+</body>
+</html>
