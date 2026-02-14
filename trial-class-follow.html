@@ -10,6 +10,8 @@
         .row-changed { background-color: #fff9c4 !important; }
         input[type="date"], input[type="text"] { padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
         .floating-actions { position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: none; }
+        .send-actions {  background: white; padding: 15px; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: none; }
+
         .btn-save { background: #1976d2; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .loading-message { background: white; padding: 20px 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: bold; }
@@ -112,6 +114,10 @@
         <div id="saveContainer" class="floating-actions">
         <button class="btn-save" onclick="saveAllChanges()">Save All Changes</button>
     </div>
+    </div>
+    <div id="sendAllEmailsContainer" class="send-actions">
+        <button class="btn-save" onclick="sendAllEmails()">Send all Emails and Save Changes</button>
+    </div>
 
     <table id="dataTable">
         <thead>
@@ -154,8 +160,8 @@
     </div>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxizFWFQoj6ELicv8xbmHsPfJpKwGgFj1lrtlI8_H7Odf1-5V_ThtXZi_qa74pPhu0/exec'; 
-        const MESSAGE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2e0JQqgrx-RfralfQkNHjQZ1O5UmHLe7BGpmQkNAH8EOmNuJ-u4DIGVBqwprki6w/exec';  
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgtdyMqYGIpAogbY6eqyqOiyMN6yT8Ir_aUrphTVsVKovLrX_EylMgmS5h4fR_lm4/exec'; 
+        const MESSAGE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxhBeo5r6tbhwa6JesWkV97fr4jfvFdUgW4Alh6QXtQ0CNHcaU1ckl97tSrBsvz87s/exec';  
         let USER_PASS = "";
         let MASTER_DATA = [];
         let PENDING_CHANGES = {};
@@ -238,6 +244,7 @@
             const count = Object.keys(PENDING_CHANGES).length;
             document.getElementById('changeCounter').innerText = count > 0 ? `${count} changes pending` : "";
             document.getElementById('saveContainer').style.display = count > 0 ? "block" : "none";
+            document.getElementById('sendAllEmailsContainer').style.display = count > 0 ? "block" : "none";
         }
 
         function applyFilters() {
@@ -422,7 +429,8 @@
             showLoading("Saving changes to server...");
             
             try {
-                const payload = { key: USER_PASS, updates: Object.values(PENDING_CHANGES) };
+                const payload = { key: USER_PASS, updates: Object.values(PENDING_CHANGES), sendEmails: false };
+                console.log("Sending payload to server:", payload);
                 const resp = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
                 const result = await resp.text();
                 
@@ -441,6 +449,38 @@
                 alert("Error saving changes: " + error.message);
             }
         }
+
+
+        async function sendAllEmails() {
+            if (Object.keys(PENDING_CHANGES).length === 0) {
+                alert("No changes to save!");
+                return;
+            }
+            
+            showLoading("Saving changes to server...");
+            
+            try {
+                const payload = { key: USER_PASS, updates: Object.values(PENDING_CHANGES),sendEmails: true };
+                console.log("Sending payload to server:", payload);
+                const resp = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+                const result = await resp.text();
+                
+                if (result === "Success") {
+                    hideLoading();
+                    alert("Saved!");
+                    PENDING_CHANGES = {};
+                    updateUI();
+                    fetchData();
+                } else {
+                    hideLoading();
+                    alert("Error saving changes: " + result);
+                }
+            } catch (error) {
+                hideLoading();
+                alert("Error saving changes: " + error.message);
+            }
+        }
+
 
         // NEW EXPORT FUNCTIONALITY
         function getStatusRows() {
