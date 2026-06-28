@@ -1,0 +1,268 @@
+Hier ist eine komplette, interaktive HTML-Seite, die genau für das Beratungsgespräch am Tresen oder auf dem Tablet entwickelt wurde.
+
+Sie führt dich Schritt für Schritt durch das Skript, reagiert auf die Antworten des Kunden und berechnet am Ende sogar direkt die passenden Preise und Optionen, damit du dem Kunden sofort die finale Zahl nennen kannst.
+
+### So nutzt du diese Datei:
+
+1. Kopiere den gesamten Code unten.
+2. Füge ihn in eine Textdatei ein und speichere sie als **`beratung.html`** ab.
+3. Mache einen Doppelklick auf die Datei – sie öffnet sich sofort in jedem Webbrowser (auch auf dem Tablet/iPad) und ist komplett einsatzbereit!
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktiver Beratungskompass - Tanzschule</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --text: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 650px;
+            width: 100%;
+        }
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 15px;
+            border: 1px solid #eef2f5;
+        }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .script-quote {
+            background: #f1f5f9;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            line-height: 1.5;
+        }
+        .context-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        button:hover { opacity: 0.9; transform: translateY(-1px); }
+        button.secondary { background-color: #64748b; }
+        button.danger { background-color: var(--accent); }
+        
+        .price-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .price-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💃 Interaktiver Leitfaden für das Anmeldegespräch</h1>
+
+    <div id="step1" class="card step active">
+        <span class="context-tag">Schritt 1: Direkt nach der Probestunde</span>
+        <div class="script-quote">
+            "Schön, dass du da warst! Ich hoffe, es hat dir richtig Spaß gemacht. Um den Schwung direkt mitzunehmen: Wir können deinen Account hier am Tresen in zwei Minuten fertig machen, oder ich schicke dir den Link direkt aufs Handy, damit du es heute Abend in Ruhe machen kannst. Was ist dir lieber?"
+        </div>
+        <div class="btn-group">
+            <button onclick="nextStep(2)">Direkt hier am Tresen</button>
+            <button class="secondary" onclick="nextStep(7)">Lieber per Link zu Hause</button>
+        </div>
+    </div>
+
+    <div id="step2" class="card step">
+        <span class="context-tag">Schritt 2: Alternativ-Abschluss (Paketwahl)</span>
+        <div class="script-quote">
+            "Perfekt! Möchtest du mit dem Einsteiger-Monat starten, oder direkt mit einer unserer Standard-Mitgliedschaften voll durchstarten? <br><br>
+            Die meisten wollen schnellen Fortschritt. Sarah hat sich vorhin zum Beispiel für das Doppelpack angemeldet. Startest du mit einer Stunde pro Woche, oder nimmst du das Doppelpack, um die Tanzschritte schneller zu verankern?"
+        </div>
+        <div class="btn-group">
+            <button onclick="selectTrack('standard')">Standard (1x pro Woche)</button>
+            <button onclick="selectTrack('premium')">Premium / Doppelpack</button>
+        </div>
+    </div>
+
+    <div id="step3" class="card step">
+        <span class="context-tag">Schritt 3: Zusatzgeschäft / Cross-Selling</span>
+        <div class="script-quote">
+            "Super Wahl! Brauchst du dazu heute Abend noch ein Paar unserer Pro-Grip Tanzschuhe für besseren Halt, oder hast du schon passende Schuhe zu Hause?<br><br>
+            Und um die Schritte zwischen den Stunden ohne Druck zu behalten: Möchtest du Zugang zu unserer Übungs-App oder reichen dir unsere Video-Recaps?"
+        </div>
+        <div class="btn-group">
+            <button onclick="nextStep(4)">Weiter zur Preisübersicht</button>
+            <button class="secondary" onclick="nextStep(4)">Schuhe/App hinzufügen</button>
+        </div>
+    </div>
+
+    <div id="step4" class="card step">
+        <span class="context-tag">Schritt 4: Preisverankerung & Zahlungsweise</span>
+        <div class="script-quote" id="priceQuote">
+            </div>
+        <div class="btn-group">
+            <button onclick="showTotal(true)">Sofortzahler (15% Rabatt)</button>
+            <button class="secondary" onclick="showTotal(false)">Monatliche Zahlung</button>
+        </div>
+        <div class="price-box" id="finalPriceBox" style="display:none;">
+            <div class="context-tag">Berechneter Preis für den Kunden:</div>
+            <div class="price-value" id="finalPriceText">0,00 €</div>
+            <p style="margin:5px 0 0 0; font-size:0.9rem;">Kunde bucht ab? <button style="padding:4px 8px; font-size:0.8rem; margin-left:10px;" onclick="location.reload()">Gespräch beenden & Reset</button></p>
+        </div>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+        <button class="danger" style="width: 100%;" onclick="nextStep(5)">Kunde zögert / Preis oder Laufzeit ist zu hoch</button>
+    </div>
+
+    <div id="step5" class="card step">
+        <span class="context-tag">Schritt 5: Downsell (Laufzeit verkürzen)</span>
+        <div class="script-quote">
+            "Ich verstehe absolut, ein ganzes Jahr ist ein großes Commitment. Wenn dir das für den Anfang zu lang ist, können wir auch mit unserer **3-Monats-Mitgliedschaft** starten. Du hast genau die gleichen Kurse, bist aber maximal flexibel. Wie klingt das?"
+        </div>
+        <div class="btn-group">
+            <button onclick="setupDownsell(false)">3 Monate monatlich</button>
+            <button onclick="setupDownsell(true)">3 Monate Sofortzahler (15% Rabatt)</button>
+        </div>
+        <div class="price-box" id="downsellPriceBox" style="display:none;">
+            <div class="price-value" id="downsellPriceText">0,00 €</div>
+            <p style="margin:5px 0 0 0; font-size:0.9rem;"><button style="padding:4px 8px; font-size:0.8rem;" onclick="location.reload()">Erfolgreich eingebucht & Reset</button></p>
+        </div>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+        <button class="danger" style="width: 100%;" onclick="nextStep(6)">Kunde will immer noch nicht abschließen</button>
+    </div>
+
+    <div id="step6" class="card step">
+        <span class="context-tag">Schritt 6: Der Exit-Retter (Referral-Deal)</span>
+        <div class="script-quote">
+            "Ich möchte ungern, dass du die Fortschritte von heute direkt wieder verlierst. Machen wir folgenden Deal: Wir machen einen **risikofreien Probemonat**. <br><br>
+            Du zahlst für den nächsten Monat **0,00 €** unter zwei Bedingungen: Erstens, du verpasst keine Stunde. Zweitens, du bringst zur nächsten Stunde 2 Freunde mit. Wenn deine Freunde sich anmelden, kriegst du sogar 50% Rabatt auf den Folgemonat. Sichern wir dir den Platz direkt?"
+        </div>
+        <div class="btn-group">
+            <button onclick="alert('Perfekt! Probemonat eingetragen. Bedingung: 2 Freunde einladen.'); location.reload();">Deal akzeptiert!</button>
+            <button class="secondary" onclick="nextStep(7)">Kunde geht ohne Buchung</button>
+        </div>
+    </div>
+
+    <div id="step7" class="card step">
+        <span class="context-tag">Schritt 7: Verabschiedung & Link-Versand</span>
+        <div class="script-quote">
+            "Alles klar, kein Problem! Ich habe dir das Angebot gerade per SMS/E-Mail geschickt. Schau es dir heute Abend in Ruhe an. Der Link ist exakt für 48 Stunden gültig, um dir den Platz im Kurs zu sichern. Schön, dass du heute da warst!"
+        </div>
+        <button style="width: 100%;" onclick="location.reload()">Formular zurücksetzen</button>
+    </div>
+
+</div>
+
+<script>
+    // PREISE HIER ANPASSEN (In Euro)
+    const PREIS_STANDARD_MONAT = 59.00;
+    const PREIS_PREMIUM_MONAT = 99.00;
+    const PREIS_3MONATE_MONAT = 69.00;
+
+    let selectedTrack = 'standard';
+
+    function nextStep(stepNumber) {
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        document.getElementById('step' + stepNumber).classList.add('active');
+        
+        if(stepNumber === 4) {
+            updatePriceQuote();
+        }
+    }
+
+    function selectTrack(track) {
+        selectedTrack = track;
+        nextStep(3);
+    }
+
+    function updatePriceQuote() {
+        const quoteBox = document.getElementById('priceQuote');
+        if(selectedTrack === 'premium') {
+            quoteBox.innerHTML = `"Schauen wir uns kurz an, wie es läuft. Zuerst haben wir unsere <strong>VIP-Premium-Mitgliedschaft</strong>. Da hast du unbegrenzten Zugang, Privatcoachings und alle Social-Events am Wochenende inklusive für <strong>` + PREIS_PREMIUM_MONAT + `,00 € monatlich</strong>.<br><br>Als Alternative gibt es die <strong>Standard-Mitgliedschaft</strong> für <strong>` + PREIS_STANDARD_MONAT + `,00 €</strong>. Welches Paket passt besser in deinen Zeitplan? Und möchtest du monatlich zahlen oder alles auf einmal, um unseren 15% Sofortzahler-Rabatt mitzunehmen?"`;
+        } else {
+            quoteBox.innerHTML = `"Schauen wir uns die Optionen an. Wir haben unsere <strong>Standard-Mitgliedschaft</strong> mit wöchentlichen Kursen für <strong>` + PREIS_STANDARD_MONAT + `,00 € monatlich</strong>.<br><br>Viele wählen aber direkt unser <strong>VIP-Premium-Paket</strong> für <strong>` + PREIS_PREMIUM_MONAT + `,00 €</strong>, um unbegrenzt zu tanzen und die Wochenend-Events gratis mitzunehmen. Welches davon passt besser für dich? Und möchtest du monatlich zahlen oder alles auf einmal, um 15% Rabatt zu sparen?"`;
+        }
+    }
+
+    function showTotal(payInFull) {
+        const priceBox = document.getElementById('finalPriceBox');
+        const priceText = document.getElementById('finalPriceText');
+        let monthlyBase = selectedTrack === 'premium' ? PREIS_PREMIUM_MONAT : PREIS_STANDARD_MONAT;
+        
+        priceBox.style.display = 'block';
+        
+        if(payInFull) {
+            let totalYear = (monthlyBase * 12) * 0.85; // 15% Rabatt aufs Jahr
+            priceText.innerHTML = totalYear.toFixed(2) + " € <span style='font-size:1rem; color:#666;'>Gesamt (für 12 Monate inkl. 15% Rabatt)</span>";
+        } else {
+            priceText.innerHTML = monthlyBase.toFixed(2) + " € <span style='font-size:1rem; color:#666;'>/ monatlich</span>";
+        }
+    }
+
+    function setupDownsell(payInFull) {
+        const box = document.getElementById('downsellPriceBox');
+        const text = document.getElementById('downsellPriceText');
+        box.style.display = 'block';
+        
+        if(payInFull) {
+            let total = (PREIS_3MONATE_MONAT * 3) * 0.85;
+            text.innerHTML = total.toFixed(2) + " € <span style='font-size:1rem; color:#666;'>Gesamt für 3 Monate (inkl. 15% Rabatt)</span>";
+        } else {
+            text.innerHTML = PREIS_3MONATE_MONAT.toFixed(2) + " € <span style='font-size:1rem; color:#666;'>/ monatlich (für 3 Monate Laufzeit)</span>";
+        }
+    }
+</script>
+
+</body>
+</html>
+
+```
