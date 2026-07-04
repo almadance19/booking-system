@@ -160,8 +160,8 @@
     </div>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHfeBAjQUNyjJInWGTk3YqyrYy8UJa1e2WmOBcXToQKoEI01mvinzdR91C9PF7nro/exec'; 
-        const MESSAGE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxhBeo5r6tbhwa6JesWkV97fr4jfvFdUgW4Alh6QXtQ0CNHcaU1ckl97tSrBsvz87s/exec';  
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVuC3xaX48GQYrY9npCETy45KDCn3_ZaMEElf88JQaghCp_Xh7h0Yy6P_b5HEWb7A/exec';  
+        const MESSAGE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbSOGolB8eWsQ-6brpIQKNs77gujSFbcM48bt4HBHzZuSjHqhKwbDBah3eT7tyv8Y/exec';  
         let USER_PASS = "";
         let MASTER_DATA = [];
         let PENDING_CHANGES = {};
@@ -362,6 +362,7 @@
         }
 
         async function sendMessage() {
+            console.log("Preparing to send message for row:", currentMessageRow);
             if (!currentMessageRow) return;
             
             const row = MASTER_DATA.find(r => r.rowNumber === currentMessageRow);
