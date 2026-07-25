@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prüfung: Bachata-Musikalität</title>
+    <style>
+        :root {
+            --primary: #c0392b;
+            --primary-light: #e74c3c;
+            --dark: #2c3e50;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --accent: #f39c12;
+            --success: #27ae60;
+            --error: #c0392b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark), #1a252f);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--primary);
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            background: #f8f9fa;
+            border: 1px solid #eef0f2;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background: #eef2f5;
+        }
+
+        .option-label input {
+            margin-right: 0.8rem;
+            accent-color: var(--primary);
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 2rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-light);
+        }
+
+        #result-box {
+            display: none;
+            background: var(--dark);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #result-box h2 {
+            color: var(--accent);
+            border: none;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feedback {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .correct {
+            color: var(--success);
+        }
+
+        .incorrect {
+            color: var(--error);
+        }
+
+        footer {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .question-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📝 Bachata-Musikalität: Wissenstest</h1>
+        <p>Überprüfe dein Wissen zu Instrumenten, Rhythmen, Phrasierung und Interpretation!</p>
+    </header>
+
+    <div class="container">
+        <form id="quiz-form">
+
+            <!-- Frage 1 -->
+            <div class="question-card">
+                <div class="question-title">1. Welches Instrument bildet das rhythmische Fundament im Hintergrund und auf welchen Zählzeiten liegt seine Hauptbetonung?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q1" value="a"> Die Güira auf 1 - 2 - 3 - 4</label>
+                    <label class="option-label"><input type="radio" name="q1" value="b"> Der Bass auf 1 - (2) - 3&4 | 5 - (6) - 7&8</label>
+                    <label class="option-label"><input type="radio" name="q1" value="c"> Die Bongo ausschließlich auf 4 und 8</label>
+                </div>
+                <div class="feedback" id="fb-q1"></div>
+            </div>
+
+            <!-- Frage 2 -->
+            <div class="question-card">
+                <div class="question-title">2. Welches Instrument ist für das stetige, metallische Raspeln ("Chik-chik-chik") verantwortlich und gibt das Tempo vor?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q2" value="a"> Bongo</label>
+                    <label class="option-label"><input type="radio" name="q2" value="b"> Güira</label>
+                    <label class="option-label"><input type="radio" name="q2" value="c"> Requinto (Gitarre)</label>
+                </div>
+                <div class="feedback" id="fb-q2"></div>
+            </div>
+
+            <!-- Frage 3 -->
+            <div class="question-card">
+                <div class="question-title">3. Du hörst den Rhythmus "Derecho" (meist in der Strophe). Welcher Tanzstil passt am besten dazu?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q3" value="a"> Maximale Energie, schnelles und präzises Footwork</label>
+                    <label class="option-label"><input type="radio" name="q3" value="b"> Weiche Schritte, fließende Körperbewegungen und entspannte Grundschritte</label>
+                    <label class="option-label"><input type="radio" name="q3" value="c"> Sehr große Schritte, schnelle Drehungen und nur Staccato-Bewegungen</label>
+                </div>
+                <div class="feedback" id="fb-q3"></div>
+            </div>
+
+            <!-- Frage 4 -->
+            <div class="question-card">
+                <div class="question-title">4. Welcher Rhythmus zeichnet sich durch durchgehende Güira-Achtel aus und wird meist im energiegeladenen Refrain gespielt?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q4" value="a"> Derecho</label>
+                    <label class="option-label"><input type="radio" name="q4" value="b"> Majao</label>
+                    <label class="option-label"><input type="radio" name="q4" value="c"> Mambo</label>
+                </div>
+                <div class="feedback" id="fb-q4"></div>
+            </div>
+
+            <!-- Frage 5 -->
+            <div class="question-card">
+                <div class="question-title">5. Der "Mambo"-Teil ist der energetische Höhepunkt eines Songs. Welches Element eignet sich hier besonders gut zum Tanzen?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q5" value="a"> Schnelles, präzises Footwork oder scharfe Bodymovements</label>
+                    <label class="option-label"><input type="radio" name="q5" value="b"> Sehr langsame, ruhige Grundschritte ohne Hüftbewegung</label>
+                    <label class="option-label"><input type="radio" name="q5" value="c"> Ausschließliches Halten einer Freeze-Position</label>
+                </div>
+                <div class="feedback" id="fb-q5"></div>
+            </div>
+
+            <!-- Frage 6 -->
+            <div class="question-card">
+                <div class="question-title">6. Warum sind die Zählzeiten 13–16 (Counts 5–8 des 2. Achters) in einer 16er-Phrase so wichtig?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q6" value="a"> Weil die Musik dort immer komplett aufhört zu spielen</label>
+                    <label class="option-label"><input type="radio" name="q6" value="b"> Hier kündigen Bongo-Galopps oder Übergänge den Start des nächsten Blocks auf der "1" an</label>
+                    <label class="option-label"><input type="radio" name="q6" value="c"> Auf 13–16 muss man immer die Tanzpartnerin / den Tanzpartner wechseln</label>
+                </div>
+                <div class="feedback" id="fb-q6"></div>
+            </div>
+
+            <!-- Frage 7 -->
+            <div class="question-card">
+                <div class="question-title">7. Wie reagieren wir beim Tanzen idealerweise auf einen "Break" (musikalische Pause)?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q7" value="a"> Unverändert schnell weitertanzen und die Pause ignorieren</label>
+                    <label class="option-label"><input type="radio" name="q7" value="b"> Exakt in der Bewegung stoppen (Freeze) oder die Stille langsam/kontrolliert füllen</label>
+                    <label class="option-label"><input type="radio" name="q7" value="c"> Sofort eine doppelte Drehung machen</label>
+                </div>
+                <div class="feedback" id="fb-q7"></div>
+            </div>
+
+            <!-- Frage 8 -->
+            <div class="question-card">
+                <div class="question-title">8. Was versteht man unter der Tanzinterpretation von "Legato"?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q8" value="a"> Kurz, abgehackt und zackig zu klingen und zu tanzen</label>
+                    <label class="option-label"><input type="radio" name="q8" value="b"> Fließend, weich und kontinuierlich zu tanzen (z. B. Bodywaves oder geschmeidige Armbögen)</label>
+                    <label class="option-label"><input type="radio" name="q8" value="c"> Nur mit den Füßen schnelle Schritte auf dem Boden zu tippen</label>
+                </div>
+                <div class="feedback" id="fb-q8"></div>
+            </div>
+
+            <!-- Frage 9 -->
+            <div class="question-card">
+                <div class="question-title">9. Welche Bewegung passt am besten zu einem prägnanten "Staccato"-Akzent in der Musik?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q9" value="a"> Eine lange, stufenlose Bodywave</label>
+                    <label class="option-label"><input type="radio" name="q9" value="b"> Eine zackige, isolierte Bewegung mit klarem Stopp (z. B. ein schneller Hip-Stop)</label>
+                    <label class="option-label"><input type="radio" name="q9" value="c"> Ein langsamer, ausgedehntes Ausfallschritt</label>
+                </div>
+                <div class="feedback" id="fb-q9"></div>
+            </div>
+
+            <!-- Frage 10 -->
+            <div class="question-card">
+                <div class="question-title">10. Wie kann die Gesangsstimme (Lyrik) im Tanz am besten interpretiert werden?</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q10" value="a"> Gar nicht – Man darf beim Bachata nur auf die Instrumente tanzen</label>
+                    <label class="option-label"><input type="radio" name="q10" value="b"> Durch weiche Legato-Bewegungen bei gehaltenen Tönen, Storytelling über Körpersprache und Staccato bei schnellen Stimmwechseln</label>
+                    <label class="option-label"><input type="radio" name="q10" value="c"> Indem man zu jedem gesungenen Wort einen Sprung macht</label>
+                </div>
+                <div class="feedback" id="fb-q10"></div>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="checkAnswers()">Ergebnis auswerten 🎯</button>
+        </form>
+
+        <div id="result-box">
+            <h2>Dein Ergebnis</h2>
+            <p id="score-text" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></p>
+            <p id="result-comment"></p>
+        </div>
+
+        <div id="back to theory" style="margin-top: 2rem; text-align: center;">
+            <a href="bachata-musicality.html" style="text-decoration: none; color: var(--primary); font-weight: bold;">📖 Zurück zum Guide</a>
+        </div>
+    
+    
+    </div>
+
+    <footer>
+        <p>Bachata Musicality Quiz for Students</p>
+    </footer>
+
+    <script>
+        const answers = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'b',
+            q4: 'b',
+            q5: 'a',
+            q6: 'b',
+            q7: 'b',
+            q8: 'b',
+            q9: 'b',
+            q10: 'b'
+        };
+
+        function checkAnswers() {
+            let score = 0;
+            const total = 10;
+
+            for (let i = 1; i <= total; i++) {
+                const qName = 'q' + i;
+                const selected = document.querySelector(`input[name="${qName}"]:checked`);
+                const feedbackEl = document.getElementById(`fb-${qName}`);
+                
+                feedbackEl.style.display = 'block';
+
+                if (selected && selected.value === answers[qName]) {
+                    score++;
+                    feedbackEl.textContent = '✓ Richtig!';
+                    feedbackEl.className = 'feedback correct';
+                } else {
+                    feedbackEl.textContent = '✗ Falsch! Siehe Guide für die richtige Antwort.';
+                    feedbackEl.className = 'feedback incorrect';
+                }
+            }
+
+            const resultBox = document.getElementById('result-box');
+            const scoreText = document.getElementById('score-text');
+            const comment = document.getElementById('result-comment');
+
+            resultBox.style.display = 'block';
+            scoreText.textContent = `${score} von ${total} Punkten`;
+
+            if (score === 10) {
+                comment.textContent = 'Perfekt! Du bist ein absoluter Bachata-Musikalitäts-Profi! 💃🕺';
+            } else if (score >= 7) {
+                comment.textContent = 'Super Ergebnis! Du hast die Grundlagen der Musikalität sehr gut verstanden.';
+            } else {
+                comment.textContent = 'Guter Versuch! Lies dir den Guide nochmal durch und versuche es erneut.';
+            }
+
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
