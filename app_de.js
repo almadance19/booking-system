@@ -838,6 +838,9 @@ function showPayment(payment)
       var promocode = document.getElementById("promocode").value;
       var email = document.getElementById("email_registration").value;
       let arr = [firstname, lastname, phone, leader_jn, promocode, email,id,name,adress,dia,hora,fecha,details,genre,last_payment,last_due_payment,active,openDate];
+      
+      console.log("array to post");
+      console.log(arr);
       if(firstname != ''   && leader_jn != ''  && email != '' && last_payment != 'Not Registered yet')
       {
       console.log(arr);
