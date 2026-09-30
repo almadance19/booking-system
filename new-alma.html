@@ -39,6 +39,13 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '329457332873799');
     fbq('track', 'PageView');
+
+    // --- Special Page Event ---
+    fbq('track', 'ViewContent', {
+      content_name: 'New ALMA Dance Frankfurt EN',  // Replace with your page title
+      content_category: 'Special Call',   // Optional category
+      content_ids: ['special_page_01']    // Unique identifier
+    });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=329457332873799&ev=PageView&noscript=1"
