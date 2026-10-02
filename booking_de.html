@@ -112,22 +112,28 @@ src="https://www.facebook.com/tr?id=753255197460842&ev=PageView&noscript=1"
     </script>
 
       <style>
-.alma-schedule-wrapper {
+        .alma-schedule-wrapper {
     width: 100%;
     position: relative;
+    background: #ffffff;
+    overflow: visible;
 }
 
 .alma-schedule-iframe {
-    display: block;
-    width: 100%;
-    height: 1600px;
-    border: 0;
+    display: block !important;
+    width: 100% !important;
+    height: 2000px !important;
+    min-height: 2000px !important;
+    border: 0 !important;
+    background: #ffffff !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 @media (max-width: 768px) {
     .alma-schedule-iframe {
-        width: 100%;
-        height: 2000px;
+        height: 2200px !important;
+        min-height: 2200px !important;
     }
 }
 </style>
@@ -581,6 +587,8 @@ src="https://www.facebook.com/tr?id=753255197460842&ev=PageView&noscript=1"
         src="https://www.bachata-salsa-online.eu/embed/trialclass"
         title="ALMA Dance Frankfurt Class Schedule"
         class="alma-schedule-iframe"
+        scrolling="yes"
+        allow="fullscreen"
     ></iframe>
 </div>
 
