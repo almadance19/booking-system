@@ -2,212 +2,527 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Alma Dance Frankfurt" />
-  <meta property="og:url" content="https://alma-dance-frankfurt.de/" />
-  <meta property="og:description" content="Express & Connect" />
-  <meta property="og:image" content="images/logo.webp" />
-  <meta property="og:description" content="Express & Connect. Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata  &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
-  <meta name="description" content="Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
 
-  <title>Alma Dance Scheduler</title>
+  <title>Classes & Booking | Alma Dance Frankfurt</title>
 
-  <!-- icofont-css-link -->
-  <!--  <link rel="stylesheet" href="css/icofont.min.css"> -->
-  <!-- Owl-Carosal-Style-link -->
+  <meta
+    name="description"
+    content="Book a trial class at Alma Dance Frankfurt, discover our Salsa and Bachata classes, workshops and events, or access your ALMA membership."
+  >
+
+  <meta property="og:title" content="Classes & Booking | Alma Dance Frankfurt">
+  <meta property="og:url" content="https://alma-dance-frankfurt.de/booking.html">
+  <meta
+    property="og:description"
+    content="Start dancing at Alma Dance Frankfurt. Book a trial class, explore workshops and events, and discover our weekly schedule."
+  >
+  <meta property="og:image" content="images/logo.webp">
+
+  <!-- Existing ALMA CSS -->
   <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <!-- Bootstrap-Style-link -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- Aos-Style-link -->
   <link rel="stylesheet" href="css/aos.css">
-  <!-- Coustome-Style-link -->
   <link rel="stylesheet" href="css/style.css">
-    <!-- Coustome-Style-link 2 -->
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/custom-media.css">
-
-  <!-- Responsive-Style-link -->
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/custom-media.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-  <!-- Markup Schema Data Google -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
-        "@id": "SportsActivityLocation",
-        "actionableFeedbackPolicy": "Alma Dance Frankfurt",
-        "additionalType": "https://alma-dance-frankfurt.de/",
-        "alternateName": "Tanzschule Alma Dance",
-        "areaServed": "Frankfurt am Main",
-        "description": "Join our amazing community to learn latin dance in Frankfurt. Meet new people, express yourself and grow by learning Salsa, Bachata & More.",
-      "image": [
-        "https://alma-dance-frankfurt.de/images/logo.webp",
-        "https://example.com/photos/4x3/photo.jpg",
-        "https://example.com/photos/16x9/photo.jpg"
-       ],
-      "name": "Alma Dance Frankfurt",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Dreieichstraße 35",
-        "addressLocality": "Frankfurt am Main",
-        "addressRegion": "Hessen",
-        "postalCode": "60594",
-        "addressCountry": "Germany"
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Viktoria"
-        }
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 50.10515822875264,
-        "longitude": 8.692279249077423
-      },
-      "url": "https://alma-dance-frankfurt.de/",
-      "telephone": "+49 1639641730",
-      "email": "info@alma-dance.de"
-    }
-    </script>
+  <link rel="stylesheet" href="css/icofont.min.css">
+  <link rel="stylesheet" href="cookie-banner.css">
 
-<!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Alma Dance Frankfurt",
+    "url": "https://alma-dance-frankfurt.de/",
+    "image": "https://alma-dance-frankfurt.de/images/logo.webp",
+    "description": "Salsa, Bachata and Latin dance classes in Frankfurt am Main.",
+    "telephone": "+49 1639641730",
+    "email": "info@alma-dance.de"
+  }
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s) {
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod ?
+      n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
     fbq('init', '329457332873799');
     fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=329457332873799&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
 
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '753255197460842');
-fbq('track', 'ViewBookingPage');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=753255197460842&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
- <script>
-  // Helper function to get a cookie by name
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null; // Return null if the cookie isn't found
-  };
+    fbq('init', '753255197460842');
+    fbq('track', 'ViewBookingPage');
+  </script>
 
-  window.addEventListener('DOMContentLoaded', async () => {
-    // 1. Get the fbc and fbp cookies
-    const fbc = getCookie('_fbc'); // Facebook Click ID cookie
-    const fbp = getCookie('_fbp'); // Facebook Browser ID cookie
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLJVWFTJ');
+  </script>
 
-    // 2. Send the event with the cookie values to your API
-    await fetch('https://www.bachata-salsa-online.eu/api/meta-alma', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        eventName: 'ViewBookingPage',
-        fbc: fbc, // Add the fbc value
-        fbp: fbp  // Add the fbp value (highly recommended!)
-      })
-    });
-  });
-</script>
-  
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WLJVWFTJ');</script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX6VE16LTC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-DX6VE16LTC');
-    </script>
-
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX6VE16LTC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DX6VE16LTC');
+  </script>
 
   <style>
-    .alma-schedule-wrapper {
-    width: 100%;
-    position: relative;
-    background: #ffffff;
-    overflow: visible;
-}
-
-.alma-schedule-iframe {
-    display: block !important;
-    width: 100% !important;
-    height: 2000px !important;
-    min-height: 2000px !important;
-    border: 0 !important;
-    background: #ffffff !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-@media (max-width: 768px) {
-    .alma-schedule-iframe {
-        height: 2200px !important;
-        min-height: 2200px !important;
+    :root {
+      --alma-purple: #84309a;
+      --alma-dark-purple: #48005f;
+      --alma-light-purple: #f9f2fc;
+      --alma-light: #f9f7fb;
+      --alma-text: #333;
+      --alma-muted: #666;
+      --alma-border: #eadff0;
     }
-}
-</style>
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .alma-booking-page {
+      color: var(--alma-text);
+    }
+
+    /* HERO */
+
+    .booking-hero {
+      padding: 85px 0 70px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(72, 0, 95, 0.96),
+          rgba(132, 48, 154, 0.90)
+        );
+      color: white;
+      text-align: center;
+    }
+
+    .booking-hero-inner {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .booking-hero-label {
+      display: inline-block;
+      padding: 7px 16px;
+      margin-bottom: 20px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.15);
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .booking-hero h1 {
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .booking-hero p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      opacity: .95;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* BUTTONS */
+
+    .alma-btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: transform .2s ease, opacity .2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .alma-btn:hover {
+      transform: translateY(-2px);
+      opacity: .92;
+    }
+
+    .alma-btn-primary {
+      background: var(--alma-purple);
+      color: white !important;
+    }
+
+    .alma-btn-dark {
+      background: var(--alma-dark-purple);
+      color: white !important;
+    }
+
+    .alma-btn-white {
+      background: white;
+      color: var(--alma-dark-purple) !important;
+    }
+
+    .alma-btn-outline-white {
+      border: 2px solid rgba(255,255,255,.8);
+      color: white !important;
+      background: transparent;
+    }
+
+    /* COMMON */
+
+    .alma-section {
+      padding: 75px 0;
+    }
+
+    .alma-section-light {
+      background: var(--alma-light);
+    }
+
+    .alma-section-heading {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 45px;
+    }
+
+    .alma-section-heading .eyebrow {
+      color: var(--alma-purple);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: .9rem;
+    }
+
+    .alma-section-heading h2 {
+      color: var(--alma-text);
+      font-size: 2.3rem;
+      margin: 8px 0 15px;
+    }
+
+    .alma-section-heading p {
+      color: var(--alma-muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* THREE ACTION CARDS */
+
+    .alma-action-card {
+      background: white;
+      border-radius: 16px;
+      padding: 35px 28px;
+      height: 100%;
+      text-align: center;
+      border: 1px solid #eee;
+      box-shadow: 0 8px 30px rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .alma-action-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(0,0,0,.10);
+    }
+
+    .alma-action-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: var(--alma-light-purple);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+    }
+
+    .alma-action-card h3 {
+      color: var(--alma-dark-purple);
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+    }
+
+    .alma-action-card > p {
+      color: var(--alma-muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .alma-action-info {
+      background: var(--alma-light-purple);
+      border-radius: 10px;
+      padding: 13px;
+      color: #555;
+      margin: auto 0 24px;
+    }
+
+    .alma-action-card .alma-btn {
+      width: 100%;
+    }
+
+    /* TRIAL INFORMATION */
+
+    .trial-info-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--alma-light-purple);
+      border-left: 5px solid var(--alma-purple);
+      border-radius: 14px;
+      padding: 35px;
+    }
+
+    .trial-info-box h3 {
+      color: var(--alma-dark-purple);
+      margin-bottom: 22px;
+    }
+
+    .trial-info-list {
+      padding-left: 22px;
+      margin-bottom: 0;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .trial-info-list li {
+      margin-bottom: 10px;
+    }
+
+    .trial-highlight {
+      margin-top: 25px;
+      padding: 18px;
+      background: white;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .trial-highlight strong {
+      color: var(--alma-dark-purple);
+    }
+
+    /* SCHEDULE */
+
+    .schedule-wrapper {
+      max-width: 1050px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .schedule-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(132,48,154,.15);
+    }
+
+    .schedule-actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* FAQ */
+
+    .faq-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-wrapper .card {
+      border: 1px solid #e9ecef;
+      border-radius: 10px !important;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-wrapper .card-header {
+      background: white;
+      border-bottom: 0;
+      padding: 0;
+    }
+
+    .faq-wrapper .btn-link {
+      color: var(--alma-dark-purple);
+      font-weight: 600;
+      width: 100%;
+      text-align: left;
+      text-decoration: none !important;
+      padding: 18px 20px;
+    }
+
+    .faq-wrapper .card-body {
+      color: #555;
+      line-height: 1.7;
+      padding: 5px 20px 22px;
+    }
+
+    /* REVIEWS */
+
+    .review-card-new {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      height: 100%;
+      box-shadow: 0 5px 18px rgba(0,0,0,.06);
+    }
+
+    .review-stars-new {
+      color: #FFC107;
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .review-card-new p {
+      color: #555;
+      line-height: 1.65;
+      font-size: .95rem;
+    }
+
+    .review-card-new strong {
+      color: var(--alma-dark-purple);
+    }
+
+    /* FINAL CTA */
+
+    .final-cta {
+      padding: 65px 20px;
+      background: var(--alma-dark-purple);
+      text-align: center;
+      color: white;
+    }
+
+    .final-cta h2 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      opacity: .9;
+      font-size: 1.1rem;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 768px) {
+
+      .booking-hero {
+        padding: 60px 20px 55px;
+      }
+
+      .booking-hero h1 {
+        font-size: 2.15rem;
+      }
+
+      .booking-hero p {
+        font-size: 1.05rem;
+      }
+
+      .alma-section {
+        padding: 55px 0;
+      }
+
+      .alma-section-heading {
+        margin-bottom: 30px;
+      }
+
+      .alma-section-heading h2 {
+        font-size: 1.9rem;
+      }
+
+      .alma-action-card {
+        padding: 28px 22px;
+      }
+
+      .trial-info-box {
+        padding: 25px 20px;
+      }
+
+      .hero-actions .alma-btn,
+      .schedule-actions .alma-btn {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+  </style>
 </head>
+
 
 <body>
 
-  <!-- Preloader -->
+  <!-- Google Tag Manager noscript -->
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-WLJVWFTJ"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
 
-  <!-- Header Start -->
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
   <header>
-    <!-- container start -->
     <div class="container">
-      <!-- navigation bar -->
+
       <nav class="navbar navbar-expand-lg">
+
         <a class="navbar-brand" href="home.html">
-          <img loading="lazy" src="images/logo.webp" alt="Logo">
+          <img src="images/logo.webp" alt="Alma Dance Frankfurt">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+
           <span class="navbar-toggler-icon">
-            <!-- <i class="icofont-navigation-menu ico_menu"></i> -->
             <span class="toggle-wrap">
               <span class="toggle-bar"></span>
             </span>
@@ -215,14 +530,19 @@ src="https://www.facebook.com/tr?id=753255197460842&ev=PageView&noscript=1"
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+
+            <li class="nav-item">
               <a class="nav-link" href="home.html">Home</a>
             </li>
-            <!-- secondery menu start -->
+
             <li class="nav-item has_dropdown">
-              <a class="nav-link" itemprop="url" href="styles.html">Styles</a>
-              <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
+              <a class="nav-link" href="styles.html">Styles</a>
+              <span class="drp_btn">
+                <i class="icofont-rounded-down"></i>
+              </span>
+
               <div class="sub_menu">
                 <ul>
                   <li><a href="bachata-classes-frankfurt.html">Bachata</a></li>
@@ -233,1053 +553,1049 @@ src="https://www.facebook.com/tr?id=753255197460842&ev=PageView&noscript=1"
                 </ul>
               </div>
             </li>
-            <!-- secondery menu end -->
+
             <li class="nav-item">
               <a class="nav-link" href="Pricing.html">Pricing</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="schedule.html">Schedule</a>
             </li>
-            <li class="nav-item">
+
+            <li class="nav-item active">
               <a class="nav-link" href="booking.html">Booking</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="location.html">Location</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="https://www.bachata-salsa-online.eu/">WE-Workshops</a>
+              <a
+                class="nav-link"
+                href="https://www.bachata-salsa-online.eu/">
+                Workshops
+              </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
-            <li class="nav-item" itemprop="name">
-              <a class="nav-link" itemprop="url" href="festival-discounts.html">Festivals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://wedding-dance-frankfurt.de/index.html">Wedding Dance</a>
-            </li>
+
             <li class="nav-item">
               <div class="btn_block">
                 <a class="nav-link dark_btn" href="index.html">Deutsch</a>
                 <div class="btn_bottom"></div>
               </div>
             </li>
+
           </ul>
+
         </div>
       </nav>
-      <!-- navigation end -->
+
     </div>
-    <!-- container end -->
   </header>
-<!-- Start Of Hero Section -->
-<section>
-  <div class="hero-box">
-      <div class="hero-video-box">
-          <div class="hero-video">
-              <video poster="images/hintergrund.webp" height="270" width="480" autoplay="" muted="" disablepictureinpicture="" disableremoteplayback="" loop="" playsinline="">&gt;
-                  <source src="images/Frankfurt Bachata Festival - Bachata Festival in Germany.mp4">
-                  <p class="warning">Your browser does not support HTML5 video.</p>
-              </video>
-          </div>
-          <!-- <div class="hero-video d-md-none"> -->
-             <!-- ZU PFLEGEN FALLS EIN VIDEO FOR MOBILE UND DESKTOP -->
-              <!-- <video poster="images/hintergrund.webp" height="270" width="480"  autoplay="" muted="" disablepictureinpicture="" disableremoteplayback="" loop="" playsinline="">&gt;
-                <source src="images/Frankfurt Bachata Festival - Bachata Festival in Germany.mp4">
-                  <p class="warning">Your browser does not support HTML5 video.</p>
-              </video> -->
-          </div>
-          <!-- <div class="hero-video-info">
-              <h2>YOU CANNOT MISS THIS EXPERIENCE</h2>
-          </div> -->
-      </div>
-      <div class="hero-info">
-            <div class="hero-list">
-              <ul>
-                  <li><i class="icofont-star"></i><strong> 100% 5-Star Google Reviews</strong></li>
-                  <li><i class="icofont-star"></i><strong> International Community (20+ countries)</strong></li>
-                  <li><i class="icofont-star"></i><strong> No dance partner required</strong></li>
-                  <li><i class="icofont-star"></i><strong> Dancing in Frankfurt City Center</strong></li>
-                </ul>
-          </div>
-          <div class="hero-button">
-              <a href="#agenda-container" class="button button-radius button-border button-gradient-bg">BOOK FREE TRIAL CLASS</a>
-          </div>
-      </div>
-  </div>
-</section>
-<!-- End Of Hero Section -->
-  <!-- Banner-Section-Start -->
-  <section class="banner_section">
-    <!-- container start -->
-    <div class="container">
-      <!-- row start -->
-      <div class="row">
-
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="1500">
-          <!-- banner image left -->
-          <!-- <div class="hero_imgleft">
-            <img src="images/hero_img1.png" alt="image">
-          </div> -->
-        </div>
-
-        <div class="col-lg-6 col-12 banner_content_colom" data-aos="fade-up" data-aos-duration="1500">
-          <!-- banner text -->
-          <div class="banner_text">
-            <h2> Alma Dance Frankfurt</h2>
-            <!-- h1 -->
-            <!-- <h2>19th - 22th April 2024<br><span>YOU CANNOT MISS THIS EXPERIENCE</span></h2> -->
-            <!-- p -->
-            <p>
-              We are more than just a dance school!
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-duration="1500">
-      </div>
 
 
-      </div>
-      <!-- row end -->
-    </div>
-    <!-- container end -->
-  </section>
-  <!-- Banner-Section-end -->
+  <main class="alma-booking-page">
 
 
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
+    <section class="booking-hero">
 
- <!-- AGENDA Section Start -->
-<section id="agenda-container" class="how_it_section">
-  <div class="how_it_inner" data-aos="fade-in" data-aos-duration="1500">
-    <div class="container">
-      <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
-        <!-- <span class="title_badge">Quick & easy</span> -->
-        <h1>Alma Dance Frankfurt Trial Class Registration</h1>
-        
-        <!-- NEW: SCARCITY & URGENCY NOTICE -->
-        <div class="scarcity_badge" style="background-color: #fff0f5; border: 2px dashed #48005f; padding: 15px; margin-top: 20px; border-radius: 8px; text-align: center;">
-          <p style="color: #48005f; margin: 0; font-size: 1.1rem; font-weight: bold;">
-            ⚠️ STRICTLY LIMITED: We only accept 40 new students per season to ensure teaching quality. 
-          </p>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-4">
-          <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
-            <div class="steps">
-              <div class="icon">
-                <img src="images/howstep1.png" alt="image">
-              </div>
-              <div class="text">
-                <h3>Book Trial Class</h3>
-                <!-- REVISED TEXT WITH HARD DEADLINE -->
-                <p><strong>Secure your spot now!</strong> Trial classes are strictly limited and only available during the <strong>first and second weeks</strong> of our 5-week course cycle. After week 2, registration completely closes and you must wait for the next season.</p>
-                <p>Fee: €10 (completely FREE if you subscribe or leave us valuable feedback!).</p>
-                <p>Enter your Email and register for a dance class.</p>
-                <!-- <form > -->
-                  <div class="form-group">
-                    <input type="email" name="email-class" class="form-control" placeholder="Enter your email">
-                    <div class="output" ></div>
-                  </div>
-                <!-- </form> -->
-                <button class="btn puprple_btn ml-0 bookaclass">BOOK A CLASS</button>
-                <!-- <button class="btn btn-dark bookaclass" style="display: none; margin: 5px 5px 5px 5px;">Book a class</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="steps_block step_border" data-aos="fade-up" data-aos-duration="1500">
-            <div class="steps">
-              <div class="icon">
-                <img src="images/howstep2.png" alt="image">
-              </div>
-              <div class="text">
-                <h3>Membership</h3>
-                <p>Start or update your membership</p>
-                <p>Select a Membership and start dancing.</p> 
-                <p>We have different plans for everyone. </p>
-                  <!-- <form > -->
-                    <div class="form-group" style="display: none;">
-                      <input type="email" name="email-membership" class="form-control" placeholder="Enter your email">
-                      <div class="output-membership" ></div>
-                    </div>
-                  <!-- </form> -->
-                  <button class="btn puprple_btn ml-0  paypal" style="display: none;">START A MEMBERSHIP</button>
-                  <a href="https://www.bachata-salsa-online.eu/new-subscription" class="button button-radius button-border button-gradient-bg">START A MEMBERSHIP</a>
-                <!-- <button class="btn btn-dark paypal" style="display: none; margin: 5px 5px 5px 5px;">Make a payment</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="steps_block" data-aos="fade-up" data-aos-duration="1500">
-            <div class="steps">
-              <div class="icon">
-                <img src="images/howstep3.png" alt="image">
-              </div>
-              <div class="text">
-                <h3>Dance</h3>
-                <p>Start dancing with us!</p>
-                <p>Enjoy our classes as a member & bring friends.</p>
-                <p>We always have offers for them and for you!</p>
-                <!-- <form > -->
-                  <div class="form-group" style="display: none" >
-                    <input type="email" name="email-member" class="form-control" placeholder="Enter your email">
-                    <div class="output-member" ></div>
-                  </div>
-                <!-- </form> -->
-                <a id="promotion-button" href="https://www.bachata-salsa-online.eu/profile" class="btn puprple_btn ml-0"  role="button"><strong>CHECK YOUR MEMBERSHIP</strong></a>
-                <button class="btn puprple_btn ml-0  emailer" style="display: none" >CHECK YOUR MEMBERSHIP</button>
-                <a href="https://www.bachata-salsa-online.eu/profile" class="btn btn-dark allpayments" style="display: none; margin: 5px 5px 5px 5px;">Show my payment history</a>
-                <a href="https://www.bachata-salsa-online.eu/profile" class="btn btn-dark payment" style="display: none; margin: 5px 5px 5px 5px;">Show My Membership Card</a>    
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <br>
-        <br>
-           <span style="color: #48005f" ><h5 id="name_display" ></h5></span>
-            <span style="color: #48005f" ><h5 id="email_display" ></h5></span>
-            <div class="postcard__preview-txt" id="user_message"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- AGENDA Section End -->  
-
-<section class="light">
-  <div id="form-tickets" class="container py-2">
-    <div class="col" style="font-weight: bold" >
-      <div class="col" style="font-weight: bold" >
-        <!-- <div class="output" ></div> -->
-      </div>
-      </div>
-    </div>
-</section>
-
-<section class="section-1" id="sect1">
-  <div class="col" style="font-weight: bold" >
-
-    <div class="container-fluid" id="tableContainer">
-      <input type="hidden" id="User_email" value="">
-      <input type="hidden" id="User_name" value="">
-      <input type="hidden" id="User_courses" value="Not Registered yet">
-      <input type="hidden" id="User_id" value="Not Registered yet">
-      <input type="hidden" id="User_active" value="Not Registered yet">
-      <input type="hidden" id="User_lastpayment" value="Not Registered yet">
-      <input type="hidden" id="User_saldo" value="Not Registered yet">
-      <input type="hidden" id="User_anmerkungen" value="Not Registered yet">
-      <input type="hidden" id="User_nextpayment" value="Not Registered yet">
-    </div>
-  </br>
-
-<!-- ----MEMBERSHIP BLOCK ---- -->
-  <div id="stripe-container" style="display: none" >
-    <h1 style="text-align: center"><strong> Start/Update your Membership</strong></h1>
-     <div  class="row">
-      <div class="col-sm">
-         <div class="card">
-            <div class="card-body">
-               <h5 class="card-title">3 Months Subscription</h5>
-               <div class="price-container" id="1 Course/Kurs-3 Months Subscription">
-                  <p class="card-text p-card">1 Class per Week<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="2 Courses/Kurse-3 Months Subscription">
-                  <p class="card-text p-card">2 Classes per Week<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="3 Courses/Kurse-3 Months Subscription">
-                  <p class="card-text p-card">3 Classes per Week<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="Flatrate-3 Months Subscription">
-                  <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="col-sm">
-         <div class="card">
-            <div class="card-body">
-               <h5 class="card-title">6 Months Subscription</h5>
-               <div class="price-container" id="1 Course/Kurs-6 Months Subscription">
-                  <p class="card-text p-card">1 Class per Week<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="2 Courses/Kurse-6 Months Subscription">
-                  <p class="card-text p-card">2 Classes per Week<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="3 Courses/Kurse-6 Months Subscription">
-                  <p class="card-text p-card">3 Classes per Week<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="Flatrate-6 Months Subscription">
-                  <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="col-sm">
-        <div class="card">
-           <div class="card-body">
-              <h5 class="card-title">12 Months Subscription</h5>
-              <div class="price-container" id="1 Course/Kurs-12 Months Subscription">
-                 <p class="card-text p-card">1 Class per Week<span style="font-weight:bold"></span></p>
-              </div>
-              <div class="price-container" id="2 Courses/Kurse-12 Months Subscription">
-                 <p class="card-text p-card">2 Classes per Week<span style="font-weight:bold"></span></p>
-              </div>
-              <div class="price-container" id="3 Courses/Kurse-12 Months Subscription">
-                 <p class="card-text p-card">3 Classes per Week<span style="font-weight:bold"></span></p>
-              </div>
-              <div class="price-container" id="Flatrate-12 Months Subscription">
-                 <p class="card-text p-card">All Classes<span style="font-weight:bold"></span></p>
-              </div>
-           </div>
-        </div>
-     </div>
-      <div class="col-sm">
-         <div class="card">
-            <div class="card-body">
-               <h5 class="card-title">Promotions/Individual Classes</h5>
-               <div class="price-container" id="4er Karte">
-                  <p class="card-text p-card">4 Classes Membership Card<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="10er Karte">
-                  <p class="card-text p-card">10 Classes Membership Card<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="Beginners 1 Course - 3 Months">
-                  <p class="card-text p-card">1 Beginner Course 3 Months Subscription<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="Beginners 1 Course - 6 Months">
-                  <p class="card-text p-card">1 Beginner Course 6 Months Subscription<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="Beginners 1 Course - 3 Months Couple">
-                  <p class="card-text p-card">1 Couple Beginner Course 3 Months Subscription<span style="font-weight:bold"></span></p>
-               </div>
-               <div class="price-container" id="Beginners 1 Course - 6 Months Couple">
-                  <p class="card-text p-card">1 Couple Beginner Course 6 Months Subscription<span style="font-weight:bold"></span></p>
-               </div>
-            </div>
-         </div>
-      </div>
-    </div>
-    <div class="row" style="margin-top: 30px; text-align: center;">
-      <div class="col" style="background-color: #f9f2fc; padding: 20px; border-radius: 12px; border: 1px solid #e0cfee;">
-        <p style="margin-bottom: 10px; font-weight: bold; color: #84309a;">Note on Pricing:</p>
-        <p style="margin-bottom: 5px;">All prices are listed <strong>per person</strong>.</p>
-        <p style="margin-bottom: 5px;"><strong>Students</strong> receive a <strong>20% discount</strong> on all subscriptions.</p>
-        <p style="margin-bottom: 0;"><strong>Couples and individuals under 28</strong> receive a <strong>15% discount</strong> on the <strong>total amount</strong> of their shared monthly subscription.</p>
-        <p style="margin-bottom: 0;">Only <strong>bookable directly at the dance school</strong>.</p>
-      </div>
-    </div>
-    </div>
-
-  <!--PAYMENT FORM  -->
-  <div id="payment-block">
-    <div id="pay-form-container"></div>
-  <!--PAYMENT MESSAGE  -->
-  <div id="messsage-container" class="container-fluid">
-    <div style="text-align: center;">
-    <div id="message-button-small-container"></div>
-  </div>
-  </div>
-  <!--PAYPAL BANK ZONE  -->
-    <div id="smart-button-container" class="container-fluid">
-      <div style="text-align: center;">
-        <div style="margin-bottom: 1.25rem;display: none" id="price_shield" >
-          <p>ALMA DANCE COURSES</p>
-          <select id="item-options">
-            <option value="Item" id="ItemOrdered">Select an Item - 0 EUR</option>
-            <!-- <option value="Marathon pass" price="72">Marathon pass - 72 EUR</option> -->
-          </select>
-          <select style="visibility: hidden" id="quantitySelect"></select>
-        </div>
-      <div id="paypal-button-container"></div>
-      </div>
-    </div>
-    <div id="bank-button-container"></div>
-    <div id="paypal-button-container-abo"></div>
-  </div>    
-</div>
-</section>
-
-<section class="section-2"   >
-  <div class="col" style="font-weight: bold" >
-  <br/>
-<!-- Buttons  -->
-  <h1 style="text-align: center"><strong>Dance Scheduler - Trial Class Booking</strong></h1>
-  <p style="text-align: center">Trial Class Fee is 10 Eur. Free if you subscribe or give positive feedback.</p>
-  <p style="text-align: center">Trial classes available only on the first and second weeks of the 5-week course cycle.</p>
-  <p style="text-align: center; color: #84309a;"><a style="text-align: center; color: #84309a;" href="#important-notes"><span>Please read the instructions under the Scheduler before booking. (Click here)</span></a></p>
-    <!-- Self Assessment page for salsa and bachata classes so that they can found out their level -->
-  <p style="text-align: center; color: #84309a;"><a style="text-align: center; color: #84309a;" href="salsa-bachata-level-test.html">Self Assessment Test for Salsa & Bachata Levels (Click Here)</a></p>
-  <!-- User Data -->
-  <div id="userdata" class="table data"></div>
-  <!-- Courses Data -->
-  <div id="rowdata"></div>
-</div>
-
-
-<!-- Modal Section-->
-<div id="statesModal"></div>
-<div id="payModal"></div>
-<div id="paymentsModal"></div>
-<div id="BankModal"></div>
-  <!-- Why We Uniqiue Section End -->
-</section>
-
-<div class="alma-schedule-wrapper">
-    <iframe
-        src="https://www.bachata-salsa-online.eu/embed/trialclass"
-        title="ALMA Dance Frankfurt Class Schedule"
-        class="alma-schedule-iframe"
-        scrolling="yes"
-        allow="fullscreen"
-    ></iframe>
-</div>
-
-
-
-
-<!-- Class Schedule Section Start -->
-
-<!-- Class Schedule Section End -->
-
-  <!-- Page Wraper -->
-  <div class="page_wrapper">
-  <section class="class-schedule-section" style="padding: 80px 0; background-color: #fff;">
-  <div class="container">
-    
-    <!-- Title and Subtitle -->
-    <div class="section-header text-center mb-5" data-aos="fade-up" data-aos-duration="1500">
-      <h2 style="color: #84309a; font-size: 2.5rem; margin-bottom: 15px;">Our Class Schedule</h2>
-      <p class="subtitle" style="color: #666; font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
-        Join our vibrant dance community with classes for all levels
-      </p>
-      <a href="https://www.bachata-salsa-online.eu/schedule"><p class="subtitle" style="color: #660000; font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
-        See our Schedule on real time at our new booking system (Click here)
-      </p></a>
-    </div>
-
-    <!-- Short Text Before Picture -->
-    <div class="intro-text text-center mb-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-      <p style="font-size: 1.1rem; color: #444; line-height: 1.6; max-width: 800px; margin: 0 auto 30px;">
-        At Alma Dance Frankfurt, we offer a diverse range of dance classes throughout the week. 
-        Whether you're a complete beginner or an advanced dancer, we have the perfect class for you. 
-        Our schedule is designed to fit different lifestyles and commitments.
-      </p>
-    </div>
-
-    <!-- Centered Picture -->
-    <div class="schedule-image text-center mb-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-      <img loading="lazy" src="images/new/schedule_eng.webp" alt="Dance Class Schedule Alma Dance Frankfurt" 
-           style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(132, 48, 154, 0.15);">
-    </div>
-
-    <!-- Comment Section Below Picture -->
-    <div class="comment-section mb-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-      <div class="comment-card" style="background: #f9f2fc; padding: 25px; border-radius: 10px; border-left: 5px solid #84309a;">
-        <div class="comment-header" style="display: flex; align-items: center; margin-bottom: 15px;">
-          <div class="comment-icon" style="margin-right: 15px;">
-            <i class="icofont-info-circle" style="font-size: 2rem; color: #84309a;"></i>
-          </div>
-          <div class="comment-title">
-            <h4 style="color: #333; margin: 0;">Important Notes</h4>
-          </div>
-        </div>
-        <div class="comment-content" id ="important-notes">
-          <ul style="color: #555; margin: 0; padding-left: 20px;">
-            <li style="margin-bottom: 8px;">All classes require registration - book your spot in advance!</li>
-            <li style="margin-bottom: 8px;">Beginner courses should always start with the introductory courses first</li>
-            <li style="margin-bottom: 8px;">Intermediate/Advanced classes require previous experience</li>
-            <li>Free trial class available for first-time visitors</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q&A Section -->
-    <div class="qa-section" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-      <h3 class="text-center mb-4" style="color: #333; font-size: 1.8rem;">Frequently Asked Questions</h3>
-      
-      <div class="accordion" id="scheduleFAQ">
-        
-        <!-- Question 1 -->
-        <div class="card mb-3" style="border: 1px solid #e9ecef; border-radius: 8px;">
-          <div class="card-header" id="headingOne" style="background-color: #fff; border-bottom: 1px solid #e9ecef;">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" 
-                      aria-expanded="true" aria-controls="collapseOne"
-                      style="color: #84309a; text-decoration: none; font-weight: 600; width: 100%; text-align: left;">
-                <i class="icofont-question-circle mr-2"></i>
-                Do I need a partner to join the classes?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#scheduleFAQ">
-            <div class="card-body" style="color: #555;">
-              No, you don't need a partner! Our classes are designed for individuals, and we rotate partners during lessons. 
-              This helps everyone learn better and meet new people in our dance community.
-            </div>
-          </div>
-        </div>
-
-        <!-- Question 2 -->
-        <div class="card mb-3" style="border: 1px solid #e9ecef; border-radius: 8px;">
-          <div class="card-header" id="headingTwo" style="background-color: #fff; border-bottom: 1px solid #e9ecef;">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" 
-                      aria-expanded="false" aria-controls="collapseTwo"
-                      style="color: #84309a; text-decoration: none; font-weight: 600; width: 100%; text-align: left;">
-                <i class="icofont-question-circle mr-2"></i>
-                What should I wear to my first class?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#scheduleFAQ">
-            <div class="card-body" style="color: #555;">
-              Wear comfortable clothes that allow movement. For shoes, we recommend clean indoor shoes with smooth soles 
-              (avoid sneakers with heavy grip). Many dancers prefer dance shoes, but comfortable flats work fine for beginners.
-            </div>
-          </div>
-        </div>
-
-        <!-- Question 3 -->
-        <div class="card mb-3" style="border: 1px solid #e9ecef; border-radius: 8px;">
-          <div class="card-header" id="headingThree" style="background-color: #fff; border-bottom: 1px solid #e9ecef;">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" 
-                      aria-expanded="false" aria-controls="collapseThree"
-                      style="color: #84309a; text-decoration: none; font-weight: 600; width: 100%; text-align: left;">
-                <i class="icofont-question-circle mr-2"></i>
-                How do I know which level is right for me?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#scheduleFAQ">
-            <div class="card-body" style="color: #555;">
-              Beginners should start with our introductory courses. If you have some experience, start with a trial class at the lowest possible level and we help you check your skills level. We can also offer further trial classes to help you find the perfect level.
-            </div>
-          </div>
-        </div>
-
-        <!-- Question 4 -->
-        <div class="card mb-3" style="border: 1px solid #e9ecef; border-radius: 8px;">
-          <div class="card-header" id="headingFour" style="background-color: #fff; border-bottom: 1px solid #e9ecef;">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" 
-                      aria-expanded="false" aria-controls="collapseFour"
-                      style="color: #84309a; text-decoration: none; font-weight: 600; width: 100%; text-align: left;">
-                <i class="icofont-question-circle mr-2"></i>
-                Can I join in the middle of a course?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#scheduleFAQ">
-            <div class="card-body" style="color: #555;">
-              For beginner courses, you can start any time at the Introductory Levels. For intermediate and advanced classes, 
-              you can join anytime. Contact us to discuss your experience level and we'll find the best option for you.
-            </div>
-          </div>
-        </div>
-
-        <!-- Question 5 -->
-        <div class="card mb-3" style="border: 1px solid #e9ecef; border-radius: 8px;">
-          <div class="card-header" id="headingFive" style="background-color: #fff; border-bottom: 1px solid #e9ecef;">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" 
-                      aria-expanded="false" aria-controls="collapseFive"
-                      style="color: #84309a; text-decoration: none; font-weight: 600; width: 100%; text-align: left;">
-                <i class="icofont-question-circle mr-2"></i>
-                What happens if I miss a class?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#scheduleFAQ">
-            <div class="card-body" style="color: #555;">
-              With our flexible membership, you can usually make up missed classes within the same week or month. 
-              For course-based programs, we offer catch-up sessions. Check with our team for specific options.
-            </div>
-          </div>
-        </div>
-
-      </div> <!-- End Accordion -->
-
-      <!-- CTA Button -->
-      <div class="text-center mt-5">
-        <a href="schedule.html" class="btn btn-lg" 
-           style="padding: 15px 40px; background-color: #84309a; color: white; border-radius: 8px; font-weight: 600; text-decoration: none;">
-          <i class="icofont-calendar mr-2"></i>
-          View Full Schedule & Details
-        </a>
-          <a href="alma-dance-methodology.html" class="btn btn-lg" 
-           style="padding: 15px 40px; background-color: #84309a; color: white; border-radius: 8px; font-weight: 600; text-decoration: none;">
-          <i class="icofont-calendar mr-2"></i>
-          View our Methodology
-        </a>
-      </div>
-
-    </div> <!-- End Q&A Section -->
-
-  </div> <!-- End Container -->
-</section>
-
-  <section class="row_am interface_section" style="padding: 40px 0; background: linear-gradient(135deg, #f9f7ff 0%, #ffffff 100%);">
-  <div class="container">
-    <div class="section_title text-center" data-aos="fade-up" data-aos-duration="1500">
-      <span class="title_badge" style="background: #84309a; color: white; padding: 5px 15px; border-radius: 20px; font-weight: 600; margin-bottom: 15px;">
-        <i class="icofont-star"></i> 5-Star Reviews
-      </span>
-      <h2 style="color: #333; margin-bottom: 10px;">What Our Dancers Say</h2>
-      <p class="lead-text" style="max-width: 800px; margin: 0 auto 30px; color: #666; font-size: 1.1rem;">
-        Join over 1000 satisfied dancers who've experienced the Alma Dance magic. Read our 5-star Google reviews!
-      </p>
-    </div>
-
-    <!-- Reviews Grid -->
-    <div class="row reviews-grid" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-      <!-- Review 1 -->
-      <div class="col-md-4 mb-4">
-        <div class="review-card" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%;">
-          <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div class="reviewer-info">
-              <h5 style="margin: 0; color: #333; font-weight: 600;">Hülya Y.</h5>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #777;">10 reviews</p>
-            </div>
-            <div class="review-stars" style="color: #FFC107; font-size: 1.2rem;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-          </div>
-          <p class="review-text" style="color: #555; line-height: 1.6; font-size: 0.95rem;">
-            "Through Wellpass I discovered Alma Dance and I'm very happy about it. Edu and Natalia are both very good teachers and can teach very well. You immediately feel very well taken care of there."
-          </p>
-          <div class="review-meta" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
-            <span style="font-size: 0.85rem; color: #84309a;"><i class="icofont-clock-time"></i> 1 month ago</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Review 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="review-card" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%;">
-          <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div class="reviewer-info">
-              <h5 style="margin: 0; color: #333; font-weight: 600;">Nils Becker</h5>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #777;">14 reviews</p>
-            </div>
-            <div class="review-stars" style="color: #FFC107; font-size: 1.2rem;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-          </div>
-          <p class="review-text" style="color: #555; line-height: 1.6; font-size: 0.95rem;">
-            "I discovered the dance school more or less by chance through Groupon and felt comfortable from the beginning. I like Natalia and Edu both as teachers and as personalities. I can definitely recommend Alma Dance!"
-          </p>
-          <div class="review-meta" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
-            <span style="font-size: 0.85rem; color: #84309a;"><i class="icofont-clock-time"></i> 8 months ago</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Review 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="review-card" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%;">
-          <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div class="reviewer-info">
-              <h5 style="margin: 0; color: #333; font-weight: 600;">Pas Cal</h5>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #777;">Local Guide · 103 reviews</p>
-            </div>
-            <div class="review-stars" style="color: #FFC107; font-size: 1.2rem;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-          </div>
-          <p class="review-text" style="color: #555; line-height: 1.6; font-size: 0.95rem;">
-            "The workshop was fantastic with plenty of physical activity, beautiful spaces, and a great location. Possibly the best Bachata classes in the Rhein-Main area."
-          </p>
-          <div class="review-meta" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
-            <span style="font-size: 0.85rem; color: #84309a;"><i class="icofont-clock-time"></i> 1 year ago</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Review 4 -->
-      <div class="col-md-4 mb-4">
-        <div class="review-card" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%;">
-          <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div class="reviewer-info">
-              <h5 style="margin: 0; color: #333; font-weight: 600;">Tito Toha</h5>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #777;">Local Guide · 3 reviews</p>
-            </div>
-            <div class="review-stars" style="color: #FFC107; font-size: 1.2rem;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-          </div>
-          <p class="review-text" style="color: #555; line-height: 1.6; font-size: 0.95rem;">
-            "Edu and Natalia are for me the absolutely best Bachata teachers in Frankfurt. Their unique way, with a lot of patience and vivid explanations, gave me a fascinating introduction to the world of Bachata dancing."
-          </p>
-          <div class="review-meta" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
-            <span style="font-size: 0.85rem; color: #84309a;"><i class="icofont-clock-time"></i> 1 year ago</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Review 5 -->
-      <div class="col-md-4 mb-4">
-        <div class="review-card" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%;">
-          <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div class="reviewer-info">
-              <h5 style="margin: 0; color: #333; font-weight: 600;">Giuli</h5>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #777;">Local Guide · 114 reviews</p>
-            </div>
-            <div class="review-stars" style="color: #FFC107; font-size: 1.2rem;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-          </div>
-          <p class="review-text" style="color: #555; line-height: 1.6; font-size: 0.95rem;">
-            "SUPER DANCE SCHOOL! Here you can learn Bachata & Salsa, among other things, at a really high level! The teachers take time for their students and a lot of technique and musicality is taught!"
-          </p>
-          <div class="review-meta" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
-            <span style="font-size: 0.85rem; color: #84309a;"><i class="icofont-clock-time"></i> 1 year ago</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Review 6 -->
-      <div class="col-md-4 mb-4">
-        <div class="review-card" style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%;">
-          <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <div class="reviewer-info">
-              <h5 style="margin: 0; color: #333; font-weight: 600;">Raj</h5>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #777;">Local Guide · 9 reviews</p>
-            </div>
-            <div class="review-stars" style="color: #FFC107; font-size: 1.2rem;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-          </div>
-          <p class="review-text" style="color: #555; line-height: 1.6; font-size: 0.95rem;">
-            "One of the best dance schools 🕺. Edu and Natalia know 100% what they are teaching. Sometimes they use instruments so that learners get used to the music beats. They know how to teach the basics to advanced dancers."
-          </p>
-          <div class="review-meta" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
-            <span style="font-size: 0.85rem; color: #84309a;"><i class="icofont-clock-time"></i> 1 year ago</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rating Summary -->
-    <div class="rating-summary" data-aos="fade-up" data-aos-duration="1500" style="margin-top: 50px; padding: 30px; background: #84309a; border-radius: 10px; color: white;">
-      <div class="row align-items-center">
-        <div class="col-md-8">
-          <h3 style="color: white; margin-bottom: 10px;">100% 5-Star Reviews</h3>
-          <p style="margin-bottom: 0; opacity: 0.9;">
-            Every single review is 5 stars! Join our community of satisfied dancers and experience why we're Frankfurt's top-rated dance school.
-          </p>
-        </div>
-        <div class="col-md-4 text-center text-md-right">
-          <div class="overall-rating" style="display: inline-block; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px;">
-            <div class="stars-large" style="color: #FFC107; font-size: 1.8rem; margin-bottom: 5px;">
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-              <i class="icofont-star"></i>
-            </div>
-            <h4 style="color: white; margin: 0; font-size: 2.5rem;">5.0</h4>
-            <p style="margin: 0; opacity: 0.9;">Perfect Score</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA to Google Reviews -->
-    <div class="text-center mt-40" data-aos="fade-up" data-aos-duration="1500">
-      <a href="https://share.google/nONhy6Ub3Le7hdoA0" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="btn btn-lg" 
-         style="padding: 15px 40px; background-color: #4285F4; color: white; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
-        <i class="icofont-google-map" style="font-size: 1.2rem;"></i>
-        <span>Read All Reviews on Google</span>
-        <i class="icofont-external-link" style="font-size: 0.9rem;"></i>
-      </a>
-      <p class="mt-3" style="color: #666; font-size: 0.9rem;">
-        <i class="icofont-info-circle"></i> All reviews are authentic and verified by Google
-      </p>
-    </div>
-  </div>
-</section>
-
-  <section id="promo-video-section" class="how_it_section">
-  <div class="how_it_inner" data-aos="fade-in" data-aos-duration="1500">
-    <div class="container">
-      <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
-        <span class="title_badge"></span>
-        <h2>Alma Dance 2025 Christmas Party</h2>
-        <br>
-        <br>
-        <p class="">
-          Relive the unforgettable moments from our 2025 Christmas Party! Watch the highlights of an evening filled with joy, dance, and celebration at Alma Dance Frankfurt.
-      </div>
-      <div class="video-placeholder" style="text-align: center; margin-top: 20px;">
-        <iframe width="100%" max-width="400px" height="700px" src="https://www.youtube.com/embed/Kx-sbXJMiss?si=ZfHGMIolzWBkJpqX" 
-                title="Alma Dance 2025 Highlights" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-      </div>
-      <div class="text-center mt-4">
-        <div class="btn_block">
-          <a href="booking.html" class="btn purple_btn ml-0">Book Trial Class</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-       <!-- Service Section Start -->
-   <section class="row_am service_section about_service" style="padding-bottom: 0px;">
-    <div class="container">
-      <div class="row service_blocks flex-row-reverse">
-        <div class="col-md-6">
-          <div class="img" data-aos="fade-up" data-aos-duration="1500">
-            <img loading="lazy" src="images/final_mailing.webp" alt="image">
-          </div>
-        </div>
-        <div class="col-md-6" >
-          <div class="service_text right_side" data-aos="fade-up" data-aos-duration="1500">
-            <h2><span>ALMA DANCE </span>IS MOVING TO A NEW DANCE STUDIO  IN BORNHEIM!</h2>
-            <p>
-              As of March, all our classes will take place in new spaces with two rooms, nice mirrors, cool light and even a kitchen! It means that we will have more comfort in our classes, more space for new exciting projects, a nicer atmosphere and more opportunities to connect with you!
-            </p>            
-            <p><strong>New address: </strong> Alt-Bornheim 35.</p>
-            <ul class="feature_list">
-              <li>
-                <div class="icon">
-                  <span><i class="icofont-check-circled"></i></span>
-                </div>
-                <div class="text">
-                  <p><strong>Why?: </strong>
-                    Our aim has always been to offer you not only high quality teaching and good learning opportunities but also a space where a community of like-minded people from all over the world can feel welcome and connect. We believe that our new school will help us get closer to achieving our goal. 
-                    </p>
-                  </div>
-              </li>
-              <li>
-                <div class="icon">
-                </div>
-                <div class="text">
-                  <a id="promotion-button" href="kursplan.html" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 5px;background-color: #84309a;" role="button"><strong>Promotions</strong></a>
-                  <a id="promotion-button" href="kursplan.html" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 5px;background-color: #84309a;" role="button"><strong>Schedule</strong></a>
-                  <a id="promotion-button" href="pricing_de.html" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 5px;background-color: #84309a;" role="button"><strong>Prices</strong></a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-       
-      </div>
-    </div>
-  </section>
-      <!-- Positive Reviews Section Start -->
-  
-  <!-- Positive Reviews Section End -->
-
-
-    <!-- Footer-Section start -->
-    <footer class="white_text" data-aos="fade-in" data-aos-duration="1500">
       <div class="container">
+        <div class="booking-hero-inner">
+
+          <span class="booking-hero-label">
+            ALMA DANCE FRANKFURT
+          </span>
+
+          <h1>
+            Start Your Dance Journey With ALMA
+          </h1>
+
+          <p>
+            Salsa, Bachata and more in Frankfurt.
+            Find the right class, try ALMA for yourself,
+            discover our workshops and events, or access your membership.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              href="https://www.bachata-salsa-online.eu/trialclass"
+              class="alma-btn alma-btn-white">
+              BOOK A TRIAL CLASS
+            </a>
+
+            <a
+              href="#weekly-schedule"
+              class="alma-btn alma-btn-outline-white">
+              SEE CLASS SCHEDULE
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         THREE MAIN ACTIONS
+    ====================================================== -->
+
+    <section class="alma-section alma-section-light">
+
+      <div class="container">
+
+        <div class="alma-section-heading">
+
+          <span class="eyebrow">Choose your next step</span>
+
+          <h2>What would you like to do?</h2>
+
+          <p>
+            New to ALMA, looking for your next workshop,
+            or already dancing with us? Choose the option that fits you.
+          </p>
+
+        </div>
+
+
         <div class="row">
-          <div class="col-md-6">
-            <div class="logo_side">
-              <!-- <div class="logo">
-                <a href="#">
-                  <img src="images/ft_logo.webp" alt="Logo">
-                </a>
-              </div> -->
-              <div class="news_letter">
-                <h3>Subscribe newsletter</h3>
-                <p>Be the first to recieve all latest post in your inbox</p>
-                <form>
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter your email">
-                    <button class="btn"><i class="icofont-paper-plane"></i></button>
-                  </div>
-                  <p class="note">By clicking send link you agree to receive news and promotions from us.</p>
-                </form>
+
+
+          <!-- TRIAL CLASS -->
+
+          <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="alma-action-card">
+
+              <div class="alma-action-icon">💃</div>
+
+              <h3>Try a Class</h3>
+
+              <p>
+                New to ALMA? Discover our classes and experience
+                our teaching before choosing the programme that's right for you.
+              </p>
+
+              <div class="alma-action-info">
+                <strong>New students</strong><br>
+                Find an available class and reserve your place online.
               </div>
-              <ul class="contact_info">
-                <li><a href="mailto:">info@alma-dance.de</a></li>
-                <li><a href="https://wa.me/message/AQECYWAZB43BJ1">+49 1639641730</a></li>
-              </ul>
-              <ul class="social_media">
-                <li><a href="https://www.facebook.com/AlmaDanceFrankfurt"><i class="icofont-facebook"></i></a></li>
-                <li><a href="https://www.instagram.com/alma_dance_frankfurt/"><i class="icofont-instagram"></i></a></li>
-                <li><a href="https://www.youtube.com/@almadancebachatasalsa9317"><i class="icofont-youtube"></i></a></li>
-                <li><a href="https://wa.me/message/AQECYWAZB43BJ1"><i class="icofont-whatsapp"></i></a></li>
-              </ul>
+
+              <a
+                href="https://www.bachata-salsa-online.eu/trialclass"
+                class="alma-btn alma-btn-primary">
+                BOOK A TRIAL CLASS
+              </a>
+
             </div>
+
           </div>
-          <div class="col-md-6">
-            <div class="download_side">
-              <h3>The Dance Experience</h3>
-              <ul class="app_btn">
-                <!-- <li>
-                  <a class="navbar-brand" href="home.html">
-                    <img src="images/logo.webp" alt="Logo">
-                  </a>
-                </li> -->
-              </ul>
+
+
+          <!-- EVENTS -->
+
+          <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="alma-action-card">
+
+              <div class="alma-action-icon">🎟️</div>
+
+              <h3>Workshops & Events</h3>
+
+              <p>
+                Discover workshops, bootcamps, parties,
+                special events and other ALMA dance experiences.
+              </p>
+
+              <div class="alma-action-info">
+                <strong>Open to everyone</strong><br>
+                Explore our upcoming programme and book online.
+              </div>
+
+              <a
+                href="https://www.bachata-salsa-online.eu/"
+                class="alma-btn alma-btn-dark">
+                EXPLORE EVENTS
+              </a>
+
             </div>
+
           </div>
+
+
+          <!-- MEMBER -->
+
+          <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="alma-action-card">
+
+              <div class="alma-action-icon">👤</div>
+
+              <h3>Already a Member?</h3>
+
+              <p>
+                Access your ALMA profile and check your
+                membership information and account.
+              </p>
+
+              <div class="alma-action-info">
+                <strong>ALMA members</strong><br>
+                Your membership information in one place.
+              </div>
+
+              <a
+                href="https://www.bachata-salsa-online.eu/profile"
+                class="alma-btn alma-btn-dark">
+                CHECK MY MEMBERSHIP
+              </a>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
-      <div class="footer_bottom">
-        <div class="container">
-          <div class="ft_inner">
-            <div class="copy_text">
-              <p>©Alma Dance Frankfurt by Eduardo Millan</p>
+
+    </section>
+
+
+    <!-- =====================================================
+         TRIAL CLASS CONDITIONS
+    ====================================================== -->
+
+    <section class="alma-section">
+
+      <div class="container">
+
+        <div class="alma-section-heading">
+
+          <span class="eyebrow">Your first visit</span>
+
+          <h2>Trying ALMA for the First Time?</h2>
+
+          <p>
+            A trial class is the easiest way to experience
+            our teaching, meet the community and find the right level.
+          </p>
+
+        </div>
+
+
+        <div class="trial-info-box">
+
+          <h3>Trial Class – Important Information</h3>
+
+          <ul class="trial-info-list">
+
+            <li>
+              <strong>Advance registration is required.</strong>
+              Please book your trial class through our online booking system.
+            </li>
+
+            <li>
+              Trial classes are available during the
+              <strong>first and second weeks of our 6-week course cycle.</strong>
+            </li>
+
+            <li>
+              Places are limited so that we can maintain
+              the quality of our classes.
+            </li>
+
+            <li>
+              If you are a <strong>complete beginner</strong>,
+              choose an introductory or beginner-level class.
+            </li>
+
+            <li>
+              Intermediate and advanced classes require
+              previous dance experience.
+            </li>
+
+            <li>
+              <strong>You do not need a partner.</strong>
+              You can register and come by yourself.
+            </li>
+
+            <li>
+              Wear comfortable clothes and clean indoor shoes
+              that allow you to move easily.
+            </li>
+
+          </ul>
+
+
+          <div class="trial-highlight">
+
+            <p style="margin:0 0 15px;">
+              Trial Class Fee:
+              <strong>€10 per person (free if registration or positive review)</strong>
+            </p>
+
+            <a
+              href="https://www.bachata-salsa-online.eu/trialclass"
+              class="alma-btn alma-btn-primary">
+              FIND & BOOK MY TRIAL CLASS
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WEEKLY SCHEDULE
+    ====================================================== -->
+
+    <section
+      id="weekly-schedule"
+      class="alma-section alma-section-light">
+
+      <div class="container">
+
+        <div class="alma-section-heading">
+
+          <span class="eyebrow">Find your class</span>
+
+          <h2>Weekly Class Schedule</h2>
+
+          <p>
+            Explore our regular weekly programme.
+            We offer classes for different levels, from complete
+            beginners to experienced dancers.
+          </p>
+
+          <p style="font-size:.95rem;">
+            The schedule below gives you an overview of our programme.
+            Please use our online system for current availability
+            and trial-class booking.
+          </p>
+
+        </div>
+
+
+        <div class="schedule-wrapper">
+
+          <img
+            loading="lazy"
+            src="images/new/schedule_eng.webp"
+            alt="Alma Dance Frankfurt weekly Salsa and Bachata class schedule"
+          >
+
+          <div class="schedule-actions">
+
+            <a
+              href="https://www.bachata-salsa-online.eu/trialclass"
+              class="alma-btn alma-btn-primary">
+              BOOK A TRIAL CLASS
+            </a>
+
+            <a
+              href="https://www.bachata-salsa-online.eu/schedule"
+              class="alma-btn alma-btn-dark">
+              VIEW LIVE SCHEDULE
+            </a>
+
+          </div>
+
+          <div style="margin-top:25px;">
+
+            <a
+              href="salsa-bachata-level-test.html"
+              style="color:#84309a;font-weight:600;">
+              Not sure about your level? Take our Salsa & Bachata Self-Assessment →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FAQ
+    ====================================================== -->
+
+    <section class="alma-section">
+
+      <div class="container">
+
+        <div class="alma-section-heading">
+
+          <span class="eyebrow">Before your first class</span>
+
+          <h2>Frequently Asked Questions</h2>
+
+          <p>
+            Everything you need to know before joining us.
+          </p>
+
+        </div>
+
+
+        <div class="faq-wrapper">
+
+          <div class="accordion" id="scheduleFAQ">
+
+
+            <!-- FAQ 1 -->
+
+            <div class="card">
+
+              <div class="card-header" id="headingOne">
+
+                <button
+                  class="btn btn-link"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne">
+
+                  Do I need a partner to join the classes?
+
+                </button>
+
+              </div>
+
+              <div
+                id="collapseOne"
+                class="collapse show"
+                aria-labelledby="headingOne"
+                data-parent="#scheduleFAQ">
+
+                <div class="card-body">
+
+                  No. You can register and come by yourself.
+                  In our partner-dance classes we rotate partners,
+                  which gives everyone the opportunity to practise
+                  with different people and meet other dancers.
+
+                </div>
+
+              </div>
+
             </div>
-            <ul class="links">
-              <li><a href="home.html">Home</a></li>
-              <li><a href="danceschool-frankfurt.html">About us</a></li>
-              <li><a href="Pricing.html">Prices</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+
+
+            <!-- FAQ 2 -->
+
+            <div class="card">
+
+              <div class="card-header" id="headingTwo">
+
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo">
+
+                  What should I wear to my first class?
+
+                </button>
+
+              </div>
+
+              <div
+                id="collapseTwo"
+                class="collapse"
+                aria-labelledby="headingTwo"
+                data-parent="#scheduleFAQ">
+
+                <div class="card-body">
+
+                  Wear comfortable clothes that allow you to move freely.
+                  We recommend clean indoor shoes with relatively smooth soles.
+                  Dance shoes are welcome but are not necessary for your first class.
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- FAQ 3 -->
+
+            <div class="card">
+
+              <div class="card-header" id="headingThree">
+
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree">
+
+                  How do I know which level is right for me?
+
+                </button>
+
+              </div>
+
+              <div
+                id="collapseThree"
+                class="collapse"
+                aria-labelledby="headingThree"
+                data-parent="#scheduleFAQ">
+
+                <div class="card-body">
+
+                  If you have never danced before, start with one of our
+                  introductory or beginner-level classes.
+
+                  If you already have Salsa or Bachata experience,
+                  choose a trial class at an appropriate level.
+                  Our teachers can then help you determine which class
+                  fits your current skills best.
+
+                  <div style="margin-top:15px;">
+                    <a
+                      href="salsa-bachata-level-test.html"
+                      style="color:#84309a;font-weight:600;">
+                      Take our Salsa & Bachata Self-Assessment →
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- FAQ 4 -->
+
+            <div class="card">
+
+              <div class="card-header" id="headingFour">
+
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour">
+
+                  Can I join in the middle of a course cycle?
+
+                </button>
+
+              </div>
+
+              <div
+                id="collapseFour"
+                class="collapse"
+                aria-labelledby="headingFour"
+                data-parent="#scheduleFAQ">
+
+                <div class="card-body">
+
+                  Our regular programme runs in course cycles.
+                  For complete beginners, we recommend starting at the
+                  beginning of a cycle so that you can build your fundamentals
+                  step by step.
+
+                  Trial-class availability is normally limited to the first
+                  two weeks of each cycle.
+
+                  Dancers with previous experience may be able to join
+                  intermediate or advanced classes later depending on
+                  level and availability.
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- FAQ 5 -->
+
+            <div class="card">
+
+              <div class="card-header" id="headingFive">
+
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive">
+
+                  What happens after my trial class?
+
+                </button>
+
+              </div>
+
+              <div
+                id="collapseFive"
+                class="collapse"
+                aria-labelledby="headingFive"
+                data-parent="#scheduleFAQ">
+
+                <div class="card-body">
+
+                  If you enjoy the class and want to continue,
+                  you can choose the membership option that fits your
+                  training goals and the number of classes you would
+                  like to attend.
+
+                  Our team can also help you choose the right level
+                  and programme.
+
+                  <div style="margin-top:15px;">
+                    <a
+                      href="Pricing.html"
+                      style="color:#84309a;font-weight:600;">
+                      See our membership options →
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- FAQ 6 -->
+
+            <div class="card">
+
+              <div class="card-header" id="headingSix">
+
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseSix"
+                  aria-expanded="false"
+                  aria-controls="collapseSix">
+
+                  I'm already a member. Where can I check my membership?
+
+                </button>
+
+              </div>
+
+              <div
+                id="collapseSix"
+                class="collapse"
+                aria-labelledby="headingSix"
+                data-parent="#scheduleFAQ">
+
+                <div class="card-body">
+
+                  Existing ALMA members can access their profile
+                  through our online system.
+
+                  <div style="margin-top:15px;">
+                    <a
+                      href="https://www.bachata-salsa-online.eu/profile"
+                      class="alma-btn alma-btn-dark">
+                      CHECK MY MEMBERSHIP
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         REVIEWS
+    ====================================================== -->
+
+    <section class="alma-section alma-section-light">
+
+      <div class="container">
+
+        <div class="alma-section-heading">
+
+          <span class="eyebrow">The ALMA experience</span>
+
+          <h2>What Our Dancers Say</h2>
+
+          <p>
+            Our community includes dancers from many different
+            backgrounds and experience levels.
+          </p>
+
+        </div>
+
+
+        <div class="row">
+
+
+          <div class="col-md-4 mb-4">
+
+            <div class="review-card-new">
+
+              <div class="review-stars-new">
+                ★★★★★
+              </div>
+
+              <p>
+                “Through Wellpass I discovered Alma Dance and I'm
+                very happy about it. Edu and Natalia are both very
+                good teachers and can teach very well.”
+              </p>
+
+              <strong>Hülya Y.</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="col-md-4 mb-4">
+
+            <div class="review-card-new">
+
+              <div class="review-stars-new">
+                ★★★★★
+              </div>
+
+              <p>
+                “SUPER DANCE SCHOOL! Here you can learn Bachata &
+                Salsa, among other things, at a really high level!
+                The teachers take time for their students.”
+              </p>
+
+              <strong>Giuli</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="col-md-4 mb-4">
+
+            <div class="review-card-new">
+
+              <div class="review-stars-new">
+                ★★★★★
+              </div>
+
+              <p>
+                “Edu and Natalia know 100% what they are teaching.
+                They know how to teach the basics to advanced dancers.”
+              </p>
+
+              <strong>Raj</strong>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="text-center" style="margin-top:20px;">
+
+          <a
+            href="https://share.google/nONhy6Ub3Le7hdoA0"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="alma-btn alma-btn-dark">
+            READ MORE GOOGLE REVIEWS
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL CTA
+    ====================================================== -->
+
+    <section class="final-cta">
+
+      <div class="container">
+
+        <h2>Ready to Dance With Us?</h2>
+
+        <p>
+          Your first step is simple. Find a class that fits you
+          and experience ALMA for yourself.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            href="https://www.bachata-salsa-online.eu/trialclass"
+            class="alma-btn alma-btn-white">
+            BOOK A TRIAL CLASS
+          </a>
+
+          <a
+            href="https://www.bachata-salsa-online.eu/"
+            class="alma-btn alma-btn-outline-white">
+            WORKSHOPS & EVENTS
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer
+    class="white_text"
+    data-aos="fade-in"
+    data-aos-duration="1500">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="logo_side">
+
+            <div class="news_letter">
+
+              <h3>Subscribe newsletter</h3>
+
+              <p>
+                Be the first to receive our latest news,
+                classes, workshops and events.
+              </p>
+
+              <form>
+
+                <div class="form-group">
+
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter your email">
+
+                  <button class="btn" type="submit">
+                    <i class="icofont-paper-plane"></i>
+                  </button>
+
+                </div>
+
+                <p class="note">
+                  By clicking send you agree to receive news
+                  and promotions from us.
+                </p>
+
+              </form>
+
+            </div>
+
+
+            <ul class="contact_info">
+
+              <li>
+                <a href="mailto:info@alma-dance.de">
+                  info@alma-dance.de
+                </a>
+              </li>
+
+              <li>
+                <a href="https://wa.me/message/AQECYWAZB43BJ1">
+                  +49 1639641730
+                </a>
+              </li>
+
             </ul>
-            <div class="design_by">
-              <!-- <p>Crafted by <a href="https://alma-dance.de" target="blank">Eduardo Millan</a></p> -->
-              <p><a href="https://alma-dance.de/privacy-policy" target="blank">Privacy Policy</a></p>
-              <p><a href="https://alma-dance.de/impressum" target="blank">Impressum</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- Footer-Section end -->
 
-    <!-- go top button -->
-    <div class="go_top" id="Gotop">
-      <span><i class="icofont-arrow-up"></i></span>
+
+            <ul class="social_media">
+
+              <li>
+                <a href="https://www.facebook.com/AlmaDanceFrankfurt">
+                  <i class="icofont-facebook"></i>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.instagram.com/alma_dance_frankfurt/">
+                  <i class="icofont-instagram"></i>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.youtube.com/@almadancebachatasalsa9317">
+                  <i class="icofont-youtube"></i>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://wa.me/message/AQECYWAZB43BJ1">
+                  <i class="icofont-whatsapp"></i>
+                </a>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+          <div class="download_side">
+
+            <h3>The Dance Experience</h3>
+
+            <p style="color:white;opacity:.85;">
+              Learn. Dance. Connect.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- Video Model Start -->
-    <div class="modal fade youtube-video" id="myModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <button id="close-video" type="button" class="button btn btn-default text-right" data-dismiss="modal">
-            <i class="icofont-close-line-circled"></i>
-          </button>
-          <div class="modal-body">
-            <div id="video-container" class="video-container">
-              <iframe id="youtubevideo" width="640" height="360" allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="modal-footer">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Video Model End -->
-  </div>
-  <div >
-  </div>
-  <!-- Page-wrapper-End -->
 
-  <!-- Jquery-js-Link -->
+    <div class="footer_bottom">
+
+      <div class="container">
+
+        <div class="ft_inner">
+
+          <div class="copy_text">
+            <p>© Alma Dance Frankfurt by Eduardo Millan</p>
+          </div>
+
+
+          <ul class="links">
+
+            <li>
+              <a href="home.html">Home</a>
+            </li>
+
+            <li>
+              <a href="danceschool-frankfurt.html">About us</a>
+            </li>
+
+            <li>
+              <a href="Pricing.html">Prices</a>
+            </li>
+
+            <li>
+              <a href="contact.html">Contact us</a>
+            </li>
+
+          </ul>
+
+
+          <div class="design_by">
+
+            <p>
+              <a
+                href="https://alma-dance.de/privacy-policy"
+                target="_blank">
+                Privacy Policy
+              </a>
+            </p>
+
+            <p>
+              <a
+                href="https://alma-dance.de/impressum"
+                target="_blank">
+                Impressum
+              </a>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- GO TOP -->
+
+  <div class="go_top" id="Gotop">
+    <span>
+      <i class="icofont-arrow-up"></i>
+    </span>
+  </div>
+
+
+  <!-- COOKIE CONSENT -->
+
+  <div id="consent_data"></div>
+
+
+  <!-- =====================================================
+       JS
+  ====================================================== -->
+
   <script src="js/jquery.js"></script>
-  <!-- owl-js-Link -->
   <script src="js/owl.carousel.min.js"></script>
-  <!-- bootstrap-js-Link -->
   <script src="js/bootstrap.min.js"></script>
-  <!-- aos-js-Link -->
   <script src="js/aos.js"></script>
-  <!-- Typed Js Cdn -->
-  <script src='js/typed.min.js'></script>
-  <!-- main-js-Link -->
   <script src="js/main.js"></script>
-
-  <!--SKRIPT ZONE  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script src="app.js"></script>
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- OLD PROD PAYPAL <script src="https://www.paypal.com/sdk/js?client-id=Ad_vdC1plSPko5d9oY4CJeobC3WYQqtoyOthXJ0IcKfo38y-Ya9wcgRTglhuWrNSRyub31mxXLhUuAFM&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script> -->
-  <!-- <script src="https://www.paypal.com/sdk/js?client-id=Ad_vdC1plSPko5d9oY4CJeobC3WYQqtoyOthXJ0IcKfo38y-Ya9wcgRTglhuWrNSRyub31mxXLhUuAFM&enable-funding=venmo&vault=true&currency=EUR" data-sdk-integration-source="button-factory"></script> -->
-  <!-- <script src="https://www.paypal.com/sdk/js?client-id=Ad_vdC1plSPko5d9oY4CJeobC3WYQqtoyOthXJ0IcKfo38y-Ya9wcgRTglhuWrNSRyub31mxXLhUuAFM&vault=true&intent=subscription"></script> -->
-  <!-- <script src="https://www.paypal.com/sdk/js?client-id=AclB-BsMF4ANpqyctt2euY8KJeBkjLLKZblEKOinRpLMY4ku2ecNq45KvJ7CdMKMg-z3BJQKndjc0553&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script>  -->
-
-
-
+  <script src="consent3.js"></script>
 
   <script>
-    $("#typed").typed({
-      strings: ["Type Writing Text", "Auto Type Text", "Add any text you like here."],
-      typeSpeed: 100,
-      startDelay: 0,
-      backSpeed: 60,
-      backDelay: 2000,
-      loop: true,
-      cursorChar: "|",
-      contentType: 'html'
-    });
-
-    // Fixed Discount Dish JS
-    $(document).ready(function () {
-      let cardBlock = document.querySelectorAll('.task_block');
-      let topStyle = 120;
-
-      cardBlock.forEach((card) => {
-        card.style.top = `${topStyle}px`;
-        topStyle += 30;
-      })
-
+    if (typeof AOS !== 'undefined') {
+      AOS.init();
     }
-    );
-
-    // Scroll Down Window 
-    $(document).ready(function () {
-      // Attach a click event handler to the button
-      $('#scrollButton').click(function () {
-        // Scroll down smoothly 200 pixels from the current position
-$('html, body').animate({ scrollTop: $(window).scrollTop() + 600 }, 800); // Adjust the speed (800ms) as needed
-      });
-    });
-
   </script>
-<link rel="stylesheet" href="css/icofont.min.css">
-<link rel="stylesheet" href="cookie-banner.css">
-<div id="consent_data"></div>
-<script src="consent3.js"></script>
-</body>
 
+</body>
 </html>
