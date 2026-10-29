@@ -610,6 +610,34 @@
       margin: auto;
     }
 
+    .alma-opening-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: 40px;
+  align-items: start;
+}
+
+.alma-opening-poster {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.alma-opening-poster img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+@media (max-width: 991px) {
+  .alma-opening-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
 
     /* -----------------------------------------
        MOBILE
