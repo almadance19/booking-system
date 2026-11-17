@@ -7,13 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Alma Dance Frankfurt" />
-  <meta property="og:url" content="https://alma-dance-frankfurt.de/" />
-  <meta property="og:description" content="Express & Connect" />
+  <meta property="og:url" content="https://alma-dance-frankfurt.de/location.html" />
   <meta property="og:image" content="images/logo.webp" />
-  <meta property="og:description" content="Express & Connect. Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata  &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
-  <meta name="description" content="Join our community to learn latin dance, meet new people, express yourself and grow by learning Salsa, Bachata &amp; More in Frankfurt &amp; Offenbach. Trial Class is Free!!">
+  <meta name="description" content="Find ALMA Dance Frankfurt at the Union-Areal, Building 6, Hanauer Landstraße 192. View the map, directions and parking guidelines.">
+  <meta property="og:description" content="Find ALMA Dance Frankfurt at the Union-Areal in Frankfurt’s Ostend.">
 
-  <title>Alma Dance Scheduler</title>
+  <title>Location &amp; Directions | ALMA Dance Frankfurt</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- icofont-css-link -->
   <link rel="stylesheet" href="css/icofont.min.css">
@@ -35,54 +34,222 @@
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   <!-- Markup Schema Data Google -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
-        "@id": "SportsActivityLocation",
-        "actionableFeedbackPolicy": "Alma Dance Frankfurt",
-        "additionalType": "https://alma-dance-frankfurt.de/",
-        "alternateName": "Tanzschule Alma Dance",
-        "areaServed": "Frankfurt am Main",
-        "description": "Join our amazing community to learn latin dance in Frankfurt. Meet new people, express yourself and grow by learning Salsa, Bachata & More.",
-      "image": [
-        "https://alma-dance-frankfurt.de/images/logo.webp",
-        "https://example.com/photos/4x3/photo.jpg",
-        "https://example.com/photos/16x9/photo.jpg"
-       ],
-      "name": "Alma Dance Frankfurt",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Dreieichstraße 35",
-        "addressLocality": "Frankfurt am Main",
-        "addressRegion": "Hessen",
-        "postalCode": "60594",
-        "addressCountry": "Germany"
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Viktoria"
-        }
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 50.10515822875264,
-        "longitude": 8.692279249077423
-      },
-      "url": "https://alma-dance-frankfurt.de/",
-      "telephone": "+49 1639641730",
-      "email": "info@alma-dance.de"
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "@id": "SportsActivityLocation",
+  "actionableFeedbackPolicy": "Alma Dance Frankfurt",
+  "additionalType": "https://alma-dance-frankfurt.de/",
+  "alternateName": "Tanzschule Alma Dance",
+  "areaServed": "Frankfurt am Main",
+  "description": "Join our amazing community to learn latin dance in Frankfurt. Meet new people, express yourself and grow by learning Salsa, Bachata & More.",
+  "image": [
+    "https://alma-dance-frankfurt.de/images/logo.webp"
+  ],
+  "name": "Alma Dance Frankfurt",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Hanauer Landstraße 192",
+    "addressLocality": "Frankfurt am Main",
+    "addressRegion": "Hessen",
+    "postalCode": "60314",
+    "addressCountry": "Germany"
+  },
+  "review": {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Viktoria"
     }
-    </script>
+  },
+  "url": "https://alma-dance-frankfurt.de/",
+  "telephone": "+49 1639641730",
+  "email": "info@alma-dance.de",
+  "hasMap": "https://maps.app.goo.gl/tNzdYQB1gWYX2T8h9"
+}
+</script>
 
 
 
+  <style>
+.alma-location-page {
+      --alma-purple: #84309a;
+      --alma-purple-dark: #642273;
+      --alma-purple-light: #f8f1fa;
+      --alma-dark: #252525;
+      --alma-grey: #666666;
+      --alma-white: #ffffff;
+    }
+.new-alma-page {
+      color: var(--alma-dark);
+      background: #fff;
+    }
+.new-alma-section {
+      padding: 90px 0;
+    }
+.new-alma-light {
+      background: var(--alma-purple-light);
+    }
+.alma-eyebrow {
+      display: inline-block;
+      color: var(--alma-purple);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+.new-alma-page h1,
+    .new-alma-page h2,
+    .new-alma-page h3 {
+      color: var(--alma-dark);
+    }
+.new-alma-page h2 {
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+.new-alma-page p {
+      color: var(--alma-grey);
+      line-height: 1.7;
+    }
+.new-alma-hero {
+
+      min-height: 82vh;
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          rgba(22, 8, 27, 0.45),
+          rgba(22, 8, 27, 0.78)
+        ),
+        url("images/new-location/alma-new-location-hero.webp")
+        center center / cover no-repeat;
+
+      color: white;
+    }
+.new-alma-badge {
+      display: inline-block;
+
+      background: rgba(255,255,255,.15);
+
+      border: 1px solid rgba(255,255,255,.4);
+
+      color: white;
+
+      padding: 8px 18px;
+
+      border-radius: 30px;
+
+      font-size: 12px;
+
+      letter-spacing: 2px;
+
+      font-weight: 700;
+
+      margin-bottom: 25px;
+    }
+.new-alma-hero h1 {
+      color: white;
+
+      font-size: clamp(52px, 8vw, 86px);
+
+      line-height: .98;
+
+      font-weight: 800;
+
+      margin-bottom: 20px;
+    }
+.new-alma-hero h2 {
+      color: white;
+
+      font-size: clamp(30px, 5vw, 48px);
+
+      margin-bottom: 25px;
+    }
+.new-alma-hero p {
+      color: white;
+
+      font-size: 20px;
+
+      max-width: 650px;
+
+      margin-bottom: 35px;
+    }
+.alma-btn {
+
+      display: inline-block;
+
+      padding: 15px 28px;
+
+      border-radius: 8px;
+
+      font-weight: 700;
+
+      text-decoration: none !important;
+
+      transition: all .25s ease;
+    }
+.alma-opening-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: 40px;
+  align-items: start;
+}
+.alma-opening-poster {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.alma-opening-poster img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.alma-location-page .new-alma-hero { min-height: clamp(440px, 65vh, 660px); }
+.alma-location-page .new-alma-hero h1 { font-size: clamp(40px, 7vw, 76px); }
+.alma-location-page .new-alma-hero p { color: #fff; }
+.alma-location-page .alma-btn-primary { background: var(--alma-purple); color: #fff; }
+.alma-location-page .alma-btn-primary:hover { background: var(--alma-purple-dark); color: #fff; }
+.alma-location-page .alma-btn-white { background: #fff; color: var(--alma-purple-dark); }
+.alma-location-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.alma-location-page .alma-location-actions .alma-btn { margin: 0; }
+.alma-location-page #union-areal, .alma-location-page #agenda-container { scroll-margin-top: 100px; }
+.alma-location-page .alma-opening-details {
+  margin-top: 24px;
+  padding: clamp(20px, 4vw, 32px);
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eadbed;
+}
+.alma-location-map {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid #eadbed;
+  background: var(--alma-purple-light);
+  margin: 24px 0;
+}
+.alma-location-map iframe { display: block; width: 100%; height: clamp(280px, 55vw, 450px); border: 0; }
+.alma-location-page .alma-btn:focus-visible { outline: 3px solid #b660c8; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .alma-location-page .new-alma-section { padding: 52px 0; }
+  .alma-location-page .new-alma-hero-content { padding: 72px 0; }
+  .alma-location-page h2 { font-size: 32px; }
+  .alma-location-page .alma-opening-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+  </style>
 </head>
 
 <body>
@@ -165,141 +332,97 @@
     </div>
     <!-- container end -->
   </header>
-<!-- Start Of Hero Section -->
-<section>
-  <div class="hero-box">
-      <div class="hero-video-box">
-          <div class="hero-video">
-              <video poster="images/hintergrund.webp" height="270" width="480" autoplay="" muted="" disablepictureinpicture="" disableremoteplayback="" loop="" playsinline="">&gt;
-                  <source src="images/Frankfurt Bachata Festival - Bachata Festival in Germany.mp4">
-                  <p class="warning">Your browser does not support HTML5 video.</p>
-              </video>
-          </div>
-          <!-- <div class="hero-video d-md-none"> -->
-             <!-- ZU PFLEGEN FALLS EIN VIDEO FOR MOBILE UND DESKTOP -->
-              <!-- <video poster="images/hintergrund.webp" height="270" width="480"  autoplay="" muted="" disablepictureinpicture="" disableremoteplayback="" loop="" playsinline="">&gt;
-                <source src="images/Frankfurt Bachata Festival - Bachata Festival in Germany.mp4">
-                  <p class="warning">Your browser does not support HTML5 video.</p>
-              </video> -->
-          </div>
-          <!-- <div class="hero-video-info">
-              <h2>YOU CANNOT MISS THIS EXPERIENCE</h2>
-          </div> -->
+<main class="new-alma-page alma-location-page">
+<section class="new-alma-hero" aria-labelledby="location-title">
+  <div class="container">
+    <div class="new-alma-hero-content">
+      <span class="new-alma-badge">FRANKFURT’S OSTEND</span>
+      <h1 id="location-title">Find ALMA Frankfurt</h1>
+      <p>Union-Areal · Building 6<br>Hanauer Landstraße 192 · 60314 Frankfurt am Main</p>
+      <div class="alma-location-actions">
+        <a class="alma-btn alma-btn-primary" href="https://maps.app.goo.gl/tNzdYQB1gWYX2T8h9" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        <a class="alma-btn alma-btn-white" href="#agenda-container">View map</a>
       </div>
-      <div class="hero-info">
-          <div class="hero-list">
-              <ul>
-                  <li><i class="icofont-star"></i><strong> Classes in Frankfurt City</strong></li>
-                  <li><i class="icofont-star"></i><strong> Meet & connect in a great community</strong></li>
-                  <li><i class="icofont-star"></i><strong> No dance partner needed</strong></li>
-                </ul>
-          </div>
-          <div class="hero-button">
-              <a href="booking.html" class="button button-radius button-border button-gradient-bg">BOOK FREE TRIAL CLASS</a>
-          </div>
-      </div>
+    </div>
   </div>
 </section>
-          <!-- Contact Us Section Start -->
-          <section class="contact_section">
-            <div class="container">
-              <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
-                <span class="title_badge">Contact us</span>
-                <h2>Any query ? <span>let's talk</span></h2>
-                <p></p>
-              </div>
-              <ul class="contact_listing">
-                <li data-aos="fade-up" data-aos-duration="1500">
-                  <span class="icon">
-                    <img src="images/mail_icon.png" alt="image">
-                  </span>
-                  <span class="lable">Email us</span>
-                  <a href="mailto:info@alma-dance.de">info@alma-dance.de</a>
-                </li>
-                <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="150">
-                  <span class="icon">
-                    <img src="images/phone_icon.png" alt="image">
-                  </span>
-                  <span class="lable">Call us</span>
-                  <a href="tel:+491639641730">+49 163 9641730</a>
-                </li>
-                <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-                  <span class="icon">
-                    <img src="images/phone_icon.png" alt="image">
-                  </span>
-                  <span class="lable">Whatsapp</span>
-                  <a target="_blank" href="https://api.whatsapp.com/message/AQECYWAZB43BJ1?autoload=1&app_absent=0">Text us</a>
-                </li>
-              </ul>
-            </div>
-          </section>
-  
-     <!-- Service Section Start -->
-     <section class="row_am service_section about_service" style="padding-bottom: 0px;">
-      <div class="container">
-        <div class="row service_blocks flex-row-reverse">
-          <div class="col-md-6">
-            <div class="img" data-aos="fade-up" data-aos-duration="1500">
-              <img loading="lazy" src="images/final_mailing.webp" alt="image">
-            </div>
-          </div>
-          <div class="col-md-6" >
-            <div class="service_text right_side" data-aos="fade-up" data-aos-duration="1500">
-              <h2><span>ALMA DANCE </span>IS MOVING TO A NEW DANCE STUDIO  IN BORNHEIM!</h2>
-              <p>
-                As of March, all our classes will take place in new spaces with two rooms, nice mirrors, cool light and even a kitchen! It means that we will have more comfort in our classes, more space for new exciting projects, a nicer atmosphere and more opportunities to connect with you!
-              </p>            
-              <p><strong>New address: </strong> Alt-Bornheim 35.</p>
-              <ul class="feature_list">
-                <li>
-                  <div class="icon">
-                    <span><i class="icofont-check-circled"></i></span>
-                  </div>
-                  <div class="text">
-                    <p><strong>Why?: </strong>
-                      Our aim has always been to offer you not only high quality teaching and good learning opportunities but also a space where a community of like-minded people from all over the world can feel welcome and connect. We believe that our new school will help us get closer to achieving our goal. 
-                      </p>
-                    </div>
-                </li>
-                <li>
-                  <div class="icon">
-                  </div>
-                  <div class="text">
-                    <a id="promotion-button" href="kursplan.html" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 5px;background-color: #84309a;" role="button"><strong>Promotions</strong></a>
-                    <a id="promotion-button" href="kursplan.html" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 5px;background-color: #84309a;" role="button"><strong>Schedule</strong></a>
-                    <a id="promotion-button" href="pricing_de.html" class="btn btn-info" style="margin-top: 10px;margin-bottom: 10px;padding: 5px;background-color: #84309a;" role="button"><strong>Prices</strong></a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-         
+<section id="union-areal" class="new-alma-section new-alma-light" aria-labelledby="union-areal-title">
+  <div class="container">
+    <div class="alma-opening-grid">
+      <div>
+        <span class="alma-eyebrow">OUR NEW HOME · FRANKFURT’S OSTEND</span>
+        <h2 id="union-areal-title">Welcome to the Union-Areal 💜</h2>
+
+        <p>
+          A city within a city in the heart of Frankfurt’s Ostend. At the Union-Areal,
+          the historic Union brewery meets modern loft architecture. Fifteen buildings,
+          each with its own character, surround a piazza shaded by old chestnut trees.
+        </p>
+
+        <p>
+          Culture, dining and creative spaces bring people together here.
+          It’s also the new home of our ALMA community, where we dance,
+          learn and celebrate together.
+        </p>
+        <a href="new-alma.html" class="alma-btn alma-btn-primary">Discover the New ALMA</a>
+
+        <div class="alma-opening-details">
+          <h3>How to find us</h3>
+          <address>
+            ALMA Frankfurt · Union-Areal, Building 6<br>
+            Hanauer Landstraße 192<br>
+            60314 Frankfurt am Main
+          </address>
+
+          <p>
+            <strong>Parking:</strong> Guest parking is unavailable in the Union-Areal
+            courtyard. You can look for street parking on Lindleystraße
+            and in the surrounding streets.
+          </p>
+
+          <a
+            href="https://docs.google.com/document/d/e/2PACX-1vRmrJzdg9jEA1Pe-chcrslqr6g24UR0uoOIxmmzflNYvk8MiVmSB8XdupGBlxWsDQ5KoOXDMdTP9Jjz/pub?urp=gmail_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="alma-btn alma-btn-primary"
+          >
+            PARKING RULES &amp; GUIDELINES
+          </a>
         </div>
       </div>
-    </section>
-    
-          <!-- Contact Us Section End -->
-          <section id="agenda-container" class="how_it_section">
-            <div class="how_it_inner" data-aos="fade-in" data-aos-duration="1500">
-              <div class="container">
-                <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
-                  <span class="title_badge"></span>
-                  <h2><span>Location</span></h2>
-                  <a href="https://maps.app.goo.gl/oLDcUZ7JxAanWwod9"><h4 class="">Alt-Bornheim 35, 60385 Frankfurt am Main </p></a>
-                  </div>
-                <div class="map_block row_am" data-aos="fade-in" data-aos-duration="1500">
-                  <div class="container">
-                    <iframe title="Location Alma Dance" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4398.778018899204!2d8.708018510485141!3d50.127860325948355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0f71905f8aff%3A0xc9a56681f6e2a1c0!2sAlma%20Dance%20Frankfurt!5e0!3m2!1sen!2sde!4v1709016672888!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div>
-                </div>
-                <h4>How to get there</h4>
-                <p>Das Studio ist sehr gut mit der U-Bahn zu erreichen.</p>
-                <p>Die Haltestellen "Bornheim Mitte" & "Seckbacher Landstraße" sind nur wenige Meter von unserem Hauptstandort entfernt.</p>
-              </div>
-            </div>
-          </section>
 
+      <figure class="alma-opening-poster">
+        <img
+          src="images/new-location/union-areal-alma-frankfurt.webp"
+          alt="The Union-Areal in Frankfurt’s Ostend by day and night, showing the historic brewery and the piazza."
+          width="1122"
+          height="1402"
+          loading="lazy"
+          decoding="async"
+        >
+      </figure>
+    </div>
+  </div>
+</section>
+<section id="agenda-container" class="new-alma-section" aria-labelledby="map-title">
+  <div class="container">
+    <span class="alma-eyebrow">DIRECTIONS</span>
+    <h2 id="map-title">Hanauer Landstraße 192, 60314 Frankfurt am Main</h2>
+    <div class="alma-location-map">
+      <iframe
+        title="Google Maps showing ALMA Frankfurt at the Union-Areal"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.4971789346164!2d8.7235972!3d50.11441790000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0f71905f8aff%3A0xc9a56681f6e2a1c0!2sTanzschule%20Frankfurt%20-%20Alma%20Dance%20Frankfurt!5e0!3m2!1sen!2sde!4v1794920155837!5m2!1sen!2sde"
+        width="600" height="450" loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+    </div>
+    <a class="alma-btn alma-btn-primary" href="https://maps.app.goo.gl/tNzdYQB1gWYX2T8h9" target="_blank" rel="noopener noreferrer">Get directions</a>
+    <a class="alma-btn alma-btn-primary" href="https://docs.google.com/document/d/e/2PACX-1vRmrJzdg9jEA1Pe-chcrslqr6g24UR0uoOIxmmzflNYvk8MiVmSB8XdupGBlxWsDQ5KoOXDMdTP9Jjz/pub?urp=gmail_link" target="_blank" rel="noopener noreferrer">View parking rules and guidelines</a>
+  </div>
 
+</section>
+
+</main>
 
     <!-- Footer-Section start -->
     <footer class="white_text" data-aos="fade-in" data-aos-duration="1500">
